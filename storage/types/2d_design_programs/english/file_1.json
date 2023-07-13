@@ -1,0 +1,8 @@
+{
+     "auto_cad":"AutoCAD",
+     "libre_cad": "LibreCAD",
+     "solid_edge": "Solid Edge",
+     "q_cad":"QCAD",
+     "nano_cad":"NanoCAD",
+     "opens_cad":"OpensCAD"
+}

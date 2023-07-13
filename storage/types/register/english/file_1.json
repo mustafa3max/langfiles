@@ -1,0 +1,16 @@
+{
+     "register": "registration",
+     "create_account": "Create Account",
+     "email": "email",
+     "username": "Username",
+     "name": "Name",
+     "password": "password",
+     "confirm_password": "Confirm Password",
+     "first_name": "first name",
+     "last_name": "Last Name",
+     "agree_with": "By creating an account, you agree to",
+     "terms_of_service": "Terms of Service",
+     "and": "and",
+     "privacy_policy": "Privacy Policy",
+     "or": "or"
+}

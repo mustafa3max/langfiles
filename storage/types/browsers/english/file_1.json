@@ -1,0 +1,11 @@
+{
+     "google_chrome": "Google Chrome",
+     "firefox": "Firefox Browser",
+     "opera":"Opera Browser",
+     "edge":"Edge Browser",
+     "internet_explorer":"Internet Explorer Browser",
+     "safari": "Safari",
+     "tor": "Tor Browser",
+     "uc":"UC Browser",
+     "chromium": "Chromium Browser"
+}

@@ -1,0 +1,15 @@
+{
+     "java":"java",
+     "java_script":"JavaScript",
+     "kotlin":"kotlin",
+     "c":"C",
+     "c_plus_plus": "C plus plus",
+     "c_sharp":"C sharp",
+     "php":"php",
+     "dart":"Dart",
+     "pascal":"pascal",
+     "perl":"perl",
+     "python":"Python",
+     "ruby": "Ruby",
+     "fortran":"fortran"
+}

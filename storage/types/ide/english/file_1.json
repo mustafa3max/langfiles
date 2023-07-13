@@ -1,0 +1,18 @@
+{
+     "visual_studio_code":"Visual Studio Code",
+     "netbeans": "netbeans",
+     "py_charm":"pycharm",
+     "intellij_idea":"IntelliJ idea",
+     "eclipse":"eclipse",
+     "komodo": "komodo",
+     "xcode":"xcode",
+     "android_studio":"android studio",
+     "atom": "atom",
+     "brackets": "brackets",
+     "clion": "clion",
+     "mono_develop":"mono develop",
+     "php_storm": "php storm",
+     "ruby_mine": "Ruby Mine",
+     "web_storm": "webstorm",
+     "xamarin":"xamarin"
+}

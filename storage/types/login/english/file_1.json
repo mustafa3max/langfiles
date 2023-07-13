@@ -1,0 +1,13 @@
+{
+    "login": "login",
+    "sign_in": "sign in",
+    "remember_me": "remember me",
+    "forgot_password": "Forgot Password",
+    "email": "email",
+    "username": "Username",
+    "name": "Name",
+    "password": "password",
+    "no_account": "You do not have an account",
+    "or": "or",
+    "to": "to"
+}
