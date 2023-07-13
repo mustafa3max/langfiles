@@ -13,15 +13,15 @@ return [
     'description_types' => '',
     'key_words_types' => '',
     //
-    'title_create_languages' => '',
-    'description_create_languages' => '',
-    'key_words_create_languages' => '',
-    //
-    'title_files' => '',
-    'description_files' => '',
-    'key_words_files' => '',
-    //
-    'title_filer' => '',
+    'title_file' => '',
     'description_filer' => '',
     'key_words_filer' => '',
+    //
+    'title_login' => 'تسجيل الدخول',
+    'description_login' => '',
+    'key_words_login' => '',
+    //
+    'title_register' => 'إنشاء حساب جديد',
+    'description_register' => '',
+    'key_words_register' => '',
 ];

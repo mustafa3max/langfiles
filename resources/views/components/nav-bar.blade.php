@@ -12,7 +12,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="types" class="block hover:text-accent">
+                        <a href="/types" class="block hover:text-accent">
                             <i class="fa-solid fa-home fa-xl"></i>
                         </a>
                     </li>

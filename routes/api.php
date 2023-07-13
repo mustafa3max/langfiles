@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreateDataAccountController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,5 @@ Route::scopeBindings()->group(function () {
 Route::scopeBindings()->group(function () {
     Route::post('create', [FileController::class, 'create']);
 });
+
+Route::post('create-data-owner', [CreateDataAccountController::class, 'create']);

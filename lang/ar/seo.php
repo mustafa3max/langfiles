@@ -13,15 +13,15 @@ return [
     'description_types' => 'في هذه الصفحة يتم تصنيف الملفات اللغوية بناءاً على النوع مثل اسماء المتصفحات او برامج التصميم ثنائي الابعاد وهكذا',
     'key_words_types' => 'برامج, تصميم, تسجيل دخول, انشاء خساب',
     //
-    'title_languages' => 'تصنيف الملفات اللغوية حسب اللعة',
-    'description_languages' => 'في هذه الصفحة يتم تصنيف الملفات اللغوية حسب اللغة مثل اللغة العربية و اللغة الانجليزية',
-    'key_words_languages' => 'اللغة العربية, اللغة الأنجليزية',
-    //
-    'title_files' => 'تصنيف الملفات اللغوية حسب الأسم',
-    'description_files' => '',
-    'key_words_files' => '',
-    //
     'title_file' => 'عرض الملف بصيغة جسون',
     'description_filer' => '',
     'key_words_filer' => '',
+    //
+    'title_login' => 'تسجيل الدخول',
+    'description_login' => '',
+    'key_words_login' => '',
+    //
+    'title_register' => 'إنشاء حساب جديد',
+    'description_register' => '',
+    'key_words_register' => '',
 ];

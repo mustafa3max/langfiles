@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ControlPanel;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Livewire\Component;
@@ -126,6 +127,10 @@ class Update extends Component
 
     public function mount()
     {
+        if (!Auth::user()->owner) {
+            return redirect()->route('home');
+        }
+
         session()->put('type', request('type'));
         $this->type = session()->get('type');
     }

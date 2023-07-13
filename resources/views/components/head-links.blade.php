@@ -21,7 +21,8 @@
         
     @endphp
     @if ($isType)
-        <a href="{{ $isType ? 'types' : '#' }}" class="text-accent py-2 pe-2 hover:underline">{{ __('me_str.types') }}</a>
+        <a href="{{ $isType ? '/types' : '#' }}"
+            class="text-accent py-2 pe-2 hover:underline">{{ __('me_str.types') }}</a>
     @else
         <a class="py-2 pe-2">{{ __('me_str.types') }}</a>
         <i class="fa-solid fa-angle-{{ $icon }} py-2 pe-2 text-transparent"></i>
@@ -29,7 +30,7 @@
     @if (Route::currentRouteName() == 'file')
         <i class="fa-solid fa-angle-{{ $icon }} py-2 pe-2"></i>
         @if ($isFile)
-            <a href="{{ $isFile ? route('file', ['path' => session('path')]) : '#' }}"
+            <a href="{{ $isFile ? route('/file', ['path' => session('path')]) : '#' }}"
                 class="text-accent py-2 pe-2 hover:underline">{{ __('me_str.file') }}</a>
         @else
             <a class="py-2 pe-2">{{ __('me_str.file') }}</a>
