@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ControlPanel;
 
+use App\Http\Globals;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,6 @@ class Update extends Component
     public $idFile;
     public $isForm = [];
     public $isDelete = [];
-
-    public $languages = ['ar', 'en'];
 
     protected function rules()
     {
@@ -44,7 +43,7 @@ class Update extends Component
         $lang = $this->type[0] . $this->type[1];
 
         if (Schema::hasTable($this->type)) {
-            if (in_array($lang, $this->languages)) {
+            if (in_array($lang, Globals::languages())) {
                 $table = explode($lang . '_', $this->type);
                 $table = str_replace('_', ' ', $table);
                 if ($this->isKey) {
@@ -69,7 +68,7 @@ class Update extends Component
         $lang = $this->type[0] . $this->type[1];
 
         if (Schema::hasTable($this->type)) {
-            if (in_array($lang, $this->languages)) {
+            if (in_array($lang, Globals::languages())) {
                 $table = explode($lang . '_', $this->type);
                 $table = str_replace('_', ' ', $table);
                 $data = DB::table($this->type)->where('id', $this->idFile)->get('key')->first();
@@ -129,7 +128,7 @@ class Update extends Component
     {
         $lang = $this->type[0] . $this->type[1];
         if (Schema::hasTable($this->type)) {
-            if (in_array($lang, $this->languages)) {
+            if (in_array($lang, Globals::languages())) {
                 $enabled = DB::table($this->type)->where('id', $id)->get('enabled')->first()->enabled;
                 DB::table($this->type)->where('id', $id)->update([
                     'enabled' => !$enabled

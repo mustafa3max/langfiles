@@ -9,17 +9,19 @@
         {{ __('seo.key_words_file') }}
     @endsection
 
-    <div class="pb-2">
-        @component('components.search', ['submitForm' => 'data'])
-        @endcomponent
-    </div>
-
     @component('components.title-file', ['table' => $this->table])
     @endcomponent
 
     <div class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg">
         {{-- Data Show --}}
         <div class="grid gap-2" x-show="!isCode">
+            {{-- Undo Delete Item --}}
+            @if (count($data) > 0)
+                <button
+                    class="p-4 bg-accent hover:text-primary-light h-12 flex items-center justify-center gap-4 rounded-lg mx-auto"
+                    wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
+            @endif
+
             @forelse ($dataAll as $data)
                 @component('components.item-file', ['data' => $data])
                 @endcomponent

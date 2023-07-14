@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ar_towd_design_programs', function (Blueprint $table) {
+        Schema::create('en_3d_design_programs', function (Blueprint $table) {
             $table->id();
             $table->string('type', 32)->require;
             $table->string('language', 32)->require;
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ar_towd_design_programs');
+        Schema::dropIfExists('en_threed_design_programs');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Show;
 
+use App\Http\Globals;
 use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -11,7 +12,6 @@ class Types extends Component
 {
     use WithPagination;
 
-    public $languages = ['ar', 'en'];
     public $search;
     public $lang;
 
@@ -24,22 +24,27 @@ class Types extends Component
 
     function isLang($lang)
     {
-        if (in_array($lang, $this->languages)) {
-            $this->lang = $lang . '_';
-        } else {
-            $this->lang = $lang;
-        }
+        $this->lang = $lang;
     }
 
     function types()
     {
-        $name = null;
-        if (strlen($this->search) >= 2) {
-            $name = $this->search;
-        } elseif (strlen($this->lang) >= 2) {
-            $name = $this->lang;
+        if ($this->search != null && $this->lang == null) {
+            return Table::where('name', 'LIKE', "%$this->search%")
+                ->orderByDesc('name')
+                ->simplePaginate(20);
+        } elseif ($this->search == null && $this->lang != null) {
+            return Table::where('lang', 'LIKE', "%$this->lang%")
+                ->orderByDesc('name')
+                ->simplePaginate(20);
+        } elseif ($this->search != null && $this->lang != null) {
+            return Table::where('name', 'LIKE', "%$this->search%")
+                ->where('lang', 'LIKE', "%$this->lang%")
+                ->orderByDesc('name')
+                ->simplePaginate(20);
         }
-        return Table::where('name', 'LIKE', "%$name%")->simplePaginate(20);
+        return Table::orderByDesc('name')
+            ->simplePaginate(20);
     }
 
     function countItems($type)
@@ -49,6 +54,6 @@ class Types extends Component
 
     public function render()
     {
-        return view('livewire.show.types')->with(['types' => $this->types(), 'languages' => $this->languages]);
+        return view('livewire.show.types')->with(['types' => $this->types(), 'languages' => Globals::languages()]);
     }
 }

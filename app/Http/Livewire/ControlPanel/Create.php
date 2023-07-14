@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ControlPanel;
 
+use App\Http\Globals;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,6 @@ class Create extends Component
     public $value;
     public $type;
 
-    public $languages = ['ar', 'en'];
 
     protected function rules()
     {
@@ -35,7 +35,7 @@ class Create extends Component
         $lang = $this->type[0] . $this->type[1];
 
         if (Schema::hasTable($this->type)) {
-            if (in_array($lang, $this->languages)) {
+            if (in_array($lang, Globals::languages())) {
                 $table = explode($lang . '_', $this->type);
                 $table = str_replace('_', ' ', $table);
                 DB::table($this->type)->insert([

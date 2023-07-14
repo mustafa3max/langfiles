@@ -23,21 +23,13 @@
         <div wire:loading.remove
             class="grid max-ss:grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 grid-cols-5 gap-2">
             @forelse ($types as $type)
-                @php
-                    $language = $type->name[0] . $type->name[1];
-                @endphp
-                @if (in_array($language, $languages))
-                    @php
-                        $data = str_replace('ar', '', $type->name);
-                        $data = str_replace('en', '', $data);
-                        $data = str_replace('_', ' ', $data);
-                    @endphp
+                @if (in_array($type->lang, $languages))
                     @component('components.item-show', [
-                        'data' => $data,
-                        'lang' => explode('_', $type->name)[0],
+                        'data' => $type->name,
+                        'lang' => $type->lang,
                         'route' => 'file',
-                        'dataRoute' => ['type' => $type->name],
-                        'countItems' => $this->countItems($type->name),
+                        'dataRoute' => ['type' => $type->table],
+                        'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent
                 @endif

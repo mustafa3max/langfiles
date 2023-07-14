@@ -58,8 +58,6 @@ Route::prefix('user')->group(function () {
 });
 
 
-Route::get('json', Json::class)->name('json');
-
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/valid-user/{email}', function ($email) {
 

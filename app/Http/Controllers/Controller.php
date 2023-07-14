@@ -10,8 +10,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public $empty = 'empty';
-    public $error = 'error';
-    public $ready = 'ready';
-    public $diskTypes = 'types';
 }
