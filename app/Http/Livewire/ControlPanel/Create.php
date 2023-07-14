@@ -18,8 +18,8 @@ class Create extends Component
     protected function rules()
     {
         return [
-            'key' => 'required|min:2|max:255|unique:' .  $this->type,
-            'value' => 'required|min:2|max:255|unique:' .  $this->type
+            'key' => 'required|min:1|max:255|unique:' .  $this->type,
+            'value' => 'required|min:1|max:255|unique:' .  $this->type
         ];
     }
 

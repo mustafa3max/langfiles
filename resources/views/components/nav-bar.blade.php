@@ -18,7 +18,7 @@
                     </li>
                 </ul>
                 <a href="/" class="flex items-center">
-                    <img src="{{ asset('storage/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
+                    <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
                 </a>
             </div>
             @component('components.head-links')

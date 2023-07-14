@@ -13,7 +13,8 @@
                 <button class="hover:underline"
                     wire:click='isDelete({{ $files->id }}, {{ $index }})'>Delete</button>
                 <div class="grid gap-2 grow">
-                    <div class="p-2 bg-primary-light dark:bg-primary-dark rounded-lg grow">
+                    <div
+                        class="p-2 bg-primary-light dark:bg-primary-dark rounded-lg grow {{ $files->enabled ? '' : 'border' }} border-accent">
                         <div class="grid">
                             <div
                                 class="text-accent border-b border-secondary-light dark:border-secondary-dark text-center p-2">
@@ -89,6 +90,8 @@
                         <div class="pt-2"></div>
                     @endif
                 </div>
+                <button class="hover:underline"
+                    wire:click='enable({{ $files->id }})'>{{ $files->enabled ? 'Disable' : 'Enable' }}</button>
             </div>
         @empty
         @endforelse

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\ControlPanel\Create;

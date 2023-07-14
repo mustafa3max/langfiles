@@ -6,8 +6,7 @@
             @endphp
             @if (in_array($language, $languages))
                 @php
-                    $newType = str_replace('ar', '', $type);
-                    $newType = str_replace('_', ' ', $newType);
+                    $newType = str_replace('_', ' ', $type);
                 @endphp
 
                 <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 text-center flex flex-col">

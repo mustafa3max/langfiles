@@ -2,32 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\File;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Table;
+use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
-    function types()
-    {
-        return File::where('enabled', true)->select('type')->groupby('type')->paginate(50, ['type']);
-    }
 
-    function languages(Request $request)
+    function table()
     {
-        return File::where('type', $request->type)->paginate(50, ['language']);
-    }
+        $tables = DB::select('SHOW TABLES');
+        $tables = array_map('current', $tables);
 
-    function files(Request $request)
-    {
-        return File::where('type', $request->type)->where('language', $request->language)->paginate(50, ['path']);
-    }
+        foreach ($tables as $table) {
+            try {
+                Table::create(['name' => $table]);
+            } catch (\Throwable $th) {
+            }
+        }
 
-    function file(Request $request)
-    {
-        $file = Storage::disk($this->diskTypes)->get($request->path);
         return response()->json([
-            'file' => $file
+            'tables' => Table::get()
         ]);
     }
 }

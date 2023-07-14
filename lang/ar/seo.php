@@ -14,8 +14,8 @@ return [
     'key_words_types' => 'برامج, تصميم, تسجيل دخول, انشاء خساب',
     //
     'title_file' => 'عرض الملف بصيغة جسون',
-    'description_filer' => '',
-    'key_words_filer' => '',
+    'description_file' => 'يتم عرض الملف بصيغة جسون حنى تتمكن من رؤية البيانات وايضا يمكنك ازالة القيمة التي تريد ثم تنسخ المحتوى',
+    'key_words_file' => 'json, laravel, flutter, android, ios',
     //
     'title_login' => 'تسجيل الدخول',
     'description_login' => '',

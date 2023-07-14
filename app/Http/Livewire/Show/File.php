@@ -13,6 +13,14 @@ class File extends Component
     public $table;
     public $dataCopy;
     public $data = [];
+    public $search;
+
+    function clearSersh()
+    {
+        if (strlen($this->search) >= 2) {
+            $this->reset('search');
+        }
+    }
 
     function delete($key)
     {
@@ -21,7 +29,12 @@ class File extends Component
 
     function data()
     {
-        $data = DB::table($this->table)->where('enabled', false)->whereNotIn('key', $this->data)->get(['key', 'value']);
+        $data = DB::table($this->table)
+            ->where('enabled', true)
+            ->whereNotIn('key', $this->data)
+            ->where('key', 'LIKE', "%$this->search%")
+            ->orWhere('value', 'LIKE', "%$this->search%")
+            ->get(['key', 'value']);
         return $data;
     }
 

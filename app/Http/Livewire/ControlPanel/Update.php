@@ -23,11 +23,11 @@ class Update extends Component
     {
         if ($this->isKey) {
             return [
-                'key' => 'required|min:2|max:255|unique:' .  $this->type,
+                'key' => 'required|min:1|max:255|unique:' .  $this->type,
             ];
         } else {
             return [
-                'value' => 'required|min:2|max:255|unique:' .  $this->type,
+                'value' => 'required|min:1|max:255|unique:' .  $this->type,
             ];
         }
     }
@@ -123,6 +123,19 @@ class Update extends Component
     {
         $data = DB::table($this->type)->simplePaginate();
         return $data;
+    }
+
+    function enable($id)
+    {
+        $lang = $this->type[0] . $this->type[1];
+        if (Schema::hasTable($this->type)) {
+            if (in_array($lang, $this->languages)) {
+                $enabled = DB::table($this->type)->where('id', $id)->get('enabled')->first()->enabled;
+                DB::table($this->type)->where('id', $id)->update([
+                    'enabled' => !$enabled
+                ]);
+            }
+        }
     }
 
     public function mount()

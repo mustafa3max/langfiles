@@ -22,8 +22,18 @@
     @stack('stayles')
 </head>
 
-<body class="font-almarai">
-    <div class="bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar">
+<body class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar"
+    x-init="isAlpine = false" x-data="{ isAlpine: true }">
+    <div x-show="isAlpine" class="flex items-center justify-center h-screen">
+        <div class="grid gap-10">
+            <img src="{{ asset('assets/images/logo.svg') }}" class="h-24 w-24 m-auto animate-pulse"
+                alt="Langfiles Logo" />
+            <h1 class="text-2xl text-center"><span
+                    class="block uppercase font-extrabold">langfiles</span>{{ __('seo.title_home') }}
+            </h1>
+        </div>
+    </div>
+    <div x-show="!isAlpine">
         <div style="min-height: 92vh">
             @component('components.nav-bar')
             @endcomponent
@@ -32,11 +42,14 @@
             <div class="p-2">
                 <div class="flex flex-wrap">
                     <aside class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12">
+                        {{-- <x-ads.banner_v_r /> --}}
                     </aside>
                     <div class="w-full md:w-9/12 lg:w-8/12 xl:w-6/12">
+                        {{-- <x-ads.banner_h /> --}}
                         {{ $slot }}
                     </div>
                     <aside class="w-full md:w-full lg:w-2/12 xl:w-3/12">
+                        {{-- <x-ads.banner_v_l /> --}}
                     </aside>
                     </main>
                 </div>

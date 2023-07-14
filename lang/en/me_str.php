@@ -67,6 +67,11 @@ return [
     'value' => 'value',
     'desc_mustafamax' => 'android and iOS app developer using Flutter and also a website developer using Laravel',
     'profile' => 'profile',
+    'search' => 'search',
+    'all' => 'all',
+    'ads' => 'ads',
+    '' => '',
+    '' => '',
     '' => '',
     '' => '',
 ];

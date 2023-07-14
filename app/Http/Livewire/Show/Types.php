@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Show;
 
+use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,12 +12,34 @@ class Types extends Component
     use WithPagination;
 
     public $languages = ['ar', 'en'];
+    public $search;
+    public $lang;
+
+    function clearSersh()
+    {
+        if (strlen($this->search) >= 2) {
+            $this->reset('search');
+        }
+    }
+
+    function isLang($lang)
+    {
+        if (in_array($lang, $this->languages)) {
+            $this->lang = $lang . '_';
+        } else {
+            $this->lang = $lang;
+        }
+    }
 
     function types()
     {
-        $tables = DB::select('SHOW TABLES');
-        $tables = array_map('current', $tables);
-        return $tables;
+        $name = null;
+        if (strlen($this->search) >= 2) {
+            $name = $this->search;
+        } elseif (strlen($this->lang) >= 2) {
+            $name = $this->lang;
+        }
+        return Table::where('name', 'LIKE', "%$name%")->simplePaginate(20);
     }
 
     function countItems($type)
