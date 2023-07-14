@@ -60,4 +60,23 @@ class TypeController extends Controller
         }
         return 'OK';
     }
+
+    function tablesName()
+    {
+        $tables = Table::where('lang', 'ar')->get('table')->toArray();
+        $tables = array_map('current', $tables);
+
+        $names = Table::where('lang', 'ar')->get('name')->toArray();
+        $names = array_map('current', $names);
+
+
+        $values = [];
+        foreach ($tables as $key => $value) {
+            $values[] = '';
+        }
+
+        $tables = array_combine($tables, $values);
+
+        return $tables;
+    }
 }

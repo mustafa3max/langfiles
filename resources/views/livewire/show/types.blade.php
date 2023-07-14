@@ -25,7 +25,7 @@
             @forelse ($types as $type)
                 @if (in_array($type->lang, $languages))
                     @component('components.item-show', [
-                        'data' => $type->name,
+                        'data' => __('tables.' . str_replace(' ', '_', $type->name)),
                         'lang' => $type->lang,
                         'route' => 'file',
                         'dataRoute' => ['type' => $type->table],

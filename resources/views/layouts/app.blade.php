@@ -42,14 +42,14 @@
             <div class="p-2">
                 <div class="flex flex-wrap">
                     <aside class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12">
-                        {{-- <x-ads.banner_v_r /> --}}
+                        <x-ads.banner_v_r />
                     </aside>
                     <div class="w-full md:w-9/12 lg:w-8/12 xl:w-6/12">
-                        {{-- <x-ads.banner_h /> --}}
+                        <x-ads.banner_h />
                         {{ $slot }}
                     </div>
                     <aside class="w-full md:w-full lg:w-2/12 xl:w-3/12">
-                        {{-- <x-ads.banner_v_l /> --}}
+                        <x-ads.banner_v_l />
                     </aside>
                     </main>
                 </div>

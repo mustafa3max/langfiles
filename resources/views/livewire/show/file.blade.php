@@ -9,7 +9,8 @@
         {{ __('seo.key_words_file') }}
     @endsection
 
-    @component('components.title-file', ['table' => $this->table])
+    {{-- @component('components.title-file', ['table' => $this->table]) --}}
+    @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang])
     @endcomponent
 
     <div class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg">

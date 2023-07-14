@@ -11,6 +11,8 @@ class File extends Component
     use WithPagination;
 
     public $table;
+    public $title;
+    public $lang;
     public $dataCopy;
     public $data = [];
 
@@ -47,6 +49,12 @@ class File extends Component
     public function mount()
     {
         $this->table = request('type');
+
+        $this->title = request('type');
+        $this->title = explode('_', $this->title);
+        $this->lang = $this->title[0];
+        $this->title = array_slice($this->title, 1);
+        $this->title = implode('_', $this->title);
     }
 
     public function render()

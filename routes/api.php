@@ -7,4 +7,5 @@ use Illuminate\Support\Facades\Route;
 Route::scopeBindings()->group(function () {
     // Route::post('create-tables', [TypeController::class, 'createTables']);
     // Route::post('create-files', [TypeController::class, 'createFiles']);
+    Route::post('tables-name', [TypeController::class, 'tablesName']);
 });
