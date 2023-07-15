@@ -3,6 +3,11 @@
 use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
+use App\Http\Livewire\Blog\Artilce;
+use App\Http\Livewire\Blog\Create as BlogCreate;
+use App\Http\Livewire\Blog\Index as BlogIndex;
+use App\Http\Livewire\Blog\Update as BlogUpdate;
+use App\Http\Livewire\Blog\Delete as BlogDelete;
 use App\Http\Livewire\ControlPanel\Create;
 use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
@@ -54,6 +59,17 @@ Route::prefix('mustafamax')->group(function () {
 Route::prefix('user')->group(function () {
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('profile', UserProfile::class)->name('profile');
+    });
+});
+
+// Blog
+Route::prefix('blog')->group(function () {
+    Route::get('/', BlogIndex::class)->name('index');
+    Route::middleware('auth:sanctum', 'verified')->group(function () {
+        Route::get('article', Artilce::class)->name('article');
+        Route::get('create', BlogCreate::class)->name('create');
+        Route::get('update', BlogUpdate::class)->name('update');
+        Route::get('delete', BlogDelete::class)->name('delete');
     });
 });
 

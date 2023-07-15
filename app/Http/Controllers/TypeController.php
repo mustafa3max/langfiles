@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Globals;
 use App\Models\Table;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class TypeController extends Controller
 {
-    public $langs = ['ar', 'en'];
 
     function createTables()
     {
@@ -18,11 +18,12 @@ class TypeController extends Controller
         foreach ($tables as $table) {
             $lang = explode('_', $table);
 
-            if (in_array($lang[0], $this->langs)) {
+            if (in_array($lang[0], Globals::languages())) {
                 $name = array_slice($lang, 1, count($lang));
-                $name = implode(' ', $name);
+                $name_en = implode(' ', $name);
+                $name_ar = __('tables.' . implode('_', $name));
                 try {
-                    Table::create(['name' => $name, 'lang' => $lang[0], 'table' => $table]);
+                    Table::create(['name_en' => $name_en, 'name_ar' => $name_ar, 'lang' => $lang[0], 'table' => $table]);
                 } catch (\Throwable $th) {
                 }
             }
@@ -61,22 +62,19 @@ class TypeController extends Controller
         return 'OK';
     }
 
-    function tablesName()
+    function tablesName(Request $request)
     {
-        $tables = Table::where('lang', 'ar')->get('table')->toArray();
-        $tables = array_map('current', $tables);
+        if (in_array($request->lang, Globals::languages())) {
+            $tables = Table::where('lang', $request->lang)->get('table')->toArray();
+            $tables = array_map('current', $tables);
 
-        $names = Table::where('lang', 'ar')->get('name')->toArray();
-        $names = array_map('current', $names);
+            $names = Table::where('lang', $request->lang)->get('name_' . $request->lang)->toArray();
+            $names = array_map('current', $names);
 
+            $tables = array_combine($tables, $names);
 
-        $values = [];
-        foreach ($tables as $key => $value) {
-            $values[] = '';
+            return $tables;
         }
-
-        $tables = array_combine($tables, $values);
-
-        return $tables;
+        return 'Error Langouge';
     }
 }

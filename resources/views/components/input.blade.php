@@ -1,6 +1,5 @@
 <div>
-    <input type="{{ $type }}"
-        class="border border-primary-light dark:border-primary-dark rounded-lg block w-full dark:bg-secondary-dark p-2 text-lg"
+    <input type="{{ $type }}" class="bg-primary-light dark:bg-primary-dark rounded-lg block w-full p-4 text-lg"
         placeholder="{{ $placeholder }}" {{ $required }} {{ $disabled ?? '' }} wire:model="{{ $name }}">
     @error($name)
         <p class="text-sm text-accent text-center pt-3">{{ $message }}</p>
