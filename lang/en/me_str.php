@@ -78,6 +78,11 @@ return [
     'blog' => 'blog',
     'author' => 'author',
     'update_now' => 'update now',
+    'empty_page_title' => 'empty page',
+    'empty_page_desc' => 'empty page',
+    'reload' => '',
+    '' => '',
+    '' => '',
     '' => '',
     '' => '',
 ];

@@ -20,13 +20,15 @@
 
     <ul class="grid gap-4 border-t border-primary-light dark:border-primary-dark pt-4">
         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-            <li>
-                <a rel="alternate" hreflang="{{ $localeCode }}" class="flex gap-4 items-center"
-                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                    <i class="fa-solid fa-earth-{{ $localeCode == 'en' ? 'americas' : 'asia' }}"></i>
-                    {{ $properties['native'] }}
-                </a>
-            </li>
+            @if (LaravelLocalization::getCurrentLocale() != $localeCode)
+                <li>
+                    <a rel="alternate" hreflang="{{ $localeCode }}" class="flex gap-4 items-center"
+                        href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        <i class="fa-solid fa-earth-{{ $localeCode == 'en' ? 'americas' : 'asia' }}"></i>
+                        {{ $properties['native'] }}
+                    </a>
+                </li>
+            @endif
         @endforeach
     </ul>
 </div>

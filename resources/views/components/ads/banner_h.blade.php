@@ -1,4 +1,7 @@
-<div
-    class="bg-secondary-light dark:bg-secondary-dark mb-2 rounded-lg p-2 flex justify-center items-center h-24 max-md:hidden">
-    {{ __('me_str.ads') }}
+<div class="max-md:hidden pb-2">
+    <x-card>
+        <div class="h-24 grid items-center justify-center">
+            {{ __('me_str.ads') }}
+        </div>
+    </x-card>
 </div>

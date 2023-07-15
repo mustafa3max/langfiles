@@ -1,5 +1,5 @@
-<div>
-    <form class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg" wire:submit.prevent='update'>
+<form wire:submit.prevent='update'>
+    <x-card>
         <div class="pb-2 grid gap-2">
             <input type="text" wire:model.lazy='title'
                 class="bg-primary-light dark:bg-primary-dark rounded-lg p-4 w-full"
@@ -17,5 +17,5 @@
             @component('components.raised-button', ['type' => 'submit', 'value' => __('me_str.update_now')])
             @endcomponent
         </div>
-    </form>
-</div>
+    </x-card>
+</form>

@@ -24,4 +24,8 @@ return [
     'title_register' => 'create new account',
     'description_register' => '',
     'key_words_register' => '',
+    //
+    'title_articles' => '',
+    'description_articles' => '',
+    'key_words_articles' => '',
 ];

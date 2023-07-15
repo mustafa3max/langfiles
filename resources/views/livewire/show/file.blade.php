@@ -13,7 +13,7 @@
     @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang])
     @endcomponent
 
-    <div class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg">
+    <x-card>
         {{-- Data Show --}}
         <div class="grid gap-2" x-show="!isCode">
             {{-- Undo Delete Item --}}
@@ -27,6 +27,8 @@
                 @component('components.item-file', ['data' => $data])
                 @endcomponent
             @empty
+                @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
+                @endcomponent
             @endforelse
         </div>
 
@@ -45,7 +47,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </x-card>
     <div class="p-1"></div>
     <div class="flex justify-center gap-1">
         <div wire:click='copy' x-on:click="isCode=true" x-show="!isCode">

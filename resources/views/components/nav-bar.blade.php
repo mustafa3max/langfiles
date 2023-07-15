@@ -16,11 +16,11 @@
                             <i class="fa-solid fa-home fa-xl"></i>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="/blog" class="block hover:text-accent">
                             {{ __('me_str.blog') }}
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <a href="/" class="flex items-center">
                     <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />

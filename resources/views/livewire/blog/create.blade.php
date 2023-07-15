@@ -1,5 +1,5 @@
-<div>
-    <form class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg" wire:submit.prevent='create'>
+<form wire:submit.prevent='create'>
+    <x-card>
         <div class="pb-2 grid gap-2">
             <input type="text" wire:model.lazy='title'
                 class="bg-primary-light dark:bg-primary-dark rounded-lg p-4 w-full"
@@ -21,5 +21,5 @@
                 @endcomponent
             </div>
         </div>
-    </form>
-</div>
+    </x-card>
+</form>

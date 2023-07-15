@@ -21,7 +21,7 @@
         </div>
 
         <div wire:loading.remove
-            class="grid max-ss:grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 grid-cols-5 gap-2">
+            class="{{ count($types) > 0 ? 'grid' : '' }} max-ss:grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 grid-cols-5 gap-2">
             @forelse ($types as $type)
                 @if (in_array($type->lang, $languages))
                     @component('components.item-show', [
@@ -34,6 +34,8 @@
                     @endcomponent
                 @endif
             @empty
+                @component('components.empty', ['route' => 'types'])
+                @endcomponent
             @endforelse
         </div>
         {{ $types->links('vendor.livewire.simple-tailwind') }}
