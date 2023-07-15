@@ -13,5 +13,7 @@ return [
     "programming_languages" => "لغات برمجة",
     "registers" => "إنشاء حساب",
     "video_editing_programs" => "برامج تحرير الفيديو",
+    'person_names' => 'اسماء اشخاص',
+    '' => '',
     '' => '',
 ];

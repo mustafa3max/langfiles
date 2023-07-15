@@ -14,5 +14,7 @@ return [
     "programming_languages" => "programming languages",
     "registers" => "register",
     "video_editing_programs" => "video editing programs",
+    'person_names' => 'person names',
+    '' => '',
     '' => '',
 ];

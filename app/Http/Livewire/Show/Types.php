@@ -15,6 +15,7 @@ class Types extends Component
 
     public $search;
     public $lang;
+    public $isAd = true;
 
     function clearSersh()
     {

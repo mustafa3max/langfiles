@@ -22,7 +22,9 @@
 
         <div wire:loading.remove
             class="{{ count($types) > 0 ? 'grid' : '' }} max-ss:grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 grid-cols-5 gap-2">
+
             @forelse ($types as $type)
+
                 @if (in_array($type->lang, $languages))
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
