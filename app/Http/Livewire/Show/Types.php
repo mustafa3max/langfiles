@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Show;
 
 use App\Http\Globals;
 use App\Models\Table;
+use DOMDocument;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;

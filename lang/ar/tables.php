@@ -14,6 +14,11 @@ return [
     "registers" => "إنشاء حساب",
     "video_editing_programs" => "برامج تحرير الفيديو",
     'person_names' => 'اسماء اشخاص',
+    'operating_systems' => 'أنظمة التشغيل',
+    'buttons' => 'أزرار',
+    '' => '',
+    '' => '',
+    '' => '',
     '' => '',
     '' => '',
 ];

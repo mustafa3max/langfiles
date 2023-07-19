@@ -1,12 +1,12 @@
 <div x-data="{ isCode: false }">
     @section('page-title')
-        {{ __('seo.title_file') }}
+        {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
     @section('page-description')
-        {{ __('seo.description_file') }}
+        {{ __('seo.description_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
     @section('page-keywords')
-        {{ __('seo.key_words_file') }}
+        {{ __('seo.key_words_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
 
     {{-- @component('components.title-file', ['table' => $this->table]) --}}
@@ -15,23 +15,25 @@
 
     <x-card>
         {{-- Data Show --}}
-        <div class="grid gap-2" x-show="!isCode">
+        <div x-show="!isCode" class="grid gap-2">
             {{-- Undo Delete Item --}}
             @if (count($data) > 0)
                 <button
                     class="p-4 bg-accent hover:text-primary-light h-12 flex items-center justify-center gap-4 rounded-lg mx-auto"
                     wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
             @endif
+            <div class="flex flex-wrap gap-2">
 
-            @forelse ($dataAll as $data)
-                @component('components.item-file', ['data' => $data])
-                @endcomponent
-            @empty
-                @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
-                @endcomponent
-            @endforelse
+
+                @forelse ($dataAll as $data)
+                    @component('components.item-file', ['data' => $data])
+                    @endcomponent
+                @empty
+                    @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
+                    @endcomponent
+                @endforelse
+            </div>
         </div>
-
         {{-- Data Copy --}}
         <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg w-full h-full grid gap-2" x-show="isCode">
             <button class="p-2 hover:bg-accent w-12 h-12 rounded-lg" x-on:click="isCode=false"><i

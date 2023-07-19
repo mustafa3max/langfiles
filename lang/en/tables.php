@@ -15,6 +15,10 @@ return [
     "registers" => "register",
     "video_editing_programs" => "video editing programs",
     'person_names' => 'person names',
+    'operating_systems' => 'operating systems',
+    'buttons' => 'buttons',
+    '' => '',
+    '' => '',
     '' => '',
     '' => '',
 ];

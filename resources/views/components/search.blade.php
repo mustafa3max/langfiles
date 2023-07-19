@@ -5,7 +5,8 @@
             <button type="button" wire:click='clearSersh'
                 class="w-12 h-12  bg-secondary-light dark:bg-secondary-dark rounded-s-lg hover:text-accent flex items-center justify-center"><i
                     class="fa-solid fa-xmark"></i></button>
-            <input type="text" class="block w-full bg-primary-light dark:bg-primary-dark p-2 text-lg h-12"
+            <input type="text"
+                class="block w-full bg-primary-light dark:bg-primary-dark p-2 text-lg h-12 outline-0 focus:border border-accent"
                 placeholder="{{ __('me_str.search') }}" wire:model.lazy="search" required>
             <button type="submit"
                 class="w-12 h-12 bg-secondary-light dark:bg-secondary-dark rounded-e-lg hover:text-accent flex items-center justify-center"><i
@@ -20,7 +21,7 @@
     </div>
     @if (($languages ?? null) != null)
         <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 mt-2 flex flex-wrap gap-2 items-center justify-center"
-            x-show="isLang" x-transition.duration.500ms>
+            x-show="isLang" x-collapse.duration.300ms>
             @foreach ($languages as $lang)
                 <button type="button" wire:click='isLang("{{ $lang }}")'
                     class="bg-primary-light dark:bg-primary-dark p-2 rounded-lg hover:bg-accent hover:dark:bg-accent">{{ __('lang.' . $lang) }}</button>

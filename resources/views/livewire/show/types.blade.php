@@ -15,17 +15,12 @@
             @endcomponent
         </div>
 
-        {{-- <div class="w-full" wire:loading> --}}
         <div class="w-full" wire:loading>
             <x-load.load-types />
         </div>
-
-        <div wire:loading.remove
-            class="{{ count($types) > 0 ? 'grid' : '' }} max-ss:grid-cols-1 max-sm:grid-cols-2 max-md:grid-cols-3 max-lg:grid-cols-4 grid-cols-5 gap-2">
-
+        <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
             @forelse ($types as $type)
-
-                @if (in_array($type->lang, $languages))
+                <div class="grow ">
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
@@ -34,7 +29,7 @@
                         'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent
-                @endif
+                </div>
             @empty
                 @component('components.empty', ['route' => 'types'])
                 @endcomponent
@@ -42,5 +37,4 @@
         </div>
         {{ $types->links('vendor.livewire.simple-tailwind') }}
     </div>
-
 </div>

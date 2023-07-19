@@ -1,0 +1,23 @@
+{
+    "windows": "windows",
+    "linux": "linux",
+    "upuntu_linux": "upuntu linux",
+    "fedora_linux": "fedora linux",
+    "kali_linux": "kali linux",
+    "android": "android",
+    "ios": "ios",
+    "fuchsia": "fuchsia",
+    "mac": "mac:",
+    "solaris": "solaris",
+    "chrome": "chrome",
+    "cent_os": "centOs",
+    "debian": "debian",
+    "deepin": "deepin",
+    "bada": "bada",
+    "black_berry": "black berry",
+    "mee_go": "meego",
+    "palm": "palm",
+    "symbian": "symbian",
+    "web_os": "web os",
+    "windows_mobile": "windows mobile"
+}

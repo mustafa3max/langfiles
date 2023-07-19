@@ -27,7 +27,7 @@
                 </a>
             </div>
 
-            <div class="absolute start-0 top-12 ps-2">
+            <div class="absolute start-1 top-12">
                 <x-menu-bar />
             </div>
         </div>

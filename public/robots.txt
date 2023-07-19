@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: [/control-panel/, /user/, /valid-user/, /not-valid-user/]
+
+Sitemap: http://localhost:8000/sitemap.xml

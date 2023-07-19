@@ -23,7 +23,10 @@ class TypeController extends Controller
                 $name_en = implode(' ', $name);
                 $name_ar = __('tables.' . implode('_', $name));
                 try {
-                    Table::create(['name_en' => $name_en, 'name_ar' => $name_ar, 'lang' => $lang[0], 'table' => $table]);
+                    Table::updateOrInsert(
+                        ['table' => $table],
+                        ['name_en' => $name_en, 'name_ar' => $name_ar, 'lang' => $lang[0], 'table' => $table]
+                    );
                 } catch (\Throwable $th) {
                 }
             }
@@ -45,18 +48,21 @@ class TypeController extends Controller
             $lang = $file[0];
             $file = array_slice($file, 1, count($file));
             $file = implode(' ', $file);
-
             foreach ($allJson as $key => $value) {
-                try {
-                    DB::table($table)->insert([
+                // try {
+                // ->updateOrInsert()
+                DB::table($table)->updateOrInsert(
+                    ['key' => $key, 'value' => $value],
+                    [
                         'type' => $file,
                         'language' => $lang,
                         'key' => $key,
                         'value' => $value,
                         'enabled' => true,
-                    ]);
-                } catch (\Throwable $th) {
-                }
+                    ]
+                );
+                // } catch (\Throwable $th) {
+                // }
             }
         }
         return 'OK';

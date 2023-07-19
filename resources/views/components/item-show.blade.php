@@ -3,7 +3,7 @@
 
     <span class="text-accent py-8 px-1 uppercase font-extrabold text-xl">{{ __('lang.' . $lang) }}</span>
 
-    <p class="break-words text-lg grid items-center justify-center p-1">{{ $data }}</p>
+    <p class="break-words text-lg grid items-center justify-center p-2">{{ $data }}</p>
 
     <div
         class="bg-primary-light dark:bg-primary-dark rounded-lg p-2 border-2 border-secondary-light dark:border-secondary-dark w-full">
