@@ -39,3 +39,5 @@ window.Alpine = Alpine
 Alpine.plugin(collapse)
 
 Alpine.start()
+
+// document.getElementById('img_404')

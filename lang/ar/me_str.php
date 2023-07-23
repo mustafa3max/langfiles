@@ -36,7 +36,6 @@ return [
     'cancel' => 'إلغاء',
     'no_data' => 'لاتوجد بيانات',
     'offline' => 'أنت الآن غير متصل',
-    'title_langfiles' => 'ملفات لغوية بصيغة json',
     'visit_site' => 'زيارة الموقع',
     'copy_code' => 'نسخ الشفرة',
     'code_mode' => 'وضع الشفرة',

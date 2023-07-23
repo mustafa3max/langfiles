@@ -15,12 +15,12 @@
             @endcomponent
         </div>
 
-        <div class="w-full" wire:loading>
+        <div wire:loading>
             <x-load.load-types />
         </div>
         <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
             @forelse ($types as $type)
-                <div class="grow ">
+                <div class="grow">
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,

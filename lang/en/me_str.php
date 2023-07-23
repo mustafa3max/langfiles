@@ -52,7 +52,6 @@ return [
     'no_data' => 'No data',
     'alert_success_comment' => 'Your comment has been posted successfully',
     'offline' => 'You are now offline',
-    'title_langfiles' => 'json language files',
     'visit_site' => 'visit site',
     'copy_code' => 'copy code',
     'code_mode' => 'code mode',

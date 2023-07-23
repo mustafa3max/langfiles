@@ -28,4 +28,8 @@ return [
     'title_articles' => '',
     'description_articles' => '',
     'key_words_articles' => '',
+    //
+    'title_404' => '404 page not found',
+    'description_404' => 'Page Not Found 404 The page you are looking for may have been removed or the link contains an error. Go to the homepage to find out more',
+    'key_words_404' => 'Page not found, 404, error, home page',
 ];

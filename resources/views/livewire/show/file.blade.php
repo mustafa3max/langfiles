@@ -22,9 +22,10 @@
                     class="p-4 bg-accent hover:text-primary-light h-12 flex items-center justify-center gap-4 rounded-lg mx-auto"
                     wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
             @endif
-            <div class="flex flex-wrap gap-2">
-
-
+            <div wire:loading>
+                <x-load.load-file />
+            </div>
+            <div class="flex flex-wrap gap-2" wire:loading.remove>
                 @forelse ($dataAll as $data)
                     @component('components.item-file', ['data' => $data])
                     @endcomponent
@@ -51,7 +52,7 @@
         </div>
     </x-card>
     <div class="p-1"></div>
-    <div class="flex justify-center gap-1">
+    <div class="flex justify-center items-center gap-4">
         <div wire:click='copy' x-on:click="isCode=true" x-show="!isCode">
             @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
             @endcomponent

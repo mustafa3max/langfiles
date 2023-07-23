@@ -24,17 +24,18 @@
     </style>
 </head>
 
-<body class="bg-primary-light no-scrollbar font-almarai">
-    <div class="h-screen relative bg-index-header bg-cover bg-center bg-secondary-light text-secondary-light"
-        id="home">
-        <div class="flex justify-center items-center h-full">
+<body
+    class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative">
+    <div class="h-screen relative bg-index-header bg-cover bg-center" id="home">
+
+        <div class="flex justify-center items-center h-full text-primary-light">
             <div class="backdrop-blur-md absolute top-0 bottom-0 left-0 right-0">
             </div>
             <div class="absolute top-0 bottom-0 left-0 right-0 bg-secondary-dark opacity-50">
             </div>
             <div class="z-10">
                 <h1 class="text-center text-3xl "><span class="font-bold uppercase">Langfiles</span> <span
-                        class="block pt-2 pb-14">{{ __('me_str.title_langfiles') }}</span>
+                        class="block pt-2 pb-14">{{ __('index_str.title_index') }}</span>
                 </h1>
                 <a href="types"
                     class="hover:underline block uppercase font-bold text-xl text-center animate-pulse">{{ __('me_str.show_files') }}</a>
@@ -43,16 +44,17 @@
                     class="fa-solid fa-angles-down fa-xl"></i></a>
         </div>
     </div>
-    <div class="min-h-screen max-w-5xl mx-auto relative" id="info">
-        <div class="flex justify-center items-center ">
-            <div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-3 p-4 gap-4">
-                <div class="bg-secondary-light p-4 rounded-lg text-center flex flex-col">
+    <div class="min-h-screen max-w-5xl mx-auto flex items-center justify-center relative" id="info">
+        <div class="grid justify-center items-cente min-h-screen">
+            <div class="grow"></div>
+            <div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-3 p-4 gap-4 h-full">
+                <div class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center flex flex-col">
                     <h2 class="text-lg pb-2">{{ __('index_str.title_1') }}</h2>
                     <div class="border-t border-primary-light"></div>
                     <p class="text-sm py-2 grow">{{ __('index_str.description_1') }}</p>
                     <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
-                <div class="bg-secondary-light p-4 rounded-lg text-center flex flex-col">
+                <div class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center flex flex-col">
                     <h2 class="text-lg pb-2">{{ __('index_str.title_2') }}</h2>
                     <div class="border-t border-primary-light"></div>
                     <p class="text-sm py-2 grow">{{ __('index_str.description_2') }}</p>
@@ -60,16 +62,17 @@
                         rel="nofollow">{{ __('index_str.link_1') }}</a>
                 </div>
                 <div
-                    class="bg-secondary-light p-4 rounded-lg text-center max-md:col-span-3 max-sm:col-span-1 flex flex-col">
+                    class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center max-md:col-span-3 max-sm:col-span-1 flex flex-col">
                     <h2 class="text-lg pb-2">{{ __('index_str.title_3') }}</h2>
                     <div class="border-t border-primary-light"></div>
                     <p class="text-sm py-2 grow">{{ __('index_str.description_3') }}</p>
                     <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
             </div>
-            <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"><i
-                    class="fa-solid fa-angles-up fa-xl"></i></a>
+            <div class="grow h-16"></div>
         </div>
+        <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"><i
+                class="fa-solid fa-angles-up fa-xl"></i></a>
     </div>
 </body>
 

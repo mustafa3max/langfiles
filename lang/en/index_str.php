@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title_index' => 'json translation files for websites and apps',
+    //
     'title_1' => 'What is meant by language files',
     'description_1' => '',
     //
