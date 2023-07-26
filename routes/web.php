@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
@@ -20,6 +21,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+// Sitemap
+Route::scopeBindings()->group(function () {
+    Route::get('/sitemap.xml',  [SitemapController::class, 'index']);
+    Route::get('/sitemap.xml/types',  [SitemapController::class, 'types']);
+});
 
 Route::get('/', function () {
     return view('index');

@@ -17,4 +17,9 @@ class Table extends Model
         'lang',
         'table'
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 }

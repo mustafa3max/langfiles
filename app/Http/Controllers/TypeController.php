@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Globals;
 use App\Models\Table;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -24,9 +25,14 @@ class TypeController extends Controller
                 $name_en = implode(' ', $name);
                 $name_ar = __('tables.' . implode('_', $name));
                 try {
-                    Table::updateOrInsert(
+                    Table::updateOrCreate(
                         ['table' => $table],
-                        ['name_en' => $name_en, 'name_ar' => $name_ar, 'lang' => $lang[0], 'table' => $table]
+                        [
+                            'name_en' => $name_en,
+                            'name_ar' => $name_ar,
+                            'lang' => $lang[0],
+                            'table' => $table,
+                        ]
                     );
                 } catch (\Throwable $th) {
                 }
