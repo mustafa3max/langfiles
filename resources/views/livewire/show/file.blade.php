@@ -9,7 +9,6 @@
         {{ __('seo.key_words_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
 
-    {{-- @component('components.title-file', ['table' => $this->table]) --}}
     @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang])
     @endcomponent
 

@@ -16,6 +16,12 @@
                 @endif
             </span>
 
+            <span
+                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-primary-dark dark:text-primary-light opacity-40 bg-white border dark:border-secondary-dark border-secondary-light cursor-default rounded-md">
+                <span class="font-bold">{{ $currentPage }}</span>
+                <i class="font-bold px-4">/</i>
+                <span class="font-bold">{{ $lastPage }}</span>
+            </span>
             <span>
                 {{-- Next Page Link --}}
                 @if ($paginator->hasMorePages())

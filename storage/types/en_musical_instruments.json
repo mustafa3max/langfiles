@@ -1,0 +1,18 @@
+{
+    "violin": "violin",
+    "guitar": "guitar",
+    "piano": "piano",
+    "flute": "flute",
+    "clarinet": "clarinet",
+    "oboe": "flute",
+    "saxophone": "saxophone",
+    "bassoon": "bassoon",
+    "trumpet": "trumpet",
+    "trombone": "trombone",
+    "tuba": "tuba",
+    "drum": "drum",
+    "bongos": "bongo",
+    "xylophone": "xylophone",
+    "accordion": "accordion",
+    "harmonica": "harmonica"
+}

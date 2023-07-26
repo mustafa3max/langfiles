@@ -9,7 +9,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('en_video_editing_programs', function (Blueprint $table) {
+        Schema::create('---name---table---', function (Blueprint $table) {
             $table->id();
             $table->string('type', 32)->require;
             $table->string('language', 32)->require;
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('en_video_editing_programs');
+        Schema::dropIfExists('---name---table---');
     }
 };

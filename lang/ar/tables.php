@@ -16,9 +16,8 @@ return [
     'person_names' => 'اسماء اشخاص',
     'operating_systems' => 'أنظمة التشغيل',
     'buttons' => 'أزرار',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'musical_instruments' => 'آلات موسيقية',
+    'cooking_tools' => 'ادوات طبخ',
+    'appliances' => 'اجهزة منزلية',
+    '---key---' => '---value---',
 ];

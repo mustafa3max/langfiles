@@ -3,6 +3,7 @@
         {{-- Right --}}
         <div class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12 bg-accent h-0">
         </div>
+        {{-- Body --}}
         <div class="w-full md:w-full lg:w-8/12 xl:w-6/12 relative z-20 p-2" x-data="{ isMenu: false }">
             <div class="flex flex-wrap items-center justify-between mx-auto">
                 <ul class="flex gap-6 items-center">
@@ -16,6 +17,7 @@
                             <i class="fa-solid fa-home fa-xl"></i>
                         </a>
                     </li>
+
                     {{-- <li>
                         <a href="/blog" class="block hover:text-accent">
                             {{ __('me_str.blog') }}

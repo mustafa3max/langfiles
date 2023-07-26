@@ -35,6 +35,6 @@
                 @endcomponent
             @endforelse
         </div>
-        {{ $types->links('vendor.livewire.simple-tailwind') }}
+        {{ $types->links('vendor.livewire.simple-tailwind', ['currentPage' => $types->currentPage(), 'lastPage' => $types->lastPage()]) }}
     </div>
 </div>

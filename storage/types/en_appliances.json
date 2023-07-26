@@ -1,0 +1,11 @@
+{
+    "conditioning_device": "The air-conditioning device",
+    "washer": "automatic washing machine",
+    "dish_washer":"Dishwasher",
+    "electric_heater":"electric heater",
+    "refrigerator": "refrigerator",
+    "tv": "TV",
+    "vacuum_cleaner": "vacuum cleaner",
+    "steam_iron":"steam iron",
+    "clothes_dryer": "clothes dryer"
+}

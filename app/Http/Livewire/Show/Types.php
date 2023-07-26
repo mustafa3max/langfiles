@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Show;
 
 use App\Http\Globals;
 use App\Models\Table;
-use DOMDocument;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,9 +19,7 @@ class Types extends Component
 
     function clearSersh()
     {
-        if (strlen($this->search) >= 2) {
-            $this->reset('search');
-        }
+        $this->reset('search');
     }
 
     function isLang($lang)
@@ -32,28 +29,29 @@ class Types extends Component
 
     function types()
     {
+        $num = 20;
         $lang = LaravelLocalization::getCurrentLocale();
         if ($this->search != null && $this->lang == null) {
             return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
                 ->orderByDesc('name_' . $lang)
-                ->simplePaginate(20);
+                ->paginate($num);
         } elseif ($this->search == null && $this->lang != null) {
             return Table::where('lang', 'LIKE', "%$this->lang%")
                 ->orderByDesc('name_' . $lang)
-                ->simplePaginate(20);
+                ->paginate($num);
         } elseif ($this->search != null && $this->lang != null) {
             return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
                 ->where('lang', 'LIKE', "%$this->lang%")
                 ->orderByDesc('name_' . $lang)
-                ->simplePaginate(20);
+                ->paginate($num);
         }
         return Table::orderByDesc('name_' . $lang)
-            ->simplePaginate(20);
+            ->paginate($num);
     }
 
-    function countItems($type)
+    function countItems($table)
     {
-        return DB::table($type)->get()->count();
+        return DB::table($table)->get()->count();
     }
 
     public function render()
