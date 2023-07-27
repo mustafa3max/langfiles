@@ -9,18 +9,31 @@
         {{ __('seo.key_words_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
 
-    @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang])
+    @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang, 'count' => count($dataAll)])
     @endcomponent
 
     <x-card>
         {{-- Data Show --}}
         <div x-show="!isCode" class="grid gap-2">
-            {{-- Undo Delete Item --}}
-            @if (count($data) > 0)
-                <button
-                    class="p-4 bg-accent hover:text-primary-light h-12 flex items-center justify-center gap-4 rounded-lg mx-auto"
-                    wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
-            @endif
+            <div class="flex justify-start content-center gap-2 ">
+
+                <div class="flex justify-center items-center gap-4">
+                    <div wire:click='copy' x-on:click="isCode=true" x-show="!isCode">
+                        @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
+                        @endcomponent
+                    </div>
+                    <div wire:loading.remove onclick="copyContent()" x-show="isCode">
+                        @component('components.btn-file', ['icon' => 'copy', 'text' => __('me_str.copy_code')])
+                        @endcomponent
+                    </div>
+                </div>
+                {{-- Undo Delete Item --}}
+                @if (count($data) > 0)
+                    <button
+                        class="p-4 bg-accent hover:text-primary-light flex items-center justify-center gap-4 rounded-lg"
+                        wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
+                @endif
+            </div>
             <div wire:loading>
                 <x-load.load-file />
             </div>
@@ -50,15 +63,39 @@
             </div>
         </div>
     </x-card>
+
     <div class="p-1"></div>
-    <div class="flex justify-center items-center gap-4">
-        <div wire:click='copy' x-on:click="isCode=true" x-show="!isCode">
-            @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
-            @endcomponent
+
+
+
+    <div class="p-2 border border-secondary-light dark:border-secondary-dark rounded-lg mt-2">
+        <x-card>
+            <h2 class="rounded-lg font-bold">
+                {{ __('me_str.content_other_lang', ['TITLE' => __('tables.' . $this->title)]) }}
+            </h2>
+        </x-card>
+        <div wire:loading>
+            <x-load.load-types />
         </div>
-        <div wire:loading.remove onclick="copyContent()" x-show="isCode">
-            @component('components.btn-file', ['icon' => 'copy', 'text' => __('me_str.copy_code')])
-            @endcomponent
+
+        <div class="p-1"></div>
+        <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
+
+            @forelse ($types as $type)
+                <div class="grow">
+                    @component('components.item-show', [
+                        'data' => $type['name_' . $currentLng],
+                        'lang' => $type->lang,
+                        'route' => 'file',
+                        'dataRoute' => ['type' => $type->table],
+                        'countItems' => $this->countItems($type->table),
+                    ])
+                    @endcomponent
+                </div>
+            @empty
+                @component('components.empty', ['route' => 'file?type=' . $this->table])
+                @endcomponent
+            @endforelse
         </div>
     </div>
 

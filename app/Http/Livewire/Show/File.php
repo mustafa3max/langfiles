@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Show;
 
+use App\Http\Globals;
+use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class File extends Component
 {
@@ -46,6 +49,21 @@ class File extends Component
         $this->dataCopy = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+
+    function types()
+    {
+        return Table::where('table', 'like', '%' .  $this->title . '%')
+            ->where('lang', '!=', $this->lang)
+            ->get();
+        return Table::where('name_en', $this->table)
+
+            ->get();
+    }
+
+    function countItems($table)
+    {
+        return DB::table($table)->get()->count();
+    }
     public function mount()
     {
         $this->table = request('type');
@@ -59,6 +77,11 @@ class File extends Component
 
     public function render()
     {
-        return view('livewire.show.file')->with(['dataAll' => $this->data()->toArray(), 'dataCopy' => $this->dataCopy]);
+        return view('livewire.show.file')->with([
+            'dataAll' => $this->data()->toArray(),
+            'dataCopy' => $this->dataCopy,
+            'types' => $this->types(),
+            'currentLng' => LaravelLocalization::getCurrentLocale(),
+        ]);
     }
 }

@@ -1,4 +1,11 @@
 User-agent: *
-Disallow: [/control-panel/, /user/, /valid-user/, /not-valid-user/]
+Allow: /home
+Allow: /types
+Allow: /file
+Disallow: /control-panel
+Disallow: /user
+Disallow: /valid-user
+Disallow: /not-valid-user
+Disallow: /mustafamax
 
 Sitemap: http://localhost:8000/sitemap.xml

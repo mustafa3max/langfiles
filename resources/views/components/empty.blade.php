@@ -5,7 +5,7 @@
         </h1>
         <div class="grid gap-4 border-4 border-primary-light dark dark:border-primary-dark p-4 rounded-b-lg">
             <p>{{ __('me_str.empty_page_desc') }}</p>
-            <a href="{{ route($route, $dataRoute ?? null) }}" class="text-accent hover:underline cursor-pointer">
+            <a href="{{ $route }}" class="text-accent hover:underline cursor-pointer">
                 {{ __('me_str.reload') }}
             </a>
         </div>

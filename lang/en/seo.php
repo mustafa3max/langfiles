@@ -11,7 +11,7 @@ return [
     //
     'title_types' => 'language translation files categorized by type',
     'description_types' => 'language translation files categorized by type, such as the names of browsers, 2D design programs, and so on',
-    'key_words_types' => 'programs, design, login, create an account',
+    'key_words_types' => 'programs, design, login, create an account, translation',
     //
     'title_file' => '  view the language translation file for the type :TYPE JSON format',
     'description_file' => 'the language translation file is displayed for the type :TYPE in jason format so you can see the data and also you can remove the value you want and then copy the content',

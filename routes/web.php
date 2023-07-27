@@ -1,25 +1,15 @@
 <?php
 
 use App\Http\Controllers\SitemapController;
-use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Blog\Artilce;
-use App\Http\Livewire\Blog\Create as BlogCreate;
-use App\Http\Livewire\Blog\Index as BlogIndex;
-use App\Http\Livewire\Blog\Update as BlogUpdate;
-use App\Http\Livewire\Blog\Delete as BlogDelete;
 use App\Http\Livewire\ControlPanel\Create;
 use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
-use App\Http\Livewire\Json;
 use App\Http\Livewire\Mustafamax\Profile;
 use App\Http\Livewire\Show\File;
 use App\Http\Livewire\Show\Types;
 use App\Http\Livewire\User\Profile as UserProfile;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Sitemap

@@ -20,6 +20,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('stayles')
+
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+
 </head>
 
 <body

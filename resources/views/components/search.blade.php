@@ -15,7 +15,7 @@
         @if (($languages ?? null) != null)
             <button type="button" x-on:click="isLang=!isLang"
                 class="w-14 h-14 bg-secondary-light dark:bg-secondary-dark rounded-lg hover:bg-transparent hover:border hover:text-accent flex items-center justify-center"><i
-                    class="fa-solid fa-angle-down"></i></button>
+                    class="fa-solid" :class="isLang ? 'fa-angle-up' : 'fa-angle-down'"></i></button>
         @endif
 
     </div>
