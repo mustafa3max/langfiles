@@ -50,6 +50,7 @@
             @component('components.raised-button', [
                 'value' => __('seo.title_login'),
                 'type' => 'submit',
+                'icon' => 'right-to-bracket',
             ])
             @endcomponent
 

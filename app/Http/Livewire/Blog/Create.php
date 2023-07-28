@@ -9,11 +9,13 @@ use Livewire\Component;
 class Create extends Component
 {
     public $title;
+    public $desc;
     public $article;
 
     protected $rules = [
         'title' => 'required|string|min:50|max:255',
-        'article' => 'required|string|min:1000|max:5000',
+        'desc' => 'required|string|min:100|max:560',
+        'article' => 'required|string|min:1000',
     ];
 
     public function updated($fields)
@@ -28,6 +30,7 @@ class Create extends Component
         Blog::create([
             'title' => $attr['title'],
             'article' => $attr['article'],
+            'desc' => $attr['desc'],
             'author' => Auth::user()->name,
         ]);
 

@@ -94,7 +94,7 @@ return [
     'clear search' => 'Empty search box',
     'drop_list' => 'drop-down list',
     'item_is_deleted' => 'Item is being deleted',
-    '' => '',
+    'desc' => 'Description',
     '' => '',
     '' => '',
 ];

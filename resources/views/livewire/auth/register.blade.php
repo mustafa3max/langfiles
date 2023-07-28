@@ -65,6 +65,7 @@
             @component('components.raised-button', [
                 'value' => __('me_str.register'),
                 'type' => 'submit',
+                'icon' => 'user-plus',
             ])
             @endcomponent
 
