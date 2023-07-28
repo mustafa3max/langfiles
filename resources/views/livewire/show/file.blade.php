@@ -21,10 +21,6 @@
                         @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
                         @endcomponent
                     </div>
-                    <div wire:loading.remove onclick="copyContent()" x-show="isCode">
-                        @component('components.btn-file', ['icon' => 'copy', 'text' => __('me_str.copy_code')])
-                        @endcomponent
-                    </div>
                 </div>
                 {{-- Undo Delete Item --}}
                 @if (count($data) > 0)
@@ -48,8 +44,17 @@
         </div>
         {{-- Data Copy --}}
         <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg w-full h-full grid gap-2" x-show="isCode">
-            <button class="p-2 hover:bg-accent w-12 h-12 rounded-lg" x-on:click="isCode=false"><i
-                    class="fa-solid fa-xmark"></i></button>
+            <div class="flex gap-2" wire:loading.remove>
+                <div x-on:click="isCode=false">
+                    @component('components.btn-file', ['icon' => 'bars-staggered', 'text' => __('me_str.text_mode')])
+                    @endcomponent
+                </div>
+                <div class="grow"></div>
+                <button class="p-4 rounded-lg bg-accent hover:bg-primary-light dark:hover:bg-primary-dark"
+                    title="{{ __('me_str.copy_code') }}" onclick="copyContent()"><i
+                        class="fa-solid fa-copy"></i></button>
+            </div>
+
             <div class="flex items-center justify-center">
                 <div class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg  overflow-hidden w-full"
                     dir="ltr">

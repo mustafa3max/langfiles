@@ -3,19 +3,20 @@
         <form class="grow flex bg-secondary-light dark:bg-secondary-dark rounded-lg p-1 gap-1"
             wire:submit.prevent='{{ $submitForm }}'>
             <button type="button" wire:click='clearSersh'
-                class="w-12 h-12  bg-secondary-light dark:bg-secondary-dark rounded-s-lg hover:text-accent flex items-center justify-center"><i
-                    class="fa-solid fa-xmark"></i></button>
+                class="w-12 h-12  bg-secondary-light dark:bg-secondary-dark rounded-s-lg hover:text-accent flex items-center justify-center"
+                title="{{ __('me_str.clear_search') }}"><i class="fa-solid fa-xmark"></i></button>
             <input type="text"
                 class="block w-full bg-primary-light dark:bg-primary-dark p-2 text-lg h-12 outline-0 focus:border border-accent"
                 placeholder="{{ __('me_str.search') }}" wire:model.lazy="search" required>
             <button type="submit"
-                class="w-12 h-12 bg-secondary-light dark:bg-secondary-dark rounded-e-lg hover:text-accent flex items-center justify-center"><i
-                    class="fa-solid fa-search"></i></button>
+                class="w-12 h-12 bg-secondary-light dark:bg-secondary-dark rounded-e-lg hover:text-accent flex items-center justify-center"
+                title="{{ __('me_str.search') }}"><i class="fa-solid fa-search"></i></button>
         </form>
         @if (($languages ?? null) != null)
             <button type="button" x-on:click="isLang=!isLang"
-                class="w-14 h-14 bg-secondary-light dark:bg-secondary-dark rounded-lg hover:bg-transparent hover:border hover:text-accent flex items-center justify-center"><i
-                    class="fa-solid" :class="isLang ? 'fa-angle-up' : 'fa-angle-down'"></i></button>
+                class="w-14 h-14 bg-secondary-light dark:bg-secondary-dark rounded-lg hover:bg-transparent hover:border hover:text-accent flex items-center justify-center"
+                title="{{ __('me_str.select_by_lang') }}"><i class="fa-solid"
+                    :class="isLang ? 'fa-angle-up' : 'fa-angle-down'"></i></button>
         @endif
 
     </div>

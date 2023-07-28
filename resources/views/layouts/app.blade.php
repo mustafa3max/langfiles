@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth">
+    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth" lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,6 @@
 <body
     class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative"
     x-init="isAlpine = false" x-data="{ isAlpine: true }">
-
     <div class="absolute top-0 left-0 right-0 z-10">
         <div style="min-height: 92vh">
             @component('components.nav-bar')

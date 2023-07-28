@@ -8,12 +8,13 @@
             <div class="flex flex-wrap items-center justify-between mx-auto">
                 <ul class="flex gap-6 items-center">
                     <li>
-                        <a href="#" x-on:click="isMenu=!isMenu" class="block hover:text-accent">
+                        <a href="#" x-on:click="isMenu=!isMenu" class="block hover:text-accent"
+                            title="{{ __('me_str.drop_list') }}">
                             <i class="fa-solid fa-bars fa-xl"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="/types" class="block hover:text-accent">
+                        <a href="/types" class="block hover:text-accent" title="{{ __('me_str.home') }}">
                             <i class="fa-solid fa-home fa-xl"></i>
                         </a>
                     </li>
@@ -24,7 +25,7 @@
                         </a>
                     </li> --}}
                 </ul>
-                <a href="/" class="flex items-center">
+                <a href="/" class="flex items-center" title="{{ config('app.name') }}">
                     <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
                 </a>
             </div>

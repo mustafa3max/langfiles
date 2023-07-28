@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth">
+    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth" lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -35,8 +35,8 @@
                 <a href="types"
                     class="hover:underline block uppercase font-bold text-xl text-center animate-pulse">{{ __('me_str.show_files') }}</a>
             </div>
-            <a href="#info" class="absolute bottom-0 p-2 animate-bounce shadow-sm"><i
-                    class="fa-solid fa-angles-down fa-xl"></i></a>
+            <a href="#info" class="absolute bottom-0 p-2 animate-bounce shadow-sm"
+                title="{{ __('me_str.go_info') }}"><i class="fa-solid fa-angles-down fa-xl"></i></a>
         </div>
     </div>
     <div class="min-h-screen max-w-5xl mx-auto flex items-center justify-center relative" id="info">
@@ -66,8 +66,8 @@
             </div>
             <div class="grow h-16"></div>
         </div>
-        <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"><i
-                class="fa-solid fa-angles-up fa-xl"></i></a>
+        <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"
+            title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up fa-xl"></i></a>
     </div>
 </body>
 
