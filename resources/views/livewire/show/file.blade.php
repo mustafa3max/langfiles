@@ -29,10 +29,11 @@
                         wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
                 @endif
             </div>
+
             <div wire:loading>
                 <x-load.load-file />
             </div>
-            <div class="flex flex-wrap gap-2" wire:loading.remove>
+            <div class="flex flex-wrap gap-2 relative" wire:loading.remove>
                 @forelse ($dataAll as $data)
                     @component('components.item-file', ['data' => $data])
                     @endcomponent
@@ -40,19 +41,23 @@
                     @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
                     @endcomponent
                 @endforelse
+
             </div>
+
         </div>
+
         {{-- Data Copy --}}
         <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg w-full h-full grid gap-2" x-show="isCode">
-            <div class="flex gap-2" wire:loading.remove>
+            <div class="flex gap-2" wire:loading.remove wire:target="{{ $dataCopy }}">
                 <div x-on:click="isCode=false">
                     @component('components.btn-file', ['icon' => 'bars-staggered', 'text' => __('me_str.text_mode')])
                     @endcomponent
                 </div>
                 <div class="grow"></div>
-                <button class="p-4 rounded-lg bg-accent hover:bg-primary-light dark:hover:bg-primary-dark"
-                    title="{{ __('me_str.copy_code') }}" onclick="copyContent()"><i
-                        class="fa-solid fa-copy"></i></button>
+                <div onclick="copyContent()">
+                    @component('components.btn-file', ['icon' => 'copy', 'text' => __('me_str.copy_code')])
+                    @endcomponent
+                </div>
             </div>
 
             <div class="flex items-center justify-center">
@@ -77,14 +82,16 @@
         <h2 class="bg-primary-light dark:bg-primary-dark p-2 rounded-lg font-bold">
             {{ __('me_str.content_other_lang', ['TITLE' => __('tables.' . $this->title)]) }}
         </h2>
-        <div wire:loading>
-            <x-load.load-types />
+        <div wire:loading wire:target="{{ $this->types() }}">
+            <x-load.load-types-file />
         </div>
 
         <div class="p-1"></div>
-        <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
 
-            @forelse ($types as $type)
+        <div id="files" wire:loading.remove wire:target="{{ $this->types() }}"
+            class="{{ count($this->types()) > 0 ? 'flex' : '' }} flex-wrap gap-2">
+
+            @forelse ($this->types() as $type)
                 <div class="grow">
                     @component('components.item-show-file', [
                         'data' => $type['name_' . $currentLng],

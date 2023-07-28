@@ -32,7 +32,7 @@ export default {
         'index-header': "url('/public/assets/images/bg_index.webp')"
       },
     fontFamily: {
-      'almarai': ['Almarai'],
+      'almarai': ['Almarai', 'sans-serif'],
     },
   },
 }

@@ -24,16 +24,16 @@ class Globals
             'rel' => 'nofollow noopener noreferrer',
             'block_prefix' => '<ul class="flex flex-wrap gap-1 justify-center items-center">',
             'block_suffix' => '</ul>',
-            'element_prefix' => '<li class="hover:bg-accent rounded-lg bg-primary-light dark:bg-primary-dark fa-lg flex">',
+            'element_prefix' => '<li class="hover:bg-accent rounded-lg bg-primary-light dark:bg-primary-dark">',
             'element_suffix' => '</li>',
             'target' => "_blank"
 
-        ])->copylink(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.copy_link')])
-            ->mailto(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.send_mail')])
-            ->facebook(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.share_facebook')])
-            ->twitter(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.share_twitter')])
-            ->whatsapp(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.share_whatsapp')])
-            ->telegram(['class' => 'p-2 hover:bg-accent rounded-lg', 'title' => __('me_str.share_telegram')])
+        ])->copylink(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.copy_link')])
+            ->mailto(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.send_mail')])
+            ->facebook(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_facebook')])
+            ->twitter(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_twitter')])
+            ->whatsapp(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_whatsapp')])
+            ->telegram(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_telegram')])
             ->render();
     }
 }

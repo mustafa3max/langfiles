@@ -55,15 +55,13 @@ class File extends Component
         return Table::where('table', 'like', '%' .  $this->title . '%')
             ->where('lang', '!=', $this->lang)
             ->get();
-        return Table::where('name_en', $this->table)
-
-            ->get();
     }
 
     function countItems($table)
     {
         return DB::table($table)->get()->count();
     }
+
     public function mount()
     {
         $this->table = request('type');
@@ -79,8 +77,6 @@ class File extends Component
     {
         return view('livewire.show.file')->with([
             'dataAll' => $this->data()->toArray(),
-            'dataCopy' => $this->dataCopy,
-            'types' => $this->types(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),
             'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)]))
         ]);

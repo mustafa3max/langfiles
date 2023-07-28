@@ -5,7 +5,7 @@
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
                     <span
-                        class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-primary-dark dark:text-primary-light opacity-40 bg-white border dark:border-secondary-dark border-secondary-light cursor-default rounded-md">
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-primary-dark dark:text-primary-light bg-white border dark:border-secondary-dark border-secondary-light cursor-default rounded-md">
                         {!! __('pagination.previous') !!}
                     </span>
                 @else
@@ -31,7 +31,7 @@
                     </button>
                 @else
                     <span
-                        class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-primary-dark dark:text-primary-light opacity-40 bg-white border dark:border-secondary-dark border-secondary-light cursor-default rounded-md">
+                        class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-primary-dark dark:text-primary-light bg-white border dark:border-secondary-dark border-secondary-light cursor-default rounded-md">
                         {!! __('pagination.next') !!}
                     </span>
                 @endif

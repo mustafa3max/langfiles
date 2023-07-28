@@ -12,11 +12,17 @@
     <meta name="keywords" content="{{ __('seo.key_words_home') }}">
     <meta name="author" content="Mustafamax">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     @vite('resources/css/app.css')
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"
+        as="style" />
+
+    {{-- Font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="preload" as="font">
 </head>
 
 <body
@@ -28,15 +34,19 @@
             </div>
             <div class="absolute top-0 bottom-0 left-0 right-0 bg-secondary-dark opacity-60">
             </div>
-            <div class="z-10">
-                <h1 class="text-center text-3xl "><span class="font-bold uppercase">Langfiles</span> <span
-                        class="block pt-2 pb-14">{{ __('index_str.title_index') }}</span>
+            <div class="z-10 p-2">
+                <h1 class="text-center text-3xl ">LANGFILES
+                    <br>
+                    <br>
+                    {{ __('index_str.title_index') }}
                 </h1>
+                <br>
+                <br>
                 <a href="types"
                     class="hover:underline block uppercase font-bold text-xl text-center animate-pulse">{{ __('me_str.show_files') }}</a>
             </div>
             <a href="#info" class="absolute bottom-0 p-2 animate-bounce shadow-sm"
-                title="{{ __('me_str.go_info') }}"><i class="fa-solid fa-angles-down fa-xl"></i></a>
+                title="{{ __('me_str.go_info') }}"><i class="fa-solid fa-angles-down"></i></a>
         </div>
     </div>
     <div class="min-h-screen max-w-5xl mx-auto flex items-center justify-center relative" id="info">
@@ -67,7 +77,7 @@
             <div class="grow h-16"></div>
         </div>
         <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"
-            title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up fa-xl"></i></a>
+            title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up"></i></a>
 
     </div>
 </body>

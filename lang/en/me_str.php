@@ -93,6 +93,7 @@ return [
     'select_by_lang' => 'Search by language',
     'clear search' => 'Empty search box',
     'drop_list' => 'drop-down list',
+    'item_is_deleted' => 'Item is being deleted',
     '' => '',
     '' => '',
     '' => '',
