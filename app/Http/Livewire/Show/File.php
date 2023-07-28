@@ -82,6 +82,7 @@ class File extends Component
             'dataCopy' => $this->dataCopy,
             'types' => $this->types(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),
+            'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)]))
         ]);
     }
 }

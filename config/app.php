@@ -168,6 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Kudashevs\ShareButtons\Providers\ShareButtonsServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -183,6 +185,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'ShareButtons' => Kudashevs\ShareButtons\Facades\ShareButtonsFacade::class,
     ])->toArray(),
 
 ];

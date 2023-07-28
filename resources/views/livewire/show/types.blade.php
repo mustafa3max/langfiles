@@ -34,6 +34,8 @@
                 @component('components.empty', ['route' => 'types'])
                 @endcomponent
             @endforelse
+            @component('components.share-buttons', ['share' => $share])
+            @endcomponent
         </div>
         {{ $types->links('vendor.livewire.simple-tailwind', ['currentPage' => $types->currentPage(), 'lastPage' => $types->lastPage()]) }}
     </div>

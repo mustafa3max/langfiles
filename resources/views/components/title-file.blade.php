@@ -1,5 +1,5 @@
 <h1
-    class="p-2 text-center bg-secondary-light dark:bg-secondary-dark mb-2 rounded-lg font-bold flex flex-wrap items-center gap-2">
+    class="p-2 text-center bg-primary-light dark:bg-primary-dark mb-2 rounded-lg font-bold flex flex-wrap items-center gap-2">
     @php
         if (LaravelLocalization::getCurrentLocaleDirection() == 'ltr') {
             $icon = 'right';

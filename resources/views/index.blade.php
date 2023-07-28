@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-    x-bind:class="{ 'dark': darkMode }">
+    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -17,21 +17,16 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 
 <body
     class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative">
-    <div class="h-screen relative bg-index-header bg-cover bg-center" id="home">
+    <div class="h-screen relative bg-index-header bg-cover bg-center bg-accent" id="home">
 
         <div class="flex justify-center items-center h-full text-primary-light">
             <div class="backdrop-blur-md absolute top-0 bottom-0 left-0 right-0">
             </div>
-            <div class="absolute top-0 bottom-0 left-0 right-0 bg-secondary-dark opacity-50">
+            <div class="absolute top-0 bottom-0 left-0 right-0 bg-secondary-dark opacity-60">
             </div>
             <div class="z-10">
                 <h1 class="text-center text-3xl "><span class="font-bold uppercase">Langfiles</span> <span

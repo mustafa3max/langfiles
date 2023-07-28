@@ -29,7 +29,6 @@ export default {
         'transparent': '#00000000'
     },
     backgroundImage: {
-        // 'index-header': "url('/public/assets/images/bg.png')"
         'index-header': "url('/public/assets/images/bg_index.webp')"
       },
     fontFamily: {

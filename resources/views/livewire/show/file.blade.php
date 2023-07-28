@@ -9,10 +9,9 @@
         {{ __('seo.key_words_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
 
-    @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang, 'count' => count($dataAll)])
-    @endcomponent
-
     <x-card>
+        @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang, 'count' => count($dataAll)])
+        @endcomponent
         {{-- Data Show --}}
         <div x-show="!isCode" class="grid gap-2">
             <div class="flex justify-start content-center gap-2 ">
@@ -65,15 +64,14 @@
     </x-card>
 
     <div class="p-1"></div>
+    @component('components.share-buttons', ['share' => $share])
+    @endcomponent
+    <div class="p-1"></div>
 
-
-
-    <div class="p-2 border border-secondary-light dark:border-secondary-dark rounded-lg mt-2">
-        <x-card>
-            <h2 class="rounded-lg font-bold">
-                {{ __('me_str.content_other_lang', ['TITLE' => __('tables.' . $this->title)]) }}
-            </h2>
-        </x-card>
+    <x-card>
+        <h2 class="bg-primary-light dark:bg-primary-dark p-2 rounded-lg font-bold">
+            {{ __('me_str.content_other_lang', ['TITLE' => __('tables.' . $this->title)]) }}
+        </h2>
         <div wire:loading>
             <x-load.load-types />
         </div>
@@ -83,7 +81,7 @@
 
             @forelse ($types as $type)
                 <div class="grow">
-                    @component('components.item-show', [
+                    @component('components.item-show-file', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
                         'route' => 'file',
@@ -97,7 +95,7 @@
                 @endcomponent
             @endforelse
         </div>
-    </div>
+    </x-card>
 
     <script>
         const copyContent = async () => {

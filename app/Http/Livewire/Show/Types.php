@@ -56,6 +56,11 @@ class Types extends Component
 
     public function render()
     {
-        return view('livewire.show.types')->with(['types' => $this->types(), 'languages' => Globals::languages(), 'currentLng' => LaravelLocalization::getCurrentLocale()]);
+        return view('livewire.show.types')->with([
+            'types' => $this->types(),
+            'languages' => Globals::languages(),
+            'currentLng' => LaravelLocalization::getCurrentLocale(),
+            'share' => Globals::share(__('seo.title_types'))
+        ]);
     }
 }
