@@ -13,17 +13,12 @@
     <meta name="keywords" content="@yield('page-keywords')">
     <meta name="author" content="Mustafamax">
 
-    @vite(['resources/css/app.css'])
-    @stack('stayles')
+    @vite('resources/css/app.css')
     @livewireStyles
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
 
@@ -69,9 +64,12 @@
         </div>
     </div>
 
-    @vite(['resources/js/app.js'])
-    @stack('scripts')
+    @vite('resources/js/app.js')
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> --}}
+
 </body>
 
 </html>

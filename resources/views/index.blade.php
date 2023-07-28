@@ -16,7 +16,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
 </head>
 
 <body
@@ -68,6 +68,7 @@
         </div>
         <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"
             title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up fa-xl"></i></a>
+
     </div>
 </body>
 
