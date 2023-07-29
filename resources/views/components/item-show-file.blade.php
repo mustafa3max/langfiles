@@ -1,5 +1,5 @@
 <a class="bg-primary-light dark:bg-primary-dark border border-transparent text-center rounded-lg {{ $countItems > 0 ? 'hover:border-accent dark:hover:border-accent' : '' }} shadow-md grid grid-rows-1 min-h-[180]"
-    @if ($countItems > 0) href="{{ route($route, $dataRoute) }}" @endif>
+    @if ($countItems > 0) href="{{ $route }}" @endif>
 
     <span class="text-accent py-8 px-1 uppercase font-extrabold text-xl">{{ __('lang.' . $lang) }}</span>
 

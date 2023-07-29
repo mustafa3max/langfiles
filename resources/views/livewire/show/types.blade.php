@@ -24,8 +24,7 @@
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
-                        'route' => 'file',
-                        'dataRoute' => ['type' => $type->table],
+                        'route' => 'file/' . $type->table,
                         'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent

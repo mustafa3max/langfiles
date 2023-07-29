@@ -16,8 +16,12 @@
             @component('components.item-blog', ['article' => $article])
             @endcomponent
         @empty
-            @component('components.empty', ['route' => 'index'])
+            @component('components.empty', ['route' => '/blog'])
             @endcomponent
         @endforelse
     </div>
+
+    <div class="p-1"></div>
+    @component('components.share-buttons', ['share' => $share])
+    @endcomponent
 </div>

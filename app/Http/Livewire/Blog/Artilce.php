@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Blog;
 
+use App\Http\Globals;
 use App\Models\Blog;
 use Livewire\Component;
 
@@ -9,6 +10,10 @@ class Artilce extends Component
 {
     public function render()
     {
-        return view('livewire.blog.artilce')->with(['article' => Blog::where('id', request('id_article'))->get()->first()]);
+        $article = Blog::where('id', request('id'))->get()->first();
+        return view('livewire.blog.artilce')->with([
+            'article' => $article,
+            'share' => Globals::share($article->title)
+        ]);
     }
 }

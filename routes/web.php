@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
-    Route::get('file', File::class)->name('file');
+    Route::get('file/{type}', File::class)->name('file');
 });
 
 // Control Panel
@@ -68,8 +68,8 @@ Route::prefix('user')->group(function () {
 // Blog
 Route::prefix('blog')->group(function () {
     Route::get('/', BlogIndex::class)->name('index');
+    Route::get('article/{id}/{title}', Artilce::class);
     Route::middleware('auth:sanctum', 'verified')->group(function () {
-        Route::get('article', Artilce::class)->name('article');
         Route::get('create', BlogCreate::class)->name('create');
         Route::get('update', BlogUpdate::class)->name('update');
         Route::get('delete', BlogDelete::class)->name('delete');

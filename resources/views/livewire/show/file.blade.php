@@ -96,8 +96,7 @@
                     @component('components.item-show-file', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
-                        'route' => 'file',
-                        'dataRoute' => ['type' => $type->table],
+                        'route' => $type->table,
                         'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent
