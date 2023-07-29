@@ -11,6 +11,7 @@ use App\Http\Livewire\Blog\Delete as BlogDelete;
 use App\Http\Livewire\ControlPanel\Create;
 use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
+use App\Http\Livewire\Editor\Editor;
 use App\Http\Livewire\Mustafamax\Profile;
 use App\Http\Livewire\Show\File;
 use App\Http\Livewire\Show\Types;
@@ -75,6 +76,10 @@ Route::prefix('blog')->group(function () {
     });
 });
 
+// Editor
+Route::prefix('editor')->group(function () {
+    Route::get('/', Editor::class)->name('editor');
+});
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/valid-user/{email}', function ($email) {

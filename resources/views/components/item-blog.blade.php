@@ -3,7 +3,7 @@
         <div dir="rtl">
             <h2 class="text-xl bg-primary-light dark:bg-primary-dark py-4 px-2 rounded-t-lg">{{ $article->title }}</h2>
             <p class="border-4 border-primary-light dark:border-primary-dark p-2 rounded-b-lg">
-                {!! substr($article->article, 0, 512) !!}
+                {{ $article->desc }}
                 <span class="px-1"></span>
                 <a href="{{ route('article', ['id_article' => $article->id]) }}" class="">
                     @component('components.text-button', ['value' => __('me_str.read_more')])
