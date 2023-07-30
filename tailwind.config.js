@@ -17,14 +17,15 @@ export default {
     colors: {
         // 60 %
         "primary-light": "#E0E0E0",
-        "primary-dark": "#282828",
+        "primary-dark": "#202124",
         //
         // 30 %
-        "secondary-light": "#F0F0F0",
-        "secondary-dark": "#404040",
+        "secondary-light": "#FAFAFA",
+        "secondary-dark": "#303134",
         //
         // 10 %
-        "accent": "#2563eb",
+        // "accent": "#2563eb",
+        "accent": "#2962FF",
         //
         'transparent': '#00000000'
     },

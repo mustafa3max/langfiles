@@ -115,7 +115,7 @@ return [
     'templates' => [
         'copylink' => '<a href="#" class="social-button:class" id="clip":title:rel><span class="fas fa-copy"></span></a>',
         'evernote' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fab fa-evernote"></span></a>',
-        'facebook' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fab fa-facebook-square"></span></a>',
+        'facebook' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fab fa-facebook-f"></span></a>',
         'hackernews' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fab fa-hacker-news"></span></a>',
         'linkedin' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fab fa-linkedin"></span></a>',
         'mailto' => '<a href=":url" class="social-button:class":id:title:rel target="_blank"><span class="fas fa-envelope"></span></a>',

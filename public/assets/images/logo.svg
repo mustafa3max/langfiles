@@ -27,9 +27,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.35099608"
-     inkscape:cx="381.77065"
-     inkscape:cy="340.45965"
+     inkscape:zoom="0.07864058"
+     inkscape:cx="-2301.6107"
+     inkscape:cy="896.48372"
      inkscape:window-width="1870"
      inkscape:window-height="1016"
      inkscape:window-x="0"
@@ -37,15 +37,83 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <filter
+       inkscape:label="Cubes"
+       inkscape:menu="Scatter"
+       inkscape:menu-tooltip="Scattered cubes; adjust the Morphology primitive to vary size"
+       style="color-interpolation-filters:sRGB;"
+       id="filter4015"
+       x="-0.017497813"
+       y="-0.026246719"
+       width="1.0349956"
+       height="1.0524934">
+      <feTurbulence
+         baseFrequency="0.14"
+         numOctaves="1"
+         type="fractalNoise"
+         id="feTurbulence3999" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 6 -3.5 "
+         result="result5"
+         id="feColorMatrix4001" />
+      <feComposite
+         in2="result5"
+         operator="in"
+         in="SourceGraphic"
+         result="result6"
+         id="feComposite4003" />
+      <feMorphology
+         result="result3"
+         radius="5"
+         operator="dilate"
+         in="result6"
+         id="feMorphology4005" />
+      <feDisplacementMap
+         result="result4"
+         scale="0"
+         yChannelSelector="A"
+         xChannelSelector="R"
+         in="result3"
+         in2="result3"
+         id="feDisplacementMap4007" />
+      <feComposite
+         in2="result4"
+         operator="arithmetic"
+         result="result2"
+         k1="1"
+         k3="1"
+         id="feComposite4009" />
+      <feBlend
+         mode="darken"
+         in="result2"
+         in2="result2"
+         id="feBlend4011" />
+      <feConvolveMatrix
+         order="3 3"
+         kernelMatrix="2 0 0 0 1 0 0 0 -1 "
+         targetX="1"
+         targetY="1"
+         divisor="2"
+         edgeMode="duplicate"
+         id="feConvolveMatrix4013" />
+    </filter>
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-272.62905,-226.25357)">
+     transform="translate(-272.62905,-226.25356)">
     <path
        id="rect1004"
-       style="fill:#2563eb;fill-opacity:1;stroke:none;stroke-width:0.406907;stroke-linecap:square;stroke-miterlimit:8.7;paint-order:markers stroke fill"
-       d="m 299.08738,226.25357 c -14.6579,0 -26.45833,11.80043 -26.45833,26.45833 v 105.83334 c 0,14.6579 11.80043,26.45833 26.45833,26.45833 h 79.375 v 79.375 c 0,14.6579 11.80043,26.45833 26.45833,26.45833 14.65791,0 26.45834,-11.80043 26.45834,-26.45833 v -79.375 h 79.375 c 14.6579,0 26.45833,-11.80043 26.45833,-26.45833 0,-14.6579 -11.80043,-26.45834 -26.45833,-26.45834 h -79.375 v -52.91666 h 79.375 c 14.6579,0 26.45833,-11.80043 26.45833,-26.45834 0,-14.6579 -11.80043,-26.45833 -26.45833,-26.45833 H 404.92071 c -0.45806,0 -0.91308,0.0113 -1.36529,0.0341 -14.01837,0.70601 -25.09304,12.22438 -25.09304,26.42422 v 79.375 h -52.91667 v -79.375 c 0,-14.6579 -11.80043,-26.45833 -26.45833,-26.45833 z" />
+       style="fill:#2962ff;fill-opacity:1;stroke:none;stroke-width:0.406907;stroke-linecap:square;stroke-miterlimit:8.7;paint-order:markers stroke fill"
+       d="m 299.08738,226.25357 c -14.6579,0 -26.45833,11.80043 -26.45833,26.45833 v 105.83334 c 0,14.6579 11.80043,26.45833 26.45833,26.45833 h 79.375 v 79.375 c 0,14.6579 11.80043,26.45833 26.45833,26.45833 14.65791,0 26.45834,-11.80043 26.45834,-26.45833 v -79.375 h 79.375 c 14.6579,0 26.45833,-11.80043 26.45833,-26.45833 0,-14.6579 -11.80043,-26.45834 -26.45833,-26.45834 h -79.375 v -52.91666 h 79.375 c 14.6579,0 26.45833,-11.80043 26.45833,-26.45834 0,-14.6579 -11.80043,-26.45833 -26.45833,-26.45833 H 404.92071 c -0.45806,0 -0.91308,0.0113 -1.36529,0.0341 -14.01837,0.70601 -25.09304,12.22438 -25.09304,26.42422 v 79.375 h -52.91667 v -79.375 c 0,-14.6579 -11.80043,-26.45833 -26.45833,-26.45833 z"
+       inkscape:export-filename="../d005f48e/logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="path3550" />
+    <g
+       id="path3270" />
   </g>
 </svg>
