@@ -16,7 +16,6 @@ class File extends Component
     public $table;
     public $title;
     public $lang;
-    public $dataCopy;
     public $data = [];
 
     function delete($key)
@@ -31,29 +30,38 @@ class File extends Component
 
     function data()
     {
-        $data = DB::table($this->table)
-            ->where('enabled', true)
-            ->whereNotIn('key', $this->data)
-            ->get(['key', 'value']);
+        foreach (Globals::languages() as $lang) {
+            $table = str_replace('type', $lang, $this->table);
+            $data[] = DB::table($table)
+                ->where('enabled', true)
+                ->whereNotIn('key', $this->data)
+                ->get(['key', 'value', 'language'])->toArray();
+        }
+
         return $data;
     }
 
     function copy()
     {
         $result = [];
-        foreach ($this->data() as $value) {
-            $arr = array_values((array) $value);
-            $result += [$arr[0] => $arr[1]];
-        }
 
-        $this->dataCopy = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        foreach ($this->data() as $value) {
+            $resultNew = [];
+            foreach ($value as $v) {
+                $arr = array_values((array) $v);
+                $resultNew += [$arr[0] => $arr[1]];
+            }
+            $result[] = json_encode($resultNew, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+        return $result;
     }
 
 
     function types()
     {
-        return Table::where('table', 'like', '%' .  $this->title . '%')
-            ->where('lang', '!=', $this->lang)
+        return Table::where('lang', LaravelLocalization::getCurrentLocale())
+            ->inRandomOrder()
+            ->take(3)
             ->get();
     }
 
@@ -76,7 +84,8 @@ class File extends Component
     public function render()
     {
         return view('livewire.show.file')->with([
-            'dataAll' => $this->data()->toArray(),
+            'dataEdit' => $this->data(),
+            'dataJson' => $this->copy(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),
             'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)]))
         ]);

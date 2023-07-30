@@ -15,6 +15,11 @@
 
     @vite('resources/css/app.css')
     @livewireStyles
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -28,7 +33,7 @@
 
 <body
     class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative"
-    x-init="isAlpine = false" x-data="{ isAlpine: true }">
+    x-cloak>
     <div class="absolute top-0 left-0 right-0 z-10">
         <div style="min-height: 92vh">
             @component('components.nav-bar')
@@ -56,21 +61,8 @@
         </div>
     </div>
 
-    <div x-show="isAlpine" class="absolute top-0 left-0 right-0 z-10">
-        <div class="h-screen w-screen flex items-center justify-center bg-primary-light dark:bg-primary-dark">
-            <div class="grid items-center justify-center gap-4">
-                <img src="{{ asset('assets/images/logo.svg') }}" class="h-24 w-24 mx-auto animate-pulse"
-                    alt="Langfiles Logo" />
-                <h1 class="text-2xl text-center"><span
-                        class="block uppercase font-extrabold">langfiles</span>{{ __('seo.title_home') }}
-                </h1>
-            </div>
-        </div>
-    </div>
-
     @vite('resources/js/app.js')
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     {{-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> --}}
 

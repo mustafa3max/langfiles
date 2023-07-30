@@ -1,15 +1,15 @@
-<div class="grid md:flex gap-2 bg-primary-light dark:bg-primary-dark rounded-lg ps-2 grow" dir="ltr">
-    <div class="flex items-center justify-center gap-2">
+<div class="grid md:flex md:gap-2 bg-secondary-light dark:bg-secondary-dark rounded-lg grow" dir="ltr">
+    <div class="flex items-center justify-center gap-2 px-2">
         <span class="w-10 text-accent md:hidden">{{ __('me_str.key') }}</span>
-        <span class="border-s border-secondary-light dark:border-secondary-dark h-4 md:hidden"></span>
+        <div class="border-s border-primary-light dark:border-primary-dark h-4 md:hidden"></div>
         <p class="p-2 grow md:text-accent">{{ $data->key }}</p>
     </div>
 
-    <span class="border-t border-secondary-light dark:border-secondary-dark h-4 md:hidden"></span>
+    <div class="border-t border-primary-light dark:border-primary-dark md:hidden mx-2"></div>
 
-    <div class="flex items-center gap-2 grow">
+    <div class="flex items-center gap-2 grow px-2">
         <span class="w-10 text-accent md:hidden">{{ __('me_str.value') }}</span>
-        <span class="border-s border-secondary-light dark:border-secondary-dark h-4"></span>
+        <div class="border-s border-primary-light dark:border-primary-dark h-4"></div>
         <p class="p-2 grow">{{ $data->value }}</p>
     </div>
 

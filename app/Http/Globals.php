@@ -26,9 +26,8 @@ class Globals
             'block_suffix' => '</ul>',
             'element_prefix' => '<li class="hover:bg-accent rounded-lg bg-primary-light dark:bg-primary-dark">',
             'element_suffix' => '</li>',
-            'target' => "_blank"
 
-        ])->copylink(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.copy_link')])
+        ])->copylink(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.copy_link'), 'text' => 'url new'])
             ->mailto(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.send_mail')])
             ->facebook(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_facebook')])
             ->twitter(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_twitter')])

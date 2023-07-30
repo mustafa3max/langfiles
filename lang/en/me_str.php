@@ -55,7 +55,7 @@ return [
     'visit_site' => 'visit site',
     'copy_code' => 'copy code',
     'code_mode' => 'code mode',
-    'text_mode' => 'text mode',
+    'edit_mode' => 'Edit mode',
     'types' => 'types',
     'languages' => 'languages',
     'files' => 'files',
@@ -95,6 +95,7 @@ return [
     'drop_list' => 'drop-down list',
     'item_is_deleted' => 'Item is being deleted',
     'desc' => 'Description',
-    '' => '',
-    '' => '',
+    'more_files_json' => 'More json files',
+    'ok_copy_code' => 'Code copied successfully',
+    'close' => 'close',
 ];

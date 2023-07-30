@@ -10,6 +10,7 @@
     @endsection
 
     <div class="min-h-full">
+
         <div class="pb-2">
             @component('components.search', ['languages' => $languages, 'submitForm' => 'types'])
             @endcomponent
@@ -19,12 +20,13 @@
             <x-load.load-types />
         </div>
         <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
+
             @forelse ($types as $type)
                 <div class="grow">
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
-                        'route' => 'file/' . $type->table,
+                        'route' => 'file/' . str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
                         'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent

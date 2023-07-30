@@ -1,4 +1,4 @@
-<div x-data="{ isCode: false }">
+<div x-data="{ isCode: true, isAlert: false }">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -10,65 +10,76 @@
     @endsection
 
     <x-card>
-        @component('components.title-file', ['title' => $this->title, 'lang' => $this->lang, 'count' => count($dataAll)])
+        @component('components.title-file', [
+            'title' => $this->title,
+            'count' => count($dataEdit[0]),
+        ])
         @endcomponent
-        {{-- Data Show --}}
-        <div x-show="!isCode" class="grid gap-2">
-            <div class="flex justify-start content-center gap-2 ">
-
-                <div class="flex justify-center items-center gap-4">
-                    <div wire:click='copy' x-on:click="isCode=true" x-show="!isCode">
-                        @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
-                        @endcomponent
-                    </div>
+        {{-- Edit Mode --}}
+        <div x-show="!isCode">
+            <div class="flex justify-start content-center gap-2 pb-2">
+                <div wire:click='copy' x-on:click="isCode=true">
+                    @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
+                    @endcomponent
                 </div>
                 {{-- Undo Delete Item --}}
-                @if (count($data) > 0)
-                    <button
-                        class="p-4 bg-accent hover:text-primary-light flex items-center justify-center gap-4 rounded-lg"
-                        wire:click='undo()'>{{ __('me_str.undo') }}<i class="fa-solid fa-undo"></i></button>
+                @if (count($this->data) > 0)
+                    <div wire:click='undo()'>
+                        @component('components.btn-file', ['icon' => 'undo', 'text' => __('me_str.undo')])
+                        @endcomponent
+                    </div>
                 @endif
             </div>
 
-            <div wire:loading>
-                <x-load.load-file />
-            </div>
-            <div class="flex flex-wrap gap-2 relative" wire:loading.remove>
-                @forelse ($dataAll as $data)
-                    @component('components.item-file', ['data' => $data])
-                    @endcomponent
-                @empty
-                    @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
-                    @endcomponent
-                @endforelse
-
-            </div>
-
+            @forelse ($dataEdit as $file)
+                <div class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg mb-2">
+                    <div wire:loading>
+                        <x-load.load-file />
+                    </div>
+                    <div class="flex flex-wrap gap-4" wire:loading.remove>
+                        @foreach ($file as $data)
+                            @component('components.item-file', ['data' => $data])
+                            @endcomponent
+                        @endforeach
+                    </div>
+                </div>
+            @empty
+                @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
+                @endcomponent
+            @endforelse
         </div>
 
-        {{-- Data Copy --}}
+        {{-- Code Mode --}}
         <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg w-full h-full grid gap-2" x-show="isCode">
-            <div class="flex gap-2" wire:loading.remove wire:target="{{ $dataCopy }}">
+            <div class="flex gap-2">
                 <div x-on:click="isCode=false">
-                    @component('components.btn-file', ['icon' => 'bars-staggered', 'text' => __('me_str.text_mode')])
+                    @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
                     @endcomponent
                 </div>
-                <div class="grow"></div>
-                <div onclick="copyContent()">
-                    @component('components.btn-file', ['icon' => 'copy', 'text' => __('me_str.copy_code')])
-                    @endcomponent
+                <div class="grow" x-show="isAlert" x-transition.duration.500ms>
+                    <x-alert />
                 </div>
             </div>
 
-            <div class="flex items-center justify-center">
-                <div class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg  overflow-hidden w-full"
-                    dir="ltr">
-                    <div class="w-full" wire:loading>
-                        <x-load-code />
+            <div class="grid gap-2">
+                @for ($i = 0; $i < count($dataJson); $i++)
+                    <div class="bg-primary-light dark:bg-primary-dark rounded-lg overflow-hidden">
+                        <div class="w-full" wire:loading>
+                            <x-load-code />
+                        </div>
+                        <div class="w-full grid" wire:loading.remove>
+                            <button title="__('me_str.copy_code')" x-on:click="isAlert=true"
+                                onclick="copyContent('code-{{ $i }}')"
+                                class="rounded-lg text-accent hover:text-secondary-light hover:bg-accent w-12 h-12">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                            <code dir="ltr" id="code-{{ $i }}" class="whitespace-pre-wrap p-4"
+                                xt="dataset.bibText">{{ $dataJson[$i] }}</code>
+                        </div>
+
                     </div>
-                    <code id="code" class="whitespace-pre-wrap" xt="dataset.bibText"
-                        wire:loading.remove>{{ $dataCopy }}</code>
-                </div>
+                @endfor
+
             </div>
         </div>
     </x-card>
@@ -79,8 +90,8 @@
     <div class="p-1"></div>
 
     <x-card>
-        <h2 class="bg-primary-light dark:bg-primary-dark p-2 rounded-lg font-bold">
-            {{ __('me_str.content_other_lang', ['TITLE' => __('tables.' . $this->title)]) }}
+        <h2 class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg font-bold">
+            {{ __('me_str.more_files_json') }}
         </h2>
         <div wire:loading wire:target="{{ $this->types() }}">
             <x-load.load-types-file />
@@ -96,7 +107,7 @@
                     @component('components.item-show-file', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
-                        'route' => $type->table,
+                        'route' => str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
                         'countItems' => $this->countItems($type->table),
                     ])
                     @endcomponent
@@ -109,20 +120,18 @@
     </x-card>
 
     <script>
-        const copyContent = async () => {
-            const code = document.getElementById('code').innerText;
+        const copyContent = async (idCode) => {
+            const code = document.getElementById(idCode).innerText;
             try {
                 if (navigator.clipboard) {
                     await navigator.clipboard.writeText(code);
-                    alert('تم نسخ الشفرة');
                 } else {
                     alert(code);
                 }
             } catch (err) {
                 alert(code);
-
             }
+
         }
     </script>
-
 </div>

@@ -29,38 +29,28 @@ class Types extends Component
 
     function types()
     {
-        $num = 20;
+
         $lang = LaravelLocalization::getCurrentLocale();
-        if ($this->search != null && $this->lang == null) {
-            return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
-                ->orderByDesc('name_' . $lang)
-                ->paginate($num);
-        } elseif ($this->search == null && $this->lang != null) {
-            return Table::where('lang', 'LIKE', "%$this->lang%")
-                ->orderByDesc('name_' . $lang)
-                ->paginate($num);
-        } elseif ($this->search != null && $this->lang != null) {
-            return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
-                ->where('lang', 'LIKE', "%$this->lang%")
-                ->orderByDesc('name_' . $lang)
-                ->paginate($num);
-        }
-        return Table::orderByDesc('name_' . $lang)
-            ->paginate($num);
+        return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
+            ->where('lang', $lang)
+            ->orderByDesc('name_' . $lang)
+            ->paginate(20);
     }
 
     function countItems($table)
     {
-        return DB::table($table)->get()->count();
+        return DB::table($table)
+            ->get()->count();
     }
 
     public function render()
     {
+        session()->put('urlTypes', $this->types()->currentPage());
         return view('livewire.show.types')->with([
             'types' => $this->types(),
             'languages' => Globals::languages(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),
-            'share' => Globals::share(__('seo.title_types'))
+            'share' => Globals::share(__('seo.title_types')),
         ]);
     }
 }
