@@ -29,7 +29,6 @@ class Types extends Component
 
     function types()
     {
-
         $lang = LaravelLocalization::getCurrentLocale();
         return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
             ->where('lang', $lang)

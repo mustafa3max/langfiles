@@ -1,123 +1,43 @@
-<div id="bodyText">
-    <x-editor.img src="{{ url('assets/blog/images/adding_multiple_languages_to_the_website_using_laravel.png') }}"
-        alt="اضافة لغات متعددة للموقع الالكتروني باستخدام لارافيل" />
-    <p>
-        إن اضافة لغات متعددة للموقع الالكتروني عملية في غاية الاهمية لذلك وفي هذا الدرس سنتعلم كيفية
-        ذلك وسيكون الشرح عبارة عن خطوات لنبدا الآن
-    </p>
-    <x-editor.h2>
-        إنشاء ملفات الترجمة للغات المطلوبة
-    </x-editor.h2>
-    <p>
-        في هذه المرحلة عليك إنشاء ملفات اللغات التي تحتاجها بموقعك اذا اردت تفاصيل اكثر عن تعدد اللغات بلارافيل ادخل على
-        رابط وثائق لارافيل الخاصة بالتدويل
-        <x-editor.link href="https://laravel.com/docs/10.x/localization">
-            laravel localization
-        </x-editor.link>
-    </p>
-    <x-editor.h3>
-        إنشاء مجلد lang إن لم يكن موجود
-    </x-editor.h3>
-    <p>
-        اذا كنت اول مرة تتعامل مع تعدد اللغات في هذا المشورع فان مجلد lang غير موجود ولانشائه استخدم هذا الامر
-        <x-editor.code id="code_1">
-            php artisan lang:publish
-        </x-editor.code>
-    </p>
-    <x-editor.h3>
-        إنشاء مجلدات للغات داخل مجلد lang
-    </x-editor.h3>
-    <p>في هذه المرحلة علينا انشاء مجلدات داخل مجلد lang لكل اللغات التي نريد اضافتها للموقع افتراضيا ستجد ان مجلد للغة
-        الانجليزية موجود ويحمل هذا الاسم en انشئ المجلدات المطلوبة بنفس طريقة التسمية الموضحة اعلى اي باستخدام اول حرفين
-        للغة مثل اللغة العربية ar اللغة الفرنسية fr الخ</p>
-    <span>ولمزيد من المعلومات عن اللغات قم بزيارة هذا الموقع</span>
-    <x-editor.link href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">
-        List of ISO 639-1 codes
-    </x-editor.link>
-    <x-editor.h3>
-        إنشاء ملف php داخل مجلد اللغة
-    </x-editor.h3>
-    <p>
-        اﻵن وصلنا الى الجزء الممل لكن لا تقلق ساعطيك طريقة تخلصك من الملل فقط استمر في القراءة
-        افتح مجلد اي لغة تريد ولنفترض مجلد اللغة العربية وفي داخله انشئ ملف بامتداد php وانسخ الشفرة التالية والصقها
-        داخل الملف
-    </p>
-    <x-editor.code id="code_2">
-        {{ '<' }}?php return [ "key" => "value", ];
-    </x-editor.code>
-    <x-editor.h3>
-        إنشاء ملف php داخل مجلد اللغة
-    </x-editor.h3>
-    <p>الآن انسخ السطر الذي يحتوي على key و value الموضح في الشفرة اعلاه وكرره عدة مرات ويفضل اوزالة المحتوى من المفتاح
-        والقيمة واكتب المفتاح باللغة الانجليزية فقط ويجب ان يكون المفتاح نفسه في باقي الملفات من لغات اخرى ثم اكتب
-        القيمة باللغة التي انت تكتب داخل ملفها وفي مثالنا هي اللغة العربية مثل
-    </p>
-    <x-editor.code id="code_3">
-        "login" => "تسجيل الدخول",
-        "forgot_password": "نسيت كلمة المرور",
-    </x-editor.code>
-    <x-editor.h3>
-        طريقة استخدام النصوص المترجمة
-    </x-editor.h3>
-    <p>بعد ان انهيت جميع الخطوات اعلاه صار الان بامكانك استخدام النصوص المترجمة التي قمت بوضعها في الملفات اللغوية في
-        مجلد lang يمكنك استخدام النصوص في ملف php وفي ملف blade.php
-        <x-editor.list-num>
-            <li>في ملف php اكتب هذا الكود واختر المفتاح المناسب من الملف المناسب
-                <x-editor.code id="code_4">
-                    __('messages.welcome')
-                </x-editor.code>
-            </li>
-            <li>
-                في ملف blade.php اكتب هذا الكود وايضا قم باختيار مفتاح مناسب
-                <x-editor.code id="code_5">
-                    {{ '{' . '{ ' . '__("messages.welcome")' . ' }' . '}' }}
-                </x-editor.code>
-            </li>
-        </x-editor.list-num>
+<div class="relative" x-data="{ count: 10 }">
+    <x-editor.nav />
+    <div id="value"
+        class="p-2 fixed bg-primary-light dark:bg-primary-dark w-full h-full items-center justify-center hidden">
+        <div id="imgSrc">
+            @livewire('editor.images')
+        </div>
 
-    </p>
-    <x-editor.h3>
-        طريقة للتخلص من كتابة ملفات الترجمة
-    </x-editor.h3>
-    <p>
-        هل تتذكر كلامنا عن الجزء الممل في الدرس اعلاه تمام انت تذكره جيدا لذلك ساقدم لك هذا الموقع والذي يحتوي على عشرات
-        الملفات التي تحتوي على نصوص ترجمة لغوية لاغلب احتياجات موقعك وتتوفر بعدة لغات ومصنفة حسب النوع مثل صفحة تسجيل
-        الدخول او صغحة انشاء حساب والكثير من الانواع وكل الملفات في الموقع تكون بصيغة json فقط انسخ والصق اترككم مع رابط
-        الموقع
-        <x-editor.link-inner href="/types">
-            langfiles ملفات ترجمة لغوية للمواقع والتطبيقات بصيغة json
-        </x-editor.link-inner>
-    </p>
-    <x-editor.img src="{{ url('assets/blog/images/site_preparation_to_accommodate_multilingualism.png') }}"
-        alt="إعداد الموقع ليتناسب مع تعدد اللغات" />
-    <p>هل لاحظت في بعض المواقع ومن ضمنها موقع
-        <x-editor.link-inner href="/">
-            langfiles
-        </x-editor.link-inner> وجود رمز اللغة المحددة في الرابط واذا قمت بازالته وفتح
-        الموقع من دونه يتم اضافته للرابط من جدبد وهذا ما سنفعله في هذا القسم من الدرس فتابع معي
-    </p>
-    <x-editor.h2>
-        إعداد الموقع ليتناسب مع تعدد اللغات
-    </x-editor.h2>
-    <p>
-
-    </p>
-    <x-editor.h3>
-
-    </x-editor.h3>
-    <p>
-
-    </p>
-
-    لنفترض انك تستخدم لغة واحدة واحدة هل تحتاج ان تفعل مثل ما فعلنا في هذا الدرس نعم واوكد لك ان هذا مهم جدا فوق
-    ما
-    تتصور لعدة اسباب منها التدقيق اللغوي و اضافة لغات متعددة في المستقبل يكون عاية في السهولة فقط تقوم بنسخ
-    الملف
-    ولصقه
-    في اي مترجم مناسب او اعطائه الى مترجم محترف يقوم بترجمته لك بملغ معين
-    اما اذا كنت تستخدم اكثر من لغة فعليك في هذه الحالة تحويل موقعك الى موقع متعدد اللغات وسنستخدم هذه الاداة
-    الرائعة
-    <x-editor.link href="https://github.com/mcamara/laravel-localization">
-        laravel-localization
-    </x-editor.link>
+        <input type="text" class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 outline-none hidden"
+            id="imgAlt" placeholder="alt">
+    </div>
+    <div class="p-2 grid gap-2 container mx-auto">
+        <div class="border border-secondary-light dark:border-secondary-dark rounded-lg p-2">
+            <span class="pb-2 block">{{ __('me_str.thumbnail') }}</span>
+            <img src="{{ asset('/storage/blog/images/temporary_image.png') }}" alt="" id="thumbnail"
+                ondblclick="addSrc('', 'thumbnail')" class="w-full mb-2" contenteditable wire:model.defer='thumbnail'>
+            <form>
+                <span class="pb-2 block">{{ __('me_str.title') }}</span>
+                <input type="text"
+                    class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 w-full outline-none" id="title"
+                    wire:model.defer='title'>
+                <span class="py-2 block">{{ __('me_str.desc') }}</span>
+                <textarea rows="3" class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 w-full outline-none"
+                    id="desc" wire:model.defer='desc'></textarea>
+            </form>
+            <span class="pb-2 block">{{ __('me_str.article') }}</span>
+            <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-4 w-full">
+                <div id="article" wire:model.defer='article'>
+                </div>
+            </div>
+            <div class="p-1"></div>
+            <div class="flex gap-4">
+                <button
+                    class="bg-accent hover:text-primary-light dark:hover:text-primary-light p-2 rounded-lg uppercase"
+                    onclick='addItem()'>add</button>
+                <button
+                    class="hover:bg-accent dark:hover:bg-accent hover:text-primary-dark bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg uppercase"
+                    wire:click='publishArticle'>publish
+                    article</button>
+            </div>
+        </div>
+    </div>
 </div>

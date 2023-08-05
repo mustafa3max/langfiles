@@ -12,6 +12,12 @@
             @error('title')
                 {{ $message }}
             @enderror
+            <input type="text" wire:model.lazy='image'
+                class="bg-primary-light dark:bg-primary-dark rounded-lg p-4 w-full"
+                placeholder="{{ __('me_str.image') }}">
+            @error('image')
+                {{ $message }}
+            @enderror
             <textarea rows="5" class="bg-primary-light dark:bg-primary-dark rounded-lg p-4 w-full no-scrollbar"
                 wire:model.lazy='desc' placeholder="{{ __('me_str.desc') }}"></textarea>
             @error('desc')

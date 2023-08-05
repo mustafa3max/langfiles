@@ -9,12 +9,14 @@ use Livewire\Component;
 class Update extends Component
 {
     public $title;
+    public $image;
     public $desc;
     public $article;
     public $idArticle;
 
     protected $rules = [
         'title' => 'required|string|min:50|max:255',
+        'image' => 'required|string',
         'desc' => 'required|string|min:100|max:560',
         'article' => 'required|string|min:1000',
     ];
@@ -30,6 +32,7 @@ class Update extends Component
         Blog::where('id', $this->idArticle)
             ->update([
                 'title' => $attr['title'],
+                'image' => $attr['image'],
                 'desc' => $attr['desc'],
                 'article' => $attr['article'],
                 'author' => Auth::user()->name,
@@ -41,6 +44,8 @@ class Update extends Component
         $article = Blog::where('id', $this->idArticle)->get()->first();
 
         if ($article != null) {
+            $this->title = $article->title;
+            $this->image = $article->image;
             $this->title = $article->title;
             $this->desc = $article->desc;
             $this->article = $article->article;

@@ -47,6 +47,13 @@ return [
         'types' => [
             'driver' => 'local',
             'root' => storage_path('types'),
+            'url' => env('APP_URL') . '/storage',
+        ],
+
+        'blog' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/blog'),
+            'url' => env('APP_URL') . '/storage/app/public',
         ],
 
         's3' => [

@@ -25,22 +25,22 @@
 
 <body class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar">
 
-    <div class="p-4">
+    <div class="">
         {{ $slot }}
-        <div class="h-1 rounded-full bg-accent my-2"></div>
+        {{-- <div class="h-1 rounded-full bg-accent my-2"></div>
         <x-card>
             <div class="overflow-hidden">
                 <pre dir="ltr"><code id="bodyHtml"></code></pre>
             </div>
-        </x-card>
-        <div class="p-1"></div>
-        <button class="block bg-secondary-dark p-4 rounded-lg hover:bg-accent" onclick="getHtml()">Get HTML</button>
+        </x-card> --}}
+        {{-- <div class="p-1"></div> --}}
+        {{-- <button class="block bg-secondary-dark p-4 rounded-lg hover:bg-accent" onclick="getHtml()">Get HTML</button> --}}
     </div>
     @vite('resources/js/app.js')
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
+    <script src="{{ asset('js/editor.js') }}"></script>
     <script>
         function selectText(containerid) {
             if (document.selection) {

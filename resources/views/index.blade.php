@@ -26,16 +26,15 @@
 </head>
 
 <body
-    class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative">
-    <div class="h-screen relative bg-index-header bg-cover bg-center bg-accent" id="home">
-
-        <div class="flex justify-center items-center h-full text-primary-light">
-            <div class="backdrop-blur-md absolute top-0 bottom-0 left-0 right-0">
+    class="no-scrollbar relative bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light">
+    <div class="relative h-screen bg-accent bg-index-header bg-cover bg-center" id="home">
+        <div class="flex h-full items-center justify-center text-primary-light">
+            <div class="absolute bottom-0 left-0 right-0 top-0 backdrop-blur-md">
             </div>
-            <div class="absolute top-0 bottom-0 left-0 right-0 bg-secondary-dark opacity-60">
+            <div class="absolute bottom-0 left-0 right-0 top-0 bg-secondary-dark opacity-60">
             </div>
             <div class="z-10 p-2">
-                <h1 class="text-center text-3xl ">LANGFILES
+                <h1 class="text-center text-3xl">LANGFILES
                     <br>
                     <br>
                     {{ __('index_str.title_index') }}
@@ -43,43 +42,44 @@
                 <br>
                 <br>
                 <a href="types"
-                    class="hover:underline block uppercase font-bold text-xl text-center animate-pulse">{{ __('me_str.show_files') }}</a>
+                    class="block animate-pulse text-center text-xl font-bold uppercase hover:underline">{{ __('me_str.show_files') }}</a>
             </div>
-            <a href="#info" class="absolute bottom-0 p-2 animate-bounce shadow-sm"
+            <a href="#info" class="absolute bottom-0 animate-bounce p-2 shadow-sm"
                 title="{{ __('me_str.go_info') }}"><i class="fa-solid fa-angles-down"></i></a>
         </div>
     </div>
-    <div class="min-h-screen max-w-5xl mx-auto flex items-center justify-center relative" id="info">
-        <div class="grid justify-center items-cente min-h-screen">
+    <div class="relative mx-auto flex min-h-screen max-w-5xl items-center justify-center" id="info">
+        <div class="items-cente grid min-h-screen justify-center">
             <div class="grow"></div>
-            <div class="grid max-sm:grid-cols-1 max-md:grid-cols-2 grid-cols-3 p-4 gap-4 h-full">
-                <div class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center flex flex-col">
-                    <h2 class="text-lg pb-2">{{ __('index_str.title_1') }}</h2>
+            <div class="grid h-fit grid-cols-3 gap-4 p-4 max-md:grid-cols-2 max-sm:grid-cols-1">
+                {{-- <div class="flex h-full flex-wrap gap-2"> --}}
+                <div class="flex flex-col rounded-lg bg-secondary-light p-4 text-center dark:bg-secondary-dark">
+                    <h2 class="pb-2 text-lg font-bold">{{ __('index_str.title_1') }}</h2>
                     <div class="border-t border-primary-light"></div>
-                    <p class="text-sm py-2 grow">{{ __('index_str.description_1') }}</p>
+                    <p class="grow py-2">{{ __('index_str.description_1') }}</p>
                     <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
-                <div class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center flex flex-col">
-                    <h2 class="text-lg pb-2">{{ __('index_str.title_2') }}</h2>
+                <div class="flex flex-col rounded-lg bg-secondary-light p-4 text-center dark:bg-secondary-dark">
+                    <h2 class="pb-2 text-lg font-bold">{{ __('index_str.title_2') }}</h2>
                     <div class="border-t border-primary-light"></div>
-                    <p class="text-sm py-2 grow">{{ __('index_str.description_2') }}</p>
-                    <a href="https://ar.wikipedia.org/wiki/%D8%AC%D8%B3%D9%88%D9%86" class="text-accent" target="_blank"
-                        rel="nofollow">{{ __('index_str.link_1') }}</a>
+                    <p class="grow py-2">{{ __('index_str.description_2') }}</p>
+                    <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
-                <div
-                    class="bg-secondary-light dark:bg-secondary-dark p-4 rounded-lg text-center max-md:col-span-3 max-sm:col-span-1 flex flex-col">
-                    <h2 class="text-lg pb-2">{{ __('index_str.title_3') }}</h2>
+                <div class="flex flex-col rounded-lg bg-secondary-light p-4 text-center dark:bg-secondary-dark">
+                    <h2 class="pb-2 text-lg font-bold">{{ __('index_str.title_3') }}</h2>
                     <div class="border-t border-primary-light"></div>
-                    <p class="text-sm py-2 grow">{{ __('index_str.description_3') }}</p>
+                    <p class="grow py-2">{{ __('index_str.description_3') }}</p>
                     <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
             </div>
-            <div class="grow h-16"></div>
+            <div class="grow"></div>
         </div>
-        <a href="#home" class="absolute bottom-0 p-2 animate-bounce text-accent"
+        <a href="#home" class="absolute bottom-0 animate-bounce p-2 text-accent"
             title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up"></i></a>
 
     </div>
+    @vite('resources/js/app.js')
+
 </body>
 
 </html>

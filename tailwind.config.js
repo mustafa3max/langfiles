@@ -27,7 +27,11 @@ export default {
         // "accent": "#2563eb",
         "accent": "#2962FF",
         //
-        'transparent': '#00000000'
+        'transparent': '#00000000',
+        'code-1-light': '#166534',
+        'code-1-dark': '#22C55E',
+        'code-2-light': '#854D0E',
+        'code-2-dark': '#FACC15',
     },
     backgroundImage: {
         'index-header': "url('/public/assets/images/bg_index.webp')"

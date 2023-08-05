@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, isAlert: false }">
+<div x-data="{ isCode: true, isAlert: false, convert: [true, false, false] }">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -17,13 +17,13 @@
         @endcomponent
         {{-- Edit Mode --}}
         <div x-show="!isCode">
-            <div class="flex justify-start content-center gap-2 pb-2">
-                <div wire:click='copy' x-on:click="isCode=true">
+            <div class="flex content-center justify-start gap-2 pb-2">
+                <div wire:click='render()' x-on:click="isCode=true">
                     @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
                     @endcomponent
                 </div>
                 {{-- Undo Delete Item --}}
-                @if (count($this->data) > 0)
+                @if (count($this->keys) > 0)
                     <div wire:click='undo()'>
                         @component('components.btn-file', ['icon' => 'undo', 'text' => __('me_str.undo')])
                         @endcomponent
@@ -32,7 +32,7 @@
             </div>
 
             @forelse ($dataEdit as $file)
-                <div class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg mb-2">
+                <div class="mb-2 rounded-lg bg-primary-light p-4 dark:bg-primary-dark">
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
@@ -50,12 +50,15 @@
         </div>
 
         {{-- Code Mode --}}
-        <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg w-full h-full grid gap-2" x-show="isCode">
-            <div class="flex gap-2">
+        <div class="grid h-full w-full gap-2 rounded-lg bg-secondary-light dark:bg-secondary-dark" x-show="isCode">
+            <div class="flex flex-wrap gap-2">
                 <div x-on:click="isCode=false">
                     @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
                     @endcomponent
                 </div>
+
+                <x-convert-to />
+
                 <div class="grow" x-show="isAlert" x-transition.duration.500ms>
                     <x-alert />
                 </div>
@@ -63,18 +66,24 @@
 
             <div class="grid gap-2">
                 @for ($i = 0; $i < count($dataJson); $i++)
-                    <div class="bg-primary-light dark:bg-primary-dark rounded-lg overflow-hidden">
+                    <div class="overflow-hidden rounded-lg bg-primary-light dark:bg-primary-dark">
                         <div class="w-full" wire:loading>
                             <x-load-code />
                         </div>
-                        <div class="w-full grid" wire:loading.remove>
+                        <div class="grid w-full" wire:loading.remove>
                             <button title="__('me_str.copy_code')" x-on:click="isAlert=true"
                                 onclick="copyContent('code-{{ $i }}')"
-                                class="rounded-lg text-accent hover:text-secondary-light hover:bg-accent w-12 h-12">
+                                class="h-12 w-12 rounded-lg text-accent hover:bg-accent hover:text-secondary-light">
                                 <i class="fa-solid fa-copy"></i>
                             </button>
-                            <code dir="ltr" id="code-{{ $i }}" class="whitespace-pre-wrap p-4"
-                                xt="dataset.bibText">{{ $dataJson[$i] }}</code>
+
+                            <div dir="ltr" id="code-{{ $i }}"
+                                class="no-scrollbar font- overflow-scroll p-4 text-lg" wire:key="{{ rand() }}">
+                                <div x-data="{ myData: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="myData"></div>
+                                <div x-data="{ myData: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="myData"></div>
+                                <div x-data="{ myData: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="myData"></div>
+                                <div x-data="{ myData: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="myData"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -90,7 +99,7 @@
     <div class="p-1"></div>
 
     <x-card>
-        <h2 class="bg-primary-light dark:bg-primary-dark p-4 rounded-lg font-bold">
+        <h2 class="rounded-lg bg-primary-light p-4 font-bold dark:bg-primary-dark">
             {{ __('me_str.more_files_json') }}
         </h2>
         <div wire:loading wire:target="{{ $this->types() }}">
@@ -131,7 +140,6 @@
             } catch (err) {
                 alert(code);
             }
-
         }
     </script>
 </div>

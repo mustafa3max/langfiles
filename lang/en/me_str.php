@@ -95,7 +95,8 @@ return [
     'drop_list' => 'drop-down list',
     'item_is_deleted' => 'Item is being deleted',
     'desc' => 'Description',
-    'more_files_json' => 'More json files',
+    'more_files_json' => 'More files',
     'ok_copy_code' => 'Code copied successfully',
     'close' => 'close',
+    'thumbnail' => 'thumbnail',
 ];
