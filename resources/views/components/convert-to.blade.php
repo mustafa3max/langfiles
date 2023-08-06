@@ -3,4 +3,6 @@
     <x-btn-convert index='1'>php</x-btn-convert>
     <x-btn-convert index='2'>android</x-btn-convert>
     <x-btn-convert index='3'>ios</x-btn-convert>
+    <x-btn-convert index='4'>django</x-btn-convert>
+    <x-btn-convert index='5'>xlf</x-btn-convert>
 </div>

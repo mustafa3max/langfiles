@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Show;
 
+use App\Http\Convert;
 use App\Http\Globals;
 use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use SimpleXMLElement;
 
 class File extends Component
 {
@@ -39,47 +39,6 @@ class File extends Component
                 ->get(['key', 'value', 'language'])->toArray();
         }
         return $data;
-    }
-
-    function convertTo($type)
-    {
-        $dataAll = [];
-        foreach ($this->toJson() as $values) {
-            $data = '';
-            foreach ($values as $key => $value) {
-                if ($type == 'json') {
-                    $data .= "<p>" . '<span class="text-code-1-light dark:text-code-1-dark">"' . $key . '"</span>: '  . '<span class="text-code-2-light dark:text-code-2-dark">"' . $value . '"</span>,' . "</p>";
-                } elseif ($type == 'php') {
-                    $data .= "<p>" . '<span class="text-code-1-light dark:text-code-1-dark">"' . $key . '"</span> => '  . '<span class="text-code-2-light dark:text-code-2-dark">"' . $value . '"</span>,' . "</p>";
-                } elseif ($type == 'android') {
-                    $data .= "<p>"
-                        .
-                        "<span class=\"text-code-2-light dark:text-code-2-dark\">"
-                        .
-                        "&#x3c;string "
-                        .
-                        "</span>"
-                        .
-                        "<span class=\"text-code-1-light dark:text-code-1-dark\">"
-                        . "name=\"" . $key . "\"" .
-                        "</span>"
-                        .
-                        "<span class=\"text-code-2-light dark:text-code-2-dark\">></span>"
-                        . $value .
-                        "<span class=\"text-code-2-light dark:text-code-2-dark\">"
-                        .
-                        "&#x3c;/string>"
-                        .
-                        "</span>"
-                        .
-                        "</p>";
-                } elseif ($type == 'ios') {
-                    $data .= "<p>" . '<span class="text-code-1-light dark:text-code-1-dark">"' . $key . '"</span> = '  . '<span class="text-code-2-light dark:text-code-2-dark">"' . $value . '"</span>;' . "</p>";
-                }
-            }
-            $dataAll[] = $data;
-        }
-        return $dataAll;
     }
 
     function toJson()
@@ -124,10 +83,12 @@ class File extends Component
     public function render()
     {
         return view('livewire.show.file')->with([
-            'json' => $this->convertTo('json'),
-            'php' => $this->convertTo('php'),
-            'android' => $this->convertTo('android'),
-            'ios' => $this->convertTo('ios'),
+            'json' => Convert::to('json', $this->toJson()),
+            'php' => Convert::to('php', $this->toJson()),
+            'android' => Convert::to('android', $this->toJson()),
+            'ios' => Convert::to('ios', $this->toJson()),
+            'django' => Convert::to('django', $this->toJson()),
+            'xlf' => Convert::to('xlf', $this->toJson()),
             'dataEdit' => $this->data(),
             'dataJson' => $this->toJson(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),

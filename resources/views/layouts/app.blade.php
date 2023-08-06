@@ -32,9 +32,9 @@
 </head>
 
 <body
-    class="font-almarai bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light no-scrollbar relative"
+    class="no-scrollbar relative bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
     x-cloak>
-    <div class="absolute top-0 left-0 right-0 z-10">
+    <div class="absolute left-0 right-0 top-0 z-10">
         <div style="min-height: 92vh">
             @component('components.nav-bar')
             @endcomponent

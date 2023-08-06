@@ -48,11 +48,10 @@
                 title="{{ __('me_str.go_info') }}"><i class="fa-solid fa-angles-down"></i></a>
         </div>
     </div>
-    <div class="relative mx-auto flex min-h-screen max-w-5xl items-center justify-center" id="info">
+    <div class="mx-auto flex min-h-screen max-w-5xl items-center justify-center" id="info">
         <div class="items-cente grid min-h-screen justify-center">
             <div class="grow"></div>
             <div class="grid h-fit grid-cols-3 gap-4 p-4 max-md:grid-cols-2 max-sm:grid-cols-1">
-                {{-- <div class="flex h-full flex-wrap gap-2"> --}}
                 <div class="flex flex-col rounded-lg bg-secondary-light p-4 text-center dark:bg-secondary-dark">
                     <h2 class="pb-2 text-lg font-bold">{{ __('index_str.title_1') }}</h2>
                     <div class="border-t border-primary-light"></div>
@@ -72,14 +71,9 @@
                     <a href="types" class="text-accent">{{ __('me_str.show_files') }}</a>
                 </div>
             </div>
-            <div class="grow"></div>
         </div>
-        <a href="#home" class="absolute bottom-0 animate-bounce p-2 text-accent"
-            title="{{ __('me_str.go_home') }}"><i class="fa-solid fa-angles-up"></i></a>
-
     </div>
     @vite('resources/js/app.js')
-
 </body>
 
 </html>
