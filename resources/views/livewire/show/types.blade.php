@@ -26,6 +26,7 @@
                     @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
+                        'moreLang' => $this->moreLang($type->table),
                         'route' => 'file/' . str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
                         'countItems' => $this->countItems($type->table),
                     ])

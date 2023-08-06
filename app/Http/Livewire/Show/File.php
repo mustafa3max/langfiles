@@ -56,6 +56,16 @@ class File extends Component
         return $result;
     }
 
+    function moreLang($type)
+    {
+        foreach (Globals::languages() as $lang) {
+            $type = str_replace($lang . '_', '', $type);
+        }
+        $lang = LaravelLocalization::getCurrentLocale();
+        return Table::where('table', 'LIKE', "%$type%")
+            ->get()->count();
+    }
+
     function types()
     {
         return Table::where('lang', LaravelLocalization::getCurrentLocale())

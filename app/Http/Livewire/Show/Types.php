@@ -27,6 +27,16 @@ class Types extends Component
         $this->lang = $lang;
     }
 
+    function moreLang($type)
+    {
+        foreach (Globals::languages() as $lang) {
+            $type = str_replace($lang . '_', '', $type);
+        }
+        $lang = LaravelLocalization::getCurrentLocale();
+        return Table::where('table', 'LIKE', "%$type%")
+            ->get()->count();
+    }
+
     function types()
     {
         $lang = LaravelLocalization::getCurrentLocale();

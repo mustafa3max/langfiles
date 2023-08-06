@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, isAlert: false, convert: [true, false, false] }">
+<div x-data="{ isCode: true, convert: [true, false, false] }">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -52,15 +52,11 @@
         {{-- Code Mode --}}
         <div class="grid h-full w-full gap-2 rounded-lg bg-secondary-light dark:bg-secondary-dark" x-show="isCode">
             <div class="flex flex-wrap gap-2">
+                <x-convert-to />
+                <div class="grow"></div>
                 <div x-on:click="isCode=false">
                     @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
                     @endcomponent
-                </div>
-
-                <x-convert-to />
-
-                <div class="grow" x-show="isAlert" x-transition.duration.500ms>
-                    <x-alert />
                 </div>
             </div>
 
@@ -70,15 +66,23 @@
                         <div class="w-full" wire:loading>
                             <x-load-code />
                         </div>
-                        <div class="grid w-full" wire:loading.remove>
-                            <button title="__('me_str.copy_code')" x-on:click="isAlert=true"
-                                onclick="copyContent('code-{{ $i }}')"
-                                class="h-12 w-12 rounded-lg text-accent hover:bg-accent hover:text-secondary-light">
-                                <i class="fa-solid fa-copy"></i>
-                            </button>
-
-                            <div dir="ltr" id="code-{{ $i }}"
-                                class="no-scrollbar overflow-scroll whitespace-nowrap px-4 pb-4 text-lg font-semibold"
+                        <div class="relative w-full" wire:loading.remove dir="ltr">
+                            <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
+                                <div x-show="isCopy" x-transition.duration
+                                    class="relative flex h-12 items-center rounded-lg bg-secondary-light px-2 dark:bg-secondary-dark">
+                                    <div
+                                        class="absolute -end-1.5 h-3 w-3 rotate-45 rounded-sm bg-secondary-light dark:bg-secondary-dark">
+                                    </div>
+                                    {{ __('me_str.copied') }}
+                                </div>
+                                <button title="{{ __('me_str.copy_code') }}" x-on:click="isCopy=true"
+                                    x-timeout:3000="isCopy=false" onclick="copyContent('code-{{ $i }}')"
+                                    class="h-12 w-12 rounded-lg bg-secondary-light hover:text-accent dark:bg-secondary-dark">
+                                    <i class="fa-solid" :class="isCopy ? 'fa-check' : 'fa-copy'"></i>
+                                </button>
+                            </div>
+                            <div id="code-{{ $i }}"
+                                class="no-scrollbar overflow-scroll whitespace-nowrap p-4 text-lg font-semibold"
                                 wire:key="{{ rand() }}">
                                 <div class="text-code-2-light dark:text-code-2-dark">
                                     <div class="text-code-1-light dark:text-code-1-dark"></div>
@@ -94,7 +98,6 @@
 
                     </div>
                 @endfor
-
             </div>
         </div>
     </x-card>
@@ -122,6 +125,7 @@
                     @component('components.item-show-file', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
+                        'moreLang' => $this->moreLang($type->table),
                         'route' => str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
                         'countItems' => $this->countItems($type->table),
                     ])

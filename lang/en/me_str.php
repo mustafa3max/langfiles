@@ -91,12 +91,13 @@ return [
     'go_home' => 'Home section',
     'go_info' => 'more info',
     'select_by_lang' => 'Search by language',
-    'clear search' => 'Empty search box',
+    'clear_search' => 'Empty search box',
     'drop_list' => 'drop-down list',
     'item_is_deleted' => 'Item is being deleted',
     'desc' => 'Description',
     'more_files_json' => 'More files',
-    'ok_copy_code' => 'Code copied successfully',
+    'copied' => 'copied',
     'close' => 'close',
     'thumbnail' => 'thumbnail',
+    'more_lang' => 'Contains :NUM languages'
 ];

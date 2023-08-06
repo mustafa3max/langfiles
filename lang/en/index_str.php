@@ -11,4 +11,8 @@ return [
     //
     'title_3' => 'Do you need the files we create',
     'description_3' => 'Yes, you need such files because they save you time writing texts, which is a lot of time, especially if the site or application is large. These files can be used in any development method for the site or application that uses, for example, laravel users. array php is used. The method of converting json to array php is easy Very just open the file in any text editor and replace every two vertical points with an equal sign and greater than and so on. It is simple, at least simpler than writing the same texts every time you create a site or application.',
+    //
+    'info1' => 'first info',
+    'info2' => 'second info',
+    'info3' => 'third info',
 ];
