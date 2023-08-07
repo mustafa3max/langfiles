@@ -12,5 +12,20 @@
      "urdu_language": "Urdu Language",
      "armenian_language": "Armenian Language",
      "assamese_language": "AssameseLanguage",
-     "spanish_language": "Spanish Language"
+     "spanish_language": "Spanish Language",
+     "esperanto_language":"Esperanto Language",
+     "estonian_language":"Estonian language",
+     "africaans_language":"Afrikaans",
+     "albanian_language":"Albanian language",
+     "german_language":"German language",
+     "amharic_language":"Amharic Language",
+     "indonesian_language":"Indonesian Language",
+     "odia_language":"Odia language",
+     "oromo_language":"Oromo language",
+     "uzbek_language":"Uzbek language",
+     "ukrainian_language":"Ukrainian language",
+     "uyghur_language":"Uyghur language",
+     "irish_language":"Irish language",
+     "italian_language":"Italian language",
+     "igbo_language":"Igbo language"
 }

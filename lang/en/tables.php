@@ -19,5 +19,7 @@ return [
     'musical_instruments' => 'musical instruments',
     'cooking_tools' => 'cooking tools',
     'appliances' => 'appliances',
+    'game_engines' => 'game engines',
+    'search_engines' => 'search engines',
     '---key---' => '---value---',
 ];

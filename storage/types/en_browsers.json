@@ -1,10 +1,10 @@
 {
-     "google_chrome": "Google Chrome",
+     "google_chrome": "Google Chrome Browser",
      "firefox": "Firefox Browser",
      "opera":"Opera Browser",
      "edge":"Edge Browser",
      "internet_explorer":"Internet Explorer Browser",
-     "safari": "Safari",
+     "safari": "Safari Browser",
      "tor": "Tor Browser",
      "uc":"UC Browser",
      "chromium": "Chromium Browser"

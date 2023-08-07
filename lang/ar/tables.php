@@ -19,5 +19,7 @@ return [
     'musical_instruments' => 'آلات موسيقية',
     'cooking_tools' => 'ادوات طبخ',
     'appliances' => 'اجهزة منزلية',
+    'game_engines' => 'محركات العاب',
+    'search_engines' => 'محركات بحث',
     '---key---' => '---value---',
 ];

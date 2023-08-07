@@ -18,10 +18,7 @@
         {{-- Edit Mode --}}
         <div x-show="!isCode">
             <div class="flex content-center justify-start gap-2 pb-2">
-                <div wire:click='render()' x-on:click="isCode=true">
-                    @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
-                    @endcomponent
-                </div>
+                <div class="grow"></div>
                 {{-- Undo Delete Item --}}
                 @if (count($this->keys) > 0)
                     <div wire:click='undo()'>
@@ -29,6 +26,10 @@
                         @endcomponent
                     </div>
                 @endif
+                <div x-on:click="isCode=true">
+                    @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
+                    @endcomponent
+                </div>
             </div>
 
             @forelse ($dataEdit as $file)
@@ -37,18 +38,20 @@
                         <x-load.load-file />
                     </div>
                     <div class="flex flex-wrap gap-4" wire:loading.remove>
-                        @foreach ($file as $data)
+                        @forelse ($file as $data)
                             @component('components.item-file', ['data' => $data])
                             @endcomponent
-                        @endforeach
+                        @empty
+                            @component('components.empty', ['route' => $table])
+                            @endcomponent
+                        @endforelse
                     </div>
                 </div>
             @empty
-                @component('components.empty', ['route' => 'file', 'dataRoute' => ['type' => $table]])
+                @component('components.empty', ['route' => $table])
                 @endcomponent
             @endforelse
         </div>
-
         {{-- Code Mode --}}
         <div class="grid h-full w-full gap-2 rounded-lg bg-secondary-light dark:bg-secondary-dark" x-show="isCode">
             <div class="flex flex-wrap gap-2">
@@ -64,7 +67,7 @@
                 @for ($i = 0; $i < count($dataJson); $i++)
                     <div class="overflow-hidden rounded-lg bg-primary-light dark:bg-primary-dark">
                         <div class="w-full" wire:loading>
-                            <x-load-code />
+                            <x-load.load-code />
                         </div>
                         <div class="relative w-full" wire:loading.remove dir="ltr">
                             <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
@@ -87,12 +90,23 @@
                                 <div class="text-code-2-light dark:text-code-2-dark">
                                     <div class="text-code-1-light dark:text-code-1-dark"></div>
                                 </div>
-                                <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
-                                <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
-                                <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"></div>
-                                <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
-                                <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
-                                <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
+                                @if (
+                                    $json[$i] == null ||
+                                        $php[$i] == null ||
+                                        $android[$i] == null ||
+                                        $ios[$i] == null ||
+                                        $django[$i] == null ||
+                                        $xlf[$i] == null)
+                                    @component('components.empty', ['route' => $table])
+                                    @endcomponent
+                                @else
+                                    <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
+                                    <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
+                                    <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"></div>
+                                    <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
+                                    <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
+                                    <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
+                                @endif
                             </div>
                         </div>
 
@@ -107,10 +121,12 @@
     @endcomponent
     <div class="p-1"></div>
 
-    <x-card>
-        <h2 class="rounded-lg bg-primary-light p-4 font-bold dark:bg-primary-dark">
-            {{ __('me_str.more_files_json') }}
-        </h2>
+    <div>
+        <x-card>
+            <h2 class="p-2 font-bold">
+                {{ __('me_str.more_files_json') }}
+            </h2>
+        </x-card>
         <div wire:loading wire:target="{{ $this->types() }}">
             <x-load.load-types-file />
         </div>
@@ -122,7 +138,7 @@
 
             @forelse ($this->types() as $type)
                 <div class="grow">
-                    @component('components.item-show-file', [
+                    @component('components.item-show', [
                         'data' => $type['name_' . $currentLng],
                         'lang' => $type->lang,
                         'moreLang' => $this->moreLang($type->table),
@@ -132,11 +148,11 @@
                     @endcomponent
                 </div>
             @empty
-                @component('components.empty', ['route' => 'file?type=' . $this->table])
+                @component('components.empty', ['route' => $table])
                 @endcomponent
             @endforelse
         </div>
-    </x-card>
+    </div>
 
     <script>
         const copyContent = async (idCode) => {

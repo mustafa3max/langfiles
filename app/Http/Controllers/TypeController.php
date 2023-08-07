@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Globals;
 use App\Models\Table;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -56,10 +55,10 @@ class TypeController extends Controller
             $file = array_slice($file, 1, count($file));
             $file = implode(' ', $file);
 
-            foreach ($allJson as $key => $value) {
+            foreach ($allJson ?? [] as $key => $value) {
                 if (strlen($key) > 0 && strlen($value) > 0) {
                     DB::table($table)->updateOrInsert(
-                        ['key' => $key, 'value' => $value],
+                        ['key' => $key],
                         [
                             'type' => $file,
                             'language' => $lang,

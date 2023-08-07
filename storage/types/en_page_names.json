@@ -9,5 +9,12 @@
      "products":"Products",
      "privacy_policy":"Privacy Policy",
      "terms_of_service":"Terms of Service",
-     "website": "website"
+     "website": "website",
+     "help_page":"help page",
+     "live_chat":"Live Chat",
+     "shared_hosting":"Shared Hosting",
+     "logo_create":"Create Logo",
+     "apps": "Apps",
+     "docs":"Documents",
+     "profile": "Profile"
 }

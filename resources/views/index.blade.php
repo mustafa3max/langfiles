@@ -73,7 +73,7 @@
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
                 <div>
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_1') }}</h2>
-                    <p>{{ __('index_str.description_1') }}</p>
+                    <p class="text-xl leading-9">{{ __('index_str.description_1') }}</p>
                     <div class="pt-4">
                         <a href="types"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
@@ -89,7 +89,7 @@
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
                 <div>
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_2') }}</h2>
-                    <p>{{ __('index_str.description_2') }}</p>
+                    <p class="text-xl leading-9">{{ __('index_str.description_2') }}</p>
                     <div class="pt-4">
                         <a href="types"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
@@ -119,7 +119,7 @@
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
                 <div>
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_3') }}</h2>
-                    <p>{{ __('index_str.description_3') }}</p>
+                    <p class="text-xl leading-9">{{ __('index_str.description_3') }}</p>
                     <div class="pt-4">
                         <a href="types"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>

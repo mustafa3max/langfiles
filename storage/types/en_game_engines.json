@@ -1,0 +1,21 @@
+{
+    "godot":"godot",
+    "game_maker": "Gamemaker",
+    "app_game_kit":"App GameKit",
+    "cry_engine":"cryengine",
+    "r_p_g_maker":"RPG Maker",
+    "lib_g_d_x":"libgdx",
+    "sprite_kit":"SpriteKit",
+    "buildbox":"buildbox",
+    "corona_sdk":"corona sdk",
+    "marmalade_sdk":"Marmalade",
+    "panda_3d":"Panda 3D",
+    "cocos_2d":"cocos2d",
+    "j_monkey":"JMonkey",
+    "leadwerks": "leadwerks",
+    "game_salad": "Game Salad",
+    "craft_studio":"Craft Studio",
+    "box_2d":"Box2D",
+    "unity": "unity",
+    "unreal_engine":"Unreal Engine"
+}
