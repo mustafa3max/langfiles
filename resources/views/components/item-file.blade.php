@@ -16,4 +16,13 @@
     <button class="m-1 flex h-12 w-12 items-center justify-center rounded-lg hover:bg-accent"
         wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}"><i
             class="fa-solid fa-xmark"></i></button>
+
+    <button x-data="{ selectCode: Object.keys(codeAll).includes('{{ $data->key }}') }" :class="selectCode ? 'text-accent' : ''"
+        x-on:click='selectCode?removeCode("{{ $data->key }}"):addCode("{{ $data->key }}","{{ $data->value }}");selectCode=!selectCode';
+        class="flex items-center justify-center gap-2 p-2">
+        <i class="fa-solid" :class="selectCode ? 'fa-square-check' : 'fa-square'"></i>
+        <span x-text="selectCode?'{{ __('me_str.selected') }}':'{{ __('me_str.select') }}'"></span>
+    </button>
+
+    <script></script>
 </div>

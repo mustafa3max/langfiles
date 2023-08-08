@@ -37,7 +37,7 @@
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
-                    <div class="flex flex-wrap gap-4" wire:loading.remove>
+                    <div class="flex flex-wrap gap-4" wire:loading.remove x-data="{ codeAll: JSON.parse(localStorage.getItem('codeAll')) }">
                         @forelse ($file as $data)
                             @component('components.item-file', ['data' => $data])
                             @endcomponent
@@ -70,19 +70,8 @@
                             <x-load.load-code />
                         </div>
                         <div class="relative w-full" wire:loading.remove dir="ltr">
-                            <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
-                                <div x-show="isCopy" x-transition.duration
-                                    class="relative flex h-12 items-center rounded-lg bg-secondary-light px-2 dark:bg-secondary-dark">
-                                    <div
-                                        class="absolute -end-1.5 h-3 w-3 rotate-45 rounded-sm bg-secondary-light dark:bg-secondary-dark">
-                                    </div>
-                                    {{ __('me_str.copied') }}
-                                </div>
-                                <button title="{{ __('me_str.copy_code') }}" x-on:click="isCopy=true"
-                                    x-timeout:3000="isCopy=false" onclick="copyContent('code-{{ $i }}')"
-                                    class="h-12 w-12 rounded-lg bg-secondary-light hover:text-accent dark:bg-secondary-dark">
-                                    <i class="fa-solid" :class="isCopy ? 'fa-check' : 'fa-copy'"></i>
-                                </button>
+                            <div class="absolute end-4 flex gap-2 p-4" x-data="{ isCopy: false }">
+                                <x-copy-code i="{{ $i }}" />
                             </div>
                             <div id="code-{{ $i }}"
                                 class="no-scrollbar overflow-scroll whitespace-nowrap p-4 text-lg font-semibold"
@@ -153,19 +142,4 @@
             @endforelse
         </div>
     </div>
-
-    <script>
-        const copyContent = async (idCode) => {
-            const code = document.getElementById(idCode).innerText;
-            try {
-                if (navigator.clipboard) {
-                    await navigator.clipboard.writeText(code);
-                } else {
-                    alert(code);
-                }
-            } catch (err) {
-                alert(code);
-            }
-        }
-    </script>
 </div>

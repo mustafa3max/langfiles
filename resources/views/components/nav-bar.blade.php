@@ -1,12 +1,12 @@
-<nav class="bg-secondary-light dark:bg-secondary-dark shadow-md">
+<nav class="bg-secondary-light shadow-md dark:bg-secondary-dark">
     <div class="flex flex-wrap">
         {{-- Right --}}
-        <div class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12 bg-accent h-0">
+        <div class="h-0 w-full bg-accent md:w-3/12 lg:w-2/12 xl:w-3/12">
         </div>
         {{-- Body --}}
-        <div class="w-full md:w-full lg:w-8/12 xl:w-6/12 relative z-20 p-2" x-data="{ isMenu: false }">
-            <div class="flex flex-wrap items-center justify-between mx-auto">
-                <ul class="flex gap-6 items-center">
+        <div class="relative z-20 w-full p-2 md:w-full lg:w-8/12 xl:w-6/12" x-data="{ isMenu: false }">
+            <div class="mx-auto flex flex-wrap items-center justify-between">
+                <ul class="flex items-center gap-6">
                     <li>
                         <a href="#" x-on:click="isMenu=!isMenu" class="block hover:text-accent"
                             title="{{ __('me_str.drop_list') }}">
@@ -16,6 +16,16 @@
                     <li>
                         <a href="/types" class="block hover:text-accent" title="{{ __('me_str.home') }}">
                             <i class="fa-solid fa-home fa-xl"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="relative block hover:text-accent"
+                            title="{{ __('me_str.me_str_trans') }}" x-on:click="isMeData=!isMeData;update()">
+                            <i class="fa-solid fa-file-code fa-xl"></i>
+                            <span
+                                class="absolute -top-3 start-3 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-primary-dark"
+                                x-text="countCode()" x-show="countCode()>0"></span>
                         </a>
                     </li>
 
@@ -35,7 +45,9 @@
             </div>
         </div>
         {{-- Left --}}
-        <div class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12 bg-accent h-0">
+        <div class="h-0 w-full bg-accent md:w-3/12 lg:w-2/12 xl:w-3/12">
         </div>
     </div>
+
+    <script src="{{ asset('js/convert.js') }}"></script>
 </nav>

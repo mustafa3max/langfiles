@@ -34,4 +34,5 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // document.getElementById('img_404')
 
 // const body = document.getElementById('body');
+// body.innerHTML
 

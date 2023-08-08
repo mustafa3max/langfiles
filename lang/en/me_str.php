@@ -99,5 +99,8 @@ return [
     'copied' => 'copied',
     'close' => 'close',
     'thumbnail' => 'thumbnail',
-    'more_lang' => 'Contains :NUM languages'
+    'more_lang' => 'Contains :NUM languages',
+    'select' => 'select',
+    'selected' => 'selected',
+    'me_str_trans' => 'Translation texts I have collected',
 ];

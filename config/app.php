@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Convert;
+use App\Http\Globals;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -186,6 +188,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'ShareButtons' => Kudashevs\ShareButtons\Facades\ShareButtonsFacade::class,
+        'Convert' => Convert::class,
+        'Globals' => Globals::class,
     ])->toArray(),
 
 ];
