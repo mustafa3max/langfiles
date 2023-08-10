@@ -105,4 +105,5 @@ return [
     'me_str_trans' => 'Translation texts I have collected',
     'group_mode' => 'Group mode',
     'remove_key' => 'Delete item',
+    'copy_to_clipboard' => 'copy to clipboard',
 ];

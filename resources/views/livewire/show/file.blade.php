@@ -39,8 +39,18 @@
                 </div>
             </div>
 
+            @php
+                $index = -1;
+            @endphp
+
             @forelse ($dataEdit as $file)
-                <div class="mb-2 rounded-lg bg-primary-light p-4 dark:bg-primary-dark">
+                @php
+                    $index++;
+                @endphp
+                <div class="w-fit rounded-t-lg bg-primary-light px-7 pb-2 pt-5 dark:bg-primary-dark">
+                    {{ __('lang.' . Globals::languages()[$index]) }}
+                </div>
+                <div class="mb-2 rounded-b-lg rounded-e-lg bg-primary-light p-4 dark:bg-primary-dark">
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
@@ -79,40 +89,45 @@
 
             <div class="grid gap-2">
                 @for ($i = 0; $i < count($dataJson); $i++)
-                    <div class="overflow-hidden rounded-lg bg-primary-light dark:bg-primary-dark">
-                        <div class="w-full" wire:loading>
-                            <x-load.load-code />
+                    <div>
+                        <div class="w-fit rounded-t-lg bg-primary-light px-7 pb-2 pt-5 dark:bg-primary-dark">
+                            {{ __('lang.' . Globals::languages()[$i]) }}
                         </div>
-                        <div class="relative w-full" wire:loading.remove dir="ltr">
-                            <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
-                                <x-copy-code i="code-{{ $i }}" />
+                        <div class="overflow-hidden rounded-b-lg rounded-e-lg bg-primary-light dark:bg-primary-dark">
+                            <div class="w-full" wire:loading>
+                                <x-load.load-code />
                             </div>
-                            <div id="code-{{ $i }}"
-                                class="no-scrollbar overflow-scroll whitespace-nowrap p-4 text-lg font-semibold"
-                                wire:key="{{ rand() }}">
-                                <div class="text-code-2-light dark:text-code-2-dark">
-                                    <div class="text-code-1-light dark:text-code-1-dark"></div>
+                            <div class="relative w-full" wire:loading.remove dir="ltr">
+                                <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
+                                    <x-copy-code i="code-{{ $i }}" />
                                 </div>
-                                @if (
-                                    $json[$i] == null ||
-                                        $php[$i] == null ||
-                                        $android[$i] == null ||
-                                        $ios[$i] == null ||
-                                        $django[$i] == null ||
-                                        $xlf[$i] == null)
-                                    @component('components.empty', ['route' => $table])
-                                    @endcomponent
-                                @else
-                                    <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
-                                    <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
-                                    <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"></div>
-                                    <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
-                                    <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
-                                    <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
-                                @endif
+                                <div id="code-{{ $i }}"
+                                    class="no-scrollbar overflow-scroll whitespace-nowrap p-4 text-lg font-semibold"
+                                    wire:key="{{ rand() }}">
+                                    <div class="text-code-2-light dark:text-code-2-dark">
+                                        <div class="text-code-1-light dark:text-code-1-dark"></div>
+                                    </div>
+                                    @if (
+                                        $json[$i] == null ||
+                                            $php[$i] == null ||
+                                            $android[$i] == null ||
+                                            $ios[$i] == null ||
+                                            $django[$i] == null ||
+                                            $xlf[$i] == null)
+                                        @component('components.empty', ['route' => $table])
+                                        @endcomponent
+                                    @else
+                                        <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 @endfor
             </div>

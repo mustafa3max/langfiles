@@ -17,11 +17,13 @@ class File extends Component
     public $table;
     public $title;
     public $lang;
-    public $keys = [];
+    public $keys = array();
 
     function delete($key)
     {
-        $this->keys[] = $key;
+        if (!in_array($key, $this->keys)) {
+            array_push($this->keys, $key);
+        }
     }
 
     function undo()
@@ -53,6 +55,7 @@ class File extends Component
             }
             $result[] = $resultNew;
         }
+
         return $result;
     }
 
@@ -81,23 +84,6 @@ class File extends Component
     function countItems($table)
     {
         return DB::table($table)->get()->count();
-    }
-
-    function selectCode($key, $value)
-    {
-        // session()->remove('codeAll');
-        // dd(session()->get('codeAll'));
-        $codeAllOld = session()->get('codeAll') ?? [];
-        dd($codeAllOld);
-
-        $codeAllNew = $codeAllOld;
-        $codeAllNew += [$key => $value];
-        // dd($codeAllNew);
-        // if (!isset($codeAllOld[$key])) {
-        session()->push('codeAll', [$codeAllNew]);
-        // }
-        $codeAllNew = session()->get('codeAll');
-        // dd($codeAllNew);
     }
 
     public function mount()

@@ -66,15 +66,15 @@ Route::prefix('user')->group(function () {
 });
 
 // Blog
-Route::prefix('blog')->group(function () {
-    Route::get('/', BlogIndex::class)->name('index');
-    Route::get('article/{id}/{title}', Artilce::class);
-    Route::middleware('auth:sanctum', 'verified')->group(function () {
-        Route::get('create', BlogCreate::class)->name('create');
-        Route::get('update', BlogUpdate::class)->name('update');
-        Route::get('delete', BlogDelete::class)->name('delete');
-    });
-});
+// Route::prefix('blog')->group(function () {
+//     Route::get('/', BlogIndex::class)->name('index');
+//     Route::get('article/{id}/{title}', Artilce::class);
+//     Route::middleware('auth:sanctum', 'verified')->group(function () {
+//         Route::get('create', BlogCreate::class)->name('create');
+//         Route::get('update', BlogUpdate::class)->name('update');
+//         Route::get('delete', BlogDelete::class)->name('delete');
+//     });
+// });
 
 // Editor
 Route::prefix('editor')->group(function () {
