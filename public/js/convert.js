@@ -1,33 +1,47 @@
-function update() {
-// const parentMeCode = document.getElementById('parent-me-code');
-// const childMeCode = document.getElementById('child-me-code');
-// parentMeCode.removeChild(childMeCode);
-// parentMeCode.appendChild(childMeCode);
-}
-
+// localStorage.clear();
 function countCode() {
-    const codeAllOld = localStorage.getItem("codeAll") === null ? {} : JSON.parse(localStorage.getItem("codeAll"));
+    const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
 }
 
-function addCode(key, value) {
-    const codeAllOld = localStorage.getItem("codeAll") === null ? {} : JSON.parse(localStorage.getItem("codeAll"));
+function addCode(key, values, languages) {
+    values = JSON.parse(values);
 
-    codeAllOld[key] = value;
+    for(var index=0;index<languages.length; index++){
+        const keyLocal = languages[index]+"CodeAll";
+        const codeAllOld = localStorage.getItem(keyLocal) === null ? {} : JSON.parse(localStorage.getItem(keyLocal));
 
-    const codeAllNew = JSON.stringify(codeAllOld);
+        codeAllOld[key] = values[index];
 
-    localStorage.setItem("codeAll", codeAllNew);
+        const codeAllNew = JSON.stringify(codeAllOld);
+
+        localStorage.setItem(keyLocal, codeAllNew);
+    }
 }
 
-function removeCode(key) {
-    const codeAllOld = localStorage.getItem("codeAll") === null ? {} : JSON.parse(localStorage.getItem("codeAll"));
+function removeCode(key, languages) {
+    for (let index = 0; index < languages.length; index++) {
+        const keyLocal = languages[index]+"CodeAll";
+        const codeAllOld = localStorage.getItem(keyLocal) === null ? {} : JSON.parse(localStorage.getItem(keyLocal));
+        delete codeAllOld[key];
 
-    delete codeAllOld[key];
+        const codeAllNew = JSON.stringify(codeAllOld);
 
-    const codeAllNew = JSON.stringify(codeAllOld);
+        localStorage.setItem(keyLocal, codeAllNew);
+    }
+}
 
-    localStorage.setItem("codeAll", codeAllNew);
+const copyContent = async (idCode) => {
+    const code = document.getElementById(idCode).innerText;
+    try {
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(code);
+        } else {
+            alert(code);
+        }
+    } catch (err) {
+        alert(code);
+    }
 }
 
 function jsonOrPhp(key, value, isPhp) {

@@ -103,4 +103,6 @@ return [
     'select' => 'select',
     'selected' => 'selected',
     'me_str_trans' => 'Translation texts I have collected',
+    'group_mode' => 'Group mode',
+    'remove_key' => 'Delete item',
 ];

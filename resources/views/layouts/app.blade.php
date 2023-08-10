@@ -33,7 +33,7 @@
 
 <body
     class="no-scrollbar relative bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
-    x-cloak x-data="{ isMeData: false }">
+    x-cloak x-data="{ lang: '{{ LaravelLocalization::getCurrentLocale() }}', isMeData: false, countMeCode: countCode(), meCode: {} }" x-init="meCode = JSON.parse(localStorage.getItem(lang + 'CodeAll')) ?? {}">
     <div class="absolute left-0 right-0 top-0 z-10">
         <div style="min-height: 92vh">
             @component('components.nav-bar')
@@ -47,8 +47,8 @@
                     </aside>
                     <div class="w-full md:w-9/12 lg:w-8/12 xl:w-6/12">
                         {{-- <x-ads.banner_h /> --}}
-                        <div x-show="isMeData">{{ $slot }}</div>
-                        <div x-show="!isMeData" class="h-fit w-full"> <x-group-code /></div>
+                        <div x-show="!isMeData">{{ $slot }}</div>
+                        <div x-show="isMeData" class="h-fit w-full"> <x-group-code /></div>
                     </div>
                     <aside class="w-full md:w-full lg:w-2/12 xl:w-3/12">
                         {{-- <x-ads.banner_v_l /> --}}
@@ -65,20 +65,7 @@
 
     @vite('resources/js/app.js')
     @livewireScripts
-    <script>
-        const copyContent = async (idCode) => {
-            const code = document.getElementById(idCode).innerText;
-            try {
-                if (navigator.clipboard) {
-                    await navigator.clipboard.writeText(code);
-                } else {
-                    alert(code);
-                }
-            } catch (err) {
-                alert(code);
-            }
-        }
-    </script>
+    <script src="{{ asset('js/convert.js') }}"></script>
     <script src="https://unpkg.com/@victoryoalli/alpinejs-timeout@1.0.0/dist/timeout.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     {{-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> --}}

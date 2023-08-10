@@ -1,28 +1,16 @@
-<div class="grid grow rounded-lg bg-secondary-light dark:bg-secondary-dark md:flex md:gap-2" dir="ltr">
-    <div class="flex items-center justify-center gap-2 px-2">
-        <span class="w-10 text-accent md:hidden">{{ __('me_str.key') }}</span>
-        <div class="h-4 border-s border-primary-light dark:border-primary-dark md:hidden"></div>
-        <p class="grow p-2 md:text-accent">{{ $data->key }}</p>
+<div class="no-scrollbar flex grow items-center gap-3 overflow-x-scroll rounded-lg bg-secondary-light px-3 dark:bg-secondary-dark"
+    dir="ltr">
+    <span class="font-semibold text-code-1-light dark:text-code-1-dark">{{ $data->key }}</span>
+
+    <div class="h-4 border-s"></div>
+
+    <span class="font-semibold text-code-2-light dark:text-code-2-dark">{{ $data->value }}</span>
+    <div class="flex grow justify-end">
+        <button x-show="!isGroup" class="m-1 flex h-12 items-center justify-center rounded-lg hover:text-accent"
+            wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}"><i
+                class="fa-solid fa-xmark"></i></button>
+
+        @component('components.add-del-item-me-code', ['data' => $data, 'file' => $file])
+        @endcomponent
     </div>
-
-    <div class="mx-2 border-t border-primary-light dark:border-primary-dark md:hidden"></div>
-
-    <div class="flex grow items-center gap-2 px-2">
-        <span class="w-10 text-accent md:hidden">{{ __('me_str.value') }}</span>
-        <div class="h-4 border-s border-primary-light dark:border-primary-dark"></div>
-        <p class="grow p-2">{{ $data->value }}</p>
-    </div>
-
-    <button class="m-1 flex h-12 w-12 items-center justify-center rounded-lg hover:bg-accent"
-        wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}"><i
-            class="fa-solid fa-xmark"></i></button>
-
-    <button x-data="{ selectCode: Object.keys(codeAll).includes('{{ $data->key }}') }" :class="selectCode ? 'text-accent' : ''"
-        x-on:click='selectCode?removeCode("{{ $data->key }}"):addCode("{{ $data->key }}","{{ $data->value }}");selectCode=!selectCode';
-        class="flex items-center justify-center gap-2 p-2">
-        <i class="fa-solid" :class="selectCode ? 'fa-square-check' : 'fa-square'"></i>
-        <span x-text="selectCode?'{{ __('me_str.selected') }}':'{{ __('me_str.select') }}'"></span>
-    </button>
-
-    <script></script>
 </div>

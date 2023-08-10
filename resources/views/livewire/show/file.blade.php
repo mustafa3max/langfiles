@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, convert: [true, false, false] }">
+<div x-data="{ isCode: true, isGroup: false, convert: [true, false, false, false, false, false] }">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -30,6 +30,13 @@
                     @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
                     @endcomponent
                 </div>
+                <div x-on:click="isGroup=isGroup=!isGroup">
+                    @component('components.btn-file-fill', [
+                        'icon' => ['plus', 'xmark'],
+                        'text' => [__('me_str.group_mode'), __('me_str.edit_mode')],
+                    ])
+                    @endcomponent
+                </div>
             </div>
 
             @forelse ($dataEdit as $file)
@@ -37,9 +44,9 @@
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
-                    <div class="flex flex-wrap gap-4" wire:loading.remove x-data="{ codeAll: JSON.parse(localStorage.getItem('codeAll')) }">
+                    <div class="flex flex-wrap gap-4" wire:loading.remove>
                         @forelse ($file as $data)
-                            @component('components.item-file', ['data' => $data])
+                            @component('components.item-file', ['data' => $data, 'file' => $dataEdit])
                             @endcomponent
                         @empty
                             @component('components.empty', ['route' => $table])
@@ -61,6 +68,13 @@
                     @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
                     @endcomponent
                 </div>
+                <div x-on:click="isGroup=isGroup=!isGroup; isCode=!isCode">
+                    @component('components.btn-file-fill', [
+                        'icon' => ['plus', 'xmark'],
+                        'text' => [__('me_str.group_mode'), __('me_str.edit_mode')],
+                    ])
+                    @endcomponent
+                </div>
             </div>
 
             <div class="grid gap-2">
@@ -70,8 +84,8 @@
                             <x-load.load-code />
                         </div>
                         <div class="relative w-full" wire:loading.remove dir="ltr">
-                            <div class="absolute end-4 flex gap-2 p-4" x-data="{ isCopy: false }">
-                                <x-copy-code i="{{ $i }}" />
+                            <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
+                                <x-copy-code i="code-{{ $i }}" />
                             </div>
                             <div id="code-{{ $i }}"
                                 class="no-scrollbar overflow-scroll whitespace-nowrap p-4 text-lg font-semibold"

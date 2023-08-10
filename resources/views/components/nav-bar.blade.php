@@ -21,11 +21,11 @@
 
                     <li>
                         <a href="#" class="relative block hover:text-accent"
-                            title="{{ __('me_str.me_str_trans') }}" x-on:click="isMeData=!isMeData;update()">
-                            <i class="fa-solid fa-file-code fa-xl"></i>
+                            title="{{ __('me_str.me_str_trans') }}" x-on:click="isMeData=!isMeData">
+                            <i class="fa-solid fa-xl" :class="isMeData ? 'fa-clipboard-check' : 'fa-file-code'"></i>
                             <span
                                 class="absolute -top-3 start-3 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-primary-dark"
-                                x-text="countCode()" x-show="countCode()>0"></span>
+                                x-text="countMeCode" x-show="countMeCode>0"></span>
                         </a>
                     </li>
 
@@ -49,5 +49,4 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/convert.js') }}"></script>
 </nav>
