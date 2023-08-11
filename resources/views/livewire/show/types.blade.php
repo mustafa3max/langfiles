@@ -11,6 +11,8 @@
 
     <div class="min-h-full">
 
+        <x-title value="{{ __('seo.title_2_types') }}" />
+
         <div class="pb-2">
             @component('components.search', ['languages' => $languages, 'submitForm' => 'types'])
             @endcomponent

@@ -1,11 +1,15 @@
 User-agent: *
-Allow: /home
+Allow: /
 Allow: /types
 Allow: /file
+Allow: /blog/
+Allow: /blog/article
 Disallow: /control-panel
+Disallow: /mustafamax
 Disallow: /user
 Disallow: /valid-user
 Disallow: /not-valid-user
-Disallow: /mustafamax
+Disallow: /editor
+Disallow: /editor
 
 Sitemap: http://localhost:8000/sitemap.xml
