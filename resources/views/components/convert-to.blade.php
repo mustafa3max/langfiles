@@ -5,15 +5,8 @@
     <x-btn-convert index='3'>ios</x-btn-convert>
     <x-btn-convert index='4'>django</x-btn-convert>
     <x-btn-convert index='5'>xlf</x-btn-convert>
-    <div x-on:click="isCode=false" x-show="!isGroup">
+    <div x-on:click="isCode=false" x-show="isCode && !isMeData">
         @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
-        @endcomponent
-    </div>
-    <div x-on:click="isGroup=isGroup=!isGroup; isCode=!isCode" x-show="!isGroup">
-        @component('components.btn-file-fill', [
-            'icon' => ['plus', 'xmark'],
-            'text' => [__('me_str.group_mode'), __('me_str.edit_mode')],
-        ])
         @endcomponent
     </div>
 </div>

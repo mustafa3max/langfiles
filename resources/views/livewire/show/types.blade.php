@@ -9,38 +9,47 @@
         {{ __('seo.key_words_types') }}
     @endsection
 
-    <div class="min-h-full">
+    <x-types-keys route="{{ $route }}">
+        <div class="min-h-full">
+            <x-title value="{{ __('seo.title_2_types') }}" />
 
-        <x-title value="{{ __('seo.title_2_types') }}" />
-
-        <div class="pb-2">
-            @component('components.search', ['languages' => $languages, 'submitForm' => 'types'])
-            @endcomponent
-        </div>
-
-        <div wire:loading>
-            <x-load.load-types />
-        </div>
-        <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
-
-            @forelse ($types as $type)
-                <div class="grow">
-                    @component('components.item-show', [
-                        'data' => $type['name_' . $currentLng],
-                        'lang' => $type->lang,
-                        'moreLang' => $this->moreLang($type->table),
-                        'route' => 'file/' . str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
-                        'countItems' => $this->countItems($type->table),
-                    ])
-                    @endcomponent
-                </div>
-            @empty
-                @component('components.empty', ['route' => 'types'])
+            <div class="pb-2">
+                @component('components.search', ['languages' => $languages, 'submitForm' => 'types'])
                 @endcomponent
-            @endforelse
-            @component('components.share-buttons', ['share' => $share])
-            @endcomponent
+            </div>
+
+            <div wire:loading>
+                <x-load.load-types />
+            </div>
+            <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">
+
+                @forelse ($types as $type)
+                    <div class="grow">
+                        @component('components.item-show', [
+                            'data' => $type['name_' . $currentLng],
+                            'lang' => $type->lang,
+                            'moreLang' => $this->moreLang($type->table),
+                            'route' => 'file/' . str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
+                            'countItems' => $this->countItems($type->table),
+                        ])
+                        @endcomponent
+                    </div>
+                @empty
+                    @component('components.empty', ['route' => 'types'])
+                    @endcomponent
+                @endforelse
+
+
+            </div>
         </div>
+
         {{ $types->links('vendor.livewire.simple-tailwind', ['currentPage' => $types->currentPage(), 'lastPage' => $types->lastPage()]) }}
-    </div>
+
+        <div class="p-1"></div>
+
+        @component('components.share-buttons', ['share' => $share])
+        @endcomponent
+
+    </x-types-keys>
+
 </div>

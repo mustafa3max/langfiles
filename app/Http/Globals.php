@@ -24,7 +24,7 @@ class Globals
             'rel' => 'nofollow noopener noreferrer',
             'block_prefix' => '<ul class="flex flex-wrap gap-1 justify-center items-center">',
             'block_suffix' => '</ul>',
-            'element_prefix' => '<li class="hover:bg-accent rounded-lg bg-primary-light dark:bg-primary-dark">',
+            'element_prefix' => '<li class="hover:bg-accent rounded-lg bg-secondary-light dark:bg-secondary-dark">',
             'element_suffix' => '</li>',
 
         ])->copylink(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.copy_link'), 'text' => 'url new'])

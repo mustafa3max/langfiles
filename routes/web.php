@@ -14,6 +14,7 @@ use App\Http\Livewire\ControlPanel\Update;
 use App\Http\Livewire\Editor\Editor;
 use App\Http\Livewire\Mustafamax\Profile;
 use App\Http\Livewire\Show\File;
+use App\Http\Livewire\Show\Keys;
 use App\Http\Livewire\Show\Types;
 use App\Http\Livewire\User\Profile as UserProfile;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::get('/', function () {
 Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
     Route::get('file/{type}', File::class)->name('file');
+    Route::get('keys', Keys::class)->name('keys');
 });
 
 // Control Panel

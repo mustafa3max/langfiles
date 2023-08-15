@@ -1,16 +1,21 @@
 {
-    "register": "التسجيل",
-    "create_account": "إنشاء حساب",
+    "login": "تسجيل الدخول",
+    "remember_me": "تذكرنى",
+    "forgot_password": "نسيت كلمة المرور",
     "email": "البريد الإلكتروني",
     "username": "إسم المستخدم",
     "name": "الإسم",
     "password": "كلمة المرور",
+    "no_account": "لا تملك حساب",
+    "or": "أو",
+    "to": "إلى",
+    "register": "التسجيل",
+    "create_account": "إنشاء حساب",
     "confirm_password": "تأكيد كلمة المرور",
     "first_name": "الاسم الأول",
     "last_name": "اسم العائلة",
     "agree_with": "من خلال إنشاء حساب ، فإنك توافق على",
     "terms_of_service": "شروط الخدمة",
     "and": "و",
-    "privacy_policy": "سياسة الخصوصية",
-    "or": "أو"
+    "privacy_policy": "سياسة الخصوصية"
 }

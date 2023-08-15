@@ -17,6 +17,10 @@ return [
     'description_file' => 'the language translation file is displayed for the type :TYPE in jason format so you can see the data and also you can remove the value you want and then copy the content',
     'key_words_file' => 'json, laravel, flutter, android, ios, copy, delete, website, :TYPE',
     //
+    'title_keys' => 'Language translation scripts for websites and applications',
+    'description_keys' => 'Language translation scripts are all bundled onto one page so we can give you a second way to create your own set of data.',
+    'key_words_keys' => 'Software, design, login, account creation, translation, authentication, programming',
+    //
     'title_login' => 'login',
     'description_login' => '',
     'key_words_login' => '',
@@ -34,4 +38,5 @@ return [
     'key_words_404' => 'Page not found, 404, error, home page',
     //
     'title_2_types' => 'Language translation files for website and application developers',
+    'title_2_keys' => 'Language translation texts for website and application developers',
 ];

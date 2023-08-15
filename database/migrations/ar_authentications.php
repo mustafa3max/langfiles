@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ar_logins', function (Blueprint $table) {
+        Schema::create('ar_authentications', function (Blueprint $table) {
             $table->id();
             $table->string('type', 32)->require;
             $table->string('language', 32)->require;

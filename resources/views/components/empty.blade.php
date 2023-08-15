@@ -1,5 +1,4 @@
-<x-card>
-    <div class="grid text-center">
+    <div class="grid w-full pb-2 text-center">
         <h1 class="dark rounded-t-lg bg-primary-light p-4 text-xl font-bold dark:bg-primary-dark">
             {{ __('me_str.empty_page_title') }}
         </h1>
@@ -12,4 +11,3 @@
             @endif
         </div>
     </div>
-</x-card>

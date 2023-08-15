@@ -57,6 +57,7 @@ return [
     'code_mode' => 'code mode',
     'edit_mode' => 'Edit mode',
     'types' => 'types',
+    'type' => 'type',
     'languages' => 'languages',
     'files' => 'files',
     'file' => 'file',
@@ -106,4 +107,5 @@ return [
     'group_mode' => 'Group mode',
     'remove_key' => 'Delete item',
     'copy_to_clipboard' => 'copy to clipboard',
+    'by_type' => 'by type',
 ];

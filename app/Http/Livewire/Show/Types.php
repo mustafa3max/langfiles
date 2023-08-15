@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Show;
 use App\Http\Globals;
 use App\Models\Table;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -56,6 +57,11 @@ class Types extends Component
             ->get()->count();
     }
 
+    function mount()
+    {
+        session()->put('route', Route::currentRouteName());
+    }
+
     public function render()
     {
         session()->put('urlTypes', $this->types()->currentPage());
@@ -64,6 +70,7 @@ class Types extends Component
             'languages' => Globals::languages(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),
             'share' => Globals::share(__('seo.title_types')),
+            'route' => session()->get('route')
         ]);
     }
 }

@@ -1,4 +1,14 @@
 // localStorage.clear();
+
+
+/*
+ x-on:click="Object.keys(meCode).includes('{{ $data->key }}')?
+         removeCode('{{ $data->key }}',  ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']):
+         addCode('{{ $data->key }}','{{ json_encode($keys) }}', ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']);
+         countMeCode = countCode();meCode=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
+         isSelectTab = Object.keys(meCode).length > 0 ? [true, false] : []"
+*/
+
 function countCode() {
     const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
@@ -6,7 +16,6 @@ function countCode() {
 
 function addCode(key, values, languages) {
     values = JSON.parse(values);
-
     for(var index=0;index<languages.length; index++){
         const keyLocal = languages[index]+"CodeAll";
         const codeAllOld = localStorage.getItem(keyLocal) === null ? {} : JSON.parse(localStorage.getItem(keyLocal));
