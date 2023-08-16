@@ -52,10 +52,9 @@ class Keys extends Component
             $data = DB::table($table->table)
                 ->where('key', 'LIKE', "%$this->search%")
                 ->orWhere('value', 'LIKE', "%$this->search%")
-                ->orWhere('type', 'LIKE', "%$this->search%")
                 ->where('enabled', true)
                 ->where('language', $lang)
-                ->limit(2)
+                ->limit(5)
                 ->offset(session()->get('offset') ?? 0)
                 ->get(['key', 'value', 'language', 'type']);
             $keys = array_merge($data->toArray(), $keys);

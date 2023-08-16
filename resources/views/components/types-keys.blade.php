@@ -1,11 +1,11 @@
 <div>
     <div class="flex gap-4">
         <a href="/types"
-            class="{{ $route == 'types' ? 'font-bold' : 'opacity-50 border-b-2 border-primary-light p-2 dark:border-primary-dark' }} block rounded-t-lg bg-secondary-light px-8 py-4 dark:bg-secondary-dark">
+            class="{{ $route == 'types' ? 'font-bold' : 'bg-opacity-50 dark:bg-opacity-50 border-b-2 border-primary-light p-2 dark:border-primary-dark' }} block rounded-t-lg bg-secondary-light px-8 py-4 dark:bg-secondary-dark">
             {{ __('me_str.by_type') }}
         </a>
         <a href="/keys"
-            class="{{ $route == 'keys' ? 'font-bold' : 'opacity-50 border-b-2 border-primary-light p-2 dark:border-primary-dark' }} block rounded-t-lg bg-secondary-light px-8 py-4 dark:bg-secondary-dark">
+            class="{{ $route == 'keys' ? 'font-bold' : 'bg-opacity-50 dark:bg-opacity-50 border-b-2 border-primary-light p-2 dark:border-primary-dark' }} block rounded-t-lg bg-secondary-light px-8 py-4 dark:bg-secondary-dark">
             {{ __('me_str.all') }}
         </a>
     </div>

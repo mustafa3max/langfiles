@@ -11,7 +11,7 @@
     @endforeach
 @endforeach
 <div x-data="{ isDelete: false }"
-    class="no-scrollbar bg-{{ $isType ? 'primary' : 'secondary' }}-light dark:bg-{{ $isType ? 'primary' : 'secondary' }}-dark relative grow cursor-pointer overflow-x-scroll rounded-lg"
+    class="no-scrollbar bg-{{ $isType ? 'primary' : 'secondary' }}-light dark:bg-{{ $isType ? 'primary' : 'secondary' }}-dark relative grow cursor-pointer overflow-x-scroll rounded-lg border border-transparent hover:border-accent"
     :title="Object.keys(meCode).includes('{{ $data->key }}') ? '{{ __('me_str.selected') }}' :
         '{{ __('me_str.select') }}'"
     x-on:click="isDelete?false:Object.keys(meCode).includes('{{ $data->key }}')?

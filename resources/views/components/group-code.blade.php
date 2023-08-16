@@ -24,7 +24,7 @@
                     <template x-for="(selectTab, index) in isSelectTab">
                         <button
                             class="grow rounded-t-lg border-secondary-light bg-primary-light p-2 dark:border-secondary-dark dark:bg-primary-dark"
-                            :class="selectTab ? 'border-none' : 'border-b-2 opacity-70'"
+                            :class="selectTab ? 'border-none font-bold' : 'border-b-2 bg-opacity-50 dark:bg-opacity-50'"
                             x-text="languages[index]=='ar'?'{{ __('lang.ar') }}':'{{ __('lang.en') }}'"
                             x-on:click="isTab(isSelectTab); lang=languages[index];meCode = JSON.parse(localStorage.getItem(lang + 'CodeAll')) ?? {}"></button>
                     </template>
