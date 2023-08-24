@@ -1,43 +1,80 @@
 <div class="relative" x-data="{ count: 10 }">
     <x-editor.nav />
-    <div id="value"
-        class="p-2 fixed bg-primary-light dark:bg-primary-dark w-full h-full items-center justify-center hidden">
-        <div id="imgSrc">
-            @livewire('editor.images')
-        </div>
-
-        <input type="text" class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 outline-none hidden"
-            id="imgAlt" placeholder="alt">
-    </div>
-    <div class="p-2 grid gap-2 container mx-auto">
-        <div class="border border-secondary-light dark:border-secondary-dark rounded-lg p-2">
-            <span class="pb-2 block">{{ __('me_str.thumbnail') }}</span>
-            <img src="{{ asset('/storage/blog/images/temporary_image.png') }}" alt="" id="thumbnail"
-                ondblclick="addSrc('', 'thumbnail')" class="w-full mb-2" contenteditable wire:model.defer='thumbnail'>
-            <form>
-                <span class="pb-2 block">{{ __('me_str.title') }}</span>
-                <input type="text"
-                    class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 w-full outline-none" id="title"
-                    wire:model.defer='title'>
-                <span class="py-2 block">{{ __('me_str.desc') }}</span>
-                <textarea rows="3" class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-2 w-full outline-none"
-                    id="desc" wire:model.defer='desc'></textarea>
-            </form>
-            <span class="pb-2 block">{{ __('me_str.article') }}</span>
-            <div class="bg-secondary-light dark:bg-secondary-dark rounded-lg p-4 w-full">
-                <div id="article" wire:model.defer='article'>
+    <x-editor.info-img />
+    <x-editor.info-link />
+    <div class="mx-auto grid gap-1 p-1">
+        <div class="rounded-lg">
+            <form wire:submit.prevent="publishArticle" class="container mx-auto">
+                {{-- Thumbnail --}}
+                <div>
+                    <span class="block pb-2">{{ __('me_str.thumbnail') }}</span>
+                    <img src="{{ asset($blog->thumbnail ?? '') }}" alt="{{ $title ?? '' }}" id="thumbnail-article"
+                        ondblclick="infoImage(this.src, this.id)" class="mb-2 w-80" contenteditable>
+                    <input type="hidden" wire:model.lazy='blog.thumbnail'
+                        class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark">
                 </div>
-            </div>
-            <div class="p-1"></div>
-            <div class="flex gap-4">
-                <button
-                    class="bg-accent hover:text-primary-light dark:hover:text-primary-light p-2 rounded-lg uppercase"
-                    onclick='addItem()'>add</button>
-                <button
-                    class="hover:bg-accent dark:hover:bg-accent hover:text-primary-dark bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg uppercase"
-                    wire:click='publishArticle'>publish
-                    article</button>
-            </div>
+                {{-- Title --}}
+                <div class="grow">
+                    <span class="block pb-2">{{ __('me_str.title') }}</span>
+                    <input type="text"
+                        class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark"
+                        id="title" wire:model.lazy='blog.title' required>
+                    @error('blog.title')
+                        <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
+                    @enderror
+                </div>
+                {{-- Desc --}}
+                <div class="grow">
+                    <span class="block pb-2">{{ __('me_str.desc') }}</span>
+                    <textarea rows="3" class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark"
+                        id="desc" wire:model.lazy='blog.desc' required></textarea>
+                    @error('blog.desc')
+                        <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Article --}}
+                <div>
+                    <span class="block pb-2">{{ __('me_str.article') }}</span>
+                    <div id="article"
+                        class="min-h-screen w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark"
+                        contenteditable="true">
+                        {!! $blog->article !!}
+                    </div>
+                    <input wire:model.lazy='blog.article' type="hidden">
+                    @error('blog.article')
+                        <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
+                    @enderror
+                </div>
+            </form>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('image', event => {
+            @this.set('blog.thumbnail', event.detail.src);
+        });
+
+        article.addEventListener('focus', event => {
+            // @this.save = event.target.innerHTML.trim() !== @this.blog.article.trim();
+            @this.save = false;
+        });
+
+        article.addEventListener('focusout', event => {
+            if (@this.blog.article.trim() != event.target.innerHTML.trim()) {
+                @this.set('blog.article', event.target.innerHTML);
+            }
+        });
+
+        const observer = new window.MutationObserver(function(event) {
+            if (@this.blog.article.trim() != event[0].target.innerHTML.trim()) {
+                @this.set('blog.article', event[0].target.innerHTML);
+            }
+        });
+
+        observer.observe(article, {
+            childList: true,
+        });
+    </script>
+
 </div>

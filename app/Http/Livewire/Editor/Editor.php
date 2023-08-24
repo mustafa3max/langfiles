@@ -2,32 +2,57 @@
 
 namespace App\Http\Livewire\Editor;
 
+use App\Models\Blog;
 use Livewire\Component;
 
 class Editor extends Component
 {
-    public $title;
-    public $desc;
-    public $thumbnail;
-    public $article;
+    public $idArticle;
+    public $save = true;
+
+    public Blog $blog;
+
+    protected $queryString = ['idArticle'];
 
     protected $rules = [
-        'title' => 'required|string|min:25|max:255',
-        'desc' => 'required|string|min:100|max:560',
-        'thumbnail' => 'required|string',
-        'article' => 'required|string',
+        'blog.title' => 'required|string',
+        'blog.desc' => 'required|string',
+        'blog.thumbnail' => 'required|string',
+        'blog.article' => 'required|string',
+        'save' => 'required',
     ];
 
-    function publishArticle()
+    public function updated($fields)
     {
-        dd(session('title-article'));
-        $attr = $this->validate();
-        dd($attr['article']);
+        $this->validateOnly($fields);
+        $this->publishArticle();
+    }
+
+    public function publishArticle()
+    {
+        $blog = Blog::where('id', $this->idArticle)->get()->first();
+
+        $validate = $this->validate();
+
+        $this->blog->save();
+
+        if ($blog !== null) {
+            $this->save = trim($blog->article) !== trim($validate['blog']['article']);
+        }
+    }
+
+    public function mount()
+    {
+        $blog = Blog::where('id', $this->idArticle)->get()->first();
+        if ($blog != null) {
+            $this->blog  = $blog;
+        } else {
+            return redirect()->route('create');
+        }
     }
 
     public function render()
     {
-        return view('livewire.editor.editor')
-            ->layout('layouts.editor');
+        return view('livewire.editor.editor')->layout('layouts.editor');
     }
 }

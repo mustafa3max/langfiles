@@ -8,12 +8,12 @@ export default {
   ],
   theme: {
     screens: {
-    'ss': '320px',
-    'sm': '640px',
-    'md': '768px',
-    'lg': '1024px',
-    'xl': '1280px',
-  },
+        'ss': '320px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+    },
     colors: {
         // 60 %
         "primary-light": "#E0E0E0",
@@ -37,7 +37,11 @@ export default {
         'index-header': "url('/public/assets/images/bg_index.webp')"
       },
     fontFamily: {
-      'almarai': ['Almarai', 'sans-serif'],
+        'almarai': ['Almarai', 'sans-serif'],
+    },
+    content: {
+        'new-window': 'url("http://localhost:8000/assets/images/new_window.svg")',
     },
   },
 }
+

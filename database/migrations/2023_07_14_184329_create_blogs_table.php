@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('desc', 560);
             $table->text('article');
             $table->string('author', 50);
+            $table->boolean('enabled')->default(false);
             $table->timestamps();
         });
     }

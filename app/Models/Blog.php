@@ -16,6 +16,7 @@ class Blog extends Model
         'desc',
         'article',
         'author',
+        'enabled',
     ];
 
     protected $casts = [

@@ -8,14 +8,16 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $title;
-    public $desc;
-    public $article;
+    public $title = 'العنوان';
+    public $desc = 'الوصف';
+    public $article = 'المقال';
+    public $thumbnail = 'storage/blog/images/temporary_image.png';
 
     protected $rules = [
-        'title' => 'required|string|min:50|max:255',
-        'desc' => 'required|string|min:100|max:560',
-        'article' => 'required|string|min:1000',
+        'title' => 'required|string',
+        'desc' => 'required|string',
+        'article' => 'required|string',
+        'thumbnail' => 'required|string',
     ];
 
     public function updated($fields)
@@ -27,14 +29,15 @@ class Create extends Component
     {
         $attr = $this->validate();
 
-        Blog::create([
+        $blog = Blog::create([
             'title' => $attr['title'],
             'article' => $attr['article'],
             'desc' => $attr['desc'],
-            'author' => Auth::user()->name,
+            'thumbnail' => $attr['thumbnail'],
+            'author' => 'mustafamax',
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('editor', ['idArticle' => $blog->id]);
     }
 
     function save()

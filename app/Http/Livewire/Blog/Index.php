@@ -21,7 +21,8 @@ class Index extends Component
     function articles()
     {
         return Blog::where('title', 'LIKE', "%$this->search%")
-            ->orWhere('desc', 'LIKE', "%$this->search%")
+            // ->orWhere('desc', 'LIKE', "%$this->search%")
+            // ->where('enabled', true)
             ->orderByDesc('title')
             ->simplePaginate(10);
     }

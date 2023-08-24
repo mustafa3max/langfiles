@@ -10,6 +10,8 @@ class Images extends Component
 
     public $thumbnail;
 
+    protected $listeners = ['image' => 'selestImage'];
+
     function images()
     {
         $iamgesAssets = [];
@@ -19,9 +21,17 @@ class Images extends Component
         }
         return $iamgesAssets;
     }
+
+    function selestImage($src = '')
+    {
+        if ($src != '') {
+            $this->thumbnail = $src;
+        }
+        $this->dispatchBrowserEvent('image', ['src' => $this->thumbnail]);
+    }
+
     public function render()
     {
-        $this->images();
         return view('livewire.editor.images')->with(['images' => $this->images()]);
     }
 }
