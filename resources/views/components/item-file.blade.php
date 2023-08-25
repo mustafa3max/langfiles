@@ -18,6 +18,7 @@
          removeCode('{{ $data->key }}',  ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']):
          addCode('{{ $data->key }}','{{ json_encode($keys) }}', ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']);
          countMeCode = countCode();meCode=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
+         csvData=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
          isSelectTab = Object.keys(meCode).length > 0 ? [true, false] : []">
 
     <div wire:key='{{ $data->language . $data->key }}'>

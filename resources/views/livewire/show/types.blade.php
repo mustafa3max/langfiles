@@ -51,5 +51,4 @@
         @endcomponent
 
     </x-types-keys>
-
 </div>

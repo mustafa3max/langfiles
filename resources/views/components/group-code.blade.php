@@ -7,7 +7,7 @@
         <x-copy-code i="me-code-0" />
     </div>
     <div id="parent-me-code">
-        <div x-data="{ isCode: true, convert: [true, false, false, false, false, false], languages: ['{{ Globals::languages()[0] }}', '{{ Globals::languages()[1] }}'] }" id="child-me-code">
+        <div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false], languages: ['{{ Globals::languages()[0] }}', '{{ Globals::languages()[1] }}'] }" id="child-me-code">
             <div class="flex items-center justify-center">
                 <div class="grow">
                     <x-convert-to />
@@ -64,8 +64,16 @@
                         </div>
                         {{-- XLF --}}
                         <div x-show="convert[5]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)" id="code-0">
+                            <template x-for="key in Object.entries(meCode)">
                                 <x-item-group-code html="xlf(key[0], key.pop())" index="5" />
+                            </template>
+                        </div>
+                        {{-- CSV --}}
+                        <div x-show="convert[6]" class="grid gap-2">
+                            <template x-for="(key, index) in Object.entries(csvData)">
+                                <x-item-group-code
+                                    html="csv(key[0], Object.entries(csvData)[index][1], Object.entries(csvData)[index][0])"
+                                    index="6" />
                             </template>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, convert: [true, false, false, false, false, false] }" class="overflow-hidden">
+<div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false] }" class="overflow-hidden">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -82,29 +82,16 @@
                                 </div>
                                 <div id="code-{{ $i }}" class="p-4 text-lg font-semibold"
                                     wire:key="{{ rand() }}">
-                                    {{-- <div class="text-code-2-light dark:text-code-2-dark">
-                                        <div class="text-code-1-light dark:text-code-1-dark"></div>
-                                    </div> --}}
-                                    @if (
-                                        $json[$i] == null ||
-                                            $php[$i] == null ||
-                                            $android[$i] == null ||
-                                            $ios[$i] == null ||
-                                            $django[$i] == null ||
-                                            $xlf[$i] == null)
-                                        @component('components.empty', ['route' => $table])
-                                        @endcomponent
-                                    @else
-                                        <div class="no-scrollbar w-full overflow-auto whitespace-nowrap">
-                                            <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
-                                            <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
-                                            <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"
-                                                class="flex-shrink-0"></div>
-                                            <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
-                                            <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
-                                            <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
-                                        </div>
-                                    @endif
+                                    <div class="no-scrollbar w-full overflow-auto whitespace-nowrap">
+                                        <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"
+                                            class="flex-shrink-0"></div>
+                                        <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $csv[0] }}' }" x-show="convert[6]" x-html="data"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

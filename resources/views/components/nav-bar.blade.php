@@ -19,11 +19,11 @@
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}">
                             <i class="fa-solid fa-file-signature fa-xl"></i>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a href="#" class="relative block hover:text-accent"

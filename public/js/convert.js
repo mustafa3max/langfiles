@@ -1,14 +1,3 @@
-// localStorage.clear();
-
-
-/*
- x-on:click="Object.keys(meCode).includes('{{ $data->key }}')?
-         removeCode('{{ $data->key }}',  ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']):
-         addCode('{{ $data->key }}','{{ json_encode($keys) }}', ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']);
-         countMeCode = countCode();meCode=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
-         isSelectTab = Object.keys(meCode).length > 0 ? [true, false] : []"
-*/
-
 function countCode() {
     const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
@@ -52,6 +41,8 @@ const copyContent = async (idCode) => {
         alert(code);
     }
 }
+
+// All Functions Convert To
 
 function jsonOrPhp(key, value, isPhp) {
     const div = document.createElement('div');
@@ -248,3 +239,35 @@ function xlf(key, value) {
 
     return div.innerHTML;
 }
+
+function csv(key, valueAr, valueEn) {
+    const div = document.createElement('div');
+    const spanKey = document.createElement('span');
+    const spanValue1 = document.createElement('span');
+    const spanValue2 = document.createElement('span');
+    const comma1 = document.createElement('span');
+    const comma2 = document.createElement('span');
+
+    spanKey.classList.add('text-code-2-light');
+    spanKey.classList.add('dark:text-code-2-dark');
+
+    spanValue1.classList.add('text-code-1-light');
+    spanValue1.classList.add('dark:text-code-1-dark');
+    spanValue2.classList.add('text-code-1-light');
+    spanValue2.classList.add('dark:text-code-1-dark');
+
+    spanKey.innerText = key.toUpperCase();
+    comma1.innerText = ', ';
+    spanValue1.innerText = '"'+valueAr+'"';
+    comma2.innerText = ', ';
+    spanValue2.innerText = '"'+valueEn+'"';
+
+    div.appendChild(spanKey);
+    div.appendChild(comma1);
+    div.appendChild(spanValue1);
+    div.appendChild(comma2);
+    div.appendChild(spanValue2);
+
+    return div.innerHTML;
+}
+

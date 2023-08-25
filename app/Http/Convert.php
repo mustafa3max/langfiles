@@ -7,8 +7,13 @@ class Convert
     static public function to($type, $toJson)
     {
         $dataAll = [];
+        $csvValues = [];
+
+        $index = 0;
         foreach ($toJson as $values) {
             $data = '';
+            $csvKeys = [];
+            $keys = [];
             foreach ($values as $key => $value) {
                 if ($type == 'json') {
                     $data .= "<div>" .
@@ -18,7 +23,7 @@ class Convert
                         $value .
                         '"</span>,' .
                         "</div>";
-                } elseif ($type == 'php') {
+                } elseif ($type === 'php') {
                     $data .= "<div>" .
                         '<span class="text-code-1-light dark:text-code-1-dark">"' .
                         $key .
@@ -27,7 +32,7 @@ class Convert
                         $value .
                         '"</span>,' .
                         "</div>";
-                } elseif ($type == 'android') {
+                } elseif ($type === 'android') {
                     $data .= "<div>"
                         .
                         "<span class=\"text-code-2-light dark:text-code-2-dark\">"
@@ -49,7 +54,7 @@ class Convert
                         "</span>"
                         .
                         "</div>";
-                } elseif ($type == 'ios') {
+                } elseif ($type === 'ios') {
                     $data .= "<div>" .
                         '<span class="text-code-1-light dark:text-code-1-dark">"' .
                         $key . '"</span> = '  .
@@ -57,7 +62,7 @@ class Convert
                         $value .
                         '"</span>;' .
                         "</div>";
-                } elseif ($type == 'django') {
+                } elseif ($type === 'django') {
                     $data .= "<div><span class=\"text-code-2-light dark:text-code-2-dark\">msgid </span>" .
                         "<span class=\"text-code-1-light dark:text-code-1-dark\">\"" . $key . "\"</span>" .
                         "</div>" .
@@ -65,7 +70,7 @@ class Convert
                         "<span class=\"text-code-1-light dark:text-code-1-dark\">\"" . $value . "\"</span>" .
                         "</div>" .
                         "<br>";
-                } elseif ($type == 'xlf') {
+                } elseif ($type === 'xlf') {
                     $data .= "<div class=\"text-code-2-light dark:text-code-2-dark\">" .
                         "&#x3c;trans-unit " .
                         "<span class=\"text-code-1-light dark:text-code-1-dark\">" .
@@ -101,10 +106,40 @@ class Convert
                         "<div class=\"text-code-2-light dark:text-code-2-dark\">" .
                         "&#x3c;/trans-unit>" .
                         "</div>";
+                } elseif ($type === 'csv') {
+                    $data .= '';
+                    $csvKeys[] = "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
+                        strtoupper($key) .
+                        "</span>" . ', ' . 'ararar' . ' ' . 'enenen';
+                    $keys[] = $key;
+                    $csvValues[$key . '_' . Globals::languages()[$index]] =
+                        "<span class=\"text-code-1-light dark:text-code-1-dark\">" .
+                        '"' .
+                        $value .
+                        '"' .
+                        "</span>" .
+                        ', ';
                 }
             }
-            $dataAll[] = $data;
+            if ($type === 'csv') {
+                if ($index + 1 === count($toJson)) {
+                    for ($index = 0; $index < count($keys); $index++) {
+                        $key = '';
+
+                        $key = str_replace('ararar', $csvValues[$keys[$index] . '_' . 'ar'], $csvKeys[$index]);
+                        $key = str_replace('enenen', $csvValues[$keys[$index] . '_' . 'en'], $key);
+
+                        $data .= '<div>' . $key . '</div>';
+                    }
+                    $dataAll[] = $data;
+                    // $dataAll[] = '';
+                }
+            } else {
+                $dataAll[] = $data;
+            }
+            $index++;
         }
+
         return $dataAll;
     }
 }

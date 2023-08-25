@@ -55,7 +55,6 @@ class File extends Component
             }
             $result[] = $resultNew;
         }
-
         return $result;
     }
 
@@ -106,6 +105,7 @@ class File extends Component
             'ios' => Convert::to('ios', $this->toJson()),
             'django' => Convert::to('django', $this->toJson()),
             'xlf' => Convert::to('xlf', $this->toJson()),
+            'csv' => Convert::to('csv', $this->toJson()),
             'dataEdit' => $this->data(),
             'dataJson' => $this->toJson(),
             'currentLng' => LaravelLocalization::getCurrentLocale(),

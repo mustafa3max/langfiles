@@ -68,20 +68,18 @@ Route::prefix('user')->group(function () {
 });
 
 // Blog
-Route::prefix('blog')->group(function () {
-    Route::get('/', BlogIndex::class)->name('index');
-    Route::get('article/{id}/{title}', Artilce::class);
-    Route::get('create', BlogCreate::class)->name('create');
-    Route::middleware('auth:sanctum', 'verified')->group(function () {
-        // Route::get('update', BlogUpdate::class)->name('update');
-        // Route::get('delete', BlogDelete::class)->name('delete');
-    });
-});
-
-// Editor
-Route::prefix('editor')->group(function () {
-    Route::get('/', Editor::class)->name('editor');
-});
+// Route::prefix('blog')->group(function () {
+//     Route::get('/', BlogIndex::class)->name('index');
+//     Route::get('article/{id}/{title}', Artilce::class);
+//     Route::get('create', BlogCreate::class)->name('create');
+//     Route::prefix('editor')->group(function () {
+//         Route::get('/', Editor::class)->name('editor');
+//     });
+//     Route::middleware('auth:sanctum', 'verified')->group(function () {
+//         Route::get('update', BlogUpdate::class)->name('update');
+//         Route::get('delete', BlogDelete::class)->name('delete');
+//     });
+// });
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/valid-user/{email}', function ($email) {
