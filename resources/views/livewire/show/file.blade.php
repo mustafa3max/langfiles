@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false] }" class="overflow-hidden">
+<div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false], isAr: JSON.parse(sessionStorage.getItem('isAr')) ?? true }" class="overflow-hidden">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -32,23 +32,22 @@
                 </div>
             </div>
 
-            @php
-                $index = -1;
-            @endphp
-
-            @forelse ($dataEdit as $file)
-                @php
-                    $index++;
-                @endphp
-                <div class="w-fit rounded-t-lg bg-primary-light px-7 pb-2 pt-5 dark:bg-primary-dark">
-                    {{ __('lang.' . Globals::languages()[$index]) }}
-                </div>
+            <x-langs>
                 <div class="mb-2 rounded-b-lg rounded-e-lg bg-primary-light p-4 dark:bg-primary-dark">
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
-                    <div class="flex flex-wrap gap-4" wire:loading.remove>
-                        @forelse ($file as $data)
+                    <div class="flex flex-wrap gap-4" x-show="isAr" wire:loading.remove>
+                        @forelse ($dataEdit[0] as $data)
+                            @component('components.item-file', ['data' => $data, 'file' => $dataEdit, 'isType' => false])
+                            @endcomponent
+                        @empty
+                            @component('components.empty', ['route' => $table])
+                            @endcomponent
+                        @endforelse
+                    </div>
+                    <div class="flex flex-wrap gap-4" x-show="!isAr" wire:loading.remove>
+                        @forelse ($dataEdit[1] as $data)
                             @component('components.item-file', ['data' => $data, 'file' => $dataEdit, 'isType' => false])
                             @endcomponent
                         @empty
@@ -57,46 +56,56 @@
                         @endforelse
                     </div>
                 </div>
-            @empty
-                @component('components.empty', ['route' => $table])
-                @endcomponent
-            @endforelse
+            </x-langs>
         </div>
+
         {{-- Code Mode --}}
         <div class="grid h-full w-full gap-2 rounded-lg bg-secondary-light dark:bg-secondary-dark" x-show="isCode">
             <x-convert-to />
-
             <div class="grid w-full grid-cols-1 gap-2">
-                @for ($i = 0; $i < count($dataJson); $i++)
-                    <div class="w-full">
-                        <div class="w-fit rounded-t-lg bg-primary-light px-7 pb-2 pt-5 dark:bg-primary-dark">
-                            {{ __('lang.' . Globals::languages()[$i]) }}
-                        </div>
+                <div class="w-full">
+                    <x-langs>
                         <div class="w-full rounded-b-lg rounded-e-lg bg-primary-light dark:bg-primary-dark">
                             <div class="w-full" wire:loading>
                                 <x-load.load-code />
                             </div>
-                            <div class="relative" wire:loading.remove dir="ltr">
+                            <div class="relative" wire:loading.remove dir="ltr" x-show="isAr">
                                 <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
-                                    <x-copy-code i="code-{{ $i }}" />
+                                    <x-copy-code i="code-0" />
                                 </div>
-                                <div id="code-{{ $i }}" class="p-4 text-lg font-semibold"
-                                    wire:key="{{ rand() }}">
+                                <div id="code-0" class="p-4 text-lg font-semibold" wire:key="{{ rand() }}">
                                     <div class="no-scrollbar w-full overflow-auto whitespace-nowrap">
-                                        <div x-data="{ data: '{{ $json[$i] }}' }" x-show="convert[0]" x-html="data"></div>
-                                        <div x-data="{ data: '{{ $php[$i] }}' }" x-show="convert[1]" x-html="data"></div>
-                                        <div x-data="{ data: '{{ $android[$i] }}' }" x-show="convert[2]" x-html="data"
+                                        <div x-data="{ data: '{{ $json[0] }}' }" x-show="convert[0]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $php[0] }}' }" x-show="convert[1]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $android[0] }}' }" x-show="convert[2]" x-html="data"
                                             class="flex-shrink-0"></div>
-                                        <div x-data="{ data: '{{ $ios[$i] }}' }" x-show="convert[3]" x-html="data"></div>
-                                        <div x-data="{ data: '{{ $django[$i] }}' }" x-show="convert[4]" x-html="data"></div>
-                                        <div x-data="{ data: '{{ $xlf[$i] }}' }" x-show="convert[5]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $ios[0] }}' }" x-show="convert[3]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $django[0] }}' }" x-show="convert[4]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $xlf[0] }}' }" x-show="convert[5]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $csv[0] }}' }" x-show="convert[6]" x-html="data"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative" wire:loading.remove dir="ltr" x-show="!isAr">
+                                <div class="absolute end-0 flex gap-2 p-4" x-data="{ isCopy: false }">
+                                    <x-copy-code i="code-1" />
+                                </div>
+                                <div id="code-1" class="p-4 text-lg font-semibold" wire:key="{{ rand() }}">
+                                    <div class="no-scrollbar w-full overflow-auto whitespace-nowrap">
+                                        <div x-data="{ data: '{{ $json[1] }}' }" x-show="convert[0]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $php[1] }}' }" x-show="convert[1]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $android[1] }}' }" x-show="convert[2]" x-html="data"
+                                            class="flex-shrink-0"></div>
+                                        <div x-data="{ data: '{{ $ios[1] }}' }" x-show="convert[3]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $django[1] }}' }" x-show="convert[4]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $xlf[1] }}' }" x-show="convert[5]" x-html="data"></div>
                                         <div x-data="{ data: '{{ $csv[0] }}' }" x-show="convert[6]" x-html="data"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
+                    </x-langs>
+                </div>
             </div>
         </div>
 
@@ -137,6 +146,4 @@
             </div>
         </div>
     </x-card>
-
-
 </div>
