@@ -35,7 +35,7 @@
     class="no-scrollbar relative bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
     x-cloak x-data="{ isSelectTab: [], meCode: {}, csvData: {}, countMeCode: countCode(), lang: '{{ LaravelLocalization::getCurrentLocale() }}', isMeData: false }" x-init="meCode = JSON.parse(localStorage.getItem(lang + 'CodeAll')) ?? {}, csvData = JSON.parse(localStorage.getItem('arCodeAll')) ?? {}, isSelectTab = Object.keys(meCode).length > 0 ? [true, false] : []">
     <div class="absolute left-0 right-0 top-0 z-10">
-        <div style="min-height: 92vh">
+        <div class="min-h-[65.5vh]">
             @component('components.nav-bar')
             @endcomponent
 

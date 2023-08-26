@@ -39,14 +39,15 @@
                         {{ __('me_str.help') }}
                     </caption>
                     <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="/blog">email</a></td>
+                        <td><a class="hover:text-accent" href="mailto:langfiles@gamil.com" target="_blank"
+                                rel="nofollow">email</a></td>
                     </tr>
                     <tr class="block py-1">
                         <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">massenger</a>
                         </td>
                     </tr>
                     <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">facebook</a></td>
+                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">telegram</a></td>
                     </tr>
                 </table>
 

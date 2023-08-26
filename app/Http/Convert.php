@@ -126,9 +126,11 @@ class Convert
                     for ($index = 0; $index < count($keys); $index++) {
                         $key = '';
 
-                        $key = str_replace('ararar', $csvValues[$keys[$index] . '_' . 'ar'], $csvKeys[$index]);
-                        $key = str_replace('enenen', $csvValues[$keys[$index] . '_' . 'en'], $key);
-
+                        try {
+                            $key = str_replace('ararar', $csvValues[$keys[$index] . '_' . 'ar'], $csvKeys[$index]);
+                            $key = str_replace('enenen', $csvValues[$keys[$index] . '_' . 'en'], $key);
+                        } catch (\Throwable $th) {
+                        }
                         $data .= '<div>' . $key . '</div>';
                     }
                     $dataAll[] = $data;
