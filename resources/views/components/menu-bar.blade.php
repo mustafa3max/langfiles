@@ -22,13 +22,13 @@
     </ul>
 
     <a href="/privacy-policy" class="flex items-center gap-4">
-        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-user-shield"></i>
         <span>
             {{ __('me_str.privacy_policy') }}
         </span>
     </a>
     <a href="/terms-of-service" class="flex items-center gap-4">
-        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-user-lock"></i>
         <span>
             {{ __('me_str.terms_of_use') }}
         </span>

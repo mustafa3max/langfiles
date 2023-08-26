@@ -58,10 +58,8 @@
             </div>
         </div>
 
-        <div style="height: 8vh">
-            <x-copy-right />
-        </div>
-        <x-cookies />
+        <x-footer />
+        @include('cookie-consent::index')
     </div>
 
     @vite('resources/js/app.js')
