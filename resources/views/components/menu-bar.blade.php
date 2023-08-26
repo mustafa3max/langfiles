@@ -7,18 +7,7 @@
         </a>
     @endif
 
-    <a href="#" class="flex items-center gap-4" x-cloak x-on:click="darkMode = !darkMode;">
-        <i x-show="!darkMode" class="fa-solid fa-moon"></i>
-        <i x-show="darkMode" class="fa-solid fa-sun"></i>
-        <span x-show="!darkMode">
-            {{ __('me_str.dark_appearance') }}
-        </span>
-        <span x-show="darkMode">
-            {{ __('me_str.light_appearance') }}
-        </span>
-    </a>
-
-    <ul class="grid gap-4 border-t border-primary-light pt-4 dark:border-primary-dark">
+    <ul class="grid gap-4 border-b border-primary-light pb-4 dark:border-primary-dark">
         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
             @if (LaravelLocalization::getCurrentLocale() != $localeCode)
                 <li>
@@ -31,4 +20,17 @@
             @endif
         @endforeach
     </ul>
+
+    <a href="/privacy-policy" class="flex items-center gap-4">
+        <i class="fa-solid fa-moon"></i>
+        <span>
+            {{ __('me_str.privacy_policy') }}
+        </span>
+    </a>
+    <a href="/terms-of-service" class="flex items-center gap-4">
+        <i class="fa-solid fa-moon"></i>
+        <span>
+            {{ __('me_str.terms_of_use') }}
+        </span>
+    </a>
 </div>

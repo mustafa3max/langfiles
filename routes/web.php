@@ -13,6 +13,8 @@ use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
 use App\Http\Livewire\Editor\Editor;
 use App\Http\Livewire\Mustafamax\Profile;
+use App\Http\Livewire\Policy\Privacypolicy;
+use App\Http\Livewire\Policy\Termsofservice;
 use App\Http\Livewire\Show\File;
 use App\Http\Livewire\Show\Keys;
 use App\Http\Livewire\Show\Types;
@@ -33,6 +35,12 @@ Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
     Route::get('file/{type}', File::class)->name('file');
     Route::get('keys', Keys::class)->name('keys');
+});
+
+// Policy
+Route::scopeBindings()->group(function () {
+    Route::get('privacy-policy', Privacypolicy::class)->name('privacy-policy');
+    Route::get('terms-of-service', Termsofservice::class)->name('terms-of-service');
 });
 
 // Control Panel

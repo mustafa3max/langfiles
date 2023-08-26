@@ -61,6 +61,7 @@
         <div style="height: 8vh">
             <x-copy-right />
         </div>
+        <x-cookies />
     </div>
 
     @vite('resources/js/app.js')

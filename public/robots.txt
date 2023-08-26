@@ -10,6 +10,7 @@ Disallow: /user
 Disallow: /valid-user
 Disallow: /not-valid-user
 Disallow: /editor
-Disallow: /editor
+Disallow: /privacy-policy
+Disallow: /terms-of-service
 
 Sitemap: http://localhost:8000/sitemap.xml
