@@ -1,4 +1,4 @@
-<div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false], isAr: JSON.parse(sessionStorage.getItem('isAr')) ?? true }" class="overflow-hidden">
+<div x-data="{ isCode: true, isAr: JSON.parse(sessionStorage.getItem('isAr')) ?? true }" class="overflow-hidden">
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
@@ -33,7 +33,7 @@
             </div>
 
             <x-langs>
-                <div class="mb-2 rounded-b-lg rounded-e-lg bg-primary-light p-4 dark:bg-primary-dark">
+                <div class="mb-2 p-4">
                     <div wire:loading>
                         <x-load.load-file />
                     </div>
@@ -65,7 +65,7 @@
             <div class="grid w-full grid-cols-1 gap-2">
                 <div class="w-full">
                     <x-langs>
-                        <div class="w-full rounded-b-lg rounded-e-lg bg-primary-light dark:bg-primary-dark">
+                        <div class="w-full">
                             <div class="w-full" wire:loading>
                                 <x-load.load-code />
                             </div>

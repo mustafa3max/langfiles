@@ -7,7 +7,7 @@
         <x-copy-code i="me-code-0" />
     </div>
     <div id="parent-me-code">
-        <div x-data="{ isCode: true, convert: [true, false, false, false, false, false, false], languages: ['{{ Globals::languages()[0] }}', '{{ Globals::languages()[1] }}'] }" id="child-me-code">
+        <div x-data="{ isCode: true, languages: ['{{ Globals::languages()[0] }}', '{{ Globals::languages()[1] }}'] }" id="child-me-code">
             <div class="flex items-center justify-center">
                 <div class="grow">
                     <x-convert-to />

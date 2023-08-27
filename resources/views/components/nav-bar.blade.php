@@ -36,7 +36,8 @@
                     </li>
 
                     <li>
-                        <a class="flex cursor-pointer items-center gap-4" x-cloak x-on:click="darkMode = !darkMode;"
+                        <a class="flex cursor-pointer items-center gap-4 hover:text-accent" x-cloak
+                            x-on:click="darkMode = !darkMode;"
                             :title="darkMode ? '{{ __('me_str.light_appearance') }}' : '{{ __('me_str.dark_appearance') }}'">
                             <i x-show="!darkMode" class="fa-solid fa-moon fa-xl"></i>
                             <i x-show="darkMode" class="fa-solid fa-sun fa-xl"></i>

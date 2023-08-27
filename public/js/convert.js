@@ -2,7 +2,6 @@ function countCode() {
     const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
 }
-
 function addCode(key, values, languages) {
     values = JSON.parse(values);
     for(var index=0;index<languages.length; index++){

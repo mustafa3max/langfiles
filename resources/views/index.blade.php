@@ -25,18 +25,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="preload" as="font">
 </head>
 
-<body class="no-scrollbar bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
-    x-data="{ select: [id == '#0', id == '#1', id == '#2', id == '#3'] }">
-    <nav class="fixed top-0 z-50 flex w-full items-center justify-center max-md:hidden"
-        :class="select[0] ? 'text-primary-light' : 'dark:bg-secondary-dark bg-secondary-light'">
-        <div class="flex max-w-5xl flex-wrap items-center gap-4">
-            {{-- <img class="h-12 w-12" src="{{ asset('assets/images/logo.svg') }}" alt="langfiles logo" title="langfiles"> --}}
+<body x-data="{ select: [true, false, false, false] }"
+    class="no-scrollbar bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light">
+    <nav id="nav" class="fixed top-0 z-50 flex w-full items-center justify-center">
+        {{-- Nav Text --}}
+        <div class="flex max-w-5xl flex-wrap items-center gap-4 max-md:hidden">
             <x-link-index id="0" index="0">{{ __('me_str.home') }}</x-link-index>
             <x-link-index id="1" index="1">{{ __('index_str.info1') }}</x-link-index>
             <x-link-index id="2" index="2">{{ __('index_str.info2') }}</x-link-index>
             <x-link-index id="3" index="3">{{ __('index_str.info3') }}</x-link-index>
         </div>
+
+        {{-- Nav Icon --}}
+        <div class="flex max-w-5xl flex-wrap items-center gap-4 md:hidden">
+            <x-link-index-icon id="0" index="0" title="{{ __('me_str.home') }}" />
+            <x-link-index-icon id="1" index="1" title="{{ __('index_str.info1') }}" />
+            <x-link-index-icon id="2" index="2" title="{{ __('index_str.info2') }}" />
+            <x-link-index-icon id="3" index="3" title="{{ __('index_str.info3') }}" />
+        </div>
     </nav>
+
+    {{-- Home --}}
     <div class="relative h-screen bg-accent bg-index-header bg-cover bg-center" id="0">
         <div class="flex h-full items-center justify-center text-primary-light">
             <div class="absolute bottom-0 left-0 right-0 top-0 backdrop-blur-lg">
@@ -59,6 +68,7 @@
                     class="fa-solid fa-angles-down"></i></a>
         </div>
     </div>
+
     {{-- Screen 1 --}}
     <div class="min-h-screen" id="1">
         <div class="flex flex-wrap">
@@ -71,7 +81,7 @@
             </div>
             {{-- Info --}}
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
-                <div>
+                <div class="text-center md:text-start">
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_1') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_1') }}</p>
                     <div class="pt-4">
@@ -82,12 +92,13 @@
             </div>
         </div>
     </div>
+
     {{-- Screen 2 --}}
     <div class="min-h-screen" id="2">
         <div class="flex flex-wrap">
             {{-- Info --}}
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
-                <div>
+                <div class="text-center md:text-start">
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_2') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_2') }}</p>
                     <div class="pt-4">
@@ -105,6 +116,7 @@
             </div>
         </div>
     </div>
+
     {{-- Screen 3 --}}
     <div class="min-h-screen" id="3">
         <div class="flex flex-wrap">
@@ -117,7 +129,7 @@
             </div>
             {{-- Info --}}
             <div class="flex min-h-screen w-2/4 items-center justify-center px-8 pb-16 pt-32 max-md:w-full">
-                <div>
+                <div class="text-center md:text-start">
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_3') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_3') }}</p>
                     <div class="pt-4">
@@ -128,7 +140,66 @@
             </div>
         </div>
     </div>
-    {{-- @vite('resources/js/app.js') --}}
+
+    <script>
+        const height = window.innerHeight;
+        const home = height;
+        const screen1 = height * 2;
+        const screen2 = height * 3;
+        const screen3 = height * 4;
+
+        window.onscroll = function() {
+            const y = window.scrollY;
+
+            addRemoveNav(y < home);
+
+            addRemove("0-link", y < home);
+            addRemove("1-link", y < screen1 && y >= home);
+            addRemove("2-link", y < screen2 && y >= screen1);
+            addRemove("3-link", y <= screen3 && y >= screen2 || y > screen3);
+        }
+
+        function addRemove(id, isAdd, isHome) {
+            const element = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+
+            if (isAdd) {
+                element.classList.add('border-b-4');
+                element.classList.add('border-accent');
+                element.classList.add('text-accent');
+
+                icon.classList.add('fa-circle-dot');
+                icon.classList.add('text-accent');
+                icon.classList.remove('fa-circle');
+
+            } else {
+                element.classList.remove('border-b-4');
+                element.classList.remove('border-accent');
+                element.classList.remove('text-accent');
+
+                icon.classList.remove('fa-circle-dot');
+                icon.classList.remove('text-accent');
+                icon.classList.add('fa-circle');
+            }
+        }
+
+        function addRemoveNav(isAdd) {
+            const nav = document.getElementById("nav");
+            if (isAdd) {
+                nav.classList.add('text-primary-light');
+                nav.classList.remove('dark:bg-secondary-dark');
+                nav.classList.remove('bg-secondary-light');
+            } else {
+                nav.classList.remove('text-primary-light');
+                nav.classList.add('dark:bg-secondary-dark');
+                nav.classList.add('bg-secondary-light');
+            }
+        }
+
+        addRemoveNav(true);
+        addRemove("0-link", true);
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 
