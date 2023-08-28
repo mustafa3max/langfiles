@@ -5,9 +5,6 @@
     @section('page-description')
         {{ $article->desc }}
     @endsection
-    @section('page-keywords')
-        {{ __('seo.key_words_file') }}
-    @endsection
 
     <div class="grid items-center justify-center">
         <div dir="rtl">

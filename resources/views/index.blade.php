@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ id: location.hash == '' ? '#0' : location.hash, darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth" lang="{{ LaravelLocalization::getCurrentLocale() }}">
+<html prefix="og: https://ogp.me/ns#" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ id: location.hash == '' ? '#0' : location.hash, darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }"
+    x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }" class="scroll-smooth"
+    lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,8 +10,14 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('../favicon.png') }}">
     <title>{{ __('seo.title_home') }} - {{ config('app.name') }}</title>
     <meta name="description" content="{{ __('seo.description_home') }}">
-    <meta name="keywords" content="{{ __('seo.key_words_home') }}">
     <meta name="author" content="Mustafamax">
+
+    <meta property="og:title" content="{{ __('seo.title_home') }} - {{ config('app.name') }}" />
+    <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
+    <meta property="og:description" content="{{ __('seo.description_home') }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:image" content="{{ asset('assets/images/bg_index.webp') }}" />
 
     @vite('resources/css/app.css')
 
@@ -75,7 +82,7 @@
             {{-- Image --}}
             <div class="flex min-h-screen w-2/4 pb-16 pt-32 max-md:hidden">
                 <div class="flex grow items-center justify-center">
-                    <img src="{{ asset('assets/images/index_1.svg') }}" alt="">
+                    <img src="{{ asset('assets/images/index_1.svg') }}" alt="{{ __('index_str.title_1') }}">
                 </div>
                 <div class="h-full w-0.5 bg-secondary-light dark:bg-secondary-dark"></div>
             </div>
@@ -111,7 +118,7 @@
             <div class="flex min-h-screen w-2/4 pb-16 pt-32 max-md:hidden">
                 <div class="h-full w-0.5 bg-secondary-light dark:bg-secondary-dark"></div>
                 <div class="flex grow items-center justify-center p-16">
-                    <img src="{{ asset('assets/images/index_2.svg') }}" alt="">
+                    <img src="{{ asset('assets/images/index_2.svg') }}" alt="{{ __('index_str.title_2') }}">
                 </div>
             </div>
         </div>
@@ -123,7 +130,7 @@
             {{-- Image --}}
             <div class="flex min-h-screen w-2/4 pb-16 pt-32 max-md:hidden">
                 <div class="flex grow items-center justify-center">
-                    <img src="{{ asset('assets/images/index_3.svg') }}" alt="">
+                    <img src="{{ asset('assets/images/index_3.svg') }}" alt="{{ __('index_str.title_3') }}">
                 </div>
                 <div class="h-full w-0.5 bg-secondary-light dark:bg-secondary-dark"></div>
             </div>

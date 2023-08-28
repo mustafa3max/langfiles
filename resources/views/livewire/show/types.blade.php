@@ -5,9 +5,6 @@
     @section('page-description')
         {{ __('seo.description_types') }}
     @endsection
-    @section('page-keywords')
-        {{ __('seo.key_words_types') }}
-    @endsection
 
     <x-types-keys route="{{ $route }}">
         <div class="min-h-full">

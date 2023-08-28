@@ -7,7 +7,8 @@
     <x-btn-convert index='5'>xlf</x-btn-convert>
     <x-btn-convert index='6' title="godot, unity, unreal engine">csv</x-btn-convert>
     <div x-on:click="isCode=false" x-show="isCode && !isMeData">
-        @component('components.btn-file', ['icon' => 'pen', 'text' => __('me_str.edit_mode')])
-        @endcomponent
+        <x-btn-file text="__('me_str.edit_mode')">
+            <x-svg.edit />
+        </x-btn-file>
     </div>
 </div>

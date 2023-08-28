@@ -7,8 +7,9 @@
      </div>
      <button title="{{ __('me_str.copy_to_clipboard') }}" x-on:click="isCopy=true" x-timeout:3000="isCopy=false"
          onclick="copyContent('{{ $i }}')"
-         class="h-12 w-12 rounded-lg bg-secondary-light bg-opacity-50 hover:text-accent dark:bg-secondary-dark dark:bg-opacity-50">
-         <i class="fa-solid" :class="isCopy ? 'fa-check' : 'fa-copy'"></i>
+         class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary-light bg-opacity-50 hover:text-accent dark:bg-secondary-dark dark:bg-opacity-50">
+         <i class="fa-solid" x-show="!isCopy"><x-svg.copy /></i>
+         <i class="fa-solid" x-show="isCopy"><x-svg.check /></i>
      </button>
 
  </div>

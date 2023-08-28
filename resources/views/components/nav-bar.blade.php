@@ -10,25 +10,26 @@
                     <li>
                         <a x-on:click="isMenu=!isMenu" class="block cursor-pointer hover:text-accent"
                             title="{{ __('me_str.drop_list') }}">
-                            <i class="fa-solid fa-bars fa-xl"></i>
+                            <x-svg.list />
                         </a>
                     </li>
                     <li>
                         <a href="/types" class="block hover:text-accent" title="{{ __('me_str.home') }}">
-                            <i class="fa-solid fa-home fa-xl"></i>
+                            <x-svg.home />
                         </a>
                     </li>
 
                     {{-- <li>
                         <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}">
-                            <i class="fa-solid fa-file-signature fa-xl"></i>
+                            <x-svg.blog />
                         </a>
                     </li> --}}
 
                     <li>
                         <a class="relative block cursor-pointer hover:text-accent"
                             title="{{ __('me_str.me_str_trans') }}" x-on:click="isMeData=!isMeData">
-                            <i class="fa-solid fa-xl" :class="isMeData ? 'fa-clipboard-check' : 'fa-file-code'"></i>
+                            <i x-show="isMeData"><x-svg.code_1 /></i>
+                            <i x-show="!isMeData"><x-svg.code_2 /></i>
                             <span
                                 class="absolute -top-3 start-3 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-primary-dark"
                                 x-text="countMeCode" x-show="countMeCode>0"></span>
@@ -39,14 +40,8 @@
                         <a class="flex cursor-pointer items-center gap-4 hover:text-accent" x-cloak
                             x-on:click="darkMode = !darkMode;"
                             :title="darkMode ? '{{ __('me_str.light_appearance') }}' : '{{ __('me_str.dark_appearance') }}'">
-                            <i x-show="!darkMode" class="fa-solid fa-moon fa-xl"></i>
-                            <i x-show="darkMode" class="fa-solid fa-sun fa-xl"></i>
-                            <span x-show="!darkMode">
-
-                            </span>
-                            <span x-show="darkMode">
-
-                            </span>
+                            <i x-show="!darkMode"><x-svg.moon /></i>
+                            <i x-show="darkMode"> <x-svg.sun /></i>
                         </a>
                     </li>
                 </ul>

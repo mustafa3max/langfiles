@@ -108,4 +108,6 @@ return [
     'remove_key' => 'Delete item',
     'copy_to_clipboard' => 'copy to clipboard',
     'by_type' => 'by type',
+    'policy_and_terms' => 'Policy and terms',
+
 ];

@@ -5,9 +5,6 @@
     @section('page-description')
         {{ __('seo.description_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
-    @section('page-keywords')
-        {{ __('seo.key_words_file', ['TYPE' => __('tables.' . $title)]) }}
-    @endsection
 
     <x-card>
         @component('components.title-file', [
@@ -27,8 +24,9 @@
                     </div>
                 @endif
                 <div x-on:click="isCode=true">
-                    @component('components.btn-file', ['icon' => 'code', 'text' => __('me_str.code_mode')])
-                    @endcomponent
+                    <x-btn-file text="__('me_str.code_mode')">
+                        <x-svg.code />
+                    </x-btn-file>
                 </div>
             </div>
 

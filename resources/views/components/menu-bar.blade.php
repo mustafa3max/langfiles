@@ -13,7 +13,7 @@
                 <li>
                     <a rel="alternate" hreflang="{{ $localeCode }}" class="flex items-center gap-4"
                         href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                        <i class="fa-solid fa-earth-{{ $localeCode == 'en' ? 'americas' : 'asia' }}"></i>
+                        <x-svg.lang />
                         {{ $properties['native'] }}
                     </a>
                 </li>
@@ -22,15 +22,9 @@
     </ul>
 
     <a href="/privacy-policy" class="flex items-center gap-4">
-        <i class="fa-solid fa-user-shield"></i>
+        <x-svg.privacy />
         <span>
-            {{ __('me_str.privacy_policy') }}
-        </span>
-    </a>
-    <a href="/terms-of-service" class="flex items-center gap-4">
-        <i class="fa-solid fa-user-lock"></i>
-        <span>
-            {{ __('me_str.terms_of_use') }}
+            {{ __('me_str.policy_and_terms') }}
         </span>
     </a>
 </div>

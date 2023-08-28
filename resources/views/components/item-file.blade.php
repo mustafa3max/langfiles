@@ -33,8 +33,9 @@
                 <div class="z-50 flex grow justify-end">
                     <button x-on:click="isDelete=true"
                         class="flex h-12 items-center justify-center rounded-lg p-4 hover:text-accent"
-                        wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}"><i
-                            class="fa-solid fa-xmark"></i></button>
+                        wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}">
+                        <x-svg.x />
+                    </button>
                 </div>
             @endif
         </div>
@@ -48,9 +49,11 @@
         @endif
     </div>
 
-    <div class="absolute bottom-0 top-0 flex h-full w-full items-center justify-center bg-primary-light bg-opacity-60 dark:bg-primary-dark dark:bg-opacity-60"
+    <div class="absolute bottom-0 top-0 flex h-full w-full items-center justify-center rounded-lg border border-accent bg-primary-light bg-opacity-60 dark:bg-primary-dark dark:bg-opacity-60"
         x-show="Object.keys(meCode).includes('{{ $data->key }}')">
-        <i class="fa-solid fa-check fa-2xl text-accent"></i>
+        <i class="text-accent">
+            <x-svg.check />
+        </i>
     </div>
 
 </div>

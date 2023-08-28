@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-    x-bind:class="{ 'dark': darkMode }" class="scroll-smooth" lang="{{ LaravelLocalization::getCurrentLocale() }}">
+<html prefix="og: https://ogp.me/ns#" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }"
+    x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }" class="scroll-smooth"
+    lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
 <head>
     <meta charset="utf-8">
@@ -10,8 +11,19 @@
 
     <title>@yield('page-title') - {{ config('app.name') }}</title>
     <meta name="description" content="@yield('page-description')">
-    <meta name="keywords" content="@yield('page-keywords')">
     <meta name="author" content="Mustafamax">
+
+    <meta property="og:title" content="@yield('page-title')" />
+    <meta property="og:description" content="@yield('page-description')" />
+    <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:image" content="{{ asset('assets/images/bg_index.webp') }}" />
+    <meta property="og:video:type" content="video/mp4." />
+    <meta property="og:video" content="{{ asset('assets/videos/langfiles_show.mp4') }}" />
+    <meta property="og:video:secure_url" content="{{ asset('assets/videos/langfiles_show.mp4') }}" />
+    <meta property="og:video:width" content="720" />
+    <meta property="og:video:height" content="576" />
 
     @vite('resources/css/app.css')
     @livewireStyles
@@ -20,11 +32,6 @@
             display: none !important;
         }
     </style>
-
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"
-        as="style" />
     {{-- Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +55,6 @@
         <div class="min-h-[65.5vh]">
             @component('components.nav-bar')
             @endcomponent
-
             <!-- Page Content -->
             <div class="p-2">
                 <div class="flex flex-wrap">
