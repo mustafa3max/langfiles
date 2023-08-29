@@ -24,7 +24,6 @@ export default {
         "secondary-dark": "#303134",
         //
         // 10 %
-        // "accent": "#2563eb",
         "accent": "#2962FF",
         //
         'transparent': '#00000000',

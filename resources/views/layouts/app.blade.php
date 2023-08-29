@@ -39,7 +39,7 @@
 </head>
 
 <body
-    class="no-scrollbar relative bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
+    class="no-scrollbar relative overflow-x-hidden bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
     x-cloak x-data="{
         isSelectTab: [],
         meCode: {},
@@ -56,20 +56,16 @@
             @component('components.nav-bar')
             @endcomponent
             <!-- Page Content -->
-            <div class="p-2">
+            <div class="container mx-auto p-2">
                 <div class="flex flex-wrap">
-                    <aside class="w-full md:w-3/12 lg:w-2/12 xl:w-3/12">
-                        {{-- <x-ads.banner_v_r /> --}}
-                    </aside>
-                    <div class="w-full md:w-9/12 lg:w-8/12 xl:w-6/12">
+                    <div class="w-full md:w-9/12">
                         {{-- <x-ads.banner_h /> --}}
                         <div x-show="!isMeData">{{ $slot }}</div>
                         <div x-show="isMeData" class="h-fit w-full"> <x-group-code /></div>
                     </div>
-                    <aside class="w-full md:w-full lg:w-2/12 xl:w-3/12">
-                        {{-- <x-ads.banner_v_l /> --}}
+                    <aside class="w-full md:w-3/12">
+                        <x-ads.banner_v />
                     </aside>
-                    </main>
                 </div>
             </div>
         </div>

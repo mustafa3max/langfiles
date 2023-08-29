@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class Globals
 {
@@ -34,5 +35,10 @@ class Globals
             ->whatsapp(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_whatsapp')])
             ->telegram(['class' => 'hover:bg-accent rounded-lg w-12 h-12 flex items-center justify-center', 'title' => __('me_str.share_telegram')])
             ->render();
+    }
+
+    static function supportedExtensions()
+    {
+        return ['json', 'php', 'android', 'ios', 'django', 'xlf', 'csv'];
     }
 }

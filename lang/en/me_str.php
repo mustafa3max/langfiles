@@ -108,6 +108,12 @@ return [
     'remove_key' => 'Delete item',
     'copy_to_clipboard' => 'copy to clipboard',
     'by_type' => 'by type',
+    'community' => 'community',
+    'legal' => 'legal',
+    'help' => 'help',
     'policy_and_terms' => 'Policy and terms',
-
+    'latest_types' => 'Recently added types',
+    'supported_extensions' => 'supported extensions',
+    'related_topics' => 'Related topics',
+    'open_new_tab' => 'open in new tab',
 ];

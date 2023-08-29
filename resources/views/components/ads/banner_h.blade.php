@@ -1,5 +1,5 @@
 {{-- <div class="max-md:hidden pb-2"> --}}
-<div class="pb-2" id="ad-box">
+<div class="w-full pb-2" id="ad-box">
     <script>
         window.googletag.cmd.push(function() {
             var w = document.getElementById('ad-box').offsetWidth;
@@ -39,13 +39,11 @@
         });
     </script>
 
-    <div class=" flex items-center justify-center">
-        <div id="banner-ad">
-            <script>
-                googletag.cmd.push(function() {
-                    googletag.display('banner-ad');
-                });
-            </script>
-        </div>
+    <div id="banner-ad" class="min-h-[90px] rounded-lg bg-secondary-light p-4 dark:bg-secondary-dark">
+        <script>
+            googletag.cmd.push(function() {
+                googletag.display('banner-ad');
+            });
+        </script>
     </div>
 </div>

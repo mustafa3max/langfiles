@@ -1,10 +1,6 @@
 <nav class="bg-secondary-light shadow-md dark:bg-secondary-dark">
     <div class="flex flex-wrap">
-        {{-- Right --}}
-        <div class="h-0 w-full bg-accent md:w-3/12 lg:w-2/12 xl:w-3/12">
-        </div>
-        {{-- Body --}}
-        <div class="relative z-20 w-full p-2 md:w-full lg:w-8/12 xl:w-6/12" x-data="{ isMenu: false }">
+        <div class="container relative z-20 mx-auto p-2" x-data="{ isMenu: false }">
             <div class="mx-auto flex flex-wrap items-center justify-between">
                 <ul class="flex items-center gap-6">
                     <li>
@@ -53,9 +49,6 @@
             <div class="absolute start-1 top-12">
                 <x-menu-bar />
             </div>
-        </div>
-        {{-- Left --}}
-        <div class="h-0 w-full bg-accent md:w-3/12 lg:w-2/12 xl:w-3/12">
         </div>
     </div>
 

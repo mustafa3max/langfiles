@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{ asset('../favicon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
     <title>{{ __('seo.title_home') }} - {{ config('app.name') }}</title>
     <meta name="description" content="{{ __('seo.description_home') }}">
     <meta name="author" content="Mustafamax">
@@ -21,10 +21,10 @@
 
     @vite('resources/css/app.css')
 
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    {{-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"
-        as="style" />
+        as="style" /> --}}
 
     {{-- Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,8 @@
 
 <body x-data="{ select: [true, false, false, false] }"
     class="no-scrollbar bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light">
-    <nav id="nav" class="fixed top-0 z-50 flex w-full items-center justify-center">
+
+    <nav class="fixed top-0 z-50 flex w-full items-center justify-center drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
         {{-- Nav Text --}}
         <div class="flex max-w-5xl flex-wrap items-center gap-4 max-md:hidden">
             <x-link-index id="0" index="0">{{ __('me_str.home') }}</x-link-index>
@@ -53,14 +54,18 @@
     </nav>
 
     {{-- Home --}}
-    <div class="relative h-screen bg-accent bg-index-header bg-cover bg-center" id="0">
-        <div class="flex h-full items-center justify-center text-primary-light">
-            <div class="absolute bottom-0 left-0 right-0 top-0 backdrop-blur-lg">
-            </div>
-            <div class="absolute bottom-0 left-0 right-0 top-0 bg-secondary-dark opacity-60">
+    <div class="bg-index-headerbg-center relative h-screen bg-accent" id="0">
+        <video autoplay loop muted poster="{{ asset('assets/images/bg_image_home.png') }}"
+            class="absolute h-screen w-full object-cover">
+            <source src="{{ asset('assets/videos/bg_video_home.mp4') }}" type="video/mp4">
+        </video>
+        <div
+            class="flex h-full items-center justify-center text-primary-light drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+
+            <div class="absolute bottom-0 left-0 right-0 top-0 bg-primary-dark opacity-30">
             </div>
             <div class="z-10 p-2">
-                <h1 class="text-center text-3xl">LANGFILES
+                <h1 class="text-center text-3xl font-extrabold">LANGFILES
                     <br>
                     <br>
                     {{ __('index_str.title_index') }}
@@ -71,9 +76,9 @@
                     class="block animate-pulse text-center text-xl font-bold uppercase hover:underline">{{ __('me_str.show_files') }}</a>
             </div>
             <a href="#1" class="absolute bottom-0 animate-bounce p-2 shadow-sm" title="{{ __('me_str.go_info') }}"
-                x-on:click="select[0]=false;select[1]=true;select[2]=false;select[3]=false;"><i
-                    class="fa-solid fa-angles-down"></i></a>
+                x-on:click="select[0]=false;select[1]=true;select[2]=false;select[3]=false;"><x-svg.angles-down /></i></a>
         </div>
+
     </div>
 
     {{-- Screen 1 --}}
@@ -148,65 +153,7 @@
         </div>
     </div>
 
-    <script>
-        const height = window.innerHeight;
-        const home = height;
-        const screen1 = height * 2;
-        const screen2 = height * 3;
-        const screen3 = height * 4;
-
-        window.onscroll = function() {
-            const y = window.scrollY;
-
-            addRemoveNav(y < home);
-
-            addRemove("0-link", y < home);
-            addRemove("1-link", y < screen1 && y >= home);
-            addRemove("2-link", y < screen2 && y >= screen1);
-            addRemove("3-link", y <= screen3 && y >= screen2 || y > screen3);
-        }
-
-        function addRemove(id, isAdd, isHome) {
-            const element = document.getElementById(id);
-            const icon = document.getElementById(id + '-icon');
-
-            if (isAdd) {
-                element.classList.add('border-b-4');
-                element.classList.add('border-accent');
-                element.classList.add('text-accent');
-
-                icon.classList.add('fa-circle-dot');
-                icon.classList.add('text-accent');
-                icon.classList.remove('fa-circle');
-
-            } else {
-                element.classList.remove('border-b-4');
-                element.classList.remove('border-accent');
-                element.classList.remove('text-accent');
-
-                icon.classList.remove('fa-circle-dot');
-                icon.classList.remove('text-accent');
-                icon.classList.add('fa-circle');
-            }
-        }
-
-        function addRemoveNav(isAdd) {
-            const nav = document.getElementById("nav");
-            if (isAdd) {
-                nav.classList.add('text-primary-light');
-                nav.classList.remove('dark:bg-secondary-dark');
-                nav.classList.remove('bg-secondary-light');
-            } else {
-                nav.classList.remove('text-primary-light');
-                nav.classList.add('dark:bg-secondary-dark');
-                nav.classList.add('bg-secondary-light');
-            }
-        }
-
-        addRemoveNav(true);
-        addRemove("0-link", true);
-    </script>
-
+    <script src="{{ asset('js/home.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 

@@ -9,7 +9,6 @@ function addElement(type) {
     var element = null;
 
     element = item(type);
-
     const selection = window.getSelection();
 
     // const isAllowedContainer = selection.baseNode.parentElement?.closest?.('#article');

@@ -1,5 +1,5 @@
 <footer class="grid w-full gap-4 bg-secondary-light px-4 pt-4 text-sm dark:bg-secondary-dark">
-    <div class="mx-auto w-full md:w-full lg:w-8/12 xl:w-6/12">
+    <div class="container mx-auto p-2">
         <div class="flex w-full flex-wrap">
             {{-- Logo --}}
             <div class="grid items-center justify-start text-center md:max-w-[340px] md:text-start">
@@ -18,54 +18,50 @@
 
             <div class="flex w-full flex-wrap justify-center gap-16 md:w-fit">
                 {{-- Community --}}
-                <table class="">
-                    <caption class="text-start font-extrabold uppercase">
+                <ul class="text-center md:text-start">
+                    <li class="font-extrabold uppercase">
                         {{ __('me_str.community') }}
-                    </caption>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="/blog">blog</a></td>
-                    </tr>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">github</a></td>
-                    </tr>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">facebook</a></td>
-                    </tr>
-                </table>
-
-                {{-- Help --}}
-                <table class="">
-                    <caption class="text-start font-extrabold uppercase">
-                        {{ __('me_str.help') }}
-                    </caption>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="mailto:langfiles@gamil.com" target="_blank"
-                                rel="nofollow">email</a></td>
-                    </tr>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">massenger</a>
-                        </td>
-                    </tr>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">telegram</a></td>
-                    </tr>
-                </table>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="/blog">blog</a>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">github</a>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">facebook</a>
+                    </li>
+                </ul>
 
                 {{-- Legal --}}
-                <table class="">
-                    <caption class="text-start font-extrabold uppercase">
+                <ul class="text-center md:text-start">
+                    <li class="font-extrabold uppercase">
                         {{ __('me_str.legal') }}
-                    </caption>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="/privacy-policy">{{ __('me_str.privacy_policy') }}</a>
-                        </td>
-                    </tr>
-                    <tr class="block py-1">
-                        <td><a class="hover:text-accent" href="/terms-of-service">{{ __('me_str.terms_of_use') }}</a>
-                        </td>
-                    </tr>
-                </table>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="/privacy-policy">{{ __('me_str.privacy_policy') }}</a>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="/terms-of-service">{{ __('me_str.terms_of_use') }}</a>
+                    </li>
+                </ul>
 
+                {{-- Help --}}
+                <ul class="text-center md:text-start">
+                    <li class="font-extrabold uppercase">
+                        {{ __('me_str.help') }}
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="mailto:langfiles@gamil.com" target="_blank"
+                            rel="nofollow">email</a>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">massenger</a>
+                    </li>
+                    <li class="block py-1">
+                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">telegram</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
