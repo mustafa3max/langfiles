@@ -20,5 +20,6 @@ return [
     'appliances' => 'appliances',
     'game_engines' => 'game engines',
     'search_engines' => 'search engines',
+    'countries' => 'countries',
     '---key---' => '---value---',
 ];

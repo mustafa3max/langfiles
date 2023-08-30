@@ -21,19 +21,15 @@
 
     @vite('resources/css/app.css')
 
-    {{-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'"
-        as="style" /> --}}
-
-    {{-- Font --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="preload" as="font">
+    {{-- Start Font Almarai --}}
+    <link rel="preconnect" as="style" href="https://fonts.googleapis.com">
+    <link rel="preconnect" as="style" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
+    {{-- End Font Almarai --}}
 </head>
 
 <body x-data="{ select: [true, false, false, false] }"
-    class="no-scrollbar bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light">
+    class="bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light">
 
     <nav class="fixed top-0 z-50 flex w-full items-center justify-center drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
         {{-- Nav Text --}}

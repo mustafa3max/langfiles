@@ -32,14 +32,15 @@
             display: none !important;
         }
     </style>
-    {{-- Font --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="font">
+    {{-- Start Font Almarai --}}
+    <link rel="preconnect" as="style" href="https://fonts.googleapis.com">
+    <link rel="preconnect" as="style" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
+    {{-- End Font Almarai --}}
 </head>
 
 <body
-    class="no-scrollbar relative overflow-x-hidden bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
+    class="relative overflow-x-hidden bg-primary-light font-almarai text-primary-dark dark:bg-primary-dark dark:text-primary-light"
     x-cloak x-data="{
         isSelectTab: [],
         meCode: {},
@@ -59,7 +60,7 @@
             <div class="container mx-auto p-2">
                 <div class="flex flex-wrap">
                     <div class="w-full md:w-9/12">
-                        {{-- <x-ads.banner_h /> --}}
+                        <x-ads.banner_h />
                         <div x-show="!isMeData">{{ $slot }}</div>
                         <div x-show="isMeData" class="h-fit w-full"> <x-group-code /></div>
                     </div>

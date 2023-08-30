@@ -115,5 +115,6 @@ return [
     'latest_types' => 'Recently added types',
     'supported_extensions' => 'supported extensions',
     'related_topics' => 'Related topics',
+    'related_videos' => 'Related videos',
     'open_new_tab' => 'open in new tab',
 ];

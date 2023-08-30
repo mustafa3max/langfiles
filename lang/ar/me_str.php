@@ -99,7 +99,7 @@ return [
     'latest_types' => 'أنواع مضافة مؤخراً',
     'supported_extensions' => 'الامتدادات المدعومة',
     'related_topics' => 'مواضيع ذات صلة',
+    'related_videos' => 'فيديوهات ذات صلة',
     'open_new_tab' => 'فتح في علامة تبويب جديدة',
-    '' => '',
     '' => '',
 ];

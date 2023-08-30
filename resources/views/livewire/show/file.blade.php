@@ -19,8 +19,9 @@
                 {{-- Undo Delete Item --}}
                 @if (count($this->keys) > 0)
                     <div wire:click='undo()'>
-                        @component('components.btn-file', ['icon' => 'undo', 'text' => __('me_str.undo')])
-                        @endcomponent
+                        <x-btn-file text="__('me_str.undo')">
+                            <x-svg.undo />
+                        </x-btn-file>
                     </div>
                 @endif
                 <div x-on:click="isCode=true">
@@ -129,7 +130,7 @@
                 @forelse ($this->types() as $type)
                     <div class="grow">
                         @component('components.item-show', [
-                            'data' => $type['name_' . $currentLng],
+                            'data' => $type['name_' . $currentLang],
                             'lang' => $type->lang,
                             'moreLang' => $this->moreLang($type->table),
                             'route' => str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),

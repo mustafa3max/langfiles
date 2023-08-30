@@ -17,6 +17,7 @@ class File extends Component
     public $table;
     public $title;
     public $lang;
+    public $currentLang;
     public $keys = array();
 
     function delete($key)
@@ -67,14 +68,18 @@ class File extends Component
         foreach (Globals::languages() as $lang) {
             $langs[] = $lang . '_' . $type;
         }
-        $lang = LaravelLocalization::getCurrentLocale();
+        $lang = $this->currentLang;
         return Table::whereIn('table', $langs)
             ->get()->count();
     }
 
     function types()
     {
-        return Table::where('lang', LaravelLocalization::getCurrentLocale())
+        $table = $this->table;
+        $table = str_replace('type_', $this->currentLang . '_', $table);
+
+        return Table::where('lang', $this->currentLang)
+            ->where('table', '!=', $table)
             ->inRandomOrder()
             ->take(3)
             ->get();
@@ -87,6 +92,8 @@ class File extends Component
 
     public function mount()
     {
+        $this->currentLang = LaravelLocalization::getCurrentLocale();
+
         $this->table = request('type');
 
         $this->title = request('type');
@@ -108,7 +115,7 @@ class File extends Component
             'csv' => Convert::to('csv', $this->toJson()),
             'dataEdit' => $this->data(),
             'dataJson' => $this->toJson(),
-            'currentLng' => LaravelLocalization::getCurrentLocale(),
+            'currentLang' => $this->currentLang,
             'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)]))
         ]);
     }

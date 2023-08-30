@@ -20,5 +20,6 @@ return [
     'appliances' => 'اجهزة منزلية',
     'game_engines' => 'محركات العاب',
     'search_engines' => 'محركات بحث',
+    'countries' => 'بلدان',
     '---key---' => '---value---',
 ];
