@@ -11,6 +11,7 @@ use App\Http\Livewire\Blog\Delete as BlogDelete;
 use App\Http\Livewire\ControlPanel\Create;
 use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
+use App\Http\Livewire\Convert\To;
 use App\Http\Livewire\Editor\Editor;
 use App\Http\Livewire\Mustafamax\Profile;
 use App\Http\Livewire\Policy\Privacypolicy;
@@ -41,6 +42,11 @@ Route::scopeBindings()->group(function () {
 Route::scopeBindings()->group(function () {
     Route::get('privacy-policy', Privacypolicy::class)->name('privacy-policy');
     Route::get('terms-of-service', Termsofservice::class)->name('terms-of-service');
+});
+
+// Convert To
+Route::scopeBindings()->group(function () {
+    Route::get('convert/{type1}-to-{type2}', To::class)->name('convert-to');
 });
 
 // Control Panel

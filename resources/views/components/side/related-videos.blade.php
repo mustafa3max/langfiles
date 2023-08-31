@@ -11,7 +11,7 @@
         }">
         <template x-for="url in videos">
             <li>
-                <iframe class="w-fit" :src="url" frameborder="0"
+                <iframe class="w-[100%]" :src="url" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                     allowfullscreen></iframe>
             </li>

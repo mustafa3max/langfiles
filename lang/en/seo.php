@@ -28,6 +28,9 @@ return [
     'title_404' => '404 page not found',
     'description_404' => 'Page Not Found 404 The page you are looking for may have been removed or the link contains an error. Go to the homepage to find out more',
     //
+    'title_convert' => 'Convert json to php, android and more',
+    'description_convert' => 'Do you have data in json format that you want to convert to different formats that work as translation files on Android, iOS, Laravel, and many others? With our tool, it has become very easy',
+    //
     'title_2_types' => 'Language translation files for website and application developers',
     'title_2_keys' => 'Language translation texts for website and application developers',
 ];

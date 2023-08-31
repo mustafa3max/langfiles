@@ -39,11 +39,16 @@
         // });
     </script>
 
-    <div id="banner-ad" class="min-h-[90px] rounded-lg bg-secondary-light p-4 dark:bg-secondary-dark">
-        {{-- <script>
+    {{-- <div id="banner-ad" class="min-h-[90px] rounded-lg bg-secondary-light p-4 dark:bg-secondary-dark">
+        <script>
             googletag.cmd.push(function() {
                 googletag.display('banner-ad');
             });
-        </script> --}}
+        </script>
+    </div> --}}
+
+    <div class="flex flex-wrap gap-2">
+        <x-convert.link type1="json" type2="dart"
+            title="{{ implode(' ' . __('me_str.or') . ' ', Globals::supportedExtensions()) }}">{{ __('convert.json_to_dart') }}</x-convert.link>
     </div>
 </div>
