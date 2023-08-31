@@ -40,7 +40,13 @@ export default class To {
     }
 
     static handling() {
-        const data = JSON.parse(To.data);
+        var data = {};
+
+        try {
+            data = JSON.parse(To.data);
+        } catch (error) {
+
+        }
 
         return data;
     }
@@ -48,63 +54,70 @@ export default class To {
     static json(key, value) {
         return '<div>'+
         To.charsets["tab"]+
-        '"'+key+
-        '": "'+
-        value+'",</div>';
+        '<span class="text-code-1-light dark:text-code-1-dark">"'+key+'"</span>'+
+        ': '+
+        '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"</span>'+
+        ',</div>';
     }
 
     static php(key, value) {
         return '<div>'+
         To.charsets["tab"]+
-        '"'+key+'"=> "'+
-        value+'",</div>';
+        '<span class="text-code-1-light dark:text-code-1-dark">"'+key+'"</span>'+
+        '=> '+
+        '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"</span>'+
+        ',</div>';
     }
 
     static django(key, value) {
-        return '<div>msgid "'+key+'"</div>'+
-            '<div>msgstr "'+value+'"</div>'+
+        return '<div><span class="text-code-1-light dark:text-code-1-dark">msgid</span>'+
+            '<span class="text-code-2-light dark:text-code-2-dark"> "'+key+'</sapn>'+
+            '"</div>'+
+            '<div><span class="text-code-1-light dark:text-code-1-dark">msgstr</span>'+
+            '<span class="text-code-2-light dark:text-code-2-dark"> "'+value+'</sapn>'+
+            '"</div>'+
             '<br>';
     }
 
     static android(key, value) {
         return '<div>'+
         To.charsets["tab"]+
-        To.charsets["<"]+
-        'string name="'+
-        key+
-        '"'+
-        To.charsets[">"]+
+        '<span class="text-code-2-light dark:text-code-2-dark">'+To.charsets["<"]+'string</span> '+
+        '<span class="text-code-1-light dark:text-code-1-dark">'+'name="'+key+'"</span>'+
+        '<span class="text-code-2-light dark:text-code-2-dark">'+To.charsets[">"]+'</span>'+
         value+
-        To.charsets["<"]+
-        '/string>'+
+        '<span class="text-code-2-light dark:text-code-2-dark">'+To.charsets["<"]+'/string></span>'+
         '</div>';
     }
 
     static ios(key, value) {
-        return '<div>'+
-        To.charsets["tab"]+
-        '"'+key+'"= "'+
-        value+'";</div>';
+         return '<div>'+
+        '<span class="text-code-1-light dark:text-code-1-dark">"'+key+'"</span>'+
+        ' = '+
+        '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"</span>'+
+        ';</div>';
     }
 
     static xlf(key, value) {
         return '<div>'+
-        this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'trans-unit id="'+key+'"></div>'+
+        '<span class="text-code-2-light dark:text-code-2-dark">'+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'trans-unit</span> <span class="text-code-1-light dark:text-code-1-dark">id="'+key+'"</span><span class="text-code-2-light dark:text-code-2-dark">></sapn></div>'+
         '<div>'+
-        this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'source>'+key+this.charsets["<"]+'/source>'+
+        '<span class="text-code-1-light dark:text-code-1-dark">'+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'source></span>'+key+'<span class="text-code-1-light dark:text-code-1-dark">'+this.charsets["<"]+'/source></span>'+
         '</div>'+
         '<div>'+
-        this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'target>'+value+this.charsets["<"]+'/target>'+
+        '<span class="text-code-1-light dark:text-code-1-dark">'+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'source></span>'+value+'<span class="text-code-1-light dark:text-code-1-dark">'+this.charsets["<"]+'/source></span>'+
         '</div>'+
         '<div>'+
-        this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'/trans-unit>'+
+        '<span class="text-code-2-light dark:text-code-2-dark">'+this.charsets["tab"]+this.charsets["tab"]+this.charsets["tab"]+this.charsets["<"]+'/trans-unit></sapn>'+
         '</div>';
     }
 
     static csv(key, value) {
         return '<div>'+
-        key+', "'+value+'",'+
-        '</div>';
+        '<span class="text-code-1-light dark:text-code-1-dark">'+key+'</span>'+
+        ', '+
+        '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"'+'</span>'+
+        ',</div>';
     }
 
     static parentType(fullData, type) {
