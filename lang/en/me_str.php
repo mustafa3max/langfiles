@@ -117,4 +117,8 @@ return [
     'related_topics' => 'Related topics',
     'related_videos' => 'Related videos',
     'open_new_tab' => 'open in new tab',
+    'add_texts' => 'add texts',
+    'adding_texts_not_publish' => 'The texts you added, but you have not published them yet',
+    'check_publishing' => 'We thank you for this effort to support the LangFiles website, but we ask you to make sure that there are no spelling errors in the texts entered below before making the publication to ensure the quality of the content provided, thank you again.',
+    'remove_all' => 'remove all',
 ];

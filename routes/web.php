@@ -19,6 +19,7 @@ use App\Http\Livewire\Policy\Termsofservice;
 use App\Http\Livewire\Show\File;
 use App\Http\Livewire\Show\Keys;
 use App\Http\Livewire\Show\Types;
+use App\Http\Livewire\User\AddText;
 use App\Http\Livewire\User\Profile as UserProfile;
 use Illuminate\Support\Facades\Route;
 
@@ -76,6 +77,7 @@ Route::prefix('mustafamax')->group(function () {
 
 // User
 Route::prefix('user')->group(function () {
+    Route::get('add-text', AddText::class)->name('add-text');
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('profile', UserProfile::class)->name('profile');
     });

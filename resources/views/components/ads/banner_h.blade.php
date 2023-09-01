@@ -48,7 +48,9 @@
     </div> --}}
 
     <div class="flex flex-wrap gap-2">
-        <x-convert.link type1="json" type2="dart"
+        <x-convert.link route="{{ route('convert-to') }}"
             title="{{ implode(' ' . __('me_str.or') . ' ', Globals::supportedExtensions()) }}">{{ __('convert.json_to_dart') }}</x-convert.link>
+        <x-convert.link route="{{ route('add-text') }}"
+            title="{{ implode(' ' . __('me_str.or') . ' ', Globals::supportedExtensions()) }}">{{ __('me_str.add_texts') }}</x-convert.link>
     </div>
 </div>

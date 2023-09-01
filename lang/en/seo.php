@@ -31,6 +31,10 @@ return [
     'title_convert' => 'Convert json to php, android and more',
     'description_convert' => 'Do you have data in json format that you want to convert to different formats that work as translation files on Android, iOS, Laravel, and many others? With our tool, it has become very easy',
     //
+    //
+    'title_add_texts' => 'Add language translation texts to support the site',
+    'description_add_texts' => 'Support LangFiles by adding language translation texts, as these texts are used by thousands of developers, so we invite you to help us, the matter is simple, all you have to do is choose the language and enter the key and value.',
+    //
     'title_2_types' => 'Language translation files for website and application developers',
     'title_2_keys' => 'Language translation texts for website and application developers',
 ];
