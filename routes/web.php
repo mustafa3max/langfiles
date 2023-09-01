@@ -46,7 +46,7 @@ Route::scopeBindings()->group(function () {
 
 // Convert To
 Route::scopeBindings()->group(function () {
-    Route::get('convert/{type1}-to-{type2}', To::class)->name('convert-to');
+    Route::get('convert/json-to-more', To::class)->name('convert-to');
 });
 
 // Control Panel

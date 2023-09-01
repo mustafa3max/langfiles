@@ -6,7 +6,6 @@ const type1 = document.getElementById('type-1');
 const type2 = document.getElementById('type-2');
 const key = document.getElementById('key');
 const value = document.getElementById('value');
-
 var data = {};
 
 try {
@@ -62,6 +61,9 @@ window.copyContent = async function(){
 }
 
 window.add = function() {
+    if (data == null) {
+        data = {};
+    }
     if(key.value != "" && value.value != "") {
         data[key.value] = value.value;
         type1.innerText = JSON.stringify(data);
