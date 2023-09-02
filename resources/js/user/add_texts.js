@@ -2,6 +2,13 @@
 const keyAdd = document.getElementById('key');
 const valueAdd = document.getElementById('value');
 const allTexts = document.getElementById('all-texts');
+const groupName = document.getElementById('group-name');
+
+groupName.value = sessionStorage.getItem('group_name');
+
+groupName.addEventListener("blur", function() {
+    sessionStorage.setItem('group_name', groupName.value);
+},false);
 
 keyAdd.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
@@ -63,21 +70,23 @@ window.save = function(oldKey, oldValue){
         itemKey = document.getElementById('key-'+index);
         itemValue = document.getElementById('value-'+index);
 
-
         if(Object.keys(items)[index] != itemKey.value && oldKey != null) {
+
             if(!items.hasOwnProperty(itemKey.value)) {
+
                 Object.defineProperty(items, itemKey.value, Object.getOwnPropertyDescriptor(items, oldKey));
 
                 delete items[oldKey];
-
+                break;
             }else {
                 alert('المفتاح المدخل موجود بالفعل');
                 itemKey.value = oldKey;
+                break;
             }
         }
 
         if(itemValue.value != items[itemKey.value] && oldValue != null) {
-            if(Object.keys(items).indexOf(itemValue.value) == -1) {
+            if(Object.values(items).indexOf(itemValue.value) == -1) {
 
                 items[Object.keys(items)[index]] = itemValue.value;
 
@@ -85,6 +94,7 @@ window.save = function(oldKey, oldValue){
             }else {
                 alert('القيمة المدخلة موجودة بالفعل');
                 itemValue.value = oldValue;
+                break;
             }
         }
 
@@ -102,7 +112,6 @@ window.remove = function(key){
 
     const status = confirm('هل تريد خذف هذا العنصر');
     if(status){
-
         delete items[key];
         sessionStorage.setItem('items_save', JSON.stringify(items));
         Alpine.store('items').items = JSON.parse(sessionStorage.getItem('items_save'));
@@ -110,13 +119,30 @@ window.remove = function(key){
     }
 }
 
-window.removeAll = function(){
+window.removeAll =  function(msg = null){
 
-    const status = confirm('هل تريد خذف جميع العناصر');
-    if(status){
-        sessionStorage.removeItem('items_save');
-        Alpine.store('items').items = {};
-        Alpine.store('items').on = false;
+    if(msg == null){
+        const status = confirm(msg==null?'هل تريد خذف جميع العناصر':msg);
+        if(status){
+            removeNow();
+        }
+    }else{
+        alert(msg);
+        removeNow();
     }
 
+}
+
+window.changeInputMeGroup = function(group) {
+    groupName.value = group;
+    sessionStorage.setItem('group_name', groupName.value);
+    Livewire.emit('changeGroupName', group);
+}
+
+window.removeNow = () => {
+    sessionStorage.removeItem('items_save');
+    sessionStorage.removeItem('group_name');
+    Alpine.store('items').items = {};
+    Alpine.store('items').on = false;
+    groupName.value = "";
 }
