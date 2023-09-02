@@ -50,6 +50,12 @@ return [
             'url' => env('APP_URL') . '/storage',
         ],
 
+        'types_users' => [
+            'driver' => 'local',
+            'root' => storage_path('types_users'),
+            'url' => env('APP_URL') . '/storage',
+        ],
+
         'blog' => [
             'driver' => 'local',
             'root' => storage_path('app/public/blog'),

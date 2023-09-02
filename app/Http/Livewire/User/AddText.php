@@ -9,13 +9,7 @@ class AddText extends Component
 {
     public $langSelect;
     public $currentLang;
-    public $items1;
 
-    protected $listeners = ['publish'];
-
-    protected $rules = [
-        'items1' => 'required',
-    ];
 
     function langSelect($lang)
     {
@@ -24,10 +18,20 @@ class AddText extends Component
 
     function publish($items)
     {
-        $this->items1 = $items;
-        // dd($this->items1);
+        if (count($items) > 0) {
+            $newItems = [];
+            foreach ($items as $key => $value) {
+                $key = str_replace(' ', '_', $key);
+                $key = str_replace('-', '_', $key);
+                $key = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
 
-        $attr = $this->validate();
+                if (!preg_match('/[^A-Za-z0-9-_]/', $key)) {
+                    $newItems[$key] = $value;
+                }
+            }
+
+            dd(json_encode($newItems));
+        }
     }
 
     public function mount()

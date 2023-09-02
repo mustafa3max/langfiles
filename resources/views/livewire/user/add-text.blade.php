@@ -71,14 +71,11 @@
     </x-card>
 
     <div class="flex flex-wrap gap-2">
-        <form class="grow" wire:submit.prevent="publish" wire:key='form'>
-            <input type="hidden" wire:model.prevent='items1'>
-            <button type="submit"
-                class="flex w-full items-center justify-center gap-4 rounded-lg bg-accent p-2 font-bold text-primary-dark">
-                <x-svg.publish />
-                {{ __('me_str.publish_now') }}
-            </button>
-        </form>
+        <button x-on:click='$wire.publish($store.items.items)'
+            class="flex grow items-center justify-center gap-4 rounded-lg bg-accent p-2 font-bold text-primary-dark">
+            <x-svg.publish />
+            {{ __('me_str.publish_now') }}
+        </button>
         <button onclick="window.removeAll()"
             class="flex items-center justify-center gap-4 rounded-lg border border-accent p-2 font-bold text-accent">
             {{ __('me_str.remove_all') }}
@@ -86,13 +83,6 @@
     </div>
 
     <script>
-        // window.addEventListener('test', event => {
-        //     alert('Name updated to: ' + event);
-        // });
-
-        Livewire.emit('publish', place.geometry['items1'].lat());
-
-
         document.addEventListener('alpine:init', () => {
             Alpine.store('items', {
                 items: JSON.parse(sessionStorage.getItem('items_save') ?? '{}'),
