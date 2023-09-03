@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\Cast\Array_;
 
@@ -40,5 +42,16 @@ class Globals
     static function supportedExtensions()
     {
         return ['json', 'php', 'android', 'ios', 'django', 'xlf', 'csv'];
+    }
+
+    static function logout()
+    {
+        if (Auth::check()) {
+            session()->flush();
+
+            auth('web')->logout();
+
+            return redirect('/');
+        }
     }
 }

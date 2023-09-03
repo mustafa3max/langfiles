@@ -138,4 +138,6 @@ return [
     'title_trans_group' => 'Translating the group I created from Arabic to English',
     'desc_trans_group' => 'You can translate the group you created from Arabic to English when you activate one or both of the buttons below and press the Translate Now button. The keys and values will be translated together or based on your choice.',
     'trans_now' => 'Translate the group now',
+    'max_count_group' => 'Maximum group size: 3,000 items Please create a new group',
+
 ];

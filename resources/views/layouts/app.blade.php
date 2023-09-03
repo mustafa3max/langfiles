@@ -31,6 +31,12 @@
         [x-cloak] {
             display: none !important;
         }
+
+        input:-webkit-autofill {
+            -webkit-text-fill-color: #666;
+            font-weight: bold;
+            caret-color: #666
+        }
     </style>
     {{-- Start Font Almarai --}}
     <link rel="preconnect" as="style" href="https://fonts.googleapis.com">

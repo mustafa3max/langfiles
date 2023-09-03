@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SitemapController;
+use App\Http\Globals;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Blog\Artilce;
@@ -21,7 +22,9 @@ use App\Http\Livewire\Show\Keys;
 use App\Http\Livewire\Show\Types;
 use App\Http\Livewire\User\AddText;
 use App\Http\Livewire\User\Profile as UserProfile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 // Sitemap
 Route::scopeBindings()->group(function () {
@@ -50,14 +53,14 @@ Route::scopeBindings()->group(function () {
     Route::get('convert/json-to-more', To::class)->name('convert-to');
 });
 
+// Auth
+Route::scopeBindings()->group(function () {
+    Route::get('login', Login::class)->name('login');
+    Route::get('register', Register::class)->name('register');
+});
+
 // Control Panel
 Route::prefix('control-panel')->group(function () {
-    // Auth
-    Route::scopeBindings()->group(function () {
-        Route::get('login', Login::class)->name('login');
-        Route::get('register', Register::class)->name('register');
-    });
-
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('index', Index::class)->name('index');
         Route::get('create', Create::class)->name('create');
@@ -77,9 +80,14 @@ Route::prefix('mustafamax')->group(function () {
 
 // User
 Route::prefix('user')->group(function () {
-    Route::get('add-text', AddText::class)->name('add-text');
-    Route::middleware('auth:sanctum', 'verified')->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('add-text', AddText::class)->name('add-text');
         Route::get('profile', UserProfile::class)->name('profile');
+        Route::get('logout', function () {
+            return Globals::logout();
+        });
+    });
+    Route::middleware('auth:sanctum', 'verified')->group(function () {
     });
 });
 

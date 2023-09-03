@@ -21,6 +21,11 @@ class To extends Component
             $tr = new GoogleTranslate('en');
 
             $dataJson = json_decode($dataJson);
+
+            if (count((array)$dataJson) > 3000) {
+                return $this->emit('message', __('me_str.max_count_group'));
+            }
+
             $newData = [];
             foreach ($dataJson as $key => $value) {
                 if ($isTransKeys) {

@@ -2,12 +2,22 @@
     x-show="isMenu" x-on:click.outside="isMenu = false" x-transition.duration.500ms>
     @if (Auth::check())
         <a href="/user/profile" class="flex items-center gap-4">
-            <i class="fa-solid fa-user"></i>
+            <x-svg.user />
             <span>{{ __('me_str.profile') }}</span>
+        </a>
+
+        <a href="/user/logout" class="flex items-center gap-4">
+            <x-svg.logout />
+            <span>{{ __('me_str.logout') }}</span>
+        </a>
+    @else
+        <a href="/user/profile" class="flex items-center gap-4">
+            <x-svg.logout />
+            <span>{{ __('seo.title_login') }}</span>
         </a>
     @endif
 
-    <ul class="grid gap-4 border-b border-primary-light pb-4 dark:border-primary-dark">
+    <ul class="grid gap-4 border-y border-primary-light py-4 dark:border-primary-dark">
         @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
             @if (LaravelLocalization::getCurrentLocale() != $localeCode)
                 <li>

@@ -1,12 +1,12 @@
 <div>
     <x-card>
-        <img src="{{ $user->avatar }}" alt="{{ $user->name }}"
-            class="w-24 h-24 rounded-full border-2 border-primary-light dark:border-primary-dark shadow-sm mx-auto">
+        <img src="{{ $user->avatar ?? asset('assets/images/logo.svg') }}" alt="{{ $user->name }}"
+            class="mx-auto h-24 w-24 rounded-full border-2 border-primary-light p-1 shadow-sm dark:border-primary-dark">
 
-        <div class="pt-4 text-center grid gap-2">
+        <div class="grid gap-2 pt-4 text-center">
             <h1 class="font-semibold uppercase">{{ $user->name }}</h1>
             <p>{{ $user->email }}</p>
-            <button wire:click='logout' class="hover:underline">{{ __('me_str.logout') }}</button>
+            <a href='/user/logout' class="hover:underline">{{ __('me_str.logout') }}</a>
         </div>
     </x-card>
 </div>

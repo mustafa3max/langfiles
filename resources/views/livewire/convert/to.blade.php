@@ -118,6 +118,10 @@
         <x-wite />
     </div>
 
+
+    {{-- Message Not Name Group --}}
+    <x-msg />
+
     <script>
         document.addEventListener('livewire:load', function() {
             Livewire.on('dataTrans', data => {

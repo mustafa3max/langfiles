@@ -48,15 +48,15 @@
             <div class="p-2"></div>
             <div class="text-gray-400">
                 {{ __('me_str.new_account_message') }}
-                @component('components.text-button', [
+                @component('components.text-button-link', [
                     'value' => __('me_str.terms_of_use'),
-                    'route' => '',
+                    'route' => 'terms-of-service',
                 ])
                 @endcomponent
                 {{ __('me_str.and') }}
-                @component('components.text-button', [
+                @component('components.text-button-link', [
                     'value' => __('me_str.privacy_policy'),
-                    'route' => '',
+                    'route' => 'privacy-policy',
                 ])
                 @endcomponent
                 .
@@ -74,11 +74,15 @@
                 <span class="text-gray-400">{{ __('me_str.already_account') }}</span>
                 @component('components.text-button-link', [
                     'value' => __('seo.title_login'),
-                    'href' => 'login',
+                    'route' => 'login',
                 ])
                 @endcomponent
             </div>
         </form>
 
     </x-card>
+
+    <div wire:loading>
+        <x-wite />
+    </div>
 </div>

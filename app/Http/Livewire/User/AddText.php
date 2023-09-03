@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -15,6 +16,7 @@ class AddText extends Component
     public $isTransKeys = false;
     public $isTransValues = false;
     public $isOldGroup = false;
+    public $userId;
 
     protected $rules = [
         'groupName' => 'required',
@@ -47,7 +49,6 @@ class AddText extends Component
         $attr = $this->validate();
 
         $clearInputs = false;
-        $userId = 1;
 
         if (preg_match('/[^A-Za-z0-9-_]/', $attr['groupName'])) {
             $attr['groupName'] = $this->groupNameRand();
@@ -62,6 +63,10 @@ class AddText extends Component
         }
 
         if (count($items) > 0) {
+
+            if (count($items) > 3000) {
+                return $this->emit('message', __('me_str.max_count_group'));
+            }
 
             $newItems = [];
             foreach ($items as $key => $value) {
@@ -85,7 +90,7 @@ class AddText extends Component
 
             $typesUsers = Storage::disk('types_users');
 
-            $path = $userId . '/' . $attr['groupName'] . '.json';
+            $path = $this->userId . '/' . $attr['groupName'] . '.json';
 
             if ($typesUsers->exists($path)) {
                 try {
@@ -138,12 +143,10 @@ class AddText extends Component
 
     function meGroups()
     {
-        $userId = 1;
-
-        $groups = Storage::disk('types_users')->allFiles($userId);
+        $groups = Storage::disk('types_users')->allFiles($this->userId);
         $newGroup = [];
         foreach ($groups as $group) {
-            $group = str_replace($userId . '/', '', $group);
+            $group = str_replace($this->userId . '/', '', $group);
             $group = str_replace('.json', '', $group);
             $newGroup[] = $group;
         }
@@ -153,8 +156,7 @@ class AddText extends Component
 
     function selectGroup($groupSelect)
     {
-        $userId = 1;
-        $groups = Storage::disk('types_users')->allFiles($userId);
+        $groups = Storage::disk('types_users')->allFiles($this->userId);
         $path = '';
 
         foreach ($groups as $group) {
@@ -177,6 +179,8 @@ class AddText extends Component
 
     public function mount()
     {
+        $this->userId = Auth::id();
+
         $this->currentLang = LaravelLocalization::getCurrentLocale();
         $this->langSelect = session()->pull('lang_select') ?? $this->currentLang;
 

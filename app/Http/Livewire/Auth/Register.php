@@ -39,13 +39,18 @@ class Register extends Component
     {
         $attr = $this->validate();
 
-        User::create([
+        $user = User::create([
             'email' => $attr['email'],
             'password' => Hash::make($attr['password']),
             'name' => $attr['name'],
         ]);
 
-        return redirect()->route('index');
+        if (Auth::attempt(['email' => $attr['email'], 'password' => $attr['password']], true)) {
+            $this->reset(['name']);
+            $this->reset(['email']);
+            $this->reset(['password']);
+            return redirect(session()->pull('path_previous') ?? url()->to('/'));
+        }
     }
 
     public function mount()
