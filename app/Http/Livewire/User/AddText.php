@@ -37,6 +37,7 @@ class AddText extends Component
     {
         session()->forget('message');
     }
+
     function publish($items)
     {
         if ($this->groupName == null) {

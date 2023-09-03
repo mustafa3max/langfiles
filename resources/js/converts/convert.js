@@ -11,12 +11,12 @@ var data = {};
 try {
     data = JSON.parse(sessionStorage.getItem('convert_data'));
 } catch (error) {
-
 }
+
 type1.innerText = JSON.stringify(data);
 
-type1.addEventListener('input', (event)=>{
-    sessionStorage.setItem('convert_data', event.target.innerText);
+type1.addEventListener('input', ()=>{
+    sessionStorage.setItem('convert_data', type1.innerText);
 });
 
 key.addEventListener("keypress", function(event) {

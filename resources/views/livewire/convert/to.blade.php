@@ -25,10 +25,11 @@
     </x-card>
 
     <x-full-one>
-        <div x-show="select" class="grid gap-2 p-2">
+        <div x-show="select" class="grid gap-2 p-2" x-data="{ data: sessionStorage.getItem('convert_data') }">
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
-                class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
+                class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                @if ($dataTrans != null) x-text="JSON.stringify({{ json_encode($dataTrans) }})" @else x-text="data" @endif>
             </div>
         </div>
         <div class="w-full p-4" x-show="!select">
@@ -67,6 +68,63 @@
             </div>
         </div>
     </x-card>
+
+    <x-card>
+        <div class="grid gap-2" x-data="{ isTransKeys: false, isTransValues: false }">
+            <div class="grid gap-2 text-center">
+                <h2 class="py-2 text-2xl font-bold">{{ __('me_str.title_trans_group') }}</h2>
+                <p>{{ __('me_str.desc_trans_group') }}</p>
+            </div>
+
+            {{-- Translate Keys --}}
+            <div class="flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
+                <button x-on:click='isTransKeys=!isTransKeys'
+                    :class="isTransKeys ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark'"
+                    class="block rounded-lg p-2"
+                    x-text="isTransKeys?'{{ __('me_str.disabled') }}':'{{ __('me_str.enabled') }}'"></button>
+                <p class="grow py-2 text-start">
+                    {{ __('me_str.message_add_text_keys') }}</p>
+                <span class="text-accent" x-show="isTransKeys">
+                    <x-svg.check />
+                </span>
+
+                <span x-show="!isTransValues">
+                    <x-svg.x />
+                </span>
+            </div>
+            <div class="flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
+                <button x-on:click='isTransValues=!isTransValues'
+                    :class="isTransValues ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark'"
+                    class="block rounded-lg p-2"
+                    x-text="isTransValues?'{{ __('me_str.disabled') }}':'{{ __('me_str.enabled') }}'"></button>
+                <p class="grow py-2 text-start">
+                    {{ __('me_str.message_add_text_values') }}</p>
+                <span class="text-accent" x-show="isTransValues">
+                    <x-svg.check />
+                </span>
+
+                <span x-show="!isTransValues">
+                    <x-svg.x />
+                </span>
+            </div>
+
+            <button
+                x-on:click="Livewire.emit('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})"
+                class="rounded-lg border border-transparent bg-accent p-2 text-primary-dark hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
+        </div>
+    </x-card>
+
+    <div wire:loading>
+        <x-wite />
+    </div>
+
+    <script>
+        document.addEventListener('livewire:load', function() {
+            Livewire.on('dataTrans', data => {
+                sessionStorage.setItem('convert_data', data);
+            });
+        });
+    </script>
 
     @vite('resources/js/converts/convert.js')
 </div>
