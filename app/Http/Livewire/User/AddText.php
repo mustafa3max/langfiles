@@ -12,7 +12,9 @@ class AddText extends Component
     public $groupName;
     public $langSelect;
     public $currentLang;
-    public $isTrans = false;
+    public $isTransKeys = false;
+    public $isTransValues = false;
+    public $isOldGroup = false;
 
     protected $rules = [
         'groupName' => 'required',
@@ -27,12 +29,20 @@ class AddText extends Component
 
     function langSelect($lang)
     {
-        $this->langSelect = $lang;
         session()->put('lang_select', $lang);
+        $this->langSelect = $lang;
     }
 
+    function clear()
+    {
+        session()->forget('message');
+    }
     function publish($items)
     {
+        if ($this->groupName == null) {
+            $this->emit('message', __('me_str.require_group_name'));
+        }
+
         $attr = $this->validate();
 
         $clearInputs = false;
@@ -46,15 +56,21 @@ class AddText extends Component
         $attr['groupName'] = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $attr['groupName']));
         $attr['groupName'] = trim($attr['groupName'], '_');
 
-        $attr['groupName'] = $this->langSelect . '_' . $attr['groupName'];
+        if (!str_contains($attr['groupName'], 'ar_') && !str_contains($attr['groupName'], 'en_')) {
+            $attr['groupName'] = $this->langSelect . '_' . $attr['groupName'];
+        }
 
         if (count($items) > 0) {
 
             $newItems = [];
             foreach ($items as $key => $value) {
-                if ($this->isTrans) {
+                if ($this->isTransKeys) {
                     $tr = new GoogleTranslate('en');
                     $key = $tr->translate($key);
+                }
+                if ($this->isTransValues) {
+                    $tr = new GoogleTranslate('en');
+                    $value = $tr->translate($value);
                 }
                 $key = str_replace(' ', '_', $key);
                 $key = str_replace('-', '_', $key);
@@ -73,12 +89,9 @@ class AddText extends Component
             if ($typesUsers->exists($path)) {
                 try {
                     $data = json_encode($newItems, JSON_UNESCAPED_UNICODE);
-                    // $newData = array_merge($oldData, $newItems);
-
-                    // $newData = json_encode($newData, JSON_UNESCAPED_UNICODE);
-
                     if (is_object(json_decode($data))) {
                         $clearInputs = $typesUsers->put($path, $data);
+                        $this->emit('message', __('me_str.msg_save_data'));
                     }
                 } catch (\Throwable $th) {
                 }
@@ -86,6 +99,7 @@ class AddText extends Component
                 $data = json_encode($newItems, JSON_UNESCAPED_UNICODE);
                 if (is_object(json_decode($data))) {
                     $clearInputs = $typesUsers->put($path, $data);
+                    $this->emit('message', __('me_str.msg_save_data'));
                 } else {
                 }
             }
@@ -96,10 +110,15 @@ class AddText extends Component
         $this->emit('clearInputs', $clearInputs);
     }
 
-    function isTrans()
+    function isTrans($isKeys)
     {
-        $this->isTrans = !$this->isTrans;
-        session()->put('is_trans', $this->isTrans);
+        if ($isKeys) {
+            $this->isTransKeys = !$this->isTransKeys;
+            session()->put('is_trans_keys', $this->isTransKeys);
+        } else {
+            $this->isTransValues = !$this->isTransValues;
+            session()->put('is_trans_values', $this->isTransValues);
+        }
     }
 
     function clearInputs($isClear = false): bool
@@ -125,8 +144,6 @@ class AddText extends Component
         foreach ($groups as $group) {
             $group = str_replace($userId . '/', '', $group);
             $group = str_replace('.json', '', $group);
-            $group = str_replace('ar_', '', $group);
-            $group = str_replace('en_', '', $group);
             $newGroup[] = $group;
         }
 
@@ -145,12 +162,16 @@ class AddText extends Component
                 break;
             }
         }
+
         return Storage::disk('types_users')->get($path);
     }
 
-    function changeGroupName($groupName)
+    function changeGroupName($data)
     {
-        $this->groupName = $groupName;
+        $this->groupName = $data[0];
+
+        session()->put('is_old_group', $data[1]);
+        $this->isOldGroup = session()->pull('is_old_group') ?? false;
     }
 
     public function mount()
@@ -158,7 +179,10 @@ class AddText extends Component
         $this->currentLang = LaravelLocalization::getCurrentLocale();
         $this->langSelect = session()->pull('lang_select') ?? $this->currentLang;
 
-        $this->isTrans = session()->pull('is_trans') ?? false;
+        $this->isTransKeys = session()->pull('is_trans_keys') ?? false;
+        $this->isTransValues = session()->pull('is_trans_values') ?? false;
+
+        $this->isOldGroup = session()->pull('is_old_group') ?? false;
     }
 
     public function render()

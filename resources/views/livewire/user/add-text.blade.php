@@ -6,47 +6,76 @@
         {{ __('seo.description_add_texts') }}
     @endsection
     <x-card>
-        <div class="">
-            <x-title value="{{ __('seo.title_add_texts') }}" />
-            <x-card-dark>
-                <ul class="flex gap-2 overflow-x-auto overflow-y-hidden">
-                    @foreach (Globals::languages() as $lang)
-                        <li><button wire:click='langSelect("{{ $lang }}")'
-                                class="{{ $langSelect === $lang ? 'dark:border-secondary-dark border-secondary-light' : 'dark:bg-secondary-dark bg-secondary-light border-transparent' }} rounded-lg border px-2 py-1 hover:bg-accent hover:text-primary-dark dark:hover:bg-accent">{{ __('lang.' . $lang) }}</button>
-                        </li>
-                    @endforeach
-                </ul>
-            </x-card-dark>
-        </div>
+        <x-title value="{{ __('seo.title_add_texts') }}" />
     </x-card>
 
     <x-card>
         <div class="grid grow gap-2">
             <h2 class="p-4 text-center text-lg font-bold">{{ __('me_str.group_name_title') }}</h2>
-            <p class="grow py-2 text-center font-bold">
+            <p class="grow py-2 text-center">
                 {{ __('me_str.group_name_msg') }}</p>
-            <div class="relative flex gap-2" x-data="{ isMeGroups: false }">
+            <div class="relative flex grow flex-wrap gap-2" x-data="{ isMeGroups: false }">
                 <button
-                    class="flex h-14 w-14 items-center justify-center rounded-lg bg-accent text-primary-dark hover:text-primary-light"
+                    class="flex h-14 w-14 items-center justify-center rounded-lg bg-accent text-primary-dark hover:text-primary-light max-md:grow"
                     title="{{ __('me_str.me_groups') }}"
-                    x-on:click="isMeGroups=!isMeGroups"><x-svg.angles-down /></button>
-                <input type="text" wire:model.prevent='groupName' id="group-name"
-                    placeholder="{{ __('convert.write_here') }}"
-                    class="grow rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
+                    x-on:click="isMeGroups=Object.is(JSON.parse(sessionStorage.getItem('items_save')), null)?true:confirm('{{ __('me_str.msg_new_group') }}')"><x-svg.angles-down /></button>
+                @if (!$isOldGroup)
+                    <input type="text" wire:model.prevent='groupName' id="group-name"
+                        placeholder="{{ __('convert.write_here') }}"
+                        class="grow rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
+                @else
+                    <div type="text" wire:model.prevent='groupName' id="group-name"
+                        class="h-14 grow rounded-lg border-2 border-primary-light p-4 outline-0 dark:border-primary-dark">
+                        {{ $groupName }}
+                    </div>
+                @endif
+
+                {{-- Select Group --}}
                 @component('components.add_texts.me-groups', ['meGroups' => $meGroups])
                 @endcomponent
+                {{-- Languages --}}
+                <ul class="flex gap-2 max-md:grow">
+                    @foreach (Globals::languages() as $lang)
+                        <li class="grow">
+                            @if ($langSelect != $lang)
+                                <button wire:click='langSelect("{{ $lang }}")' wire:key='{{ $lang }}'
+                                    class="h-14 w-full rounded-lg bg-primary-light px-4 hover:bg-accent hover:text-primary-dark dark:bg-primary-dark dark:hover:bg-accent">{{ __('lang.' . $lang) }}</button>
+                            @else
+                                <button wire:click='' wire:key='{{ $lang }}'
+                                    class="h-14 w-full cursor-not-allowed rounded-lg border-2 border-primary-light bg-transparent px-4 dark:border-primary-dark">{{ __('lang.' . $lang) }}</button>
+                            @endif
+
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </x-card>
 
     <x-card>
+        {{-- Translate Keys --}}
         @if ($langSelect == 'ar')
-            <div class="flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
-                <button wire:click='isTrans()'
-                    class="{{ $isTrans ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark' }} block rounded-lg p-2">{{ __($isTrans ? 'me_str.disabled' : 'me_str.enabled') }}</button>
-                <p class="grow py-2 text-start font-bold">
-                    {{ __('me_str.message_add_text') }}</p>
-                @if ($isTrans)
+            <div
+                class="mb-2 flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
+                <button wire:click='isTrans(true)'
+                    class="{{ $isTransKeys ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark' }} block rounded-lg p-2">{{ __($isTransKeys ? 'me_str.disabled' : 'me_str.enabled') }}</button>
+                <p class="grow py-2 text-start">
+                    {{ __('me_str.message_add_text_keys') }}</p>
+                @if ($isTransKeys)
+                    <span class="text-accent">
+                        <x-svg.check />
+                    </span>
+                @else
+                    <x-svg.x />
+                @endif
+            </div>
+            <div
+                class="mb-2 flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
+                <button wire:click='isTrans(false)'
+                    class="{{ $isTransValues ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark' }} block rounded-lg p-2">{{ __($isTransValues ? 'me_str.disabled' : 'me_str.enabled') }}</button>
+                <p class="grow py-2 text-start">
+                    {{ __('me_str.message_add_text_values') }}</p>
+                @if ($isTransValues)
                     <span class="text-accent">
                         <x-svg.check />
                     </span>
@@ -76,9 +105,10 @@
     </x-card>
 
     <x-card>
-        <div class="grid gap-2" x-data="{ items: $store.items.items, on: true }">
+        {{-- Edit Text --}}
+        <div class="relative grid gap-2" x-data="{ items: $store.items.items, on: true }">
             <h2 class="p-4 text-center text-lg font-bold">{{ __('me_str.adding_texts_not_publish') }}</h2>
-            <p class="py-2 text-base">{{ __('me_str.check_publishing') }}</p>
+            <p class="py-2">{{ __('me_str.check_publishing') }}</p>
             <div id="all-texts" class="grid gap-2" x-show="$store.items.on">
                 <template x-for="(key, index) in Object.keys($store.items.items??{})">
                     <div
@@ -101,6 +131,15 @@
             </div>
             <div x-show="!$store.items.on">
                 <x-empty isReload="{{ false }}" />
+            </div>
+
+            <div id="save-done"
+                class="absolute bottom-0 left-0 right-0 top-0 hidden items-center justify-center rounded-lg bg-secondary-light bg-opacity-70 dark:bg-secondary-dark dark:bg-opacity-70">
+                <div
+                    class="flex w-fit items-center gap-2 rounded-full border border-accent bg-primary-light p-4 shadow-lg dark:bg-primary-dark">
+                    {{ __('me_str.save_done') }}
+                    <x-svg.check />
+                </div>
             </div>
         </div>
     </x-card>
@@ -132,6 +171,25 @@
             </div>
         </div>
     </div>
+
+    {{-- Message Not Name Group --}}
+    <div class="fixed left-0 right-0 top-0 z-50 border-b-4 border-accent bg-secondary-light text-center font-extrabold dark:bg-secondary-dark"
+        x-data="{ show: false, timeout: null, data: '' }" x-show="show" x-show="show" x-init="@this.on('message', (d) => {
+            clearTimeout(timeout);
+            show = true;
+            data = d;
+            timeout = setTimeout(() => show = false, 5000);
+        })">
+        <div class="container mx-auto px-2">
+            <div class="flex items-center py-6">
+                <div class="grow text-start" x-text="data"></div>
+                <button x-on:click="show=false;{!! session()->forget('message') !!}"
+                    class="rounded-full bg-accent p-3 text-primary-dark"
+                    title="{{ __('me_str.close') }}"><x-svg.x /></button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.store('items', {
@@ -146,14 +204,14 @@
         document.addEventListener('livewire:load', function() {
             Livewire.on('clearInputs', isClaer => {
                 if (isClaer) {
-                    window.removeAll('{{ __('me_str.msg_save_data') }}');
+                    window.removeAll('remove');
                 } else {
                     alert('يوجد خطأ ما لم يتم حفظ البيانات');
                 }
             });
 
             @this.groupName = sessionStorage.getItem('group_name');
-            const items = @this.selectGroup(sessionStorage.getItem('group_name'));
+            const items = @this.selectGroup(@this.groupName);
 
             items.then((value) => {
                 if (value != null && (sessionStorage.getItem('items_save') ?? '{}') === value) {
@@ -163,21 +221,33 @@
                 }
             });
 
-            Livewire.on('changeGroupName', group => {
-                const items = @this.selectGroup(group);
+            Livewire.on('changeGroupName', data => {
+                const group = data[0];
+                const isOldGroup = data[1];
 
-                items.then((value) => {
-                    sessionStorage.setItem('items_save', value);
-                    const data = JSON.parse(value);
-                    Alpine.store('items').items = data;
-                    Alpine.store('items').on = Object.keys(data ?? {}).length > 0;
+                sessionStorage.setItem('group_name', group);
+                if (isOldGroup) {
+                    const items = @this.selectGroup(group);
 
-                }).catch((err) => {
+                    items.then((value) => {
+                        if (value != '') {
+                            sessionStorage.setItem('items_save', value);
+                            const data = JSON.parse(value);
+                            Alpine.store('items').items = data;
+                            Alpine.store('items').on = Object.keys(data ?? {}).length > 0;
+                        }
+
+                    }).catch((err) => {
+                        sessionStorage.removeItem('items_save');
+                        sessionStorage.removeItem('group_name');
+                        Alpine.store('items').items = {};
+                        Alpine.store('items').on = false;
+                    });
+                } else {
                     sessionStorage.removeItem('items_save');
-                    sessionStorage.removeItem('group_name');
                     Alpine.store('items').items = {};
                     Alpine.store('items').on = false;
-                });
+                }
             });
         });
     </script>

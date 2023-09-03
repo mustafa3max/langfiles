@@ -121,7 +121,8 @@ return [
     'adding_texts_not_publish' => 'The texts you added, but you have not published them yet',
     'check_publishing' => 'We thank you for this effort to support the LangFiles website, but we ask you to make sure that there are no spelling errors in the texts entered below before making the publication to ensure the quality of the content provided, thank you again.',
     'remove_all' => 'remove all',
-    'message_add_text' => '',
+    'message_add_text_keys' => 'Enable Arabic writing for the keys and they will be translated into English upon final saving',
+    'message_add_text_values' => 'Enable Arabic writing for the values and they will be translated into English upon final saving',
     'enabled' => 'enabled',
     'disabled' => 'disabled',
     'please_wait' => 'please wait',
@@ -131,5 +132,7 @@ return [
     'new_group' => 'New Group',
     'msg_save_data' => 'The data has been saved. Will temporarily saved data be deleted.',
     'exists_key' => 'The entered key already exists',
-    'exists_value' => '',
+    'save_done' => 'Save',
+    'msg_new_group' => 'You have a group that you have not published. If you choose a second group, this group will be deleted. Do you agree?',
+    'require_group_name' => 'Group name is required',
 ];

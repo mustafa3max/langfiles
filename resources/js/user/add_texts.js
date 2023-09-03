@@ -3,8 +3,11 @@ const keyAdd = document.getElementById('key');
 const valueAdd = document.getElementById('value');
 const allTexts = document.getElementById('all-texts');
 const groupName = document.getElementById('group-name');
+const saveDone = document.getElementById('save-done');
 
-groupName.value = sessionStorage.getItem('group_name');
+if (sessionStorage.getItem('items_save')!=null) {
+    groupName.value = sessionStorage.getItem('group_name');
+}
 
 groupName.addEventListener("blur", function() {
     sessionStorage.setItem('group_name', groupName.value);
@@ -77,6 +80,8 @@ window.save = function(oldKey, oldValue){
                 Object.defineProperty(items, itemKey.value, Object.getOwnPropertyDescriptor(items, oldKey));
 
                 delete items[oldKey];
+
+                done();
                 break;
             }else {
                 alert('المفتاح المدخل موجود بالفعل');
@@ -90,6 +95,7 @@ window.save = function(oldKey, oldValue){
 
                 items[Object.keys(items)[index]] = itemValue.value;
 
+                done();
                 break;
             }else {
                 alert('القيمة المدخلة موجودة بالفعل');
@@ -127,22 +133,31 @@ window.removeAll =  function(msg = null){
             removeNow();
         }
     }else{
-        alert(msg);
         removeNow();
     }
 
 }
 
-window.changeInputMeGroup = function(group) {
+window.changeInputMeGroup = function(group, isOldGroup) {
     groupName.value = group;
-    sessionStorage.setItem('group_name', groupName.value);
-    Livewire.emit('changeGroupName', group);
+    Livewire.emit('changeGroupName', [group, isOldGroup]);
 }
 
 window.removeNow = () => {
     sessionStorage.removeItem('items_save');
     sessionStorage.removeItem('group_name');
+
     Alpine.store('items').items = {};
     Alpine.store('items').on = false;
     groupName.value = "";
+}
+
+window.done = function(){
+    saveDone.classList.remove('hidden');
+    saveDone.classList.add('flex');
+
+    setTimeout(() => {
+         saveDone.classList.add('hidden');
+        saveDone.classList.remove('flex');
+    }, 800);
 }
