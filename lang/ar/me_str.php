@@ -49,7 +49,6 @@ return [
     'item' => 'عنصر',
     'key' => 'المفتاح',
     'value' => 'القيمة',
-    'desc_mustafamax' => 'مطور تطبيقات android و ios باستخدام flutter وايضا مطور مواقع الكترونية بإستخدام laravel',
     'profile' => 'الملف الشخصي',
     'search_en' => 'البحث بحروف انجليزية فقط',
     'search' => 'البحث',

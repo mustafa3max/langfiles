@@ -37,4 +37,13 @@ return [
     //
     'title_2_types' => 'Language translation files for website and application developers',
     'title_2_keys' => 'Language translation texts for website and application developers',
+    //
+    'title_mustafamax' => 'Website and application developer using Flutter and Laravel',
+    'desc_mustafamax' => 'Android and iOS application developer using Flutter and also a website developer using Laravel. I created this site to shorten the time programmers spend creating language files and translating these files. All this is in the past now. With the langfiles website, there is no need to worry. Copy the available texts for all fields and all extensions and paste them into your project.',
+    'profile_facebook_mustafamax' => 'Facebook profile',
+    'page_facebook_mustafamax' => 'langfiles Facebook page',
+    'youtube_mustafamax' => 'Our channel on youtube',
+    'instagram_mustafamax' => 'Our channel on instagram',
+    'tiktok_mustafamax' => 'Our channel on tiktok',
+
 ];

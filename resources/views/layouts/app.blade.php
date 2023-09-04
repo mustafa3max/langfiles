@@ -18,9 +18,9 @@
     <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:image" content="{{ asset('assets/images/bg_index.webp') }}" />
+    <meta property="og:image" content="{{ asset('assets/images/bg_image_home.webp') }}" />
     <meta property="og:video:type" content="video/mp4." />
-    <meta property="og:video" content="{{ asset('assets/videos/langfiles_show.mp4') }}" />
+    <meta property="og:video" content="{{ asset('assets/videos/bg_video_home.mp4') }}" />
     <meta property="og:video:secure_url" content="{{ asset('assets/videos/langfiles_show.mp4') }}" />
     <meta property="og:video:width" content="720" />
     <meta property="og:video:height" content="576" />

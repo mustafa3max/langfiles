@@ -17,7 +17,7 @@
     <meta property="og:description" content="{{ __('seo.description_home') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:image" content="{{ asset('assets/images/bg_index.webp') }}" />
+    <meta property="og:image" content="{{ asset('assets/images/bg_image_home.webp') }}" />
 
     @vite('resources/css/app.css')
 
@@ -50,14 +50,13 @@
     </nav>
 
     {{-- Home --}}
-    <div class="bg-index-headerbg-center relative h-screen bg-accent" id="0">
-        <video autoplay loop muted poster="{{ asset('assets/images/bg_image_home.png') }}"
-            class="absolute h-screen w-full object-cover">
+    <div class="relative h-screen bg-accent bg-index-header bg-center" id="0">
+        <video autoplay loop muted poster="{{ asset('assets/images/bg_image_home.webp') }}"
+            class="absolute h-screen w-full object-cover max-lg:hidden">
             <source src="{{ asset('assets/videos/bg_video_home.mp4') }}" type="video/mp4">
         </video>
         <div
             class="flex h-full items-center justify-center text-primary-light drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-
             <div class="absolute bottom-0 left-0 right-0 top-0 bg-primary-dark opacity-30">
             </div>
             <div class="z-10 p-2">

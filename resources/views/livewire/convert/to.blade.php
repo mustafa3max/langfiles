@@ -76,37 +76,7 @@
                 <p>{{ __('me_str.desc_trans_group') }}</p>
             </div>
 
-            {{-- Translate Keys --}}
-            <div class="flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
-                <button x-on:click='isTransKeys=!isTransKeys'
-                    :class="isTransKeys ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark'"
-                    class="block rounded-lg p-2"
-                    x-text="isTransKeys?'{{ __('me_str.disabled') }}':'{{ __('me_str.enabled') }}'"></button>
-                <p class="grow py-2 text-start">
-                    {{ __('me_str.message_add_text_keys') }}</p>
-                <span class="text-accent" x-show="isTransKeys">
-                    <x-svg.check />
-                </span>
-
-                <span x-show="!isTransValues">
-                    <x-svg.x />
-                </span>
-            </div>
-            <div class="flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
-                <button x-on:click='isTransValues=!isTransValues'
-                    :class="isTransValues ? 'bg-accent text-primary-dark' : 'bg-primary-light dark:bg-primary-dark'"
-                    class="block rounded-lg p-2"
-                    x-text="isTransValues?'{{ __('me_str.disabled') }}':'{{ __('me_str.enabled') }}'"></button>
-                <p class="grow py-2 text-start">
-                    {{ __('me_str.message_add_text_values') }}</p>
-                <span class="text-accent" x-show="isTransValues">
-                    <x-svg.check />
-                </span>
-
-                <span x-show="!isTransValues">
-                    <x-svg.x />
-                </span>
-            </div>
+            <x-is-trans-key-value />
 
             <button
                 x-on:click="Livewire.emit('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})"

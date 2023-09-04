@@ -4,8 +4,9 @@ Allow: /types
 Allow: /file
 Allow: /blog/
 Allow: /blog/article
+Allow: /mustafamax
+Allow: /mustafamax/profile
 Disallow: /control-panel
-Disallow: /mustafamax
 Disallow: /user
 Disallow: /valid-user
 Disallow: /not-valid-user

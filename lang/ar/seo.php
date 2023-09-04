@@ -36,4 +36,12 @@ return [
     //
     'title_2_types' => 'ملفات ترجمة لغوية لمطوري المواقع والتطبيقات',
     'title_2_keys' => 'نصوص ترجمة لغوية لمطوري المواقع والتطبيقات',
+    //
+    'title_mustafamax' => 'مطور مواقع وتطبيقات باستخدام Flutter و Laravel',
+    'desc_mustafamax' => 'مطور تطبيقات android و ios باستخدام flutter وايضا مطور مواقع الكترونية بإستخدام laravel. لقد قمت بإنشاء هذا الموقع لتقصير الوقت الذي يقضيه المبرمجون في إنشاء ملفات اللغة وترجمة هذه الملفات. كل هذا اصبح من الماضي الآن. مع موقع langfiles لا داعي للقلق قم بنسخ النصوص المتوفرة لكل المجالات وبكل الامتدادات والصقها في مشروعك.',
+    'profile_facebook_mustafamax' => 'الملف الشخصي فيسبوك',
+    'page_facebook_mustafamax' => 'صفحة langfiles فيسبوك',
+    'youtube_mustafamax' => 'قناتنا على youtube',
+    'instagram_mustafamax' => 'قناتنا على instagram',
+    'tiktok_mustafamax' => 'قناتنا على tiktok',
 ];

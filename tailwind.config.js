@@ -33,7 +33,7 @@ export default {
         'code-2-dark': '#FACC15',
     },
     backgroundImage: {
-        'index-header': "url('/public/assets/images/bg_index.webp')"
+        'index-header': "url('/public/assets/images/bg_image_home.webp')"
       },
     fontFamily: {
         'almarai': ['Almarai', 'sans-serif'],
