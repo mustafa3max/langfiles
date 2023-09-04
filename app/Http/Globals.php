@@ -54,4 +54,28 @@ class Globals
             return redirect('/');
         }
     }
+
+    static function syntaxKey($key)
+    {
+        $key = str_split($key);
+
+        for ($i = 0; $i < count($key); $i++) {
+            if (preg_replace(' /\d/u', '', $key[0]) === '') {
+                array_splice($key, array_search($key[0], $key), 1);
+            } elseif (preg_replace('/[^ا-يA-Za-z0-9]/', '', $key[0]) === '') {
+                array_splice($key, array_search($key[0], $key), 1);
+            }
+        }
+
+        $key = implode('', $key);
+
+        $key = str_replace(' ', '_', $key);
+        $key = str_replace('-', '_', $key);
+        $key = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
+        $key = trim($key, '_');
+        $key = preg_replace('/[^ا-يA-Za-z0-9\-_]/', '', $key);
+        $key = preg_replace('/_+/', '_', $key);
+
+        return $key;
+    }
 }

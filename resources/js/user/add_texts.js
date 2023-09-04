@@ -51,6 +51,7 @@ allTexts.addEventListener("keypress", function(event) {
         items = {};
     }
     if (keyAdd.value != "" && valueAdd.value != "") {
+        keyAdd.value = syntaxKey(keyAdd.value);
         items[keyAdd.value] = valueAdd.value;
         sessionStorage.setItem('items_save', JSON.stringify(items));
         keyAdd.value = "";

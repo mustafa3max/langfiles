@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('path_2')->nullable();
             $table->string('path_3')->nullable();
             $table->boolean('enabled')->default(false);
-            $table->boolean('website')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

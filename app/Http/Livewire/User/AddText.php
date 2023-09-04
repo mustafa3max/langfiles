@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Http\Globals;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -42,6 +43,7 @@ class AddText extends Component
 
     function publish($items)
     {
+
         if ($this->groupName == null) {
             $this->emit('message', __('me_str.require_group_name'));
         }
@@ -78,10 +80,8 @@ class AddText extends Component
                     $tr = new GoogleTranslate('en');
                     $value = $tr->translate($value);
                 }
-                $key = str_replace(' ', '_', $key);
-                $key = str_replace('-', '_', $key);
-                $key = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key));
-                $key = trim($key, '_');
+
+                $key = Globals::syntaxKey($key);
 
                 if (!preg_match('/[^A-Za-z0-9-_]/', $key)) {
                     $newItems[$key] = $value;

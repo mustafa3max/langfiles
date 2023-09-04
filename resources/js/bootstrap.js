@@ -31,3 +31,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
+
+
+window.syntaxKey = function(key) {
+    key = key.split('');
+    for (var i = 0; i < key.length; i++) {
+        if (key[0].replace(/\d+/g, '') == '') {
+            key.splice(0, 1);
+        } else if (key[0].replace(/[^ا-يa-zA-Z0-9]/g, '') == '') {
+            key.splice(0, 1);
+        }
+    }
+    key = key.join('');
+    key = key.trim();
+    key = key.replaceAll(" ", "_");
+    key = key.replaceAll("-", "_");
+    key = key.replace(/_+/g, '_');
+    key = key.toLowerCase();
+    key = key.replace(/[^ا-يa-zA-Z0-9-_]/g, '');
+
+    return key;
+}

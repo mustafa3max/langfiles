@@ -65,6 +65,11 @@ window.add = function() {
         data = {};
     }
     if(key.value != "" && value.value != "") {
+
+        value.value = value.value.trim();
+
+        key.value = syntaxKey(key.value);
+
         data[key.value] = value.value;
         type1.innerText = JSON.stringify(data);
         sessionStorage.setItem('convert_data', type1.innerText);

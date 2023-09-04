@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Convert;
 
+use App\Http\Globals;
 use Livewire\Component;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
@@ -28,6 +29,8 @@ class To extends Component
 
             $newData = [];
             foreach ($dataJson as $key => $value) {
+                $key = Globals::syntaxKey($key);
+
                 if ($isTransKeys) {
                     $key = $tr->translate($key);
                 }

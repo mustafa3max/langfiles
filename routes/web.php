@@ -71,9 +71,7 @@ Route::prefix('control-panel')->group(function () {
 
 // Mustafamax
 Route::prefix('mustafamax')->group(function () {
-    Route::scopeBindings()->group(function () {
-        Route::get('profile', Profile::class)->name('profile');
-    });
+    Route::get('profile', Profile::class)->name('profile');
 
     Route::middleware('auth:sanctum', 'verified')->group(function () {
     });
