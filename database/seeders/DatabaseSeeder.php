@@ -10,8 +10,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            TypesSeeder::class,
-            LanguagesSeeder::class,
+            ContributorsSeeder::class,
         ]);
     }
 }

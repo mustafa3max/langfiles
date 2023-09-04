@@ -9,6 +9,7 @@ use App\Http\Livewire\Blog\Index as BlogIndex;
 use App\Http\Livewire\Blog\Create as BlogCreate;
 use App\Http\Livewire\Blog\Update as BlogUpdate;
 use App\Http\Livewire\Blog\Delete as BlogDelete;
+use App\Http\Livewire\Contributors\Index as ContributorsIndex;
 use App\Http\Livewire\ControlPanel\Create;
 use App\Http\Livewire\ControlPanel\Index;
 use App\Http\Livewire\ControlPanel\Update;
@@ -90,6 +91,12 @@ Route::prefix('user')->group(function () {
     Route::middleware('auth:sanctum', 'verified')->group(function () {
     });
 });
+
+// Contributors
+Route::prefix('contributors')->group(function () {
+    Route::get('/', ContributorsIndex::class)->name('index');
+});
+
 
 // Blog
 // Route::prefix('blog')->group(function () {

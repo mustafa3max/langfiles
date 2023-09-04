@@ -31,6 +31,8 @@ return [
     'title_convert' => 'Convert json to php, android and more',
     'description_convert' => 'Do you have data in json format that you want to convert to different formats that work as translation files on Android, iOS, Laravel, and many others? With our tool, it has become very easy',
     //
+    'title_contributors' => 'List of amazing contributors to langfiles',
+    'description_contributors' => 'These people made amazing sacrifices in creating and developing the langfiles website because they put a lot of time and effort into it, and the least we can do for them is to immortalize their names on this page. Thank them for this wonderful work.',
     //
     'title_add_texts' => 'Add language translation texts to support the site',
     'description_add_texts' => 'Support LangFiles by adding language translation texts, as these texts are used by thousands of developers, so we invite you to help us, the matter is simple, all you have to do is choose the language and enter the key and value.',
@@ -45,5 +47,6 @@ return [
     'youtube_mustafamax' => 'Our channel on youtube',
     'instagram_mustafamax' => 'Our channel on instagram',
     'tiktok_mustafamax' => 'Our channel on tiktok',
+    'website_mustafamax' => 'website',
 
 ];

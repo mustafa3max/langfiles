@@ -31,6 +31,9 @@ return [
     'title_convert' => 'تحويل json إلى php و android والمزيد',
     'description_convert' => 'هل عندك بيانات بصيغة json تريد تحويلها الى صيغ مختلفة تعمل كملفات ترجمة على android او ios او laravel وغيرها الكثير مع اداتنا صار الامر سهل جدا',
     //
+    'title_contributors' => 'قائمة المساهمين المذهلين في langfiles',
+    'description_contributors' => 'لقد قدم هؤلاء الأشخاص تضحيات مذهلة في إنشاء وتطوير موقع langfiles لأنهم بذلوا فيه الكثير من الوقت والجهد، وأقل ما يمكن أن نقدمه لهم هو تخليد أسمائهم في هذه الصفحة. شكرا لهم على هذا العمل الرائع .',
+    //
     'title_add_texts' => 'إضافة نصوص ترجمة لغوية لدعم الموقع',
     'description_add_texts' => 'ادعم موقع langfiles بإضافة نصوص ترجمة لغوية، فهذه النصوص يستخدمها الالاف من المطورين لذلك ندعوك لمساعدتنا الامر بسيط كل ماعليك اختيار اللغة وادخال المفتاح و القيمة.',
     //
@@ -44,4 +47,5 @@ return [
     'youtube_mustafamax' => 'قناتنا على youtube',
     'instagram_mustafamax' => 'قناتنا على instagram',
     'tiktok_mustafamax' => 'قناتنا على tiktok',
+    'website_mustafamax' => 'الموقع إلكتروني',
 ];

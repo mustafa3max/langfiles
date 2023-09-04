@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Contributor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'title',
+        'name',
         'thumbnail',
+        'phone',
+        'path_profile',
+        'title',
         'desc',
-        'article',
-        'author',
+        'path_1',
+        'path_2',
+        'path_3',
         'enabled',
+        'website'
     ];
 
     protected $casts = [
