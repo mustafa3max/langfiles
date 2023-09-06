@@ -4,8 +4,8 @@ window.To = To;
 
 const type1 = document.getElementById('type-1');
 const type2 = document.getElementById('type-2');
-const key = document.getElementById('key');
-const value = document.getElementById('value');
+const keyAdd = document.getElementById('key');
+const valueAdd = document.getElementById('value');
 var data = {};
 
 try {
@@ -19,24 +19,24 @@ type1.addEventListener('input', ()=>{
     sessionStorage.setItem('convert_data', type1.innerText);
 });
 
-key.addEventListener("keypress", function(event) {
+keyAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
-    if(key.value != "") {
-        value.focus();
+    if(event.target.value != "") {
+        event.target.focus();
     }
     else {
-        key.setAttribute('placeholder', 'required');
+        event.target.setAttribute('placeholder', 'required');
     }
   }
 });
 
-value.addEventListener("keypress", function(event) {
+valueAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
-    if(value.value != "") {
+    if(event.target.value != "") {
         add();
     }
     else {
-        value.setAttribute('placeholder', 'required');
+        event.target.setAttribute('placeholder', 'required');
     }
   }
 });
@@ -64,19 +64,19 @@ window.add = function() {
     if (data == null) {
         data = {};
     }
-    if(key.value != "" && value.value != "") {
+    if(keyAdd.value != "" && value.value != "") {
 
-        value.value = value.value.trim();
+        valueAdd.value = valueAdd.value.trim();
 
-        key.value = syntaxKey(key.value);
+        keyAdd.value = syntaxKey(keyAdd.value);
 
         data[key.value] = value.value;
         type1.innerText = JSON.stringify(data);
         sessionStorage.setItem('convert_data', type1.innerText);
         convertNow();
-        key.value = "";
-        value.value = "";
-        key.focus();
+        keyAdd.value = "";
+        valueAdd.value = "";
+        keyAdd.focus();
     }
 }
 
@@ -84,3 +84,45 @@ window.delete = function() {
     sessionStorage.removeItem('convert_data');
     type1.innerText = "";
 }
+
+//
+// Syntax
+//
+
+var valueSelect = [];
+
+keyAdd.addEventListener("focus", function() {
+    Alpine.store('syntax').syntaxesLocal = [];
+    Alpine.store('syntax').isSyntaxKey = true;
+});
+
+keyAdd.addEventListener("blur", function() {
+    setTimeout(() => {
+        Alpine.store('syntax').isSyntaxKey = false;
+    }, 200);
+});
+
+keyAdd.addEventListener("keyup", function(event) {
+    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
+    Alpine.store('syntax').syntaxesLocal = data[0];
+    event.target.value = data[1];
+});
+
+valueAdd.addEventListener("focus", function() {
+    Alpine.store('syntax').syntaxesLocal = [];
+    Alpine.store('syntax').isSyntaxValue = true;
+});
+
+valueAdd.addEventListener("blur", function() {
+    setTimeout(() => {
+        Alpine.store('syntax').isSyntaxValue = false;
+    }, 200);
+});
+
+valueAdd.addEventListener("keyup", function(event) {
+    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
+    Alpine.store('syntax').syntaxesLocal = data[0];
+    event.target.value = data[1];
+});
+
+//constructor

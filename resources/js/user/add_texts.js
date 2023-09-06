@@ -41,7 +41,6 @@ allTexts.addEventListener("keypress", function(event) {
         else if(event.target.id.includes("value")) {
             save(null, event.target.name);
         }
-        // event.target.blur();
     }
 });
 
@@ -162,3 +161,43 @@ window.done = function(){
         saveDone.classList.remove('flex');
     }, 800);
 }
+
+//
+// Syntax
+//
+
+var valueSelect = [];
+
+keyAdd.addEventListener("focus", function() {
+    Alpine.store('syntax').syntaxesLocal = [];
+    Alpine.store('syntax').isSyntaxKey = true;
+});
+
+keyAdd.addEventListener("blur", function() {
+    setTimeout(() => {
+        Alpine.store('syntax').isSyntaxKey = false;
+    }, 200);
+});
+
+keyAdd.addEventListener("keyup", function(event) {
+    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
+    Alpine.store('syntax').syntaxesLocal = data[0];
+    event.target.value = data[1];
+});
+
+valueAdd.addEventListener("focus", function() {
+    Alpine.store('syntax').syntaxesLocal = [];
+    Alpine.store('syntax').isSyntaxValue = true;
+});
+
+valueAdd.addEventListener("blur", function() {
+    setTimeout(() => {
+        Alpine.store('syntax').isSyntaxValue = false;
+    }, 200);
+});
+
+valueAdd.addEventListener("keyup", function(event) {
+    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
+    Alpine.store('syntax').syntaxesLocal = data[0];
+    event.target.value = data[1];
+});

@@ -87,7 +87,6 @@
     <script src="https://unpkg.com/@victoryoalli/alpinejs-timeout@1.0.0/dist/timeout.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     {{-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> --}}
-
 </body>
 
 </html>

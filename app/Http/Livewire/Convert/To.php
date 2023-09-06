@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Convert;
 
 use App\Http\Globals;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
@@ -48,6 +49,11 @@ class To extends Component
     function dataTrans($dataTrans)
     {
         return $dataTrans;
+    }
+
+    function syntaxes()
+    {
+        return Cache::get('syntaxes');
     }
 
     public function render()

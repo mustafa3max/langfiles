@@ -31,7 +31,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     enabledTransports: ['ws', 'wss'],
 // });
 
-
+// Syntax
 
 window.syntaxKey = function(key) {
     key = key.split('');
@@ -51,4 +51,56 @@ window.syntaxKey = function(key) {
     key = key.replace(/[^ا-يa-zA-Z0-9-_]/g, '');
 
     return key;
+}
+
+window.selectSyntax = function (input, syntax) {
+
+    syntax = syntax.replaceAll(' ', '-');
+    input += " " + syntax;
+
+    var value = input.split(" ");
+    value.splice(value.length - 2, 1);
+    input = value.join(' ') + ' ';
+
+    input = input.replaceAll('-', ' ');
+    return input;
+}
+
+window.filterSyntax = function(input, valueSelect, syntaxesLocal, syntaxesServer) {
+    const value = input.trim().replace(/\s{2,}/g, ' ');
+
+    syntaxesLocal = [];
+
+    for (let index = 0; index < syntaxesServer.length; index++) {
+        const element = syntaxesServer[index];
+
+        var v = '';
+        var vList = input.split(' ');
+        if(vList.length > 1) {
+            v = vList[vList.length-1];
+        }else {
+            v = value;
+        }
+        v = v.toLowerCase();
+        v = v.replaceAll('إ', 'ا');
+        v = v.replaceAll('أ', 'ا');
+        if(element.includes(v)) {
+            syntaxesLocal.push(element);
+        }
+    }
+
+    if(value == '') {
+        syntaxesLocal = [];
+    }
+
+    if(input[input.length-1] == ' ') {
+        syntaxesLocal = [];
+        valueSelect.push(value);
+
+        input = valueSelect[valueSelect.length-1]+' ';
+    }else {
+        valueSelect = [];
+    }
+
+    return [syntaxesLocal, input];
 }

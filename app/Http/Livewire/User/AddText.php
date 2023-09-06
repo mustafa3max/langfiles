@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Http\Globals;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -175,6 +176,11 @@ class AddText extends Component
 
         session()->put('is_old_group', $data[1]);
         $this->isOldGroup = session()->pull('is_old_group') ?? false;
+    }
+
+    function syntaxes()
+    {
+        return Cache::get('syntaxes');
     }
 
     public function mount()

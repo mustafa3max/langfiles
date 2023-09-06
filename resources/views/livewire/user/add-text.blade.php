@@ -85,23 +85,10 @@
             </div>
         @endif
 
-        <div class="flex flex-wrap items-end gap-2">
-            <div class="grid grow gap-2">
-                <label class="block">{{ __('me_str.key') }}</label>
-                <input type="text" id="key" placeholder="{{ __('convert.write_here') }}"
-                    class="rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
-            </div>
-
-            <button x-on:click="window.add()"
-                class="mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-accent"
-                title="{{ __('convert.add') }}"><x-svg.add /></button>
-
-            <div class="grid grow gap-2">
-                <label class="block">{{ __('me_str.value') }}</label>
-                <input type="text" id="value" placeholder="{{ __('convert.write_here') }}"
-                    class="rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
-            </div>
+        <div class="w-full p-4" x-data="{ syntaxesLocal: [] }">
+            <x-input-key-value />
         </div>
+
     </x-card>
 
     <x-card>
@@ -164,6 +151,8 @@
     <x-msg />
 
     <script>
+        var syntaxesLocal = [];
+
         document.addEventListener('alpine:init', () => {
             Alpine.store('items', {
                 items: JSON.parse(sessionStorage.getItem('items_save') ?? '{}'),
@@ -172,9 +161,45 @@
                     this.on = Object.keys(this.items ?? {}).length > 0;
                 }
             });
+
+            // Syntaxes
+            Alpine.store('syntax', {
+                syntaxesLocal: [],
+                isSyntaxKey: false,
+                isSyntaxValue: false,
+
+                selectSyntax(syntax, isKey, id) {
+                    const input = document.getElementById(id);
+                    input.value = window.selectSyntax(input.value, syntax);
+
+                    setTimeout(() => {
+                        input.setSelectionRange(input.value.length, input.value.length);
+                        input.focus();
+                    }, 250);
+                }
+            });
         });
 
         document.addEventListener('livewire:load', function() {
+            // Syntaxes
+            const itemsSyntax = @this.syntaxes();
+            itemsSyntax.then((value) => {
+                if (value == null) {
+                    sessionStorage.removeItem('syntaxes');
+                } else {
+                    sessionStorage.setItem('syntaxes', JSON.stringify(value));
+                }
+            });
+
+            const items = @this.selectGroup(@this.groupName);
+            items.then((value) => {
+                if (value != null && (sessionStorage.getItem('items_save') ?? '{}') === value) {
+                    sessionStorage.setItem('items_save', value);
+                    Alpine.store('items').items = JSON.parse(value);
+                    Alpine.store('items').on = Object.keys(Alpine.store('items').items ?? {}).length > 0;
+                }
+            });
+
             Livewire.on('clearInputs', isClaer => {
                 if (isClaer) {
                     window.removeAll('remove');
@@ -184,15 +209,6 @@
             });
 
             @this.groupName = sessionStorage.getItem('group_name');
-            const items = @this.selectGroup(@this.groupName);
-
-            items.then((value) => {
-                if (value != null && (sessionStorage.getItem('items_save') ?? '{}') === value) {
-                    sessionStorage.setItem('items_save', value);
-                    Alpine.store('items').items = JSON.parse(value);
-                    Alpine.store('items').on = Object.keys(Alpine.store('items').items ?? {}).length > 0;
-                }
-            });
 
             Livewire.on('changeGroupName', data => {
                 const group = data[0];

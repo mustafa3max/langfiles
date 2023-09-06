@@ -25,30 +25,20 @@
     </x-card>
 
     <x-full-one>
-        <div x-show="select" class="grid gap-2 p-2" x-data="{ data: sessionStorage.getItem('convert_data') }">
+        <div x-show="select" class="grid gap-2 p-2" x-data="{
+            data: sessionStorage.getItem('convert_data'),
+        }">
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
                 class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
                 @if ($dataTrans != null) x-text="JSON.stringify({{ json_encode($dataTrans) }})" @else x-text="data" @endif>
             </div>
         </div>
-        <div class="w-full p-4" x-show="!select">
-            <div class="flex flex-wrap items-end gap-4">
-                <div class="grid grow gap-2">
-                    <label class="block">{{ __('me_str.key') }}</label>
-                    <input id="key" type="text"
-                        class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                        placeholder="{{ __('convert.write_here') }}">
-                </div>
-                <button onclick="add()" class="mb-1 flex h-12 w-12 items-center justify-center rounded-full bg-accent"
-                    title="{{ __('convert.add') }}"><x-svg.add /></button>
-                <div class="grid grow gap-2">
-                    <label class="block">{{ __('me_str.value') }}</label>
-                    <input id="value" type="text"
-                        class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                        placeholder="{{ __('convert.write_here') }}">
-                </div>
-            </div>
+
+        <div class="w-full p-4" x-show="!select" x-data="{ syntaxesLocal: [] }">
+
+            <x-input-key-value />
+
         </div>
     </x-full-one>
 
@@ -88,17 +78,52 @@
         <x-wite />
     </div>
 
-
     {{-- Message Not Name Group --}}
     <x-msg />
 
     <script>
+        var syntaxesLocal = [];
+
+        const keyAdd = document.getElementById('key');
+        const valueAdd = document.getElementById('value');
+
+        document.addEventListener('alpine:init', () => {
+
+            // Syntaxes
+            Alpine.store('syntax', {
+                syntaxesLocal: [],
+                isSyntaxKey: false,
+                isSyntaxValue: false,
+
+                selectSyntax(syntax, isKey, id) {
+                    const input = document.getElementById(id);
+                    input.value = window.selectSyntax(input.value, syntax);
+
+                    setTimeout(() => {
+                        input.setSelectionRange(input.value.length, input.value.length);
+                        input.focus();
+                    }, 250);
+                }
+            });
+        });
+
         document.addEventListener('livewire:load', function() {
             Livewire.on('dataTrans', data => {
                 sessionStorage.setItem('convert_data', data);
+            });
+
+            // Syntaxes
+            const itemsSyntax = @this.syntaxes();
+            itemsSyntax.then((value) => {
+                if (value == null) {
+                    sessionStorage.removeItem('syntaxes');
+                } else {
+                    sessionStorage.setItem('syntaxes', JSON.stringify(value));
+                }
             });
         });
     </script>
 
     @vite('resources/js/converts/convert.js')
+
 </div>
