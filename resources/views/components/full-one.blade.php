@@ -1,4 +1,4 @@
-<div x-data="{ select: true }" class="py-2">
+<div x-data="{ select: true }">
     <div class="flex gap-4">
         <a x-on:click="select=true"
             class="block grow cursor-pointer rounded-t-lg bg-secondary-light px-8 py-4 text-center dark:bg-secondary-dark"

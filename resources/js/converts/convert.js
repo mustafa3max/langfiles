@@ -17,12 +17,17 @@ type1.innerText = JSON.stringify(data);
 
 type1.addEventListener('input', ()=>{
     sessionStorage.setItem('convert_data', type1.innerText);
+    try {
+        data = JSON.parse(sessionStorage.getItem('convert_data'));
+    } catch (error) {
+
+    }
 });
 
 keyAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     if(event.target.value != "") {
-        event.target.focus();
+        valueAdd.focus();
     }
     else {
         event.target.setAttribute('placeholder', 'required');
@@ -64,13 +69,13 @@ window.add = function() {
     if (data == null) {
         data = {};
     }
-    if(keyAdd.value != "" && value.value != "") {
+    if(keyAdd.value != "" && valueAdd.value != "") {
 
         valueAdd.value = valueAdd.value.trim();
 
         keyAdd.value = syntaxKey(keyAdd.value);
 
-        data[key.value] = value.value;
+        data[keyAdd.value] = valueAdd.value;
         type1.innerText = JSON.stringify(data);
         sessionStorage.setItem('convert_data', type1.innerText);
         convertNow();

@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="w-full p-4" x-show="!select" x-data="{ syntaxesLocal: [] }">
+        <div class="w-full" x-show="!select" x-data="{ syntaxesLocal: [] }">
 
             <x-input-key-value />
 

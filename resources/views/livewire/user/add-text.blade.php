@@ -85,7 +85,7 @@
             </div>
         @endif
 
-        <div class="w-full p-4" x-data="{ syntaxesLocal: [] }">
+        <div class="w-full" x-data="{ syntaxesLocal: [] }">
             <x-input-key-value />
         </div>
 

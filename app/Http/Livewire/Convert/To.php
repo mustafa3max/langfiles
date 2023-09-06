@@ -31,7 +31,6 @@ class To extends Component
             $newData = [];
             foreach ($dataJson as $key => $value) {
                 $key = Globals::syntaxKey($key);
-
                 if ($isTransKeys) {
                     $key = $tr->translate($key);
                 }
@@ -40,7 +39,7 @@ class To extends Component
                 }
                 $newData[$key] = $value;
             }
-            $this->emit('dataTrans', json_encode($newData, JSON_UNESCAPED_UNICODE));
+            $this->emit('dataTrans', json_encode($newData));
 
             $this->dataTrans = $newData;
         }
