@@ -2,30 +2,31 @@
 
 use App\Http\Controllers\SitemapController;
 use App\Http\Globals;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Blog\Artilce;
-use App\Http\Livewire\Blog\Index as BlogIndex;
-use App\Http\Livewire\Blog\Create as BlogCreate;
-use App\Http\Livewire\Blog\Update as BlogUpdate;
-use App\Http\Livewire\Blog\Delete as BlogDelete;
-use App\Http\Livewire\Contributors\Index as ContributorsIndex;
-use App\Http\Livewire\ControlPanel\Create;
-use App\Http\Livewire\ControlPanel\Index;
-use App\Http\Livewire\ControlPanel\Update;
-use App\Http\Livewire\Convert\To;
-use App\Http\Livewire\Editor\Editor;
-use App\Http\Livewire\Mustafamax\Profile;
-use App\Http\Livewire\Policy\Privacypolicy;
-use App\Http\Livewire\Policy\Termsofservice;
-use App\Http\Livewire\Show\File;
-use App\Http\Livewire\Show\Keys;
-use App\Http\Livewire\Show\Types;
-use App\Http\Livewire\User\AddText;
-use App\Http\Livewire\User\Profile as UserProfile;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Blog\Artilce;
+use App\Livewire\Blog\Index as BlogIndex;
+use App\Livewire\Blog\Create as BlogCreate;
+use App\Livewire\Blog\Update as BlogUpdate;
+use App\Livewire\Blog\Delete as BlogDelete;
+use App\Livewire\Contributors\Index as ContributorsIndex;
+use App\Livewire\ControlPanel\Create;
+use App\Livewire\ControlPanel\Index;
+use App\Livewire\ControlPanel\Update;
+use App\Livewire\Convert\To;
+use App\Livewire\Editor\Editor;
+use App\Livewire\Mustafamax\Profile;
+use App\Livewire\Policy\Privacypolicy;
+use App\Livewire\Policy\Termsofservice;
+use App\Livewire\Show\File;
+use App\Livewire\Show\Keys;
+use App\Livewire\Show\Types;
+use App\Livewire\User\AddText;
+use App\Livewire\User\Profile as UserProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Livewire\Livewire;
 
 // Sitemap
 Route::scopeBindings()->group(function () {
@@ -35,18 +36,18 @@ Route::scopeBindings()->group(function () {
 
 Route::get('/', function () {
     return view('index');
-})->name('home');
+});
 
 Route::scopeBindings()->group(function () {
-    Route::get('types', Types::class)->name('types');
-    Route::get('file/{type}', File::class)->name('file');
-    Route::get('keys', Keys::class)->name('keys');
+    Route::get('/types', Types::class);
+    Route::get('/file/{type}', File::class);
+    Route::get('/keys', Keys::class);
 });
 
 // Policy
 Route::scopeBindings()->group(function () {
-    Route::get('privacy-policy', Privacypolicy::class)->name('privacy-policy');
-    Route::get('terms-of-service', Termsofservice::class)->name('terms-of-service');
+    Route::get('privacy-policy', Privacypolicy::class);
+    Route::get('terms-of-service', Termsofservice::class);
 });
 
 // Convert To
@@ -56,22 +57,22 @@ Route::scopeBindings()->group(function () {
 
 // Auth
 Route::scopeBindings()->group(function () {
-    Route::get('login', Login::class)->name('login');
-    Route::get('register', Register::class)->name('register');
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/register', Register::class);
 });
 
 // Control Panel
 Route::prefix('control-panel')->group(function () {
     Route::middleware('auth:sanctum', 'verified')->group(function () {
-        Route::get('index', Index::class)->name('index');
-        Route::get('create', Create::class)->name('create');
-        Route::get('update', Update::class)->name('update');
+        Route::get('index', Index::class);
+        Route::get('create', Create::class);
+        Route::get('update', Update::class);
     });
 });
 
 // Mustafamax
 Route::prefix('mustafamax')->group(function () {
-    Route::get('profile', Profile::class)->name('profile');
+    Route::get('profile', Profile::class);
 
     Route::middleware('auth:sanctum', 'verified')->group(function () {
     });
@@ -81,7 +82,7 @@ Route::prefix('mustafamax')->group(function () {
 Route::prefix('user')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('add-text', AddText::class)->name('add-text');
-        Route::get('profile', UserProfile::class)->name('profile');
+        Route::get('profile', UserProfile::class);
         Route::get('logout', function () {
             return Globals::logout();
         });
@@ -92,21 +93,21 @@ Route::prefix('user')->group(function () {
 
 // Contributors
 Route::prefix('contributors')->group(function () {
-    Route::get('/', ContributorsIndex::class)->name('index');
+    Route::get('/', ContributorsIndex::class)->name('contributors');
 });
 
 
 // Blog
 // Route::prefix('blog')->group(function () {
-//     Route::get('/', BlogIndex::class)->name('index');
+//     Route::get('/', BlogIndex::class);
 //     Route::get('article/{id}/{title}', Artilce::class);
-//     Route::get('create', BlogCreate::class)->name('create');
+//     Route::get('create', BlogCreate::class);
 //     Route::prefix('editor')->group(function () {
-//         Route::get('/', Editor::class)->name('editor');
+//         Route::get('/', Editor::class);
 //     });
 //     Route::middleware('auth:sanctum', 'verified')->group(function () {
-//         Route::get('update', BlogUpdate::class)->name('update');
-//         Route::get('delete', BlogDelete::class)->name('delete');
+//         Route::get('update', BlogUpdate::class);
+//         Route::get('delete', BlogDelete::class);
 //     });
 // });
 
@@ -130,3 +131,7 @@ Route::prefix('contributors')->group(function () {
 //         return redirect()->route('index');
 //     });
 // });
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/custom/livewire/update', $handle);
+});

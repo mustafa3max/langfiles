@@ -1,5 +1,5 @@
 <div dir="ltr">
-    <div class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg text-center text-lg font-bold flex">
+    <div class="flex rounded-lg bg-secondary-light p-2 text-center text-lg font-bold dark:bg-secondary-dark">
         <h1 class="text-accent">Table Nmae: </h1>
         <h1 class="ps-2">{{ $type }}</h1>
     </div>
@@ -7,12 +7,12 @@
 
 
     <form
-        class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg grid grid-cols-1 gap-2"wire:submit.prevent='create'>
+        class="grid grid-cols-1 gap-2 rounded-lg bg-secondary-light p-2 dark:bg-secondary-dark"wire:submit.prevent='create'>
         <div class="grid gap-2">
             <div class="grid">
                 <span class="pb-2">Key</span>
-                <input type="text" class="p-4 bg-primary-light dark:bg-primary-dark rounded-lg w-full"
-                    placeholder="Key" wire:model.lzy='key'>
+                <input type="text" class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
+                    placeholder="Key" wire:model.blur='key'>
 
                 @error('key')
                     <span class="pt-2">{{ $message }}</span>
@@ -20,8 +20,8 @@
             </div>
             <div class="grid">
                 <span class="pb-2">Value</span>
-                <input type="text" class="p-4 bg-primary-light dark:bg-primary-dark rounded-lg w-full"
-                    placeholder="Value" wire:model.lzy='value'>
+                <input type="text" class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
+                    placeholder="Value" wire:model.blur='value'>
 
                 @error('value')
                     <span class="pt-2">{{ $message }}</span>
@@ -29,25 +29,25 @@
             </div>
         </div>
         <div class="">
-            <button type="submit" class="bg-accent p-4 rounded-lg">Create Now</button>
+            <button type="submit" class="rounded-lg bg-accent p-4">Create Now</button>
         </div>
     </form>
 
     <div class="pt-2"></div>
 
-    <div class="bg-secondary-light dark:bg-secondary-dark p-2 rounded-lg grid grid-cols-1 gap-2">
+    <div class="grid grid-cols-1 gap-2 rounded-lg bg-secondary-light p-2 dark:bg-secondary-dark">
         @forelse ($data as $files)
             <div class="grid gap-2">
-                <div class="p-2 bg-primary-light dark:bg-primary-dark rounded-lg grow">
+                <div class="grow rounded-lg bg-primary-light p-2 dark:bg-primary-dark">
                     <div class="grid">
                         <div
-                            class="text-accent border-b border-secondary-light dark:border-secondary-dark text-center p-2">
+                            class="border-b border-secondary-light p-2 text-center text-accent dark:border-secondary-dark">
                             Key</div>
                         <div class="p-6 ps-2">{{ $files->key }}</div>
                     </div>
                     <div class="grid">
                         <div
-                            class="text-accent border-b border-t border-secondary-light dark:border-secondary-dark text-center p-2">
+                            class="border-b border-t border-secondary-light p-2 text-center text-accent dark:border-secondary-dark">
                             Value</div>
                         <div class="p-6 ps-2">{{ $files->value }}</div>
                     </div>

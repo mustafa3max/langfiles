@@ -8,7 +8,7 @@
         <div class="p-2"></div>
 
         {{-- Login Direct --}}
-        <form wire:submit.prevent="login">
+        <form wire:submit="login">
             <span>{{ __('me_str.email') }}</span>
             <div class="p-1"></div>
             @component('components.input', [
@@ -31,7 +31,7 @@
             <div class="p-2"></div>
             <div class="flex">
                 <div class="flex items-center">
-                    <input id="checked-checkbox" type="checkbox" wire:model.defer="remember"
+                    <input id="checked-checkbox" type="checkbox" wire:model="remember"
                         class="h-4 w-4 rounded focus:ring-2">
                     <label for="checked-checkbox"
                         class="ms-2 text-sm font-medium">{{ __('me_str.remember_me') }}</label>

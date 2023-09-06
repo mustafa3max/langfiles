@@ -31,7 +31,7 @@
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
                 class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                @if ($dataTrans != null) x-text="JSON.stringify({{ json_encode($dataTrans) }})" @else x-text="data" @endif>
+                @if ($dataTransQuery != null) x-text="JSON.stringify({{ json_encode($dataTransQuery) }})" @else x-text="data" @endif>
             </div>
         </div>
 
@@ -69,7 +69,7 @@
             <x-is-trans-key-value />
 
             <button
-                x-on:click="Livewire.emit('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})"
+                x-on:click="Livewire.dispatch('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})"
                 class="rounded-lg border border-transparent bg-accent p-2 text-primary-dark hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
         </div>
     </x-card>
@@ -107,7 +107,7 @@
             });
         });
 
-        document.addEventListener('livewire:load', function() {
+        document.addEventListener('livewire:init', function() {
             Livewire.on('dataTrans', data => {
                 sessionStorage.setItem('convert_data', data);
             });

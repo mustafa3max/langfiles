@@ -10,7 +10,7 @@
                     <span class="block pb-2">{{ __('me_str.thumbnail') }}</span>
                     <img src="{{ asset($blog->thumbnail ?? '') }}" alt="{{ $title ?? '' }}" id="thumbnail-article"
                         ondblclick="infoImage(this.src, this.id)" class="mb-2 w-80" contenteditable>
-                    <input type="hidden" wire:model.lazy='blog.thumbnail'
+                    <input type="hidden" wire:model.blur='blog.thumbnail'
                         class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark">
                 </div>
                 {{-- Title --}}
@@ -18,7 +18,7 @@
                     <span class="block pb-2">{{ __('me_str.title') }}</span>
                     <input type="text"
                         class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark"
-                        id="title" wire:model.lazy='blog.title' required>
+                        id="title" wire:model.blur='blog.title' required>
                     @error('blog.title')
                         <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
                     @enderror
@@ -27,7 +27,7 @@
                 <div class="grow">
                     <span class="block pb-2">{{ __('me_str.desc') }}</span>
                     <textarea rows="3" class="w-full rounded-lg bg-secondary-light p-2 outline-none dark:bg-secondary-dark"
-                        id="desc" wire:model.lazy='blog.desc' required></textarea>
+                        id="desc" wire:model.blur='blog.desc' required></textarea>
                     @error('blog.desc')
                         <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
                     @enderror
@@ -41,7 +41,7 @@
                         contenteditable="true">
                         {!! $blog->article !!}
                     </div>
-                    <input wire:model.lazy='blog.article' type="hidden">
+                    <input wire:model.blur='blog.article' type="hidden">
                     @error('blog.article')
                         <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
                     @enderror

@@ -1,19 +1,19 @@
 <form wire:submit.prevent='create'>
     <x-card>
         <div class="grid gap-2 pb-2">
-            <input type="text" wire:model.lazy='title'
+            <input type="text" wire:model.blur='title'
                 class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark" placeholder="{{ __('me_str.title') }}"
                 disabled>
             @error('title')
                 {{ $message }}
             @enderror
             <textarea rows="5" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                wire:model.lazy='desc' placeholder="{{ __('me_str.desc') }}" disabled></textarea>
+                wire:model.blur='desc' placeholder="{{ __('me_str.desc') }}" disabled></textarea>
             @error('desc')
                 {{ $message }}
             @enderror
             <textarea rows="20" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                wire:model.lazy='article' placeholder="{{ __('me_str.article') }}" disabled></textarea>
+                wire:model.blur='article' placeholder="{{ __('me_str.article') }}" disabled></textarea>
             @error('article')
                 {{ $message }}
             @enderror

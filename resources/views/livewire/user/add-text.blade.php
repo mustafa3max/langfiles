@@ -20,11 +20,11 @@
                     title="{{ __('me_str.me_groups') }}"
                     x-on:click="isMeGroups=Object.is(JSON.parse(sessionStorage.getItem('items_save')), null)?true:confirm('{{ __('me_str.msg_new_group') }}')"><x-svg.angles-down /></button>
                 @if (!$isOldGroup)
-                    <input type="text" wire:model.prevent='groupName' id="group-name"
+                    <input type="text" wire:model='groupName' id="group-name"
                         placeholder="{{ __('convert.write_here') }}"
                         class="grow rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
                 @else
-                    <div type="text" wire:model.prevent='groupName' id="group-name"
+                    <div type="text" wire:model='groupName' id="group-name"
                         class="h-14 grow rounded-lg border-2 border-primary-light p-4 outline-0 dark:border-primary-dark">
                         {{ $groupName }}
                     </div>
@@ -37,7 +37,7 @@
                 <ul class="flex gap-2 max-md:grow">
                     @foreach (Globals::languages() as $lang)
                         <li class="grow">
-                            @if ($langSelect != $lang)
+                            @if ($langSelectQuery != $lang)
                                 <button wire:click='langSelect("{{ $lang }}")' wire:key='{{ $lang }}'
                                     class="h-14 w-full rounded-lg bg-primary-light px-4 hover:bg-accent hover:text-primary-dark dark:bg-primary-dark dark:hover:bg-accent">{{ __('lang.' . $lang) }}</button>
                             @else
@@ -54,7 +54,7 @@
 
     <x-card>
         {{-- Translate Keys --}}
-        @if ($langSelect == 'ar')
+        @if ($langSelectQuery == 'ar')
             <div
                 class="mb-2 flex items-center gap-2 rounded-lg border-2 border-primary-light p-2 dark:border-primary-dark">
                 <button wire:click='isTrans(true)'
@@ -180,7 +180,7 @@
             });
         });
 
-        document.addEventListener('livewire:load', function() {
+        document.addEventListener('livewire:init', function() {
             // Syntaxes
             const itemsSyntax = @this.syntaxes();
             itemsSyntax.then((value) => {
