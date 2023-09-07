@@ -69,7 +69,8 @@
             <x-is-trans-key-value />
 
             <button
-                x-on:click="Livewire.dispatch('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})"
+                x-on:click="Livewire.dispatch('transNow', {data:{data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues}})"
+                {{-- x-on:click="Livewire.dispatch('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})" --}}
                 class="rounded-lg border border-transparent bg-accent p-2 text-primary-dark hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
         </div>
     </x-card>
@@ -90,7 +91,7 @@
         document.addEventListener('alpine:init', () => {
 
             // Syntaxes
-            Alpine.store('syntax', {
+            window.Alpine.store('syntax', {
                 syntaxesLocal: [],
                 isSyntaxKey: false,
                 isSyntaxValue: false,
@@ -107,11 +108,14 @@
             });
         });
 
-        document.addEventListener('livewire:init', function() {
-            Livewire.on('dataTrans', data => {
+
+        document.addEventListener('livewire:init', () => {
+            window.Livewire.on('dataTrans', data => {
                 sessionStorage.setItem('convert_data', data);
             });
+        });
 
+        document.addEventListener('livewire:initialized', () => {
             // Syntaxes
             const itemsSyntax = @this.syntaxes();
             itemsSyntax.then((value) => {

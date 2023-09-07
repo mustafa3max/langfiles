@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        {{ $types->links('vendor.livewire.simple-tailwind', ['currentPage' => $types->currentPage(), 'lastPage' => $types->lastPage()]) }}
+        {{ $types->links('vendor.livewire.me-tailwind', ['currentPage' => $types->currentPage(), 'lastPage' => $types->lastPage()]) }}
 
         <div class="p-1"></div>
 

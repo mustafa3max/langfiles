@@ -14,10 +14,11 @@ class AddText extends Component
 {
     public $groupName;
     public $langSelectQuery;
+    public $meGroupsQuery;
     public $currentLang;
     public $isTransKeys = false;
     public $isTransValues = false;
-    public $isOldGroup = false;
+    public $isOldGroupQuery = false;
     public $userId;
 
     protected $rules = [
@@ -29,7 +30,7 @@ class AddText extends Component
         $this->validateOnly($fields);
     }
 
-    protected $listeners = ['clearInputs', 'changeGroupName'];
+    protected $listeners = ['clearInputs', 'changeGroupName', 'isOldGroup'];
 
     function langSelect($lang)
     {
@@ -170,12 +171,18 @@ class AddText extends Component
         return Storage::disk('types_users')->get($path);
     }
 
-    function changeGroupName($data)
+    function changeGroupName($group)
     {
-        $this->groupName = $data[0];
+        $this->groupName = $group;
 
-        session()->put('is_old_group', $data[1]);
-        $this->isOldGroup = session()->pull('is_old_group') ?? false;
+        session()->put('is_old_group', $group);
+        $this->isOldGroupQuery = session()->pull('is_old_group') ?? false;
+    }
+
+    function isOldGroup()
+    {
+        $this->isOldGroupQuery = false;
+        $this->isOldGroupQuery = session()->put('is_old_group', false);
     }
 
     function syntaxes()
@@ -193,13 +200,13 @@ class AddText extends Component
         $this->isTransKeys = session()->pull('is_trans_keys') ?? false;
         $this->isTransValues = session()->pull('is_trans_values') ?? false;
 
-        $this->isOldGroup = session()->pull('is_old_group') ?? false;
+        $this->isOldGroupQuery = session()->pull('is_old_group') ?? false;
+
+        $this->meGroupsQuery = $this->meGroups();
     }
 
     public function render()
     {
-        return view('livewire.user.add-text')->with([
-            'meGroups' => $this->meGroups(),
-        ]);
+        return view('livewire.user.add-text');
     }
 }

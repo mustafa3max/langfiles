@@ -138,9 +138,14 @@ window.removeAll =  function(msg = null){
 
 }
 
-window.changeInputMeGroup = function(group, isOldGroup) {
+window.changeInputMeGroup = function(group) {
     groupName.value = group;
-    Livewire.emit('changeGroupName', [group, isOldGroup]);
+    sessionStorage.removeItem('items_save');
+    Alpine.store('items').items = {};
+    Alpine.store('items').on = false;
+    sessionStorage.setItem('group_name', group);
+
+    Livewire.dispatch('isOldGroup');
 }
 
 window.removeNow = () => {
@@ -161,6 +166,7 @@ window.done = function(){
         saveDone.classList.remove('flex');
     }, 800);
 }
+Math.random();
 
 //
 // Syntax

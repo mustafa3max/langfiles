@@ -47,6 +47,7 @@ class SyntaxController extends Controller
         $types = array_values($types);
 
         Cache::put('syntaxes', $types);
+
         return response()->json(
             [
                 'count' => count($types),

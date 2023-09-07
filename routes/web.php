@@ -39,9 +39,9 @@ Route::get('/', function () {
 });
 
 Route::scopeBindings()->group(function () {
-    Route::get('/types', Types::class);
-    Route::get('/file/{type}', File::class);
-    Route::get('/keys', Keys::class);
+    Route::get('types', Types::class)->name('types');
+    Route::get('file/{type}', File::class);
+    Route::get('keys', Keys::class)->name('keys');
 });
 
 // Policy

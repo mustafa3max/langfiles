@@ -19,10 +19,11 @@
                     class="flex h-14 w-14 items-center justify-center rounded-lg bg-accent text-primary-dark hover:text-primary-light max-md:grow"
                     title="{{ __('me_str.me_groups') }}"
                     x-on:click="isMeGroups=Object.is(JSON.parse(sessionStorage.getItem('items_save')), null)?true:confirm('{{ __('me_str.msg_new_group') }}')"><x-svg.angles-down /></button>
-                @if (!$isOldGroup)
+                @if (!$isOldGroupQuery)
                     <input type="text" wire:model='groupName' id="group-name"
                         placeholder="{{ __('convert.write_here') }}"
-                        class="grow rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark">
+                        class="grow rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                        wire:key='group-name'>
                 @else
                     <div type="text" wire:model='groupName' id="group-name"
                         class="h-14 grow rounded-lg border-2 border-primary-light p-4 outline-0 dark:border-primary-dark">
@@ -31,8 +32,9 @@
                 @endif
 
                 {{-- Select Group --}}
-                @component('components.add_texts.me-groups', ['meGroups' => $meGroups])
+                @component('components.add_texts.me-groups', ['meGroupsQuery' => $meGroupsQuery])
                 @endcomponent
+
                 {{-- Languages --}}
                 <ul class="flex gap-2 max-md:grow">
                     @foreach (Globals::languages() as $lang)
@@ -181,6 +183,16 @@
         });
 
         document.addEventListener('livewire:init', function() {
+            Livewire.on('clearInputs', isClaer => {
+                if (isClaer) {
+                    window.removeAll('remove');
+                } else {
+                    alert('يوجد خطأ ما لم يتم حفظ البيانات');
+                }
+            });
+        });
+
+        document.addEventListener('livewire:initialized', () => {
             // Syntaxes
             const itemsSyntax = @this.syntaxes();
             itemsSyntax.then((value) => {
@@ -190,7 +202,7 @@
                     sessionStorage.setItem('syntaxes', JSON.stringify(value));
                 }
             });
-
+            //
             const items = @this.selectGroup(@this.groupName);
             items.then((value) => {
                 if (value != null && (sessionStorage.getItem('items_save') ?? '{}') === value) {
@@ -199,44 +211,31 @@
                     Alpine.store('items').on = Object.keys(Alpine.store('items').items ?? {}).length > 0;
                 }
             });
-
-            Livewire.on('clearInputs', isClaer => {
-                if (isClaer) {
-                    window.removeAll('remove');
-                } else {
-                    alert('يوجد خطأ ما لم يتم حفظ البيانات');
-                }
-            });
-
+            //
             @this.groupName = sessionStorage.getItem('group_name');
 
-            Livewire.on('changeGroupName', data => {
-                const group = data[0];
-                const isOldGroup = data[1];
+            //
+            @this.on('changeGroupName', data => {
+                const group = data.group;
 
                 sessionStorage.setItem('group_name', group);
-                if (isOldGroup) {
-                    const items = @this.selectGroup(group);
+                const items = @this.selectGroup(group);
 
-                    items.then((value) => {
-                        if (value != '') {
-                            sessionStorage.setItem('items_save', value);
-                            const data = JSON.parse(value);
-                            Alpine.store('items').items = data;
-                            Alpine.store('items').on = Object.keys(data ?? {}).length > 0;
-                        }
+                items.then((value) => {
 
-                    }).catch((err) => {
-                        sessionStorage.removeItem('items_save');
-                        sessionStorage.removeItem('group_name');
-                        Alpine.store('items').items = {};
-                        Alpine.store('items').on = false;
-                    });
-                } else {
+                    if (value != '') {
+                        sessionStorage.setItem('items_save', value);
+                        const data = JSON.parse(value);
+                        Alpine.store('items').items = data;
+                        Alpine.store('items').on = Object.keys(data ?? {}).length > 0;
+                    }
+
+                }).catch((err) => {
                     sessionStorage.removeItem('items_save');
+                    sessionStorage.removeItem('group_name');
                     Alpine.store('items').items = {};
                     Alpine.store('items').on = false;
-                }
+                });
             });
         });
     </script>

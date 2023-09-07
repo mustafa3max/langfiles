@@ -15,10 +15,11 @@ class To extends Component
 
     function transNow($data)
     {
-
         $dataJson = $data['data'];
+
         $isTransKeys = $data['isTransKeys'];
         $isTransValues = $data['isTransValues'];
+
         if ($isTransKeys || $isTransValues) {
             $tr = new GoogleTranslate('en');
 
@@ -59,6 +60,7 @@ class To extends Component
     {
         return view('livewire.convert.to')->with([
             'dataTrans' => $this->dataTransQuery,
+            'syntaxes' => json_encode($this->syntaxes())
         ]);
     }
 }
