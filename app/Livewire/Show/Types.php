@@ -4,17 +4,21 @@ namespace App\Livewire\Show;
 
 use App\Http\Globals;
 use App\Models\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Livewire\Attributes\Rule;
 
 class Types extends Component
 {
     use WithPagination;
 
-    public $search;
+    #[Rule('string|nullable')]
+    public $search = '';
+
     public $lang;
     public $isAd = true;
 
@@ -44,11 +48,43 @@ class Types extends Component
 
     function types()
     {
+        $attr = $this->validate();
+
+        $search = $attr['search'];
+
         $lang = LaravelLocalization::getCurrentLocale();
-        return Table::where('name_' . $lang, 'LIKE', "%$this->search%")
+
+        $tables = Table::where('name_ar', 'LIKE', "%{$search}%")
+            ->orWhere('name_en', 'LIKE', "%{$search}%")
             ->where('lang', $lang)
             ->orderByDesc('name_' . $lang)
-            ->paginate(5);
+            ->paginate(20);
+
+        if (empty($tables->all())) {
+            $allTables = Table::pluck('table');
+            $newTables = [];
+            foreach ($allTables as $table) {
+                $dataTable = DB::table($table)
+                    ->where('enabled', true)
+                    ->where('language', $lang)
+                    ->where(
+                        function ($query) {
+                            return $query->where('key', 'LIKE', "%{$this->search}%")
+                                ->orWhere('value', 'LIKE', "%{$this->search}%");
+                        }
+                    )
+                    ->pluck('type');
+                if (!empty($dataTable->all())) {
+                    $newTables[] = $table;
+                }
+            }
+
+            $tables = Table::orderByDesc('name_' . $lang)
+                ->whereIn('table', $newTables)
+                ->paginate(20);
+        }
+
+        return $tables;
     }
 
     function countItems($table)

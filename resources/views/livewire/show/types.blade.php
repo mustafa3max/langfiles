@@ -11,7 +11,7 @@
             <x-title value="{{ __('seo.title_2_types') }}" />
 
             <div class="pb-2">
-                @component('components.search', ['languages' => $languages, 'submitForm' => 'types'])
+                @component('components.search', ['languages' => $languages, 'submitForm' => 'types', 'search' => $this->search])
                 @endcomponent
             </div>
 
