@@ -11,7 +11,11 @@
         <x-title value="{{ __('seo.title_2_keys') }}" />
 
         <div class="pb-2">
-            @component('components.search', ['languages' => Globals::languages(), 'submitForm' => 'keys(true)'])
+            @component('components.search', [
+                'languages' => Globals::languages(),
+                'submitForm' => 'keys(true)',
+                'search' => $this->search,
+            ])
             @endcomponent
         </div>
         <div>

@@ -46,8 +46,8 @@ Route::scopeBindings()->group(function () {
 
 // Policy
 Route::scopeBindings()->group(function () {
-    Route::get('privacy-policy', Privacypolicy::class);
-    Route::get('terms-of-service', Termsofservice::class);
+    Route::get('privacy-policy', Privacypolicy::class)->name('privacy-policy');
+    Route::get('terms-of-service', Termsofservice::class)->name('terms-of-service');
 });
 
 // Convert To

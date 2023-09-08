@@ -30,8 +30,9 @@
         }">
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
-                class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 empty:before:content-['write_here'] dark:bg-primary-dark"
                 @if ($dataTransQuery != null) x-text="JSON.stringify({{ json_encode($dataTransQuery) }})" @else x-text="data" @endif>
+
             </div>
         </div>
 
