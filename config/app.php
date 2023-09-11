@@ -190,6 +190,7 @@ return [
         'ShareButtons' => Kudashevs\ShareButtons\Facades\ShareButtonsFacade::class,
         'Convert' => Convert::class,
         'Globals' => Globals::class,
+        'Markdom' => Sinnbeck\Markdom\Facades\Markdom::class,
     ])->toArray(),
 
 ];

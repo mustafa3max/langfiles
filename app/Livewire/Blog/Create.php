@@ -2,41 +2,43 @@
 
 namespace App\Livewire\Blog;
 
+use App\Http\Globals;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 
 class Create extends Component
 {
-    public $title = 'العنوان';
-    public $desc = 'الوصف';
-    public $article = 'المقال';
+    #[Rule('required|string|unique:blogs')]
+    public $title;
+
+    #[Rule('required|string')]
+    public $desc;
+
+    #[Rule('required|string')]
     public $thumbnail = 'storage/blog/images/temporary_image.png';
-
-    protected $rules = [
-        'title' => 'required|string',
-        'desc' => 'required|string',
-        'article' => 'required|string',
-        'thumbnail' => 'required|string',
-    ];
-
-    public function updated($fields)
-    {
-        $this->validateOnly($fields);
-    }
 
     function create()
     {
         $attr = $this->validate();
+        $namePath = Globals::syntaxKey($attr['title']);
 
-        $blog = Blog::create([
-            'title' => $attr['title'],
-            'article' => $attr['article'],
-            'desc' => $attr['desc'],
-            'thumbnail' => $attr['thumbnail'],
-            'author' => 'mustafamax',
-        ]);
+        $disk = Storage::disk('blog');
+        $disk->put('articles/' . $namePath . '.md', '## ' . $attr['title']);
 
-        return redirect()->route('editor', ['idArticle' => $blog->id]);
+        if (Storage::disk('blog')->exists('articles/' . $namePath . '.md')) {
+            Blog::create([
+                'title' => $attr['title'],
+                'path' => $namePath . '.md',
+                'desc' => $attr['desc'],
+                'thumbnail' => $attr['thumbnail'],
+                'author' => Auth::id(),
+            ]);
+
+            return redirect()->route('editor', ['path' => $namePath . '.md']);
+        }
     }
 
     function save()

@@ -5,9 +5,12 @@ namespace App\Livewire\Blog;
 use App\Http\Globals;
 use App\Models\Blog;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public $search;
 
     function clearSersh()
@@ -20,8 +23,11 @@ class Index extends Component
 
     function articles()
     {
-        return Blog::where('title', 'LIKE', "%$this->search%")
-            // ->orWhere('desc', 'LIKE', "%$this->search%")
+        return Blog::with(['users' => function ($query) {
+            $query->select(['id', 'name']);
+        }])
+            ->where('title', 'LIKE', "%$this->search%")
+            ->orWhere('desc', 'LIKE', "%$this->search%")
             // ->where('enabled', true)
             ->orderByDesc('title')
             ->simplePaginate(10);

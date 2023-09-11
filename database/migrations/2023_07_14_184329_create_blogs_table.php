@@ -10,11 +10,13 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 255);
-            $table->string('thumbnail');
-            $table->string('desc', 560);
-            $table->text('article');
-            $table->string('author', 50);
+            $table->foreignId('author')
+                ->constrained('users', 'id')
+                ->onUpdate('cascade');
+            $table->string('title', 255)->require;
+            $table->string('thumbnail')->require;
+            $table->string('desc', 560)->require;
+            $table->string('path')->require;
             $table->boolean('enabled')->default(false);
             $table->timestamps();
         });

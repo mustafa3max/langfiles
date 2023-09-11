@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/converts/convert.js',
-            	'resources/js/user/add_texts.js'
+            	'resources/js/user/add_texts.js',
+            	'resources/js/editor/editor.js',
             ],
             refresh: true,
         }),

@@ -42,7 +42,6 @@
         {{-- <button class="block bg-secondary-dark p-4 rounded-lg hover:bg-accent" onclick="getHtml()">Get HTML</button> --}}
     </div>
     @vite('resources/js/app.js')
-    <script src="{{ asset('js/editor.js') }}"></script>
     <script>
         function selectText(containerid) {
             if (document.selection) {

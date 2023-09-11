@@ -1,43 +1,50 @@
 <div>
     @section('page-title')
-        {{ $article->title }}
+        {{ $blog->title }}
     @endsection
     @section('page-description')
-        {{ $article->desc }}
+        {{ $blog->desc }}
     @endsection
 
-    <div class="grid items-center justify-center">
-        <div dir="rtl">
-            <h1 class="rounded-t-lg bg-primary-light py-3 text-3xl font-extrabold dark:bg-primary-dark">
-                {!! $article->title !!}
-            </h1>
+    <x-card>
+        <div class="grid grid-cols-1 items-start gap-2">
+            <div class="grid grid-cols-1 gap-2">
+                <h1 class="py-3 text-3xl font-extrabold">
+                    {!! $blog->title !!}
+                </h1>
+                <img class="block min-h-[200px] w-full rounded-lg border border-primary-light dark:border-primary-dark"
+                    src="{{ asset($blog->thumbnail) }}" alt="{{ $blog->title }}" />
 
-            <x-editor.img src="{{ asset($article->thumbnail) }}" alt="{{ $article->title }}" />
-
-            <div class="rounded-b-lg bg-primary-light dark:bg-primary-dark">
-                {!! $article->article !!}
+                @markdomStyles()
+                @markdom($article)
             </div>
-        </div>
-        <div class="flex flex-wrap items-center justify-start gap-2 py-2">
-            <div class="flex items-center gap-2 rounded-lg bg-secondary-light p-2 dark:bg-secondary-dark">
-                <span>{{ __('me_str.author') }}</span>
-                <a href="/mustafamax/profile">
-                    @component('components.text-button', ['value' => $article->author])
-                    @endcomponent
-                </a>
+            <div
+                class="flex flex-wrap items-center justify-start gap-2 rounded-lg bg-primary-light p-2 py-2 dark:bg-primary-dark">
+                <div class="flex items-center gap-2">
+                    <span>{{ __('me_str.author') }}</span>
+                    <a href="/mustafamax/profile">
+                        @component('components.text-button', ['value' => $author])
+                        @endcomponent
+                    </a>
+                </div>
+                <div class="grow"></div>
+                @if ($blog->author === Auth::id())
+                    <a href="{{ route('editor', ['path' => $blog->path]) }}"
+                        class="text-accent hover:underline">{{ __('me_str.edit') }}</a>
+                @endif
             </div>
-            {{-- <div class="flex gap-2 bg-primary-light dark:bg-primary-dark rounded-lg p-2 items-center">
-                <span>{{ __('me_str.comments') }}</span>
-                <i class="fa-solid fa-list"></i>
-                @component('components.text-button', ['value' => 45])
-                @endcomponent
-            </div> --}}
+            @component('components.share-buttons', ['share' => $share])
+            @endcomponent
         </div>
-        @component('components.share-buttons', ['share' => $share])
-        @endcomponent
-    </div>
-
+    </x-card>
     <script>
+        const pres = document.getElementsByTagName('pre');
+        if (pres.length > 0) {
+            for (let index = 0; index < pres.length; index++) {
+                pres[index].setAttribute('dir', 'ltr');
+            }
+        }
+
         function selectText(containerid) {
             if (document.selection) {
                 var range = document.body.createTextRange();

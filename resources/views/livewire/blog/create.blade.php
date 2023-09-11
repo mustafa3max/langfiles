@@ -2,21 +2,17 @@
     <x-card>
         <div class="grid gap-2 pb-2">
             <input type="text" wire:model.blur='title'
-                class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark" placeholder="{{ __('me_str.title') }}"
-                disabled>
+                class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                placeholder="{{ __('me_str.title') }}">
             @error('title')
                 {{ $message }}
             @enderror
-            <textarea rows="5" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                wire:model.blur='desc' placeholder="{{ __('me_str.desc') }}" disabled></textarea>
+            <textarea rows="5" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                wire:model.blur='desc' placeholder="{{ __('me_str.desc') }}"></textarea>
             @error('desc')
                 {{ $message }}
             @enderror
-            <textarea rows="20" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                wire:model.blur='article' placeholder="{{ __('me_str.article') }}" disabled></textarea>
-            @error('article')
-                {{ $message }}
-            @enderror
+
         </div>
         <div class="flex items-center gap-4">
             @component('components.raised-button', [

@@ -101,13 +101,14 @@ Route::prefix('contributors')->group(function () {
 // Route::prefix('blog')->group(function () {
 //     Route::get('/', BlogIndex::class);
 //     Route::get('article/{id}/{title}', Artilce::class);
-//     Route::get('create', BlogCreate::class);
-//     Route::prefix('editor')->group(function () {
-//         Route::get('/', Editor::class);
-//     });
-//     Route::middleware('auth:sanctum', 'verified')->group(function () {
+
+//     Route::middleware('auth:sanctum')->group(function () {
+//         Route::get('create', BlogCreate::class)->name('create');
+
 //         Route::get('update', BlogUpdate::class);
 //         Route::get('delete', BlogDelete::class);
+
+//         Route::get('editor/{path}', Editor::class)->name('editor');
 //     });
 // });
 
