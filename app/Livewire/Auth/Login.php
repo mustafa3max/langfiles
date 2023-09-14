@@ -10,15 +10,12 @@ class Login extends Component
 {
     #[Rule('required|email')]
     public $email = '';
+
     #[Rule('required')]
     public $password = '';
+
     #[Rule('boolean|nullable')]
     public $remember = '';
-
-    // public function updated($fields)
-    // {
-    //     $this->validateOnly($fields);
-    // }
 
     public function login()
     {

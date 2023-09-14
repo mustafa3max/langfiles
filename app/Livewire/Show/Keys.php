@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Livewire\Attributes\Rule;
 
 class Keys extends Component
 {
+    #[Rule('string|nullable')]
     public $search;
+
     public $offset = 0;
 
     function clearSersh()
@@ -39,6 +42,10 @@ class Keys extends Component
     function keys($isSearch = false)
     {
 
+        $attr = $this->validate();
+
+        $this->search = $attr['search'];
+
         if ($isSearch) {
             session()->remove('offset');
         }
@@ -50,8 +57,12 @@ class Keys extends Component
 
         foreach ($tables as $table) {
             $data = DB::table($table->table)
-                ->where('key', 'LIKE', "%$this->search%")
-                ->orWhere('value', 'LIKE', "%$this->search%")
+                ->where(
+                    function ($query) {
+                        return $query->where('key', 'LIKE', "%{$this->search}%")
+                            ->orWhere('value', 'LIKE', "%{$this->search}%");
+                    }
+                )
                 ->where('enabled', true)
                 ->where('language', $lang)
                 ->limit(5)

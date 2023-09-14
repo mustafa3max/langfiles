@@ -27,7 +27,7 @@
                             <i x-show="isMeData"><x-svg.code_1 /></i>
                             <i x-show="!isMeData"><x-svg.code_2 /></i>
                             <span
-                                class="absolute -top-3 start-3 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-primary-dark"
+                                class="absolute -top-3 start-3 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-primary-light"
                                 x-text="countMeCode" x-show="countMeCode>0"></span>
                         </a>
                     </li>

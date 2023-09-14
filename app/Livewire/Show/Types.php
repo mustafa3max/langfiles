@@ -17,7 +17,7 @@ class Types extends Component
     use WithPagination;
 
     #[Rule('string|nullable')]
-    public $search = '';
+    public $search;
 
     public $lang;
     public $isAd = true;
@@ -50,12 +50,15 @@ class Types extends Component
     {
         $attr = $this->validate();
 
-        $search = $attr['search'];
+        $this->search = $attr['search'];
 
         $lang = LaravelLocalization::getCurrentLocale();
-
-        $tables = Table::where('name_ar', 'LIKE', "%{$search}%")
-            ->orWhere('name_en', 'LIKE', "%{$search}%")
+        $tables = Table::where(
+            function ($query) {
+                return $query->where('name_ar', 'LIKE', "%{$this->search}%")
+                    ->orWhere('name_en', 'LIKE', "%{$this->search}%");
+            }
+        )
             ->where('lang', $lang)
             ->orderByDesc('name_' . $lang)
             ->paginate(20);

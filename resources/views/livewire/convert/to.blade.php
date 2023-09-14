@@ -26,14 +26,15 @@
 
     <x-full-one>
         <div x-show="select" class="grid gap-2 p-2" x-data="{
-            data: sessionStorage.getItem('convert_data'),
+            data: Alpine.store('syntax').tryCatch(),
         }">
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
-                class="w-full overflow-auto whitespace-nowrap rounded-lg bg-primary-light p-4 outline-0 empty:before:content-['write_here'] dark:bg-primary-dark"
-                @if ($dataTransQuery != null) x-text="JSON.stringify({{ json_encode($dataTransQuery) }})" @else x-text="data" @endif>
-
+                class="w-full overflow-auto whitespace-pre-wrap rounded-lg bg-primary-light p-4 outline-0 empty:before:content-['write_here'] dark:bg-primary-dark"
+                @if ($dataTransQuery != null) x-text="JSON.stringify({{ $dataTransQuery }})" @else x-text="data" @endif>
             </div>
+            <div x-show="Alpine.store('syntax').error!=null" x-text="Alpine.store('syntax').error" dir="ltr"
+                class="pt-2 font-extrabold text-code-2-dark"></div>
         </div>
 
         <div class="w-full" x-show="!select" x-data="{ syntaxesLocal: [] }">
@@ -48,9 +49,10 @@
             <div class="flex flex-wrap gap-2">
                 <button x-data="{ click: false }" class="w-fit rounded-lg bg-accent px-2 py-1 uppercase"
                     x-on:click="window.copyContent(); click=true; setTimeout(() => {click=false;}, 800);"
-                    :class="click ? 'bg-transparent' : 'dark:bg-accent text-primary-dark'">{{ __('me_str.copy_to_clipboard') }}</button>
+                    :class="click ? 'bg-transparent' : 'dark:bg-accent text-primary-light font-bold'">{{ __('me_str.copy_to_clipboard') }}</button>
                 <div class="grow"></div>
-                <button class="w-fit rounded-lg border border-accent px-2 py-1 uppercase text-accent dark:border-accent"
+                <button
+                    class="w-fit rounded-lg border border-accent px-2 py-1 font-bold uppercase text-accent dark:border-accent"
                     x-on:click="window.delete()">{{ __('me_str.delete') }}</button>
             </div>
             <div dir="ltr" id="type-2"
@@ -72,7 +74,7 @@
             <button
                 x-on:click="Livewire.dispatch('transNow', {data:{data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues}})"
                 {{-- x-on:click="Livewire.dispatch('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})" --}}
-                class="rounded-lg border border-transparent bg-accent p-2 text-primary-dark hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
+                class="rounded-lg border border-transparent bg-accent p-2 font-bold text-primary-light hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
         </div>
     </x-card>
 
@@ -96,6 +98,7 @@
                 syntaxesLocal: [],
                 isSyntaxKey: false,
                 isSyntaxValue: false,
+                error: null,
 
                 selectSyntax(syntax, isKey, id) {
                     const input = document.getElementById(id);
@@ -105,6 +108,17 @@
                         input.setSelectionRange(input.value.length, input.value.length);
                         input.focus();
                     }, 250);
+                },
+
+                tryCatch() {
+                    try {
+                        this.error = null;
+                        return JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+                    } catch (e) {
+                        this.error = e;
+                        return sessionStorage.getItem('convert_data');
+                    }
+
                 }
             });
         });
@@ -112,6 +126,7 @@
 
         document.addEventListener('livewire:init', () => {
             window.Livewire.on('dataTrans', data => {
+                // json_encode($newData, JSON_UNESCAPED_UNICODE)
                 sessionStorage.setItem('convert_data', data);
             });
         });

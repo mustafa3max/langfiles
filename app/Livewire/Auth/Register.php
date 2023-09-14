@@ -6,21 +6,18 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 
 class Register extends Component
 {
-    public $name = '';
-    public $email = '';
-    public $password = '';
+    #[Rule('required|string')]
+    public $name;
 
-    protected $rules = [
-        'name' => 'required|string',
-        'email' => 'required|email|unique:users',
-        'password' => [
-            'required',
-            'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/'
-        ],
-    ];
+    #[Rule('required|email|unique:users')]
+    public $email = '';
+
+    #[Rule('required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/')]
+    public $password;
 
     protected $messages = [
         'name.required' => 'The Name cannot be empty.',
@@ -39,7 +36,7 @@ class Register extends Component
     {
         $attr = $this->validate();
 
-        $user = User::create([
+        User::create([
             'email' => $attr['email'],
             'password' => Hash::make($attr['password']),
             'name' => $attr['name'],

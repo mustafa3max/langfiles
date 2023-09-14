@@ -15,14 +15,29 @@ try {
 
 type1.innerText = JSON.stringify(data);
 
-type1.addEventListener('input', ()=>{
+type1.addEventListener('keyup', ()=>{
+
     sessionStorage.setItem('convert_data', type1.innerText);
     try {
-        data = JSON.parse(sessionStorage.getItem('convert_data'));
-    } catch (error) {
-
+        Alpine.store('syntax').error = null;
+        data = JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+    } catch (e) {
+        Alpine.store('syntax').error = e;
+        data = sessionStorage.getItem('convert_data');
     }
 });
+
+type1.addEventListener('blur', ()=>{
+     try {
+        Alpine.store('syntax').error = null;
+        data = JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+    } catch (e) {
+        Alpine.store('syntax').error = e;
+        data = sessionStorage.getItem('convert_data');
+    }
+    type1.innerHTML = data;
+});
+
 
 keyAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {

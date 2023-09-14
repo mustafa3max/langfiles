@@ -31,18 +31,19 @@ class To extends Component
 
             $newData = [];
             foreach ($dataJson as $key => $value) {
-                $key = Globals::syntaxKey($key);
                 if ($isTransKeys) {
                     $key = $tr->translate($key);
                 }
                 if ($isTransValues) {
                     $value = $tr->translate($value);
                 }
+
+                $key = Globals::syntaxKey($key);
                 $newData[$key] = $value;
             }
             $this->dispatch('dataTrans', json_encode($newData));
 
-            $this->dataTransQuery = $newData;
+            $this->dataTransQuery =  json_encode($newData, JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -59,7 +60,6 @@ class To extends Component
     public function render()
     {
         return view('livewire.convert.to')->with([
-            'dataTrans' => $this->dataTransQuery,
             'syntaxes' => json_encode($this->syntaxes())
         ]);
     }
