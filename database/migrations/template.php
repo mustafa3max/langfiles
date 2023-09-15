@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('key', 50)->uniqid;
             $table->string('value', 255)->uniqid;
             $table->boolean('enabled')->default(false);
+            // $table->json('sections')->default(['lang_public']);
             $table->timestamps();
         });
     }

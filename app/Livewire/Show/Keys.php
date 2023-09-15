@@ -60,7 +60,8 @@ class Keys extends Component
                 ->where(
                     function ($query) {
                         return $query->where('key', 'LIKE', "%{$this->search}%")
-                            ->orWhere('value', 'LIKE', "%{$this->search}%");
+                            ->orWhere('value', 'LIKE', "%{$this->search}%")
+                            ->orWhere('type', 'LIKE', "%{$this->search}%");
                     }
                 )
                 ->where('enabled', true)
