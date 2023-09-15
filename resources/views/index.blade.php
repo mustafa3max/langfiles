@@ -63,7 +63,7 @@
                 <h1 class="text-center text-3xl font-extrabold">LANGFILES
                     <br>
                     <br>
-                    {{ __('index_str.title_index') }}
+                    {{ __('seo.title_home') }}
                 </h1>
                 <br>
                 <br>
