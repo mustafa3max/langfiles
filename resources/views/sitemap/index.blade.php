@@ -2,13 +2,5 @@
     <sitemap>
         <loc>{{ url('/') }}/sitemap.xml/types/</loc>
         <changefreq>monthly</changefreq>
-        <url>
-            <loc>{{ url('/') }}/mustafamax/profile</loc>
-            <changefreq>monthly</changefreq>
-        </url>
-        <url>
-            <loc>{{ url('/') }}/contributors</loc>
-            <changefreq>monthly</changefreq>
-        </url>
     </sitemap>
 </sitemapindex>

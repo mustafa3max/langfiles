@@ -36,6 +36,7 @@ class File extends Component
     {
         foreach (Globals::languages() as $lang) {
             $table = str_replace('type', $lang, $this->table);
+            $table = str_replace('-', '_', $table);
             $data[] = DB::table($table)
                 ->where('enabled', true)
                 ->whereNotIn('key', $this->keys)

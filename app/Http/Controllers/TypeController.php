@@ -46,7 +46,10 @@ class TypeController extends Controller
     function createFiles()
     {
         $files = Storage::disk(Globals::diskTypes())->allFiles();
+        $sections = json_encode(['public']);
         foreach ($files as $file) {
+            $sections = json_encode(['public']);
+
             $json = Storage::disk(Globals::diskTypes())->get($file);
             $allJson = json_decode($json);
             $table = str_replace('.json', '', $file);
@@ -56,17 +59,23 @@ class TypeController extends Controller
             $file = implode(' ', $file);
 
             foreach ($allJson ?? [] as $key => $value) {
-                if (strlen($key) > 0 && strlen($value) > 0) {
-                    DB::table($table)->updateOrInsert(
-                        ['key' => $key],
-                        [
-                            'type' => $file,
-                            'language' => $lang,
-                            'key' => $key,
-                            'value' => $value,
-                            'enabled' => true,
-                        ]
-                    );
+                if (is_array($value)) {
+                    $sections = json_encode($value);
+                }
+                if (!is_array($value)) {
+                    if (strlen($key) > 0 && strlen($value) > 0) {
+                        DB::table($table)->updateOrInsert(
+                            ['key' => $key],
+                            [
+                                'type' => $file,
+                                'language' => $lang,
+                                'key' => $key,
+                                'value' => $value,
+                                'enabled' => true,
+                                'sections' => $sections
+                            ]
+                        );
+                    }
                 }
             }
         }

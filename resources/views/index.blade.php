@@ -67,7 +67,7 @@
                 </h1>
                 <br>
                 <br>
-                <a href="types"
+                <a href="{{ route('types') }}"
                     class="block animate-pulse text-center text-xl font-bold uppercase hover:underline">{{ __('me_str.show_files') }}</a>
             </div>
             <a href="#1" class="absolute bottom-0 animate-bounce p-2 shadow-sm" title="{{ __('me_str.go_info') }}"
@@ -92,7 +92,7 @@
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_1') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_1') }}</p>
                     <div class="pt-4">
-                        <a href="types"
+                        <a href="{{ route('types') }}"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_2') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_2') }}</p>
                     <div class="pt-4">
-                        <a href="types"
+                        <a href="{{ route('types') }}"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     <h2 class="pb-4 text-2xl font-bold">{{ __('index_str.title_3') }}</h2>
                     <p class="text-xl leading-9">{{ __('index_str.description_3') }}</p>
                     <div class="pt-4">
-                        <a href="types"
+                        <a href="{{ route('types') }}"
                             class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>

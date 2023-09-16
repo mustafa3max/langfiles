@@ -6,10 +6,12 @@
         @foreach ($newTypes as $type)
             @php
                 $countItems = $this->countItems($type->table);
+                $route = str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table);
+                $route = str_replace('_', '-', $route);
             @endphp
             <li
                 class="{{ $loop->last ? '' : 'border-b-2' }} flex border-secondary-light py-3 hover:rounded-lg hover:text-accent dark:border-secondary-dark">
-                <a @if ($countItems > 0) href="{{ '/file/' . str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table) }}" @endif
+                <a @if ($countItems > 0) href="{{ '/file/' . $route }}" @endif
                     class="grow">{{ $type['name_' . $currentLng] }}</a>
                 <span class="">{{ $countItems }}</span>
             </li>

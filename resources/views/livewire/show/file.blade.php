@@ -128,12 +128,17 @@
                 class="{{ count($this->types()) > 0 ? 'flex' : '' }} flex-wrap gap-2">
 
                 @forelse ($this->types() as $type)
+                    @php
+                        $route = str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table);
+                        $route = str_replace('_', '-', $route);
+                    @endphp
+
                     <div class="grow">
                         @component('components.item-show', [
                             'data' => $type['name_' . $currentLang],
                             'lang' => $type->lang,
                             'moreLang' => $this->moreLang($type->table),
-                            'route' => str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table),
+                            'route' => '/file/' . $route,
                             'countItems' => $this->countItems($type->table),
                         ])
                         @endcomponent

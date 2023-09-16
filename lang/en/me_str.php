@@ -61,7 +61,7 @@ return [
     'languages' => 'languages',
     'files' => 'files',
     'file' => 'file',
-    'show_files' => 'show files',
+    'show_files' => 'View localization files',
     'item' => 'item',
     'key' => 'key',
     'value' => 'value',
