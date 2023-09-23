@@ -15,11 +15,11 @@
                         </a>
                     </li>
 
-                    {{-- <li>
+                    <li>
                         <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}">
                             <x-svg.blog />
                         </a>
-                    </li> --}}
+                    </li>
 
                     <li>
                         <a class="relative block cursor-pointer hover:text-accent"

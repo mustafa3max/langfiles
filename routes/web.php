@@ -90,21 +90,9 @@ Route::scopeBindings()->group(function () {
     Route::get('/register', Register::class);
 });
 
-// Control Panel
-// Route::prefix('control-panel')->group(function () {
-//     Route::middleware('auth:sanctum', 'verified')->group(function () {
-//         Route::get('index', Index::class);
-//         Route::get('create', Create::class);
-//         Route::get('update', Update::class);
-//     });
-// });
-
 // Mustafamax
 Route::prefix('mustafamax')->group(function () {
     Route::get('profile', Profile::class);
-
-    Route::middleware('auth:sanctum', 'verified')->group(function () {
-    });
 });
 
 // User
@@ -127,19 +115,17 @@ Route::prefix('contributors')->group(function () {
 
 
 // Blog
-// Route::prefix('blog')->group(function () {
-//     Route::get('/', BlogIndex::class);
-//     Route::get('article/{id}/{title}', Artilce::class);
+Route::prefix('blog')->group(function () {
+    Route::get('/', BlogIndex::class)->name('blog');
+    Route::get('article/{path}', Artilce::class);
 
-//     Route::middleware('auth:sanctum')->group(function () {
-//         Route::get('create', BlogCreate::class)->name('create');
+    Route::middleware('auth:sanctum', 'verified', 'owner')->group(function () {
+        Route::get('create', BlogCreate::class)->name('create');
 
-//         Route::get('update', BlogUpdate::class);
-//         Route::get('delete', BlogDelete::class);
-
-//         Route::get('editor/{path}', Editor::class)->name('editor');
-//     });
-// });
+        Route::get('update', BlogUpdate::class);
+        Route::get('delete', BlogDelete::class);
+    });
+});
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/valid-user/{email}', function ($email) {

@@ -18,6 +18,13 @@
                 {{ __('email.send_code_email') }}
                 {{ __('seo.description_email_verify') }}
             </p>
+
+            <span class="font-extrabold">{{ __('email.not_verification_code') }} <button
+                    class="text-accent hover:underline" wire:click='resendCode'>{{ __('email.resend') }}</button></span>
         </div>
     </x-card>
+
+    <div wire:loading>
+        <x-wite />
+    </div>
 </div>

@@ -28,10 +28,10 @@
                     </a>
                 </div>
                 <div class="grow"></div>
-                @if ($blog->author === Auth::id())
+                {{-- @if ($blog->author === Auth::id())
                     <a href="{{ route('editor', ['path' => $blog->path]) }}"
                         class="text-accent hover:underline">{{ __('me_str.edit') }}</a>
-                @endif
+                @endif --}}
             </div>
             @component('components.share-buttons', ['share' => $share])
             @endcomponent

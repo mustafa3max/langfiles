@@ -1,9 +1,9 @@
 @php
-    $title = str_replace(' ', '_', $article->title);
+    $path = str_replace('_', '-', $article->path);
+    $path = str_replace('.md', '', $path);
 @endphp
 <div class="rounded-lg border-2 border-primary-light dark:border-primary-dark" dir="rtl">
-    <a href="/blog/article/{{ $article->id }}/{{ $title }}" title="{{ __('me_str.read_more') }}"
-        class="grid gap-2">
+    <a href="/blog/article/{{ $path }}" title="{{ __('me_str.read_more') }}" class="grid gap-2">
         <img class="block w-full rounded-t-lg" src="{{ asset($article->thumbnail) }}" alt="{{ $article->title }}" />
         <div class="grid gap-2 p-2">
             <h2 class="py-4 text-2xl font-extrabold">{{ $article->title }}</h2>
@@ -11,7 +11,7 @@
                 {{ $article->desc }}
                 <span class="px-1"></span>
 
-                <a href="/blog/article/{{ $article->id }}/{{ $title }}">
+                <a href="/blog/article/{{ $path }}">
                     @component('components.text-button', ['value' => __('me_str.read_more')])
                     @endcomponent
                 </a>

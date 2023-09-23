@@ -7,37 +7,39 @@ use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
-use Livewire\Attributes\Rule;
 
 class Create extends Component
 {
-    #[Rule('required|string|unique:blogs')]
+    public $fileName;
     public $title;
-
-    #[Rule('required|string')]
     public $desc;
-
-    #[Rule('required|string')]
-    public $thumbnail = 'storage/blog/images/temporary_image.png';
 
     function create()
     {
-        $attr = $this->validate();
-        $namePath = Globals::syntaxKey($attr['title']);
+        $validated = $this->validate([
+            'fileName' => 'required|string',
+            'title' => 'required|string|unique:blogs',
+            'desc' => 'required|string',
+        ]);
 
+        $namePath = Globals::syntaxKey($validated['fileName']);
+
+        if (strlen($namePath) != mb_strlen($namePath, 'utf-8')) {
+            return $this->dispatch('message', __('error.not_en_file_name'));
+        }
         $disk = Storage::disk('blog');
-        $disk->put('articles/' . $namePath . '.md', '## ' . $attr['title']);
+        $disk->put('articles/' . $namePath . '.md', '## ' . $validated['title']);
 
         if (Storage::disk('blog')->exists('articles/' . $namePath . '.md')) {
             Blog::create([
-                'title' => $attr['title'],
+                'title' => $validated['title'],
                 'path' => $namePath . '.md',
-                'desc' => $attr['desc'],
-                'thumbnail' => $attr['thumbnail'],
+                'desc' => $validated['desc'],
+                'thumbnail' => 'storage/blog/images/temporary_image.png',
                 'author' => Auth::id(),
             ]);
 
-            return redirect()->route('editor', ['path' => $namePath . '.md']);
+            return redirect()->route('blog');
         }
     }
 
@@ -45,6 +47,13 @@ class Create extends Component
     {
         if (strlen($this->article) >= 10) {
             dd($this->article);
+        }
+    }
+
+    public function mount()
+    {
+        if (Auth::user()->owner !== 1) {
+            return redirect()->route('blog');
         }
     }
 

@@ -10,4 +10,6 @@ return [
     'msg_2' => 'into your web browser:',
     'regards' => 'With regards, team',
     "whoops" => "Whoops",
+    "not_verification_code" => "You did not receive a verification code",
+    "resend" => "Resend",
 ];

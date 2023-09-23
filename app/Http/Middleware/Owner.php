@@ -11,9 +11,8 @@ class Owner
     {
         $tokenCheck = 'ytLaeC3fKTzSuvh1RUB25fkWa0HiB5CoE8lIYTJlaIUnvnjaQKMHubvMZlDwglOJ';
         if ($request->token != $tokenCheck) {
-            return redirect('/');
+            return abort(404);
         }
-
         return $next($request);
     }
 }

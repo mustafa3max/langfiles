@@ -8,6 +8,12 @@ use Livewire\Component;
 class VerifyEmail extends Component
 {
 
+    function resendCode()
+    {
+        $user = Auth::user();
+        $user->sendEmailVerificationNotification();
+    }
+
     public function mount()
     {
         if (Auth::user()->hasVerifiedEmail()) {

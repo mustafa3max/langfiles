@@ -13,11 +13,20 @@ class Artilce extends Component
 
     public function render()
     {
-        $article = Blog::where('id', request('id'))->get()->first();
+        $path = request('path');
+        $path = str_replace('-', '_', $path);
+        $path = $path . '.md';
 
+        $article = Blog::where('path', $path)->get()->first();
+
+        try {
+            $markdown = Storage::disk('blog')->get('articles/' . $article->path);
+        } catch (\Throwable $th) {
+            abort(404);
+        }
         return view('livewire.blog.artilce')->with([
             'blog' => $article,
-            'article' => Storage::disk('blog')->get('articles/' . $article->path),
+            'article' => $markdown,
             'share' => Globals::share($article->title),
             'author' => User::where('id', $article->author)->get('name')->first()->name,
         ]);
