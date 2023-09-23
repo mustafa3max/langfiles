@@ -33,14 +33,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Messages\MailMessage;
 
-Route::get('/notification', function () {
-    $invoice = User::find(1);
+// Route::get('/notification', function () {
+//     $invoice = User::find(1);
 
-    return (new MailMessage)
-        ->subject(__('email.subject'))
-        ->line(__('email.line'))
-        ->action(__('email.action'), 'url');
-});
+//     return (new MailMessage)
+//         ->subject(__('email.subject'))
+//         ->line(__('email.line'))
+//         ->action(__('email.action'), 'url');
+// });
 
 // Sitemap
 Route::scopeBindings()->group(function () {
