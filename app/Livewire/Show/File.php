@@ -98,7 +98,7 @@ class File extends Component
         $this->table = request('type');
 
         $this->title = request('type');
-        $this->title = explode('_', $this->title);
+        $this->title = explode('-', $this->title);
         $this->lang = $this->title[0];
         $this->title = array_slice($this->title, 1);
         $this->title = implode('_', $this->title);

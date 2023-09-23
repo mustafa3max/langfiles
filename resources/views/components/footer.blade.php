@@ -2,10 +2,13 @@
     <div class="container mx-auto p-2">
         <div class="flex w-full flex-wrap">
             {{-- Logo --}}
-            <div class="grid items-center justify-start text-center md:max-w-[340px] md:text-start">
-                <div class="flex items-center justify-center gap-2 md:justify-start" title="{{ config('app.name') }}">
+            <div class="grid items-center justify-center text-center md:max-w-[340px] md:justify-start md:text-start">
+                <div class="flex w-fit items-center justify-center gap-4 rounded-full bg-primary-light p-2 dark:bg-primary-dark md:w-full md:justify-start"
+                    title="{{ config('app.name') }}">
                     <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
-                    <span class="hidden text-3xl font-extrabold uppercase md:block">{{ config('app.name') }}</span>
+
+                    <span
+                        class="hidden grow text-center text-4xl font-extrabold uppercase md:block">{{ config('app.name') }}</span>
                 </div>
                 <h2 class="py-4 text-xl font-bold">{{ __('seo.title_home') }}</h2>
                 <p>{{ __('seo.description_home') }}</p>
@@ -26,10 +29,12 @@
                         <a class="hover:text-accent" href="/blog">blog</a>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">github</a>
+                        <a class="hover:text-accent" href="https://github.com/mustafa3max/" target="_blank"
+                            rel="nofollow">github</a>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">facebook</a>
+                        <a class="hover:text-accent" href="https://facebook.com/Lnagfiles/" target="_blank"
+                            rel="nofollow">facebook</a>
                     </li>
                 </ul>
 
@@ -52,20 +57,31 @@
                         {{ __('me_str.help') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="mailto:langfiles@gamil.com" target="_blank"
+                        <a class="hover:text-accent" href="mailto:www.langfiles@gamil.com" target="_blank"
                             rel="nofollow">email</a>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">massenger</a>
+                        <a class="hover:text-accent" href="http://m.me/Lnagfiles" target="_blank"
+                            rel="nofollow">massenger</a>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="http://" target="_blank" rel="nofollow">telegram</a>
+                        <a class="hover:text-accent" href="https://wa.me/+9647707309366" target="_blank"
+                            rel="nofollow">whatsapp</a>
                     </li>
                 </ul>
             </div>
         </div>
+        <div class="mt-8 flex w-full flex-wrap items-center justify-center gap-4 border-t-2 border-primary-light pb-4 pt-8 text-center text-xs uppercase dark:border-primary-dark"
+            dir="ltr">
+            <span>
+                &copy; {{ date('Y') }} <a href="/"
+                    class="text-accent hover:underline">{{ config('app.name') }}</a>
+            </span>
+            <div class="hidden grow sm:block"></div>
+            <span>
+                from <a href="/mustafamax/profile" class="text-accent hover:underline">mustafamax</a>
+            </span>
+        </div>
     </div>
-    <div class="w-full border-t-2 border-primary-light py-8 text-center dark:border-primary-dark">
-        &copy; {{ date('Y') }} <a href="/mustafamax/profile" class="text-accent hover:underline">MUSTAFAMAX</a>,
-        {{ __('me_str.copy_right_all') }} </div>
+
 </footer>

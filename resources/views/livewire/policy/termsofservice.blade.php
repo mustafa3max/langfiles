@@ -1,7 +1,11 @@
 <div>
+    @section('page-index')
+        noindex
+    @endsection
     @section('page-title')
         {{ __('me_str.terms_of_use') }}
     @endsection
+
     <x-policy route="{{ $route }}">
         <x-title value="{{ __('me_str.terms_of_use') }}" />
         <div class="mb-4 border-b-2 border-primary-light dark:border-primary-dark"></div>

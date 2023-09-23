@@ -4,6 +4,9 @@
         placeholder="{{ $placeholder }}" {{ $required }} {{ $disabled ?? '' }} wire:model="{{ $name }}"
         id="{{ $name }}">
     @error($name)
-        <p class="pt-3 text-center text-sm text-accent">{{ $message }}</p>
+        <p class="pt-3 text-center">
+            <span class="text-lg font-extrabold text-code-2-light dark:text-code-2-dark">{{ __('error.error') }}:</span>
+            <span class="font-bold">{{ $message }}</span>
+        </p>
     @enderror
 </div>

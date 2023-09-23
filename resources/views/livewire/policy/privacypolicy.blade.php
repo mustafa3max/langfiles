@@ -1,4 +1,7 @@
 <div>
+    @section('page-index')
+        noindex
+    @endsection
     @section('page-title')
         {{ __('me_str.privacy_policy') }}
     @endsection

@@ -27,9 +27,9 @@ export default {
         "accent": "#2962FF",
         //
         'transparent': '#00000000',
-        'code-1-light': '#064E3B',
+        'code-1-light': '#5B21B6',
         'code-1-dark': '#22C55E',
-        'code-2-light': '#7C2D12',
+        'code-2-light': '#DC2626',
         'code-2-dark': '#FACC15',
     },
     backgroundImage: {

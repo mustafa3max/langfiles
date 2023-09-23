@@ -3,25 +3,24 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Login extends Component
 {
-    #[Rule('required|email')]
-    public $email = '';
-
-    #[Rule('required')]
-    public $password = '';
-
-    #[Rule('boolean|nullable')]
-    public $remember = '';
+    public $email;
+    public $password;
+    public $remember;
 
     public function login()
     {
-        $attr = $this->validate();
+        $validated = $this->validate([
+            'remember' => 'boolean|nullable',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt(['email' => $attr['email'], 'password' => $attr['password']], $attr['remember'])) {
+
+        if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']], $validated['remember'])) {
             $this->reset(['email']);
             $this->reset(['password']);
             $this->reset(['remember']);

@@ -11,7 +11,11 @@
             <span>{{ __('me_str.logout') }}</span>
         </a>
     @else
-        <a href="/user/profile" class="flex items-center gap-4">
+        <a href="/register" class="flex items-center gap-4">
+            <x-svg.register />
+            <span>{{ __('seo.title_register') }}</span>
+        </a>
+        <a href="/login" class="flex items-center gap-4">
             <x-svg.logout />
             <span>{{ __('seo.title_login') }}</span>
         </a>

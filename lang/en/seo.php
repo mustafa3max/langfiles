@@ -42,6 +42,9 @@ return [
     //
     'title_register' => 'create new account',
     'description_register' => 'create new account',
+    //
+    'title_email_verify' => 'Email verification',
+    'description_email_verify' => 'In order to enjoy all the benefits of the langfiles website, you must complete the verification process of the email you registered with.',
     //////////////////////////////////////////////
     //////////////////////////////////////////////
     //////////////////////////////////////////////

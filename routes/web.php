@@ -4,6 +4,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Globals;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
+use App\Livewire\Auth\VerifyEmail;
 use App\Livewire\Blog\Artilce;
 use App\Livewire\Blog\Index as BlogIndex;
 use App\Livewire\Blog\Create as BlogCreate;
@@ -23,10 +24,23 @@ use App\Livewire\Show\Keys;
 use App\Livewire\Show\Types;
 use App\Livewire\User\AddText;
 use App\Livewire\User\Profile as UserProfile;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Livewire\Livewire;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
+
+Route::get('/notification', function () {
+    $invoice = User::find(1);
+
+    return (new MailMessage)
+        ->subject(__('email.subject'))
+        ->line(__('email.line'))
+        ->action(__('email.action'), 'url');
+});
 
 // Sitemap
 Route::scopeBindings()->group(function () {
@@ -34,9 +48,24 @@ Route::scopeBindings()->group(function () {
     Route::get('/sitemap.xml/types',  [SitemapController::class, 'types']);
 });
 
+// Email Verify
+Route::scopeBindings()->group(function () {
+    Route::get('/email/verify', VerifyEmail::class)->middleware('auth')->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('types');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+});
+
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
@@ -62,13 +91,13 @@ Route::scopeBindings()->group(function () {
 });
 
 // Control Panel
-Route::prefix('control-panel')->group(function () {
-    Route::middleware('auth:sanctum', 'verified')->group(function () {
-        Route::get('index', Index::class);
-        Route::get('create', Create::class);
-        Route::get('update', Update::class);
-    });
-});
+// Route::prefix('control-panel')->group(function () {
+//     Route::middleware('auth:sanctum', 'verified')->group(function () {
+//         Route::get('index', Index::class);
+//         Route::get('create', Create::class);
+//         Route::get('update', Update::class);
+//     });
+// });
 
 // Mustafamax
 Route::prefix('mustafamax')->group(function () {
@@ -81,13 +110,13 @@ Route::prefix('mustafamax')->group(function () {
 // User
 Route::prefix('user')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
-        Route::get('add-text', AddText::class)->name('add-text');
         Route::get('profile', UserProfile::class);
         Route::get('logout', function () {
             return Globals::logout();
         });
     });
     Route::middleware('auth:sanctum', 'verified')->group(function () {
+        Route::get('add-text', AddText::class)->name('add-text');
     });
 });
 

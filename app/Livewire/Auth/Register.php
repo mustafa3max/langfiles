@@ -3,55 +3,42 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Livewire\Attributes\Rule;
 
 class Register extends Component
 {
-    #[Rule('required|string')]
-    public $name;
-
-    #[Rule('required|email|unique:users')]
-    public $email = '';
-
-    #[Rule('required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/')]
+    public $name = 'max';
+    public $email;
     public $password;
-
-    protected $messages = [
-        'name.required' => 'The Name cannot be empty.',
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
-        'password.required' => 'The Password cannot be empty.',
-        'password' => 'The password format is not valid.',
-    ];
-
-    public function updated($fields)
-    {
-        $this->validateOnly($fields);
-    }
 
     public function register()
     {
-        $attr = $this->validate();
 
-        User::create([
-            'email' => $attr['email'],
-            'password' => Hash::make($attr['password']),
-            'name' => $attr['name'],
+        $validated = $this->validate([
+            'name' => 'required|string|min:2|regex:/^[a-zA-Z]+$/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/',
         ]);
 
-        if (Auth::attempt(['email' => $attr['email'], 'password' => $attr['password']], true)) {
-            $this->reset(['name']);
-            $this->reset(['email']);
-            $this->reset(['password']);
-            return redirect(session()->pull('path_previous') ?? url()->to('/'));
+        $user = User::create([
+            'email' => strtolower($validated['email']),
+            'password' => Hash::make($validated['password']),
+            'name' => $validated['name'],
+        ]);
+
+        if (Auth::attempt(['name' => $validated['name'], 'email' => $validated['email'], 'password' => $validated['password']], true)) {
+            event(new Registered($user));
+
+            return redirect(url()->to('email/verify'));
         }
     }
 
     public function mount()
     {
+
         if (Auth::check()) {
             return redirect()->route('index');
         }

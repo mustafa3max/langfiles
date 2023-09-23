@@ -25,6 +25,8 @@
     <meta property="og:video:width" content="720" />
     <meta property="og:video:height" content="576" />
 
+    <meta name="robots" content="@yield('page-index')">
+
     @vite('resources/css/app.css')
     <style>
         [x-cloak] {

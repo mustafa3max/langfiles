@@ -1,4 +1,7 @@
 <div>
+    @section('page-index')
+        noindex
+    @endsection
     @section('page-title')
         {{ __('seo.title_profile', ['USER' => $user->name]) }}
     @endsection

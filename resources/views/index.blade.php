@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html prefix="og: https://ogp.me/ns#" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ id: location.hash == '' ? '#0' : location.hash, darkMode: localStorage.getItem('dark') === 'true', dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }"
-    x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }" class="scroll-smooth"
-    lang="{{ LaravelLocalization::getCurrentLocale() }}">
+<html prefix="og: https://ogp.me/ns#" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}" x-data="{ id: location.hash == '' ? '#0' : location.hash, dir: '{{ Session::get('locale') == 'ar' ? 'rtl' : 'ltr' }}' }"
+    class="scroll-smooth" lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -147,7 +146,6 @@
             </div>
         </div>
     </div>
-
     <script src="{{ asset('js/home.js') }}"></script>
 
 </body>
