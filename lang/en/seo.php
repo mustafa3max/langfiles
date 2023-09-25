@@ -29,6 +29,9 @@ return [
     'title_contributors' => 'List of amazing contributors to langfiles',
     'description_contributors' => 'These people made amazing sacrifices in creating and developing the langfiles website because they put a lot of time and effort into it, and the least we can do for them is to immortalize their names on this page. Thank them for this wonderful work.',
     //
+    'title_project' => 'Select what your project contains to get the localization file',
+    'description_project' => 'Choose what suits your project, and after completion, localization texts for your project will be provided.',
+    //
     // END SEO
     //
     'title_profile' => 'Profile of member :USER',

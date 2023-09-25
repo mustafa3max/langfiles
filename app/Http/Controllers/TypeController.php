@@ -62,6 +62,7 @@ class TypeController extends Controller
                 if (is_array($value)) {
                     $sections = json_encode($value);
                 }
+
                 if (!is_array($value)) {
                     if (strlen($key) > 0 && strlen($value) > 0) {
                         DB::table($table)->updateOrInsert(

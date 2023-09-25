@@ -3,10 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class Globals
 {
@@ -85,5 +82,37 @@ class Globals
         $key = preg_replace('/_+/', '_', $key);
 
         return $key;
+    }
+
+    static function sections(): array
+    {
+        return [
+            "programs",
+            "2d",
+            "3d",
+            "animation",
+            "houseware",
+            "electrical",
+            "tools",
+            "authentications",
+            "browsers",
+            "buttons",
+            "cooking_tools",
+            "countries",
+            "game_engine",
+            "ides",
+            "languages",
+            "musical_instruments",
+            "operating_systems",
+            "linux",
+            "windows",
+            "apple",
+            "page_names",
+            "website",
+            "person_names",
+            "programming_languages",
+            "search_engines",
+            "video"
+        ];
     }
 }

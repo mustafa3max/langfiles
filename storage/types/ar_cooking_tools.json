@@ -1,14 +1,15 @@
 {
-    "microwave":"microwave",
-    "electric_mixer":"Electric Mixer",
-    "electric_hand _mixer": "electric hand mixer",
-    "food_mixer":"food mixer",
-    "electrical_heater":"electrical heater",
-    "mill": "mill",
-    "Kneading_cake_cream":"Kneading for cake and cream",
-    "electric_oven":"electric oven",
-    "egg_beater": "egg beater",
-    "vegetable_cheese_chopper":"Vegetable and Cheese Chopper",
-    "meat_mincer":"meat mincer",
-     "coffee_machine":"coffee machine"
+    "sections_1": ["cooking tools"],
+     "microwave":"ميكرويف",
+     "electric_mixer":"خلاط كهربائي",
+     "electric_hand _mixer":"مضرب يدوي كهربائي",
+     "food_mixer":"عجانة طعام",
+     "electrical_heater":"سخان كهربائي",
+     "mill":"مطحنة",
+     "Kneading_cake_cream":"عجان للكيك والكريمة",
+     "electric_oven":"فرن كهربائي",
+     "egg_beater":"خفاقة البيض",
+     "vegetable_cheese_chopper":"فرامة خضراوات وجبن",
+     "meat_mincer":"فرامة لحوم",
+     "coffee_machine":"آلة صنع القهوة"
 }

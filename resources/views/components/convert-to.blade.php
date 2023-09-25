@@ -6,9 +6,11 @@
     <x-btn-convert index='4'>django</x-btn-convert>
     <x-btn-convert index='5'>xlf</x-btn-convert>
     <x-btn-convert index='6' title="godot, unity, unreal engine">csv</x-btn-convert>
-    <div x-on:click="isCode=false" x-show="isCode && !isMeData">
-        <x-btn-file text="__('me_str.edit_mode')">
-            <x-svg.edit />
-        </x-btn-file>
-    </div>
+    @if ($isEdit ?? true)
+        <div x-on:click="isCode=false" x-show="isCode && !isMeData">
+            <x-btn-file text="__('me_str.edit_mode')">
+                <x-svg.edit />
+            </x-btn-file>
+        </div>
+    @endif
 </div>

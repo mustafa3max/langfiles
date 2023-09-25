@@ -140,5 +140,6 @@ return [
     'max_count_group' => 'Maximum group size: 3,000 items Please create a new group',
     "file_name_en" => "File name in English",
     "enter_article_title_before_deletion" => "Enter the title of the article before deleting",
+    'by_project' => 'by project',
 
 ];

@@ -113,6 +113,7 @@ class Keys extends Component
         session()->remove('offset');
         session()->put('route', Route::currentRouteName());
     }
+
     public function render()
     {
         return view('livewire.show.keys')->with([

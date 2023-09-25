@@ -1,4 +1,5 @@
 {
+    "sections_1": ["authentications"],
     "login": "تسجيل الدخول",
     "remember_me": "تذكرنى",
     "forgot_password": "نسيت كلمة المرور",
@@ -7,8 +8,6 @@
     "name": "الإسم",
     "password": "كلمة المرور",
     "no_account": "لا تملك حساب",
-    "or": "أو",
-    "to": "إلى",
     "register": "التسجيل",
     "create_account": "إنشاء حساب",
     "confirm_password": "تأكيد كلمة المرور",
@@ -16,6 +15,8 @@
     "last_name": "اسم العائلة",
     "agree_with": "من خلال إنشاء حساب ، فإنك توافق على",
     "terms_of_service": "شروط الخدمة",
-    "and": "و",
-    "privacy_policy": "سياسة الخصوصية"
+    "privacy_policy": "سياسة الخصوصية",
+    "or": "أو",
+    "to": "إلى",
+    "and": "و"
 }

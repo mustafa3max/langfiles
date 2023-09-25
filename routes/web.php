@@ -21,6 +21,7 @@ use App\Livewire\Policy\Privacypolicy;
 use App\Livewire\Policy\Termsofservice;
 use App\Livewire\Show\File;
 use App\Livewire\Show\Keys;
+use App\Livewire\Show\Project;
 use App\Livewire\Show\Types;
 use App\Livewire\User\AddText;
 use App\Livewire\User\Profile as UserProfile;
@@ -71,6 +72,7 @@ Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
     Route::get('file/{type}', File::class);
     Route::get('keys', Keys::class)->name('keys');
+    Route::get('project', Project::class)->name('project');
 });
 
 // Policy
