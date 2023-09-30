@@ -47,6 +47,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 Route::scopeBindings()->group(function () {
     Route::get('/sitemap.xml',  [SitemapController::class, 'index']);
     Route::get('/sitemap.xml/types',  [SitemapController::class, 'types']);
+    Route::get('/sitemap.xml/blogs',  [SitemapController::class, 'blogs']);
 });
 
 // Email Verify
@@ -72,7 +73,7 @@ Route::scopeBindings()->group(function () {
     Route::get('types', Types::class)->name('types');
     Route::get('file/{type}', File::class);
     Route::get('keys', Keys::class)->name('keys');
-    Route::get('project', Project::class)->name('project');
+    // Route::get('project', Project::class)->name('project');
 });
 
 // Policy

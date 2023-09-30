@@ -105,7 +105,7 @@ window.filterSyntax = function(input, valueSelect, syntaxesLocal, syntaxesServer
     return [syntaxesLocal, input];
 }
 
-// All Links Nofllow And Target _blank
+// All Links Nofllow And Target blank
  window.myFunction = function() {
     var x = document.getElementsByTagName("a");
     var i;
@@ -117,7 +117,7 @@ window.filterSyntax = function(input, valueSelect, syntaxesLocal, syntaxesServer
         }
     }
 }
-var mft = setTimeout("myFunction()", 0);
+setTimeout("myFunction()", 0);
 
 window.LoadEvent = function(func) {
     var oldonload = window.onload;
@@ -135,3 +135,4 @@ window.LoadEvent = function(func) {
 window.LoadEvent(function() {
     window.myFunction();
 });
+

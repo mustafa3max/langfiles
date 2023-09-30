@@ -119,6 +119,37 @@ class Convert
                         '"' .
                         "</span>" .
                         ', ';
+                } elseif ($type === 'html') {
+                    $data .= "<div>" .
+
+                        "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
+                        "&#x3c;li" .
+                        '</span>' .
+
+                        "<span class=\"text-code-1-light dark:text-code-1-dark\">" .
+                        " id" .
+                        '</span>' .
+
+                        "<span class=\"text-primary-dark dark:text-primary-light\">" .
+                        "=" .
+                        '</span>' .
+
+                        "<span class=\"text-code-1-light dark:text-code-1-dark\">" .
+                        "\"" . $key . "\"" .
+                        '</span>' .
+
+                        "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
+                        ">" .
+                        '</span>' .
+
+                        "<span class=\"text-primary-dark dark:text-primary-light\">" .
+                        $value .
+                        '</span>' .
+
+                        "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
+                        "&#x3c;/li>" .
+                        '</span>' .
+                        "</div>";
                 }
             }
             if ($type === 'csv') {

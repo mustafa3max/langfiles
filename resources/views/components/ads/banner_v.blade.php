@@ -30,6 +30,7 @@
 
         @livewire('side.new-types')
         <x-side.supported-extensions />
+        @livewire('side.latest-articles')
         <x-side.related-topics />
         <x-side.related-videos />
     </div>

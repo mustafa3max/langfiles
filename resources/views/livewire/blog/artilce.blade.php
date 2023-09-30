@@ -5,6 +5,11 @@
     @section('page-description')
         {{ $blog->desc }}
     @endsection
+    {{--
+    <ul class="list-disc ps-4">
+    </ul>
+    <ol class="list-decimal ps-4">
+    </ol> --}}
 
     <x-card>
         <div class="grid grid-cols-1 items-start gap-2">
@@ -14,8 +19,6 @@
                 </h1>
                 <img class="block min-h-[200px] w-full rounded-lg border border-primary-light dark:border-primary-dark"
                     src="{{ asset($blog->thumbnail) }}" alt="{{ $blog->title }}" />
-
-                @markdomStyles()
                 @markdom($article)
             </div>
             <div

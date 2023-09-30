@@ -18,6 +18,8 @@
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:image" content="{{ asset('assets/images/bg_image_home.webp') }}" />
 
+    <meta name="yandex-verification" content="58c686c180371774" />
+
     @vite('resources/css/app.css')
 
     {{-- Start Font Almarai --}}

@@ -82,6 +82,7 @@
                                         <div x-data="{ data: '{{ $django[0] }}' }" x-show="convert[4]" x-html="data"></div>
                                         <div x-data="{ data: '{{ $xlf[0] }}' }" x-show="convert[5]" x-html="data"></div>
                                         <div x-data="{ data: '{{ $csv[0] }}' }" x-show="convert[6]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $html[0] }}' }" x-show="convert[7]" x-html="data"></div>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +100,7 @@
                                         <div x-data="{ data: '{{ $django[1] }}' }" x-show="convert[4]" x-html="data"></div>
                                         <div x-data="{ data: '{{ $xlf[1] }}' }" x-show="convert[5]" x-html="data"></div>
                                         <div x-data="{ data: '{{ $csv[0] }}' }" x-show="convert[6]" x-html="data"></div>
+                                        <div x-data="{ data: '{{ $html[1] }}' }" x-show="convert[7]" x-html="data"></div>
                                     </div>
                                 </div>
                             </div>

@@ -124,6 +124,7 @@ return [
     "file_name_en" => "إسم الملف باللغة الانجليزية",
     "enter_article_title_before_deletion" => "ادخل عنوان المقال قبل الحذف",
     'by_project' => 'حسب المشروع',
+    "latest_articles" => "آخر المقالات",
     '' => '',
     '' => '',
     '' => '',

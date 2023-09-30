@@ -6,7 +6,7 @@
         @endphp
         <url>
             <loc>{{ url('/') . '/file/' . $route }}/</loc>
-            <lastmod>{{ $type->updated_at }}</lastmod>
+            <lastmod>{{ $type->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>monthly</changefreq>
         </url>
     @endforeach

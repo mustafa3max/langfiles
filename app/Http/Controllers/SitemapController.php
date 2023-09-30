@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Table;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -17,6 +18,15 @@ class SitemapController extends Controller
         $types = Table::where('lang', LaravelLocalization::getCurrentLocale())->latest()->get();
         return response()->view('sitemap.types', [
             'types' => $types,
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function blogs()
+    {
+        $blogs = Blog::get();
+
+        return response()->view('sitemap.blogs', [
+            'blogs' => $blogs,
         ])->header('Content-Type', 'text/xml');
     }
 }

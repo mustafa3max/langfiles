@@ -27,7 +27,10 @@
 
     <meta name="robots" content="@yield('page-index')">
 
+    <meta name="yandex-verification" content="58c686c180371774" />
+
     @vite('resources/css/app.css')
+    @markdomStyles()
     <style>
         [x-cloak] {
             display: none !important;

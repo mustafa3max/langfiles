@@ -33,6 +33,9 @@ export default class To {
                 else if(type == "csv") {
                     fullData += To.csv(item, data[item]);
                 }
+                else if(type == "html") {
+                    fullData += To.html(item, data[item]);
+                }
             }
 
             return To.parentType(fullData, type);
@@ -118,6 +121,40 @@ export default class To {
         ', '+
         '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"'+'</span>'+
         ',</div>';
+    }
+
+     static html(key, value) {
+         return "<div>" +
+
+                "<span class=\"text-code-2-light dark:text-code-2-dark\">" +
+                "&#x3c;li" +
+                '</span>' +
+
+                "<span class=\"text-code-1-light dark:text-code-1-dark\">" +
+                " id" +
+                '</span>' +
+
+                "<span class=\"text-primary-dark dark:text-primary-light\">" +
+                "=" +
+                '</span>' +
+
+                "<span class=\"text-code-1-light dark:text-code-1-dark\">" +
+                "\"" + key + "\"" +
+                '</span>' +
+
+                "<span class=\"text-code-2-light dark:text-code-2-dark\">" +
+                ">" +
+                '</span>' +
+
+                "<span class=\"text-primary-dark dark:text-primary-light\">" +
+                value +
+                '</span>' +
+
+                "<span class=\"text-code-2-light dark:text-code-2-dark\">" +
+                "&#x3c;/li>" +
+                '</span>' +
+
+                "</div>";
     }
 
     static parentType(fullData, type) {

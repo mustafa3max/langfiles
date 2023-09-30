@@ -21,5 +21,7 @@ return [
     'game_engines' => 'game engines',
     'search_engines' => 'search engines',
     'countries' => 'countries',
+    'languages_codes' => 'languages codes',
+    'country_codes' => 'country codes',
     '---key---' => '---value---',
 ];

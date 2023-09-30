@@ -41,9 +41,10 @@
                         </a>
                     </li>
                 </ul>
-                <a href="/" class="flex items-center" title="{{ config('app.name') }}">
-                    <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
+                <a href="/" class="flex items-center max-ss:hidden" title="{{ config('app.name') }}">
+                    <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="{{ config('app.name') }}" />
                 </a>
+
             </div>
 
             <div class="absolute start-1 top-12">

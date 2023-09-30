@@ -114,6 +114,7 @@ class File extends Component
             'django' => Convert::to('django', $this->toJson()),
             'xlf' => Convert::to('xlf', $this->toJson()),
             'csv' => Convert::to('csv', $this->toJson()),
+            'html' => Convert::to('html', $this->toJson()),
             'dataEdit' => $this->data(),
             'dataJson' => $this->toJson(),
             'currentLang' => $this->currentLang,

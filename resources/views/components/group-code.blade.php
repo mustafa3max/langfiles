@@ -76,6 +76,12 @@
                                     index="6" />
                             </template>
                         </div>
+                        {{-- HTML --}}
+                        <div x-show="convert[7]" class="grid gap-2">
+                            <template x-for="key in Object.entries(meCode)">
+                                <x-item-group-code html="html(key[0], key.pop())" index="7" />
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>

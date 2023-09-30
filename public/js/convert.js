@@ -88,7 +88,7 @@ function android(key, value) {
     stringLast.classList.add('dark:text-code-2-dark');
 
     stringFirst.innerText = '<string ';
-    stringMid.innerText = '> ';
+    stringMid.innerText = '>';
     stringLast.innerText = '</string>';
     spanKey.innerText = 'name="'+key+'"';
     spanValue.innerText = value;
@@ -270,3 +270,35 @@ function csv(key, valueAr, valueEn) {
     return div.innerHTML;
 }
 
+function html(key, value) {
+    const div = document.createElement('div');
+    const spanKey = document.createElement('span');
+    const spanValue = document.createElement('span');
+    const stringFirst = document.createElement('span');
+    const stringMid = document.createElement('span');
+    const stringLast = document.createElement('span');
+
+    spanKey.classList.add('text-code-1-light');
+    spanKey.classList.add('dark:text-code-1-dark');
+
+    stringFirst.classList.add('text-code-2-light');
+    stringFirst.classList.add('dark:text-code-2-dark');
+    stringMid.classList.add('text-code-2-light');
+    stringMid.classList.add('dark:text-code-2-dark');
+    stringLast.classList.add('text-code-2-light');
+    stringLast.classList.add('dark:text-code-2-dark');
+
+    stringFirst.innerText = '<li ';
+    stringMid.innerText = '>';
+    stringLast.innerText = '</li>';
+    spanKey.innerText = 'id="'+key+'"';
+    spanValue.innerText = value;
+
+    div.appendChild(stringFirst);
+    div.appendChild(spanKey);
+    div.appendChild(stringMid);
+    div.appendChild(spanValue);
+    div.appendChild(stringLast);
+
+    return div.innerHTML;
+}

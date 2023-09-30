@@ -21,5 +21,7 @@ return [
     'game_engines' => 'محركات العاب',
     'search_engines' => 'محركات بحث',
     'countries' => 'بلدان',
+    'languages_codes' => 'رموز اللغات',
+    'country_codes' => 'رموز الدول',
     '---key---' => '---value---',
 ];
