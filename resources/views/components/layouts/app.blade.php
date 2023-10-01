@@ -18,7 +18,7 @@
     <meta property="og:locale" content="{{ LaravelLocalization::getCurrentLocale() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:image" content="{{ asset('assets/images/bg_image_home.webp') }}" />
+    <meta property="og:image" content="@yield('social-image', asset('assets/images/bg_image_home.webp'))" />
     <meta property="og:video:type" content="video/mp4." />
     <meta property="og:video" content="{{ asset('assets/videos/bg_video_home.mp4') }}" />
     <meta property="og:video:secure_url" content="{{ asset('assets/videos/langfiles_show.mp4') }}" />
@@ -47,6 +47,8 @@
     <link rel="preconnect" as="style" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
     {{-- End Font Almarai --}}
+
+    @stack('scripts-schema')
 </head>
 
 <body

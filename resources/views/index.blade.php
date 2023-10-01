@@ -27,6 +27,15 @@
     <link rel="preconnect" as="style" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap" rel="stylesheet">
     {{-- End Font Almarai --}}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('assets/images/logo.svg') }}"
+    }
+    </script>
 </head>
 
 <body x-data="{ select: [true, false, false, false] }"
@@ -149,7 +158,6 @@
         </div>
     </div>
     <script src="{{ asset('js/home.js') }}"></script>
-
 </body>
 
 </html>

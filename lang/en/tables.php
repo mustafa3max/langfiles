@@ -23,5 +23,10 @@ return [
     'countries' => 'countries',
     'languages_codes' => 'languages codes',
     'country_codes' => 'country codes',
+    'names_months' => 'names of the months',
+    'names_days' => 'names of days',
+    'color_names' => 'color names',
+    'hijri_months' => 'hijri months',
+    'names_religions' => 'names of religions',
     '---key---' => '---value---',
 ];

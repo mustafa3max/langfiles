@@ -5,11 +5,10 @@
     @section('page-description')
         {{ $blog->desc }}
     @endsection
-    {{--
-    <ul class="list-disc ps-4">
-    </ul>
-    <ol class="list-decimal ps-4">
-    </ol> --}}
+
+    @section('social-image')
+        {{ asset($blog->thumbnail) }}
+    @endsection
 
     <x-card>
         <div class="grid grid-cols-1 items-start gap-2">
@@ -61,4 +60,25 @@
             }
         }
     </script>
+
+    @push('scripts-schema')
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "{!!$blog->title!!}",
+            "image": [
+                "{!!asset($blog->thumbnail)!!}"
+            ],
+            "datePublished": "{!!$blog->created_at!!}",
+            "dateModified": "{!!$blog->updated_at!!}",
+            "author": [{
+                "@type": "Person",
+                "name": "{!!$author!!}",
+                "url": "{!!url('/')!!}"
+                }]
+            }
+        </script>
+    @endpush
+
 </div>

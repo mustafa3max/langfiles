@@ -23,5 +23,10 @@ return [
     'countries' => 'بلدان',
     'languages_codes' => 'رموز اللغات',
     'country_codes' => 'رموز الدول',
+    'names_months' => 'اسماء الشهور',
+    'names_days' => 'اسماء الايام',
+    'color_names' => 'اسماء الألوان',
+    'hijri_months' => 'الشهور الهجرية',
+    'names_religions' => 'اسماء الاديان',
     '---key---' => '---value---',
 ];

@@ -16,8 +16,9 @@ return [
         'p'      => 'py-2',
         'ul'     => 'ps-4 list-disc',
         'ol'     => 'ps-4 list-decimal',
-        'pre'    => 'my-1 bg-primary-light dark:bg-primary-dark p-4 rounded-lg',
+        'pre'    => 'my-1 bg-primary-light dark:bg-primary-dark p-4 rounded-lg overflow-x-auto',
         'a'    => 'text-accent hover:underline',
+        'img'    => 'w-full border rounded-lg my-2',
     ],
 
     /**
