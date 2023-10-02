@@ -26,7 +26,7 @@
                         {{ __('me_str.community') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/blog">blog</a>
+                        <a class="hover:text-accent" href="/blog" wire:navigate>blog</a>
                     </li>
                     <li class="block py-1">
                         <a class="hover:text-accent" href="https://github.com/mustafa3max/" target="_blank"
@@ -44,10 +44,12 @@
                         {{ __('me_str.legal') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/privacy-policy">{{ __('me_str.privacy_policy') }}</a>
+                        <a class="hover:text-accent" href="/privacy-policy"
+                            wire:navigate>{{ __('me_str.privacy_policy') }}</a>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/terms-of-service">{{ __('me_str.terms_of_use') }}</a>
+                        <a class="hover:text-accent" href="/terms-of-service"
+                            wire:navigate>{{ __('me_str.terms_of_use') }}</a>
                     </li>
                 </ul>
 
@@ -57,7 +59,7 @@
                         {{ __('me_str.help') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/call-us">{{ __('me_str.call_us') }}</a>
+                        <a class="hover:text-accent" href="/call-us" wire:navigate>{{ __('me_str.call_us') }}</a>
                     </li>
                     <li class="block py-1">
                         <a class="hover:text-accent" href="mailto:www.langfiles@gamil.com" target="_blank"
@@ -77,12 +79,12 @@
         <div class="mt-8 flex w-full flex-wrap items-center justify-center gap-4 border-t-2 border-primary-light pb-4 pt-8 text-center text-xs uppercase dark:border-primary-dark"
             dir="ltr">
             <span>
-                &copy; {{ date('Y') }} <a href="/"
-                    class="text-accent hover:underline">{{ config('app.name') }}</a>
+                &copy; {{ date('Y') }} <a href="/" class="text-accent hover:underline"
+                    wire:navigate>{{ config('app.name') }}</a>
             </span>
             <div class="hidden grow sm:block"></div>
             <span>
-                from <a href="/mustafamax/profile" class="text-accent hover:underline">mustafamax</a>
+                from <a href="/mustafamax/profile" class="text-accent hover:underline" wire:navigate>mustafamax</a>
             </span>
         </div>
     </div>

@@ -38,7 +38,7 @@ class Globals
 
     static function supportedExtensions()
     {
-        return ['json', 'php', 'android', 'ios', 'django', 'xlf', 'csv'];
+        return ['json', 'php', 'android', 'ios', 'django', 'xlf', 'csv', 'html'];
     }
 
     static function logout()

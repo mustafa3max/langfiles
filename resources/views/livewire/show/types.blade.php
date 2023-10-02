@@ -15,7 +15,7 @@
                 @endcomponent
             </div>
 
-            <div wire:loading>
+            <div wire:loading.delay>
                 <x-load.load-types />
             </div>
             <div id="files" wire:loading.remove class="{{ count($types) > 0 ? 'flex' : '' }} flex-wrap gap-2">

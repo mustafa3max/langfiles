@@ -12,7 +12,8 @@
         <div dir="ltr" class="px-2">
             <h2 class="py-3 text-2xl font-bold">Privacy Policy for langfiles</h2>
 
-            <p>At langfiles, accessible from <a href="/" class="text-accent hover:underline">www.langfiles.com</a>,
+            <p>At langfiles, accessible from <a href="/" class="text-accent hover:underline"
+                    wire:navigate>www.langfiles.com</a>,
                 one of our main priorities is the privacy of our
                 visitors. This Privacy Policy document contains types of information that is collected and recorded
                 by

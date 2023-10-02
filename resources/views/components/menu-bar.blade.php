@@ -1,21 +1,21 @@
 <div class="z-20 grid gap-4 rounded-lg border border-primary-light bg-secondary-light p-4 shadow-lg dark:border-primary-dark dark:bg-secondary-dark"
     x-show="isMenu" x-on:click.outside="isMenu = false" x-transition.duration.500ms>
     @if (Auth::check())
-        <a href="/user/profile" class="flex items-center gap-4">
+        <a href="/user/profile" class="flex items-center gap-4" wire:navigate>
             <x-svg.user />
             <span>{{ __('me_str.profile') }}</span>
         </a>
 
-        <a href="/user/logout" class="flex items-center gap-4">
+        <a href="/user/logout" class="flex items-center gap-4" wire:navigate>
             <x-svg.logout />
             <span>{{ __('me_str.logout') }}</span>
         </a>
     @else
-        <a href="/register" class="flex items-center gap-4">
+        <a href="/register" class="flex items-center gap-4" wire:navigate>
             <x-svg.register />
             <span>{{ __('seo.title_register') }}</span>
         </a>
-        <a href="/login" class="flex items-center gap-4">
+        <a href="/login" class="flex items-center gap-4" wire:navigate>
             <x-svg.logout />
             <span>{{ __('seo.title_login') }}</span>
         </a>
@@ -35,7 +35,7 @@
         @endforeach
     </ul>
 
-    <a href="/privacy-policy" class="flex items-center gap-4">
+    <a href="/privacy-policy" class="flex items-center gap-4" wire:navigate>
         <x-svg.privacy />
         <span>
             {{ __('me_str.policy_and_terms') }}
@@ -43,7 +43,7 @@
     </a>
 
     <div class="border-b border-primary-light dark:border-primary-dark"></div>
-    <a href="/call-us" class="flex items-center gap-4">
+    <a href="/call-us" class="flex items-center gap-4" wire:navigate>
         <x-svg.call />
         <span>{{ __('me_str.call_us') }}</span>
     </a>

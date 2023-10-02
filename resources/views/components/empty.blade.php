@@ -5,7 +5,7 @@
         <div class="dark grid gap-4 rounded-b-lg border-4 border-primary-light p-4 dark:border-primary-dark">
             <p>{{ __('me_str.empty_page_desc') }}</p>
             @if ($isReload ?? true)
-                <a href="{{ $route }}" class="cursor-pointer text-accent hover:underline">
+                <a href="{{ $route }}" class="cursor-pointer text-accent hover:underline" wire:navigate>
                     {{ __('me_str.reload') }}
                 </a>
             @endif

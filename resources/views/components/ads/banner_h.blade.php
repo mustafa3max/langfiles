@@ -1,56 +1,8 @@
-{{-- <div class="max-md:hidden pb-2"> --}}
 <div class="w-full pb-2" id="ad-box">
-    <script>
-        // window.googletag.cmd.push(function() {
-        //     var w = document.getElementById('ad-box').offsetWidth;
-        //     var sizes = [320, 50];
-
-        //     if (w >= 970) {
-        //         sizes = [
-        //             [728, 90],
-        //             [750, 200],
-        //             [970, 250],
-        //             [970, 90],
-        //             [970, 66],
-        //         ];
-        //     } else if (w >= 750 && w < 970) {
-        //         sizes = [
-        //             [728, 90],
-        //             [750, 200]
-        //         ];
-
-        //     } else if (w < 728 && w >= 640) {
-        //         sizes = [
-        //             [640, 640]
-        //         ];
-
-        //     } else if (w >= 728 && w < 750) {
-        //         sizes = [
-        //             [728, 90],
-        //         ];
-        //     }
-        //     var responsiveAdSlot = googletag.defineSlot('/6355419/Travel/Europe/France/Paris',
-        //         sizes, 'banner-ad').addService(googletag.pubads());
-
-        //     // googletag.pubads().enableSingleRequest();
-        //     // googletag.pubads().collapseEmptyDivs();
-
-        //     googletag.enableServices();
-        // });
-    </script>
-
-    {{-- <div id="banner-ad" class="min-h-[90px] rounded-lg bg-secondary-light p-4 dark:bg-secondary-dark">
-        <script>
-            googletag.cmd.push(function() {
-                googletag.display('banner-ad');
-            });
-        </script>
-    </div> --}}
-
     <div class="flex flex-wrap gap-2">
-        <x-convert.link route="{{ route('convert-to') }}"
-            title="{{ implode(' ' . __('me_str.or') . ' ', Globals::supportedExtensions()) }}">{{ __('convert.json_to_dart') }}</x-convert.link>
-        <x-convert.link route="{{ route('add-text') }}">{{ __('me_str.add_texts') }}</x-convert.link>
-        <x-convert.link route="{{ route('contributors') }}">{{ __('contributors.contributors') }}</x-convert.link>
+        <x-link route="{{ route('convert-to') }}"
+            title="{{ implode(' ' . __('me_str.or') . ' ', Globals::supportedExtensions()) }}">{{ __('convert.json_to_dart') }}</x-link>
+        <x-link route="{{ route('add-text') }}">{{ __('me_str.add_texts') }}</x-link>
+        <x-link route="{{ route('contributors') }}" isContributors="1">{{ __('contributors.contributors') }}</x-link>
     </div>
 </div>

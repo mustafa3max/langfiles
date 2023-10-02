@@ -12,7 +12,7 @@
             @if ($route !== request()->segment(count(request()->segments())))
                 <li
                     class="{{ $loop->last ? '' : 'border-b-2' }} flex border-secondary-light py-3 hover:rounded-lg hover:text-accent dark:border-secondary-dark">
-                    <a href="{{ '/blog/article/' . $route }}" class="grow">{{ $article->title }}</a>
+                    <a href="{{ '/blog/article/' . $route }}" class="grow" wire:navigate>{{ $article->title }}</a>
                 </li>
             @endif
         @endforeach

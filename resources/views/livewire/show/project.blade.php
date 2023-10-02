@@ -48,7 +48,7 @@
             </x-card-dark>
         </div>
     </x-types-keys>
-    <div wire:loading>
+    <div wire:loading.delay>
         <x-wite />
     </div>
 </div>

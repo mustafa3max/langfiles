@@ -85,7 +85,7 @@
 
     </x-card>
 
-    <div wire:loading>
+    <div wire:loading.delay>
         <x-wite />
     </div>
 </div>

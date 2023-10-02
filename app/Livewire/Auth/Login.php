@@ -25,7 +25,7 @@ class Login extends Component
             $this->reset(['email']);
             $this->reset(['password']);
             $this->reset(['remember']);
-            return redirect(session()->pull('path_previous') ?? url()->to('/types'));
+            return $this->redirect(session()->pull('path_previous') ?? url()->to('/types'), navigate: true);
         }
 
         $this->dispatch('message', __('error.login'));
@@ -34,7 +34,7 @@ class Login extends Component
     public function mount()
     {
         if (Auth::check()) {
-            return redirect()->route('index');
+            return $this->redirect('/types', navigate: true);
         }
     }
 

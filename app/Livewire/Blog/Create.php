@@ -39,7 +39,7 @@ class Create extends Component
                 'author' => Auth::id(),
             ]);
 
-            return redirect()->route('blog');
+            return $this->redirect('/blog', navigate: true);
         }
     }
 
@@ -53,7 +53,7 @@ class Create extends Component
     public function mount()
     {
         if (Auth::user()->owner !== 1) {
-            return redirect()->route('blog');
+            return $this->redirect('blog', navigate: true);
         }
     }
 

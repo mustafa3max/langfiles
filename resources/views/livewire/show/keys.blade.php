@@ -19,7 +19,7 @@
             @endcomponent
         </div>
         <div>
-            <div wire:loading>
+            <div wire:loading.delay>
                 <x-load.load-keys />
             </div>
             <div wire:loading.remove>

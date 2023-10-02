@@ -16,10 +16,10 @@
             <h1 class="font-semibold uppercase">{{ $user->name }}</h1>
             <p>{{ $user->email }}</p>
             <div class="flex">
-                <a href='/user/logout' class="hover:underline">{{ __('me_str.logout') }}</a>
+                <a href='/user/logout' class="hover:underline" wire:navigate>{{ __('me_str.logout') }}</a>
                 <div class="grow"></div>
-                <a href='/user/delete-account'
-                    class="text-code-2-light hover:underline">{{ __('seo.title_delete_account') }}</a>
+                <a href='/user/delete-account' class="text-code-2-light hover:underline"
+                    wire:navigate>{{ __('seo.title_delete_account') }}</a>
             </div>
         </div>
     </x-card>

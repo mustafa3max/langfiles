@@ -32,7 +32,7 @@ class Register extends Component
         if (Auth::attempt(['name' => $validated['name'], 'email' => $validated['email'], 'password' => $validated['password']], true)) {
             event(new Registered($user));
 
-            return redirect(url()->to('email/verify'));
+            return $this->redirect(url()->to('email/verify'), navigate: true);
         }
     }
 
@@ -40,7 +40,7 @@ class Register extends Component
     {
 
         if (Auth::check()) {
-            return redirect()->route('index');
+            return $this->redirect('/types', navigate: true);
         }
     }
 

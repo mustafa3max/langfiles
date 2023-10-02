@@ -42,7 +42,7 @@
         </form>
     </x-card>
 
-    <div wire:loading wire:target="delete">
+    <div wire:loading.delay wire:target="delete">
         <x-wite />
     </div>
 

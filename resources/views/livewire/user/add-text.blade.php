@@ -148,7 +148,7 @@
         </button>
     </div>
 
-    <div wire:loading wire:target="publish">
+    <div wire:loading.delay wire:target="publish">
         <x-wite />
     </div>
 

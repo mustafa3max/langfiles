@@ -29,7 +29,8 @@
 
     <meta name="yandex-verification" content="58c686c180371774" />
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('scripts')
     @markdomStyles()
     <style>
         [x-cloak] {
@@ -68,6 +69,7 @@
         <div class="min-h-[65.5vh]">
             @component('components.nav-bar')
             @endcomponent
+
             <!-- Page Content -->
             <div class="container mx-auto p-2">
                 <div class="flex flex-wrap">
@@ -86,11 +88,7 @@
         <x-footer />
         @include('cookie-consent::index')
     </div>
-
-    @vite('resources/js/app.js')
-    <script src="{{ asset('js/convert.js') }}"></script>
     <script src="https://unpkg.com/@victoryoalli/alpinejs-timeout@1.0.0/dist/timeout.min.js"></script>
-    {{-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script> --}}
 </body>
 
 </html>

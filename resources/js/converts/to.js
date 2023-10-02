@@ -55,8 +55,7 @@ export default class To {
     }
 
     static json(key, value) {
-        return '<div>'+
-        To.charsets["tab"]+
+        return '<div class="ps-4">'+
         '<span class="text-code-1-light dark:text-code-1-dark">"'+key+'"</span>'+
         ': '+
         '<span class="text-code-2-light dark:text-code-2-dark">"'+value+'"</span>'+
@@ -197,6 +196,16 @@ export default class To {
         else if(type == "csv") {
             return 'keys,lang_1'+
             fullData;
+        }
+        else if(type == "csv") {
+             return '<div>'+this.charsets['<']+'ul></div>'+
+            fullData+
+            '<div>'+this.charsets['<']+'/ul></div>';
+        }
+        else if(type == "html") {
+            return '<div>'+this.charsets['<']+'ul></div>'+
+            fullData+
+            '<div>'+this.charsets['<']+'/ul></div>';
         }
     }
 

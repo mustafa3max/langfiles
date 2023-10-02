@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("livewire:navigated", () => {
     const popupWidth = 780;
     const popupHeight = 550;
 

@@ -12,12 +12,12 @@
         <div class="flex flex-wrap justify-center gap-2">
             <div class="flex flex-wrap gap-2" x-data="{
                 extensions: {{ json_encode(Globals::supportedExtensions()) }},
-                clicks: [false, false, false, false, false, false, false]
+                clicks: [false, false, false, false, false, false, false, false]
             }">
                 <template x-for="(extension, index) in extensions">
                     <button class="rounded-lg border border-primary-light px-2 py-1 uppercase dark:border-primary-dark"
                         x-text="extension"
-                        x-on:click="window.convertNow(extension);clicks = [false, false, false, false, false, false, false]; clicks[index]=true"
+                        x-on:click="window.convertNow(extension);clicks = [false, false, false, false, false, false, false,]; clicks[index]=true"
                         :class="clicks[index] ? '' : 'bg-primary-light dark:bg-primary-dark'"></button>
                 </template>
             </div>
@@ -85,65 +85,63 @@
     {{-- Message Not Name Group --}}
     <x-msg />
 
-    <script>
-        var syntaxesLocal = [];
+    @push('scripts')
+        <script data-navigate-track>
+            var syntaxesLocal = [];
 
-        const keyAdd = document.getElementById('key');
-        const valueAdd = document.getElementById('value');
+            document.addEventListener('alpine:init', () => {
 
-        document.addEventListener('alpine:init', () => {
+                // Syntaxes
+                window.Alpine.store('syntax', {
+                    syntaxesLocal: [],
+                    isSyntaxKey: false,
+                    isSyntaxValue: false,
+                    error: null,
 
-            // Syntaxes
-            window.Alpine.store('syntax', {
-                syntaxesLocal: [],
-                isSyntaxKey: false,
-                isSyntaxValue: false,
-                error: null,
+                    selectSyntax(syntax, isKey, id) {
+                        const input = document.getElementById(id);
+                        input.value = window.selectSyntax(input.value, syntax);
 
-                selectSyntax(syntax, isKey, id) {
-                    const input = document.getElementById(id);
-                    input.value = window.selectSyntax(input.value, syntax);
+                        setTimeout(() => {
+                            input.setSelectionRange(input.value.length, input.value.length);
+                            input.focus();
+                        }, 250);
+                    },
 
-                    setTimeout(() => {
-                        input.setSelectionRange(input.value.length, input.value.length);
-                        input.focus();
-                    }, 250);
-                },
+                    tryCatch() {
+                        try {
+                            this.error = null;
+                            return JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+                        } catch (e) {
+                            this.error = e;
+                            return sessionStorage.getItem('convert_data');
+                        }
 
-                tryCatch() {
-                    try {
-                        this.error = null;
-                        return JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
-                    } catch (e) {
-                        this.error = e;
-                        return sessionStorage.getItem('convert_data');
                     }
-
-                }
+                });
             });
-        });
 
 
-        document.addEventListener('livewire:init', () => {
-            window.Livewire.on('dataTrans', data => {
-                // json_encode($newData, JSON_UNESCAPED_UNICODE)
-                sessionStorage.setItem('convert_data', data);
+            document.addEventListener('livewire:init', () => {
+                window.Livewire.on('dataTrans', data => {
+                    sessionStorage.setItem('convert_data', data);
+                });
             });
-        });
 
-        document.addEventListener('livewire:initialized', () => {
-            // Syntaxes
-            const itemsSyntax = @this.syntaxes();
-            itemsSyntax.then((value) => {
-                if (value == null) {
-                    sessionStorage.removeItem('syntaxes');
-                } else {
-                    sessionStorage.setItem('syntaxes', JSON.stringify(value));
-                }
+            document.addEventListener('livewire:initialized', () => {
+                // Syntaxes
+                const itemsSyntax = @this.syntaxes();
+                itemsSyntax.then((value) => {
+                    if (value == null) {
+                        sessionStorage.removeItem('syntaxes');
+                    } else {
+                        sessionStorage.setItem('syntaxes', JSON.stringify(value));
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    @vite('resources/js/converts/convert.js')
+        @vite(['resources/js/converts/convert.js'])
+    @endpush
 
 </div>

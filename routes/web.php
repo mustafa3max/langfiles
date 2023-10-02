@@ -15,7 +15,6 @@ use App\Livewire\ControlPanel\Create;
 use App\Livewire\ControlPanel\Index;
 use App\Livewire\ControlPanel\Update;
 use App\Livewire\Convert\To;
-use App\Livewire\Editor\Editor;
 use App\Livewire\Help\CallUs;
 use App\Livewire\Mustafamax\Profile;
 use App\Livewire\Policy\Privacypolicy;
@@ -107,10 +106,10 @@ Route::prefix('user')->group(function () {
         Route::get('logout', function () {
             return Globals::logout();
         });
-        Route::get('delete-account', Delete::class)->name('delete-account');
     });
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('add-text', AddText::class)->name('add-text');
+        Route::get('delete-account', Delete::class)->name('delete-account');
     });
 });
 

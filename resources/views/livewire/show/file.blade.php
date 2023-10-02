@@ -33,7 +33,7 @@
 
             <x-langs>
                 <div class="mb-2 p-4">
-                    <div wire:loading>
+                    <div wire:loading.delay>
                         <x-load.load-file />
                     </div>
                     <div class="flex flex-wrap gap-4" x-show="isAr" wire:loading.remove>
@@ -65,7 +65,7 @@
                 <div class="w-full">
                     <x-langs>
                         <div class="w-full">
-                            <div class="w-full" wire:loading>
+                            <div class="w-full" wire:loading.delay>
                                 <x-load.load-code />
                             </div>
                             <div class="relative" wire:loading.remove dir="ltr" x-show="isAr">
@@ -120,7 +120,7 @@
             <h2 class="rounded-lg bg-primary-light p-4 font-bold dark:bg-primary-dark">
                 {{ __('me_str.more_files_json') }}
             </h2>
-            <div wire:loading wire:target="{{ $this->types() }}">
+            <div wire:loading.delay wire:target="{{ $this->types() }}">
                 <x-load.load-types-file />
             </div>
 

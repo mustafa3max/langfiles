@@ -10,13 +10,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/types" class="block hover:text-accent" title="{{ __('me_str.home') }}">
+                        <a href="/types" class="block hover:text-accent" title="{{ __('me_str.home') }}" wire:navigate>
                             <x-svg.home />
                         </a>
                     </li>
 
                     <li>
-                        <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}">
+                        <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}"
+                            wire:navigate>
                             <x-svg.blog />
                         </a>
                     </li>
@@ -41,7 +42,8 @@
                         </a>
                     </li>
                 </ul>
-                <a href="/" class="flex items-center max-ss:hidden" title="{{ config('app.name') }}">
+                <a href="/" class="flex items-center max-ss:hidden" title="{{ config('app.name') }}"
+                    wire:navigate>
                     <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="{{ config('app.name') }}" />
                 </a>
 

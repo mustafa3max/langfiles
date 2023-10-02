@@ -1,8 +1,8 @@
-function countCode() {
+window.countCode = function() {
     const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
 }
-function addCode(key, values, languages) {
+window.addCode = function(key, values, languages) {
     values = JSON.parse(values);
     for(var index=0;index<languages.length; index++){
         const keyLocal = languages[index]+"CodeAll";
@@ -16,7 +16,7 @@ function addCode(key, values, languages) {
     }
 }
 
-function removeCode(key, languages) {
+window.removeCode = function(key, languages) {
     for (let index = 0; index < languages.length; index++) {
         const keyLocal = languages[index]+"CodeAll";
         const codeAllOld = localStorage.getItem(keyLocal) === null ? {} : JSON.parse(localStorage.getItem(keyLocal));
@@ -43,7 +43,7 @@ const copyContent = async (idCode) => {
 
 // All Functions Convert To
 
-function jsonOrPhp(key, value, isPhp) {
+window.jsonOrPhp = function(key, value, isPhp) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue = document.createElement('span');
@@ -69,7 +69,7 @@ function jsonOrPhp(key, value, isPhp) {
     return div.innerHTML;
 }
 
-function android(key, value) {
+window.android = function(key, value) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue = document.createElement('span');
@@ -102,7 +102,7 @@ function android(key, value) {
     return div.innerHTML;
 }
 
-function ios(key, value) {
+window.ios = function(key, value) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue = document.createElement('span');
@@ -128,7 +128,7 @@ function ios(key, value) {
     return div.innerHTML;
 }
 
-function django(key, value) {
+window.django = function(key, value) {
     const div = document.createElement('div');
     const divId = document.createElement('div');
     const divStr = document.createElement('div');
@@ -167,7 +167,7 @@ function django(key, value) {
     return div.innerHTML;
 }
 
-function xlf(key, value) {
+window.xlf = function(key, value) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue = document.createElement('span');
@@ -239,7 +239,7 @@ function xlf(key, value) {
     return div.innerHTML;
 }
 
-function csv(key, valueAr, valueEn) {
+window.csv = function(key, valueAr, valueEn) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue1 = document.createElement('span');
@@ -270,7 +270,7 @@ function csv(key, valueAr, valueEn) {
     return div.innerHTML;
 }
 
-function html(key, value) {
+window.html = function(key, value) {
     const div = document.createElement('div');
     const spanKey = document.createElement('span');
     const spanValue = document.createElement('span');
