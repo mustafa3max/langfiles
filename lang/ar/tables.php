@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "2d_design_programs" => "برامح ثنائبة الابعاد",
+    "2d_design_programs" => "برامح ثنائية الابعاد",
     "3d_design_programs" => "برامح ثلاثية الابعاد",
     "animation_programs" => "برامج رسوم متحركة",
     "browsers" => "متصفحات",

@@ -41,4 +41,10 @@
             {{ __('me_str.policy_and_terms') }}
         </span>
     </a>
+
+    <div class="border-b border-primary-light dark:border-primary-dark"></div>
+    <a href="/call-us" class="flex items-center gap-4">
+        <x-svg.call />
+        <span>{{ __('me_str.call_us') }}</span>
+    </a>
 </div>

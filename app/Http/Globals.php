@@ -48,7 +48,7 @@ class Globals
 
             auth('web')->logout();
 
-            return redirect('/');
+            return redirect('/types');
         }
     }
 

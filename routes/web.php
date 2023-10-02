@@ -16,6 +16,7 @@ use App\Livewire\ControlPanel\Index;
 use App\Livewire\ControlPanel\Update;
 use App\Livewire\Convert\To;
 use App\Livewire\Editor\Editor;
+use App\Livewire\Help\CallUs;
 use App\Livewire\Mustafamax\Profile;
 use App\Livewire\Policy\Privacypolicy;
 use App\Livewire\Policy\Termsofservice;
@@ -24,6 +25,7 @@ use App\Livewire\Show\Keys;
 use App\Livewire\Show\Project;
 use App\Livewire\Show\Types;
 use App\Livewire\User\AddText;
+use App\Livewire\User\Delete;
 use App\Livewire\User\Profile as UserProfile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -105,6 +107,7 @@ Route::prefix('user')->group(function () {
         Route::get('logout', function () {
             return Globals::logout();
         });
+        Route::get('delete-account', Delete::class)->name('delete-account');
     });
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('add-text', AddText::class)->name('add-text');
@@ -128,6 +131,11 @@ Route::prefix('blog')->group(function () {
         Route::get('update', BlogUpdate::class);
         Route::get('delete', BlogDelete::class);
     });
+});
+
+// Help
+Route::scopeBindings()->group(function () {
+    Route::get('/call-us', CallUs::class)->name('call_us');
 });
 
 // Route::middleware('auth:sanctum')->group(function () {

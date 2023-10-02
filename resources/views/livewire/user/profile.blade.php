@@ -15,7 +15,12 @@
         <div class="grid gap-2 pt-4 text-center">
             <h1 class="font-semibold uppercase">{{ $user->name }}</h1>
             <p>{{ $user->email }}</p>
-            <a href='/user/logout' class="hover:underline">{{ __('me_str.logout') }}</a>
+            <div class="flex">
+                <a href='/user/logout' class="hover:underline">{{ __('me_str.logout') }}</a>
+                <div class="grow"></div>
+                <a href='/user/delete-account'
+                    class="text-code-2-light hover:underline">{{ __('seo.title_delete_account') }}</a>
+            </div>
         </div>
     </x-card>
 </div>

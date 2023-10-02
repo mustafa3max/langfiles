@@ -57,6 +57,9 @@
                         {{ __('me_str.help') }}
                     </li>
                     <li class="block py-1">
+                        <a class="hover:text-accent" href="/call-us">{{ __('me_str.call_us') }}</a>
+                    </li>
+                    <li class="block py-1">
                         <a class="hover:text-accent" href="mailto:www.langfiles@gamil.com" target="_blank"
                             rel="nofollow">email</a>
                     </li>

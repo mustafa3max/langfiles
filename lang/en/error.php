@@ -6,6 +6,7 @@ return [
     'login' => 'There\'s an error in your email or password, or your account is missing',
     'error' => 'Error',
     "not_en_file_name" => "The language used in the file name is not English",
+    "error_message" => "Message was not sent. Something went wrong. Please try later",
     '' => '',
     '' => '',
     '' => '',

@@ -142,4 +142,10 @@ return [
     "enter_article_title_before_deletion" => "Enter the title of the article before deleting",
     'by_project' => 'by project',
     "latest_articles" => "Latest articles",
+    'call_us' => 'call us',
+    "send_message" => "Send message",
+    "your_message" => "your message",
+    "done_message" => "The message has been sent. Thank you. We will respond to you as soon as possible",
+    'done_delete_account' => 'Your account has been successfully deleted Thank you for using langfiles',
+    'error_delete_account' => 'An error occurred unless your account was successfully deleted. Please try again later',
 ];

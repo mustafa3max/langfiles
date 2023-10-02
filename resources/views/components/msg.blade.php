@@ -1,5 +1,5 @@
 <div class="fixed left-0 right-0 top-0 z-50 border-b-4 border-accent bg-secondary-light text-center font-extrabold dark:bg-secondary-dark"
-    x-data="{ show: false, timeout: null, data: '' }" x-show="show" x-show="show" x-init="@this.on('message', (d) => {
+    x-data="{ show: false, timeout: null, data: '' }" x-show="show" x-show="show" x-init="@this.on('{{ $message ?? 'message' }}', (d) => {
         clearTimeout(timeout);
         show = true;
         data = d;

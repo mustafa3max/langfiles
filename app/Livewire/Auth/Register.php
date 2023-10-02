@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class Register extends Component
 {
-    public $name = 'max';
+    public $name;
     public $email;
     public $password;
 

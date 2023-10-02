@@ -20,9 +20,6 @@ return [
     'title_articles' => 'Articles explaining the localization of websites, applications and games',
     'description_articles' => 'On the blog, we present to you articles in which we explain the localization of websites, applications, and games of all kinds, such as laravel websites.',
     //
-    'title_add_texts' => 'Add localization texts for websites, applications and games to support us',
-    'description_add_texts' => 'Support us by adding scripts to localization websites, applications and games. These texts are used by thousands of developers. You just have to choose the language and enter the key and value.',
-    //
     'title_convert' => 'Convert json to several extensions to Localization your projects',
     'description_convert' => 'You have data in JSON format that you want to convert to different formats to localization websites, applications, and games. With langfiles, it has become easy. You can also add a new value to your group and translate it from Arabic to English.',
     //
@@ -33,6 +30,9 @@ return [
     'description_project' => 'Choose what suits your project, and after completion, localization texts for your project will be provided.',
     //
     // END SEO
+    //
+    'title_add_texts' => 'Add localization texts for websites, applications and games to support us',
+    'description_add_texts' => 'Support us by adding scripts to localization websites, applications and games. These texts are used by thousands of developers. You just have to choose the language and enter the key and value.',
     //
     'title_profile' => 'Profile of member :USER',
     'description_profile' => 'Welcome, member :USER, to the langfiles website for localization websites, applications and games',
@@ -48,6 +48,12 @@ return [
     //
     'title_email_verify' => 'Email verification',
     'description_email_verify' => 'In order to enjoy all the benefits of the langfiles website, you must complete the verification process of the email you registered with.',
+    //
+    'title_call_us' => 'Call us now for any inquiries or questions regarding the site',
+    'description_call_us' => 'Call us now for any inquiry or question regarding the site and we will respond to you as soon as possible. We apologize in advance if our response to you is delayed. But rest assured that answering your question is one of our priorities.',
+    //
+    "title_delete_account" => "delete account",
+    "description_delete_account" => "On this page we guide you on how to completely delete your account from our website. To complete the deletion process, you must log in with your email and password for this account. After pressing the Delete Account button, you cannot undo it",
     //////////////////////////////////////////////
     //////////////////////////////////////////////
     //////////////////////////////////////////////
