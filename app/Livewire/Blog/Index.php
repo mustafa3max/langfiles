@@ -29,7 +29,7 @@ class Index extends Component
             ->where('title', 'LIKE', "%$this->search%")
             ->orWhere('desc', 'LIKE', "%$this->search%")
             // ->where('enabled', true)
-            ->orderByDesc('title')
+            ->orderByDesc('updated_at')
             ->simplePaginate(10);
     }
 

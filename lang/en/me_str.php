@@ -148,4 +148,6 @@ return [
     "done_message" => "The message has been sent. Thank you. We will respond to you as soon as possible",
     'done_delete_account' => 'Your account has been successfully deleted Thank you for using langfiles',
     'error_delete_account' => 'An error occurred unless your account was successfully deleted. Please try again later',
+    'msg_os_android' => 'Our website application is available on Android. Do you want to go to the application?',
+    'go_app' => 'Go to the application',
 ];

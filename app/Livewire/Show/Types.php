@@ -60,7 +60,7 @@ class Types extends Component
             }
         )
             ->where('lang', $lang)
-            ->orderByDesc('name_' . $lang)
+            ->orderByDesc('updated_at')
             ->paginate(20);
 
         if (empty($tables->all())) {
@@ -82,7 +82,7 @@ class Types extends Component
                 }
             }
 
-            $tables = Table::orderByDesc('name_' . $lang)
+            $tables = Table::orderByDesc('updated_at')
                 ->whereIn('table', $newTables)
                 ->paginate(20);
         }

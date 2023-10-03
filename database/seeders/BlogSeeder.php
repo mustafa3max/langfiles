@@ -9,6 +9,12 @@ use Illuminate\Database\Seeder;
 class BlogSeeder extends Seeder
 {
     public $articles = [
+        // [
+        //     'path' => '.md',
+        //     'title' => '',
+        //     'desc' => '',
+        //     'thumbnail' => 'storage/blog/images/.png',
+        // ],
         [
             'path' => 'localization_or_arabization_of_a_website_using_laravel_and_langfiles.md',
             'title' => 'توطين او تعريب موقع الكتروني بإستخدام laravel و langfiles',
@@ -27,12 +33,12 @@ class BlogSeeder extends Seeder
             'desc' => 'إن توطين أو تعريب تطبيقات flutter مهم للغاية إذا كنت تريد وصول تطبيقك الى نطاق واسع من المستخدمين لذلك وفي هذا الدرس ساشرح لك كيفية ذلك تابع معي.',
             'thumbnail' => 'storage/blog/images/localization_flutter_applications_using_langfiles.png',
         ],
-        // [
-        //     'path' => '.md',
-        //     'title' => '',
-        //     'desc' => '',
-        //     'thumbnail' => 'storage/blog/images/.png',
-        // ],
+        [
+            'path' => 'localization_of_games_created_by_godot.md',
+            'title' => 'توطين او تعريب الالعاب التي تم إنشائها بواسطة godot',
+            'desc' => 'في هذا الدرس سنتعلم كيفية توطين او تعريب لعبة أنشائها بواسطة محرك الألعاب godot الغني غن التعريف. الشرح سيكون عبارة عن خطوات بسيطة لكن قوية و فعالة.',
+            'thumbnail' => 'storage/blog/images/localization_of_games_created_by_godot.png',
+        ],
     ];
 
     public function run(): void

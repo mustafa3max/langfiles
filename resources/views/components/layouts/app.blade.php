@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('../favicon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('../favicon.ico') }}">
 
     <title>@yield('page-title') - {{ config('app.name') }}</title>
     <meta name="description" content="@yield('page-description')">
@@ -88,6 +88,8 @@
         <x-footer />
         @include('cookie-consent::index')
     </div>
+
+    {{-- @livewire('help.os') --}}
     <script src="https://unpkg.com/@victoryoalli/alpinejs-timeout@1.0.0/dist/timeout.min.js"></script>
 </body>
 

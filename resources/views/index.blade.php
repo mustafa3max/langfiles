@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <title>{{ __('seo.title_home') }} - {{ config('app.name') }}</title>
     <meta name="description" content="{{ __('seo.description_home') }}">
     <meta name="author" content="Mustafamax">
@@ -161,6 +161,9 @@
             </div>
         </div>
     </div>
+
+    {{-- @livewire('help.os') --}}
+
     <script src="{{ asset('js/home.js') }}" data-navigate-track></script>
 </body>
 

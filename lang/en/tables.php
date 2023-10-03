@@ -28,5 +28,7 @@ return [
     'color_names' => 'color names',
     'hijri_months' => 'hijri months',
     'names_religions' => 'names of religions',
+    'names_atoms' => 'names of atoms',
+    'names_academic_subjects' => 'names of academic subjects',
     '---key---' => '---value---',
 ];

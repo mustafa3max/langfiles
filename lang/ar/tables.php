@@ -28,5 +28,7 @@ return [
     'color_names' => 'اسماء الألوان',
     'hijri_months' => 'الشهور الهجرية',
     'names_religions' => 'اسماء الاديان',
+    'names_atoms' => 'أسماء الذرات',
+    'names_academic_subjects' => 'أسماء المواد الدراسية',
     '---key---' => '---value---',
 ];

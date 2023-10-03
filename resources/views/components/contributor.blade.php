@@ -9,8 +9,8 @@
 
             <div class="grid gap-2">
                 @if ($path_profile != null)
-                    <a href="{{ $path_profile }}" target="_blank" rel="nofollow" class="text-center hover:text-accent"
-                        wire:navigate>{{ __('seo.profile_facebook_mustafamax') }}</a>
+                    <a href="{{ $path_profile }}" target="_blank" rel="nofollow"
+                        class="text-center hover:text-accent">{{ __('seo.profile_facebook_mustafamax') }}</a>
                 @endif
 
                 @if ($website != null)
