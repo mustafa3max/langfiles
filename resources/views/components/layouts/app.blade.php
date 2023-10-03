@@ -31,7 +31,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('scripts')
-    @markdomStyles()
+    {{-- @markdomStyles() --}}
     <style>
         [x-cloak] {
             display: none !important;

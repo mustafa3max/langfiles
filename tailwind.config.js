@@ -41,6 +41,18 @@ export default {
     content: {
         'new-window': 'url("http://localhost:8000/assets/images/new_window.svg")',
     },
+    extend: {
+        typography: {
+            DEFAULT: {
+                css: {
+                    maxWidth: '100%',
+                },
+            },
+        },
+    },
   },
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 }
 

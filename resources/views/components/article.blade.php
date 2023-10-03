@@ -1,0 +1,4 @@
+<article
+    class="prose dark:prose-invert prose-a:font-bold prose-a:text-accent hover:prose-a:no-underline prose-ol:ps-4 prose-ul:ps-4 prose-table:table-fixed prose-table:border-2 prose-table:border-primary-light prose-table:bg-primary-dark prose-table:bg-opacity-5 prose-thead:bg-accent prose-th:border-2 prose-th:border-primary-light prose-th:p-4 prose-th:text-lg prose-th:text-primary-dark prose-td:border-2 prose-td:border-primary-light prose-td:p-4 prose-td:text-primary-dark prose-img:w-full prose-img:rounded-lg dark:prose-table:border-primary-dark dark:prose-table:bg-primary-light dark:prose-table:bg-opacity-10 dark:prose-thead:bg-accent dark:prose-th:border-primary-dark dark:prose-th:text-primary-dark dark:prose-td:border-primary-dark dark:prose-td:text-primary-light">
+    {{ $slot }}
+</article>

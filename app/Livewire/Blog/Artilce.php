@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Artilce extends Component
 {
@@ -24,9 +25,10 @@ class Artilce extends Component
         } catch (\Throwable $th) {
             abort(404);
         }
+
         return view('livewire.blog.artilce')->with([
             'blog' => $article,
-            'article' => $markdown,
+            'article' => Str::markdown($markdown),
             'share' => Globals::share($article->title),
             'author' => User::where('id', $article->author)->get('name')->first()->name,
         ]);

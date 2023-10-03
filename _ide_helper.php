@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.22.0.
+ * Generated for Laravel 10.26.2.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2860,6 +2860,7 @@
          *
          * @param string $path
          * @return bool 
+         * @throws \ErrorException
          * @static 
          */ 
         public static function isExpired($path)
@@ -13370,7 +13371,7 @@
                     /**
          * Create a new redirect response to a controller action.
          *
-         * @param string $action
+         * @param array|string $action
          * @param mixed $parameters
          * @param int $status
          * @param array $headers
@@ -18488,67 +18489,6 @@
      
 }
 
-    namespace Sinnbeck\Markdom\Facades { 
-            /**
-     * 
-     *
-     */ 
-        class Markdom {
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function setClasses($classes)
-        {
-                        /** @var \Sinnbeck\Markdom\Markdom $instance */
-                        return $instance->setClasses($classes);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function toHtml($markdown)
-        {
-                        /** @var \Sinnbeck\Markdom\Markdom $instance */
-                        return $instance->toHtml($markdown);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getHighlighter()
-        {
-                        /** @var \Sinnbeck\Markdom\Markdom $instance */
-                        return $instance->getHighlighter();
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getStyles($theme = null)
-        {
-                        /** @var \Sinnbeck\Markdom\Markdom $instance */
-                        return $instance->getStyles($theme);
-        }
-                    /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getAvailableThemes()
-        {
-                        /** @var \Sinnbeck\Markdom\Markdom $instance */
-                        return $instance->getAvailableThemes();
-        }
-         
-    }
-     
-}
-
     namespace Livewire { 
             /**
      * 
@@ -21704,7 +21644,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @param string $type
              * @param bool $where
              * @return \Illuminate\Database\Query\Builder 
@@ -21722,7 +21662,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $second
              * @param string $type
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -21740,7 +21680,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @param string $type
              * @param bool $where
              * @return \Illuminate\Database\Query\Builder 
@@ -21759,7 +21699,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21775,7 +21715,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21792,7 +21732,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21808,7 +21748,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21824,7 +21764,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string $first
              * @param string $operator
-             * @param string $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21841,7 +21781,7 @@ namespace  {
              * @param string $as
              * @param \Closure|string $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -21857,7 +21797,7 @@ namespace  {
              * @param \Illuminate\Contracts\Database\Query\Expression|string $table
              * @param \Closure|string|null $first
              * @param string|null $operator
-             * @param string|null $second
+             * @param \Illuminate\Contracts\Database\Query\Expression|string|null $second
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -23854,7 +23794,6 @@ namespace  {
             class ShareButtons extends \Kudashevs\ShareButtons\Facades\ShareButtonsFacade {}
             class Convert extends \App\Http\Convert {}
             class Globals extends \App\Http\Globals {}
-            class Markdom extends \Sinnbeck\Markdom\Facades\Markdom {}
             class Livewire extends \Livewire\Livewire {}
             class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}

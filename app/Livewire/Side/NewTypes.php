@@ -5,7 +5,6 @@ namespace App\Livewire\Side;
 use App\Models\Table;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,8 +15,11 @@ class NewTypes extends Component
 
     function newTypes()
     {
+        $table = str_replace('-', '_', request()->segment(count(request()->segments())));
+        $table = str_replace('type_',  $this->currentLang . '_', $table);
+
         return Table::where('lang', $this->currentLang)
-            ->where('table', '!=', $this->type)
+            ->where('table', '!=', $table)
             ->orderByDesc('updated_at')
             ->limit(5)
             ->get(['name_' . $this->currentLang, 'table']);

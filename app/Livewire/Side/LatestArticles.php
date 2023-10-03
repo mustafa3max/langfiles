@@ -10,7 +10,11 @@ class LatestArticles extends Component
 
     function latestArticles()
     {
-        return Blog::orderByDesc('updated_at')
+        $path = str_replace('-', '_', request()->segment(count(request()->segments())));
+        $path = $path . '.md';
+
+        return Blog::where('path', '!=', $path)
+            ->orderByDesc('updated_at')
             ->limit(3)
             ->get();
     }
