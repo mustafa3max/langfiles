@@ -1,7 +1,12 @@
 <div>
+    @section('page-index')
+        noindex
+    @endsection
+
     @section('page-title')
         {{ __('seo.title_call_us') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_call_us') }}
     @endsection

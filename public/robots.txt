@@ -1,17 +1,7 @@
 User-agent: *
-Allow: /
-Allow: /types
-Allow: /file
-Allow: /blog/
-Allow: /blog/article
-Allow: /mustafamax
-Allow: /mustafamax/profile
-Allow: /contributors/
-Disallow: /control-panel
 Disallow: /user
 Disallow: /valid-user
 Disallow: /not-valid-user
-Disallow: /editor
 Disallow: /privacy-policy
 Disallow: /terms-of-service
 

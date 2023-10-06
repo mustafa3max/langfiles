@@ -9,13 +9,13 @@
 
             <div class="grid gap-2">
                 @if ($path_profile != null)
-                    <a href="{{ $path_profile }}" target="_blank" rel="nofollow"
-                        class="text-center hover:text-accent">{{ __('seo.profile_facebook_mustafamax') }}</a>
+                    <x-text-link href="{{ $path_profile }}"
+                        isExternal="1">{{ __('seo.profile_facebook_mustafamax') }}</x-text-link>
                 @endif
 
                 @if ($website != null)
-                    <a href="{{ $website }}" target="_blank" rel="nofollow"
-                        class="text-center hover:text-accent">{{ __('seo.website_mustafamax') }}</a>
+                    <x-text-link href="{{ $website }}"
+                        isExternal="1">{{ __('seo.website_mustafamax') }}</x-text-link>
                 @endif
 
                 @if ($phone != null)

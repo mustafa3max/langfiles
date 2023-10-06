@@ -2,6 +2,7 @@
     @section('page-index')
         noindex
     @endsection
+
     @section('page-title')
         {{ __('me_str.privacy_policy') }}
     @endsection
@@ -12,8 +13,7 @@
         <div dir="ltr" class="px-2">
             <h2 class="py-3 text-2xl font-bold">Privacy Policy for langfiles</h2>
 
-            <p>At langfiles, accessible from <a href="/" class="text-accent hover:underline"
-                    wire:navigate>www.langfiles.com</a>,
+            <p>At langfiles, accessible from <x-text-link href="/" isNavigate="1">www.langfiles.com</x-text-link>,
                 one of our main priorities is the privacy of our
                 visitors. This Privacy Policy document contains types of information that is collected and recorded
                 by
@@ -171,9 +171,9 @@
                 These
                 changes are effective immediately, after they are posted on this page.</p>
 
-            <p>Our Privacy Policy was created with the help of the <a
-                    href="https://www.termsfeed.com/privacy-policy-generator/" class="text-accent hover:underline"
-                    target="_blank" rel="nofollow">Privacy Policy Generator</a>.</p>
+            <p>Our Privacy Policy was created with the help of the Privacy Policy Generator<x-text-link
+                    href="https://www.termsfeed.com/privacy-policy-generator/" isExternal="1">Privacy Policy
+                    Generator</x-text-link>.</p>
 
             <h2 class="py-3 text-2xl font-bold">Contact Us</h2>
 

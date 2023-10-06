@@ -2,6 +2,7 @@
     @section('page-title')
         {{ $blog->title }}
     @endsection
+
     @section('page-description')
         {{ $blog->desc }}
     @endsection
@@ -29,10 +30,9 @@
                 class="flex flex-wrap items-center justify-start gap-2 rounded-lg bg-primary-light p-2 py-2 dark:bg-primary-dark">
                 <div class="flex items-center gap-2">
                     <span>{{ __('me_str.author') }}</span>
-                    <a href="/mustafamax/profile" wire:navigate>
-                        @component('components.text-button', ['value' => $author])
-                        @endcomponent
-                    </a>
+                    <x-text-link href="/mustafamax/profile" isNavigate="1">
+                        {{ $author }}
+                    </x-text-link>
                 </div>
                 <div class="grow"></div>
                 {{-- @if ($blog->author === Auth::id())

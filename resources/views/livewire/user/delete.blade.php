@@ -2,12 +2,15 @@
     @section('page-index')
         noindex
     @endsection
+
     @section('page-title')
         {{ __('seo.title_delete_account', ['USER' => $user->name]) }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_delete_account', ['USER' => $user->name]) }}
     @endsection
+
     <x-card>
         <p class="text-center">{{ __('seo.description_delete_account') }}</p>
         <form wire:submit="delete">

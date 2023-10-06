@@ -6,6 +6,11 @@
     @section('page-title')
         {{ __('seo.title_login') }}
     @endsection
+
+    @section('page-description')
+        {{ __('seo.description_login') }}
+    @endsection
+
     <x-card>
         @component('components.title', ['value' => __('seo.title_login')])
         @endcomponent
@@ -43,11 +48,7 @@
 
                 <div class="grow p-1"></div>
 
-                @component('components.text-button', [
-                    'value' => __('me_str.forgot_password'),
-                    'route' => '',
-                ])
-                @endcomponent
+                <x-text-link isNavigate="1">{{ __('me_str.forgot_password') }}</x-text-link>
 
             </div>
             <div class="p-2"></div>
@@ -62,12 +63,7 @@
 
             <div>
                 <span>{{ __('me_str.not_account') }}</span>
-                @component('components.text-button-link', [
-                    'value' => __('me_str.new_account'),
-                    'route' => 'register',
-                ])
-                    <span>here</span>
-                @endcomponent
+                <x-text-link href="/register" isNavigate="1">{{ __('me_str.new_account') }}</x-text-link>
             </div>
 
         </form>

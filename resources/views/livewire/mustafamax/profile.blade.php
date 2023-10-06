@@ -2,6 +2,7 @@
     @section('page-title')
         {{ __('seo.title_mustafamax') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.desc_mustafamax') }}
     @endsection
@@ -15,11 +16,10 @@
                 <span class="text-center font-extrabold uppercase">mustafamax</span>
 
                 <div class="grid gap-2">
-                    <a href="https://www.facebook.com/mustafamax13" target="_blank" rel="nofollow"
-                        class="text-center hover:text-accent">{{ __('seo.profile_facebook_mustafamax') }}</a>
-                    <a href="https://www.facebook.com/Lnagfiles/" target="_blank" rel="nofollow"
-                        class="text-center hover:text-accent">{{ __('seo.page_facebook_mustafamax') }}</a>
-
+                    <x-text-link href="https://www.facebook.com/mustafamax13"
+                        isNavigate="1">{{ __('seo.profile_facebook_mustafamax') }}</x-text-link>
+                    <x-text-link href="https://www.facebook.com/Lnagfiles/"
+                        isNavigate="1">{{ __('seo.page_facebook_mustafamax') }}</x-text-link>
                     <span class="text-center">+96407707309366</span>
                 </div>
             </div>

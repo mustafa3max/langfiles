@@ -2,6 +2,7 @@
     @section('page-title')
         {{ __('seo.title_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_file', ['TYPE' => __('tables.' . $title)]) }}
     @endsection

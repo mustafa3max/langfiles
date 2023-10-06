@@ -2,6 +2,7 @@
     @section('page-index')
         noindex
     @endsection
+
     @section('page-title')
         {{ __('me_str.terms_of_use') }}
     @endsection
@@ -34,8 +35,8 @@
                 and
                 also limit the remedies available to you in the event of a dispute. These Terms of Use were created
                 with
-                the help of the <a href="https://www.termsofusegenerator.net" class="text-accent hover:underline"
-                    target="_blank" rel="nofollow">Terms Of Use Generator</a>.</p>
+                the help of the <x-text-link href="https://www.termsofusegenerator.net" isExternal="1">Terms Of Use
+                    Generator</x-text-link>.</p>
 
 
             <h2 class="py-3 text-2xl font-bold">Access to the Site</h2>

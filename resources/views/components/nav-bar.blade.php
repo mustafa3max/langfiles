@@ -16,8 +16,8 @@
                     </li>
 
                     <li>
-                        <a href="/blog" class="block hover:text-accent" title=" {{ __('me_str.blog') }}"
-                            wire:navigate>
+                        <a href="/ar/blog" class="block hover:text-accent" target="_blank"
+                            title=" {{ __('me_str.blog') }}">
                             <x-svg.blog />
                         </a>
                     </li>

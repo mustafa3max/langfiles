@@ -2,12 +2,15 @@
     @section('page-index')
         noindex
     @endsection
+
     @section('page-title')
         {{ __('seo.title_add_texts') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_add_texts') }}
     @endsection
+
     <x-card>
         <x-title value="{{ __('seo.title_add_texts') }}" />
     </x-card>

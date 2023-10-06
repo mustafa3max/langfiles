@@ -1,7 +1,12 @@
 <div>
+    @section('page-index')
+        noindex
+    @endsection
+
     @section('page-title')
         {{ __('seo.title_articles') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_articles') }}
     @endsection
@@ -26,10 +31,10 @@
                             class="flex flex-wrap items-center gap-2 rounded-b-lg bg-primary-light p-2 dark:bg-primary-dark">
                             <div class="flex items-center gap-2">
                                 <span>{{ __('me_str.author') }}</span>
-                                <a href="/mustafamax/profile" wire:navigate>
+                                <x-text-link href="/mustafamax/profile" isNavigate="1">
                                     @component('components.text-button', ['value' => $article->users->name])
                                     @endcomponent
-                                </a>
+                                </x-text-link>
                             </div>
                         </div>
                     </div>

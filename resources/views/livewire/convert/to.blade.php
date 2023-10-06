@@ -1,7 +1,9 @@
 <div class="grid gap-2">
+
     @section('page-title')
         {{ __('seo.title_convert') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_convert') }}
     @endsection

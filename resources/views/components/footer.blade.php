@@ -26,15 +26,15 @@
                         {{ __('me_str.community') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/blog" wire:navigate>blog</a>
+                        <x-text-link href="/ar/blog" isNavigate="1" accent="0">Blog</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="https://github.com/mustafa3max/" target="_blank"
-                            rel="nofollow">github</a>
+                        <x-text-link href="https://github.com/mustafa3max/" isExternal="1"
+                            accent="0">Github</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="https://facebook.com/Lnagfiles/" target="_blank"
-                            rel="nofollow">facebook</a>
+                        <x-text-link href="https://facebook.com/Lnagfiles/" isExternal="1"
+                            accent="0">Facebook</x-text-link>
                     </li>
                 </ul>
 
@@ -44,12 +44,12 @@
                         {{ __('me_str.legal') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/privacy-policy"
-                            wire:navigate>{{ __('me_str.privacy_policy') }}</a>
+                        <x-text-link href="/en/privacy-policy" isExternal="1"
+                            accent="0">{{ __('me_str.privacy_policy') }}</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/terms-of-service"
-                            wire:navigate>{{ __('me_str.terms_of_use') }}</a>
+                        <x-text-link href="/en/terms-of-service" isExternal="1"
+                            accent="0">{{ __('me_str.terms_of_use') }}</x-text-link>
                     </li>
                 </ul>
 
@@ -59,19 +59,19 @@
                         {{ __('me_str.help') }}
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="/call-us" wire:navigate>{{ __('me_str.call_us') }}</a>
+                        <x-text-link href="/call-us" isNavigate="1"
+                            accent="0">{{ __('me_str.call_us') }}</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="mailto:www.langfiles@gamil.com" target="_blank"
-                            rel="nofollow">email</a>
+                        <x-text-link href="mailto:www.langfiles@gamil.com" isExternal="1"
+                            accent="0">Email</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="http://m.me/Lnagfiles" target="_blank"
-                            rel="nofollow">massenger</a>
+                        <x-text-link href="http://m.me/Lnagfiles" isExternal="1" accent="0">Massenger</x-text-link>
                     </li>
                     <li class="block py-1">
-                        <a class="hover:text-accent" href="https://wa.me/+9647707309366" target="_blank"
-                            rel="nofollow">whatsapp</a>
+                        <x-text-link href="https://wa.me/+9647707309366" isExternal="1"
+                            accent="0">Whatsapp</x-text-link>
                     </li>
                 </ul>
             </div>
@@ -79,12 +79,13 @@
         <div class="mt-8 flex w-full flex-wrap items-center justify-center gap-4 border-t-2 border-primary-light pb-4 pt-8 text-center text-xs uppercase dark:border-primary-dark"
             dir="ltr">
             <span>
-                &copy; {{ date('Y') }} <a href="/" class="text-accent hover:underline"
-                    wire:navigate>{{ config('app.name') }}</a>
+                &copy; {{ date('Y') }}
+                <x-text-link href="/" isNavigate="1">{{ config('app.name') }}</x-text-link>
             </span>
             <div class="hidden grow sm:block"></div>
             <span>
-                from <a href="/mustafamax/profile" class="text-accent hover:underline" wire:navigate>mustafamax</a>
+                from
+                <x-text-link href="/mustafamax/profile" isNavigate="1">mustafamax</x-text-link>
             </span>
         </div>
     </div>

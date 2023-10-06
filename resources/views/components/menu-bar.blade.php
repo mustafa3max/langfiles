@@ -35,7 +35,7 @@
         @endforeach
     </ul>
 
-    <a href="/privacy-policy" class="flex items-center gap-4" wire:navigate>
+    <a href="/en/privacy-policy" class="flex items-center gap-4" target="_blank">
         <x-svg.privacy />
         <span>
             {{ __('me_str.policy_and_terms') }}

@@ -2,8 +2,13 @@
     @section('page-index')
         noindex
     @endsection
+
     @section('page-title')
         {{ __('seo.title_register') }}
+    @endsection
+
+    @section('page-description')
+        {{ __('seo.description_register') }}
     @endsection
 
     <x-card>
@@ -51,17 +56,9 @@
             <div class="p-2"></div>
             <div class="text-gray-400">
                 {{ __('me_str.new_account_message') }}
-                @component('components.text-button-link', [
-                    'value' => __('me_str.terms_of_use'),
-                    'route' => 'terms-of-service',
-                ])
-                @endcomponent
-                {{ __('me_str.and') }}
-                @component('components.text-button-link', [
-                    'value' => __('me_str.privacy_policy'),
-                    'route' => 'privacy-policy',
-                ])
-                @endcomponent
+                <x-text-link href="/en/terms-of-service" isExternal="1">{{ __('me_str.terms_of_use') }}</x-text-link>
+                {{ __('me_str.terms_of_use') }}
+                <x-text-link href="/en/privacy-policy" isExternal="1">{{ __('me_str.privacy_policy') }}</x-text-link>
                 .
             </div>
             <div class="p-2"></div>
@@ -75,11 +72,7 @@
             <div class="p-2"></div>
             <div>
                 <span class="text-gray-400">{{ __('me_str.already_account') }}</span>
-                @component('components.text-button-link', [
-                    'value' => __('seo.title_login'),
-                    'route' => 'login',
-                ])
-                @endcomponent
+                <x-text-link href="/login" isExternal="1">{{ __('seo.title_login') }}</x-text-link>
             </div>
         </form>
 

@@ -2,6 +2,7 @@
     @section('page-title')
         {{ __('seo.title_project') }}
     @endsection
+
     @section('page-description')
         {{ __('seo.description_project') }}
     @endsection

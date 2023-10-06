@@ -7,6 +7,10 @@
         {{ __('seo.title_email_verify') }}
     @endsection
 
+    @section('page-description')
+        {{ __('seo.description_email_verify') }}
+    @endsection
+
     <x-card>
         <div class="grid grid-cols-1 items-center justify-center gap-10 p-8 text-center">
             <x-title value="{{ __('seo.title_email_verify') }}" />
