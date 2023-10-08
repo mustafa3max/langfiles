@@ -28,7 +28,7 @@ window.removeCode = function(key, languages) {
     }
 }
 
-const copyContent = async (idCode) => {
+window.copyContent = async (idCode) => {
     const code = document.getElementById(idCode).innerText;
     try {
         if (navigator.clipboard) {

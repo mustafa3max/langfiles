@@ -14,6 +14,7 @@ use App\Livewire\Contributors\Index as ContributorsIndex;
 use App\Livewire\ControlPanel\Create;
 use App\Livewire\ControlPanel\Index;
 use App\Livewire\ControlPanel\Update;
+use App\Livewire\Convert\Client;
 use App\Livewire\Convert\To;
 use App\Livewire\Help\CallUs;
 use App\Livewire\Mustafamax\Profile;
@@ -86,6 +87,7 @@ Route::scopeBindings()->group(function () {
 // Convert To
 Route::scopeBindings()->group(function () {
     Route::get('convert/json-to-more', To::class)->name('convert-to');
+    Route::get('convert/client', Client::class);
 });
 
 // Auth

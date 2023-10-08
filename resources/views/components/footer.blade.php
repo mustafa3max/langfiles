@@ -26,7 +26,7 @@
                         {{ __('me_str.community') }}
                     </li>
                     <li class="block py-1">
-                        <x-text-link href="/ar/blog" isNavigate="1" accent="0">Blog</x-text-link>
+                        <x-text-link href="/ar/blog" isExternal="1" accent="0">Blog</x-text-link>
                     </li>
                     <li class="block py-1">
                         <x-text-link href="https://github.com/mustafa3max/" isExternal="1"
