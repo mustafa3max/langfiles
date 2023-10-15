@@ -24,6 +24,7 @@ use App\Livewire\Show\File;
 use App\Livewire\Show\Keys;
 use App\Livewire\Show\Project;
 use App\Livewire\Show\Types;
+use App\Livewire\Tools\Index as ToolsIndex;
 use App\Livewire\User\AddText;
 use App\Livewire\User\Delete;
 use App\Livewire\User\Profile as UserProfile;
@@ -137,6 +138,11 @@ Route::prefix('blog')->group(function () {
 // Help
 Route::scopeBindings()->group(function () {
     Route::get('/call-us', CallUs::class)->name('call_us');
+});
+
+// Tools
+Route::prefix('tools')->group(function () {
+    Route::get('/langfiles', ToolsIndex::class)->name('langfiles-tolls');
 });
 
 // Route::middleware('auth:sanctum')->group(function () {

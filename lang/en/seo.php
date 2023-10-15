@@ -35,6 +35,9 @@ return [
     'title_profile' => 'Profile of member :USER',
     'description_profile' => 'Welcome, member :USER, to the langfiles website for localization websites, applications and games',
 
+    'title_tools' => 'Write localization texts for your project in one language and convert them into several languages',
+    'description_tools' => 'Contact your local project to modify the localization texts. To write data at amazing speed with the possibility of translating it into all languages.',
+
     'title_404' => '404 page not found',
     'description_404' => 'Page Not Found 404 The page you are looking for may have been removed or the link contains an error. Go to the homepage to find out more',
 
