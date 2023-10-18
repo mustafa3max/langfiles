@@ -6,6 +6,7 @@
         x-data="{
             topics: {
                 '{{ __('tools.langfiles_tools') }}': '/tools/langfiles',
+                'langtool': '/tools/langtool',
             }
         }">
         <template x-for="[text, url] in Object.entries(topics)">

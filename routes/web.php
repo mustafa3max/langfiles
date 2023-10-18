@@ -25,6 +25,7 @@ use App\Livewire\Show\Keys;
 use App\Livewire\Show\Project;
 use App\Livewire\Show\Types;
 use App\Livewire\Tools\Index as ToolsIndex;
+use App\Livewire\Tools\LangTool;
 use App\Livewire\User\AddText;
 use App\Livewire\User\Delete;
 use App\Livewire\User\Profile as UserProfile;
@@ -143,6 +144,7 @@ Route::scopeBindings()->group(function () {
 // Tools
 Route::prefix('tools')->group(function () {
     Route::get('/langfiles', ToolsIndex::class)->name('langfiles-tolls');
+    Route::get('/langtool', LangTool::class)->name('langtool');
 });
 
 // Route::middleware('auth:sanctum')->group(function () {

@@ -7,6 +7,10 @@
         {{ __('seo.description_tools') }}
     @endsection
 
+    @section('social-image')
+        {{ asset('assets/images/langfiles_tools_home.png') }}
+    @endsection
+
     <x-card>
         <x-title value="{{ __('tools.title_tools') }}" />
         <p class="text-lg">{{ __('tools.desc_1') }}</p>
@@ -15,6 +19,14 @@
             <img class="rounded-lg border-4 border-primary-light dark:border-primary-dark"
                 src="{{ asset('assets/images/langfiles_tools_home.png') }}" alt="{{ __(__('tools.title_tools')) }}">
         </div>
+
+        <h2 class="py-4 text-2xl font-bold">{{ __('tools.title_vedio') }}</h2>
+        <p class="text-lg">{{ __('tools.desc_vedio') }}</p>
+
+        <iframe class="min-h-[320px] w-full" src="https://www.youtube.com/embed/AfdMF_sluRQ"
+            title="برنامج Langfiles Tools لتوطين او تعريب المشاريع للعديد من انظمة التشغيل" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
 
         <h2 class="py-4 text-2xl font-bold">{{ __('tools.title_1') }}</h2>
         <p class="text-lg">{{ __('tools.desc_2') }}</p>

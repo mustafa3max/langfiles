@@ -4,6 +4,9 @@ return [
     'title_' => '',
     'description_' => '',
 
+    'title_langtool_flutter' => 'Localization of Flutter applications using the langtool tool',
+    'description_langtool_flutter' => 'Application localization is generally a cumbersome process if the right tools are not available. Thats why we bring you langtool for Flutter apps.',
+
     'title_home' => 'Localization of websites, applications and games',
     'description_home' => 'Language files for Localization websites, applications and games The file consists of keys and values that work on many types such as Laravel and flutter.',
 

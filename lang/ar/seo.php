@@ -4,6 +4,9 @@ return [
     'title_' => '',
     'description_' => '',
 
+    'title_langtool_flutter' => 'توطين او تعريب تطبيقات flutter باستخدام اداة langtool',
+    'description_langtool_flutter' => 'تعد توطين او تعريب التطبيقات بشكل عام عملية مرهقة إذا لم تتوفر الأدوات المناسبة. ولذلك نقدم لكم أداة langtool الرائعة لتطبيقات Flutter.',
+
     'title_home' => 'توطين او تعريب المواقع والتطبيقات والألعاب',
     'description_home' => 'ملفات لغات لتوطين او تعريب المواقع والتطبيقات والألعاب يتكون الملف من مفاتيح وقيم تعمل على العديد من الانواع مثل Laravel و Django و Unity و Flutter وغيرهم.',
 

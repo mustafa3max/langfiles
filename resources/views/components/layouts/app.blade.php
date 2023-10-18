@@ -42,6 +42,11 @@
             font-weight: bold;
             caret-color: #666
         }
+
+        div:empty:before {
+            content: attr(data-placeholder);
+            color: gray
+        }
     </style>
     {{-- Start Font Almarai --}}
     <link rel="preconnect" as="style" href="https://fonts.googleapis.com">
