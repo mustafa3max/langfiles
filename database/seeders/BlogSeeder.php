@@ -16,6 +16,12 @@ class BlogSeeder extends Seeder
         //     'thumbnail' => 'storage/blog/images/.png',
         // ],
         [
+            'path' => 'localization_flutter_applications_using_langfiles.md',
+            'title' => 'اداة langtool المذهلة لتوطين تطبيقات flutter',
+            'desc' => 'إن توطين او تعريب التطبيقات عملية مهمة إذا اردت ان يصل تطبيقك إلى العالمية لذلك وفرنا لكم اداة langtool لمساعدتك في انشاء تطبيقات flutter رائعة.',
+            'thumbnail' => 'storage/blog/images/langtool_flutter_home.png',
+        ],
+        [
             'path' => 'localization_or_arabization_of_a_website_using_laravel_and_langfiles.md',
             'title' => 'توطين او تعريب موقع الكتروني بإستخدام laravel و langfiles',
             'desc' => 'هل عندك موقع الكتروني قمت بانشائه بإستخدام laravel؟ في هذه المقالة ستعلمك كيفية توطين او تعريب موقعك الألكتروني بسهولة بإستخدام ادوات موقع langfiles.',

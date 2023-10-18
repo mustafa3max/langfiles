@@ -163,7 +163,11 @@ window.jsonToDartAll = async function () {
     Alpine.store('langtool').files.forEach(async function (file) {
         const contents = Alpine.store('langtool').contents[file];
 
-        newContents[file] = 'const Map<String, String> '+file.replace('.dart', '')+' = '+JSON.stringify(contents, null, 2)+';';
+        if(file.includes('.dart')) {
+            newContents[file] = 'const Map<String, String> '+file.replace('.dart', '')+' = '+JSON.stringify(contents, null, 2)+';';
+        }else {
+            newContents[file] = JSON.stringify(contents, null, 2);
+        }
 
     });
 
@@ -174,8 +178,11 @@ async function jsonToDart() {
     var file = Alpine.store('langtool').file;
     const contents = Alpine.store('langtool').contents[file];
 
-    var newContents = 'const Map<String, String> '+file.replace('.dart', '')+' = '+JSON.stringify(contents, null, 2)+';';
-
+        if(file.includes('.dart')) {
+            var newContents = 'const Map<String, String> '+file.replace('.dart', '')+' = '+JSON.stringify(contents, null, 2)+';';
+        }else {
+            var newContents = JSON.stringify(contents, null, 2);
+        }
     save(newContents);
 }
 
