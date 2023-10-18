@@ -12,7 +12,6 @@ window.is_full = function (full) {
 }
 
 window.select_dir_lang = async function(){
-    var isOpen = false;
     if(directory) {
         alert('The page will reload again');
         location.reload();
@@ -57,7 +56,6 @@ window.dartToJson = function (){
 
         value = value.trim();
         value = value.slice(start, end);
-        value = value.replace("'", "\"");
         value = value.replace(/\s+/g, " ");
         value = value.replace(", }", "}");
 
@@ -67,7 +65,7 @@ window.dartToJson = function (){
     }
 
     Alpine.store('langtool').contents = contents;
-    Alpine.store('langtool').lang = (Object.keys(contents)[0]).replace('.dart', '');
+    Alpine.store('langtool').lang = (Object.keys(contents)[0]).split('.')[0];
     Alpine.store('langtool').file = Object.keys(contents)[0];
 
     setTimeout(function() {
@@ -93,7 +91,7 @@ function inputKeyValue() {
     });
 }
 
-function inputs () {
+function inputs() {
     var oldKey = "";
     const inputsKey = document.getElementsByClassName('inputKey');
     const inputsValue = document.getElementsByClassName('inputValue');
@@ -139,6 +137,10 @@ function addItem () {
 
     keyInput.focus();
     jsonToDartAll();
+
+    setTimeout(function() {
+        inputs();
+    }, 200);
 }
 
 window.editItem = function (key, value, oldKey, isKey) {

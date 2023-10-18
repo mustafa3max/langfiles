@@ -17,12 +17,14 @@
     </x-card>
     <div class="p-1"></div>
 
-    <div :class="isFull ?
-        'fixed top-0 z-50 left-0 right-0  h-screen  bg-secondary-light dark:bg-secondary-dark grid items-start' :
-        'bg-secondary-light p-2 dark:bg-secondary-dark rounded-lg items-start'"
+    <div class="bg-secondary-light dark:bg-secondary-dark"
+        :class="isFull ?
+            'fixed top-0 z-50 left-0 right-0  h-screen grid items-start' :
+            'p-2 rounded-lg items-start'"
         x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: [], contents: {}, lang: null, file: null }">
 
-        <nav class="grid h-fit p-2 dark:bg-primary-dark dark:text-primary-light">
+        <nav class="grid h-fit bg-primary-light p-2 dark:bg-primary-dark dark:text-primary-light"
+            :class="isFull ? '' : 'rounded-lg'">
             <div class="flex">
                 <button
                     class="rounded-lg bg-primary-light p-2 text-secondary-dark dark:bg-secondary-dark dark:text-primary-light"
@@ -114,7 +116,7 @@
         <div class="grid w-full items-center justify-center p-8 text-center" x-show="!Alpine.store('langtool').isDir">
             <div class="flex w-full justify-center">
                 <img src="{{ asset('assets/images/empty.svg') }}" alt="{{ __('me_str.no_data') }}"
-                    class="block w-fit max-w-sm pb-4">
+                    class="block w-fit pb-4">
             </div>
             <h2 class="p-4 text-2xl font-semibold">{{ __('tools.title_not_select_dir') }}</h2>
             <p class="text-lg">{{ __('tools.desc_not_select_dir') }}</p>
@@ -166,7 +168,6 @@
                     });
 
                     @this.on('done-trans-one', (data) => {
-
                         if (data[0]['oldKey'] !== data[0]['data']) {
                             if (data[0]['isKey']) {
                                 editItem(data[0]['data'], data[0]['data'], data[0]['oldKey'], true);
