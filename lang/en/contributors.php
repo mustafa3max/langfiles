@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'contributors' => 'contributors',
+    "contributors" => "contributors",
 ];

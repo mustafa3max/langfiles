@@ -60,7 +60,6 @@ class LangToolFlutter extends Component
             } else {
                 $str = new GoogleTranslate($lang);
                 $data = $str->translate($data);
-                dd($data, $lang, $isKey, $oldKey);
             }
             $this->dispatch('done-trans-one', ['data' => $data, 'lang' => $lang, 'isKey' => $isKey, 'oldKey' => $oldKey]);
         }

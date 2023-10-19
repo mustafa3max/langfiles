@@ -56,4 +56,5 @@ return [
     "desc_langtool_flutter" => "Application localization is generally a cumbersome process if the right tools are not available. For this reason, we, the developers of the langfiles website, offer you the langtool tool dedicated to Arabizing Flutter applications. The tool provides you with modifying, adding, and translating values and keys in the language files of your application. Try it, it is a wonderful tool.",
     "trans_data" => "translation",
     "to" => "to",
+    "trans_all_files" => "",
 ];

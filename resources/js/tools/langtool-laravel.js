@@ -1,8 +1,7 @@
 const keyInput = document.getElementById('key');
 const valueInput = document.getElementById('value');
 
-let directoryParent;
-let directorySon;
+let directory;
 let fileHandle;
 var contents = {};
 let openedWindow;
@@ -13,33 +12,33 @@ window.is_full = function (full) {
 }
 
 window.select_dir_lang = async function(){
-    if(directoryParent) {
+    if(directory) {
         alert('The page will reload again');
         location.reload();
     }
 
     try {
-        directoryParent = await window.showDirectoryPicker({
+        directory = await window.showDirectoryPicker({
+            id:"laravel",
             startIn: 'desktop',
+            writable: true
         });
 
         Alpine.store('langtool').files = [];
 
-        for await (const entryParent of directoryParent.values()) {
+        for await (const entryParent of directory.values()) {
             Alpine.store('langtool').languages.push(entryParent.name);
-            directorySon = await window.showDirectoryPicker({
-                startIn: 'desktop',
-                writable: true
-            });
-            var files = [];
-            contents[entryParent.name] = {};
-            for await (const entrySon of directorySon.values()) {
-                files.push(entrySon.name);
+            const files = [];
+            if (entryParent.kind === "directory") {
+                fileHandle = await directory.getDirectoryHandle(entryParent.name);
+                contents[entryParent.name] = {};
+                for await (const file of fileHandle.values()) {
+                    files.push(file.name);
 
-                fileHandle = await directorySon.getFileHandle(entrySon.name, {create: true});
-                const file = await fileHandle.getFile();
+                    var newFile = await file.getFile();
 
-                contents[entryParent.name][entrySon.name] = await file.text();
+                    contents[entryParent.name][file.name] = await newFile.text();
+                }
             }
 
             Alpine.store('langtool').files[entryParent.name] = files;
@@ -70,10 +69,11 @@ window.dartToJson = function (){
             let start = data.indexOf("[");
             let end = data.indexOf("]")+1;
 
+            data = data.replace(/\=>/g, ":");
+            data = data.replace(/\;/g, "");
             data = data.trim();
             data = data.slice(start, end);
             data = data.replace(/\s+/g, " ");
-            data = data.replace("=>", ":");
             data = data.replace("[", "{");
             data = data.replace("]", "}");
             data = data.replace(", }", "}");
@@ -149,9 +149,13 @@ function inputs() {
 
 function addItem () {
 
-    Alpine.store('langtool').files.forEach(file => {
-        const key = window.syntaxKey(keyInput.value);
-        Alpine.store('langtool').contents[file][key] = valueInput.innerText;
+    Alpine.store('langtool').languages.forEach(lang => {
+        Alpine.store('langtool').files[lang].forEach(file => {
+            if (Alpine.store('langtool').file == file) {
+                const key = window.syntaxKey(keyInput.value);
+                Alpine.store('langtool').contents[lang][file][key] = valueInput.innerText;
+            }
+        });
     });
 
     keyInput.value = "";
@@ -171,13 +175,17 @@ window.editItem = function (key, value, oldKey, isKey) {
         return removeItem(oldKey);
     }
     if(isKey) {
-        Alpine.store('langtool').files.forEach(file => {
-            delete Object.assign(Alpine.store('langtool').contents[file], {[window.syntaxKey(key)]: Alpine.store('langtool').contents[file][oldKey] })[oldKey];
+        Alpine.store('langtool').languages.forEach(lang => {
+            Alpine.store('langtool').files[lang].forEach(file => {
+                if (Alpine.store('langtool').file == file) {
+                    delete Object.assign(Alpine.store('langtool').contents[lang][file], {[window.syntaxKey(key)]: Alpine.store('langtool').contents[lang][file][oldKey] })[oldKey];
+                }
+            });
         });
         jsonToDartAll();
     }else{
         key = window.syntaxKey(key);
-        Alpine.store('langtool').contents[Alpine.store('langtool').file][key] = value;
+        Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][key] = value;
         jsonToDart();
     }
 }
@@ -201,36 +209,44 @@ window.jsonToDartAll = async function () {
 
 async function jsonToDart() {
     var file = Alpine.store('langtool').file;
-    const contents = Alpine.store('langtool').contents[file];
+    var lang = Alpine.store('langtool').lang;
+    const contents = Alpine.store('langtool').contents[lang][file];
 
-        if(file.includes('.dart')) {
-            var newContents = 'const Map<String, String> '+file.replace('.dart', '')+' = '+JSON.stringify(contents, null, 2)+';';
-        }else {
-            var newContents = JSON.stringify(contents, null, 2);
-        }
+    var newContents = "";
+
+    newContents = '<?php return '+JSON.stringify(contents, null, 2)+';';
+    newContents = newContents.replace('{', '[');
+    newContents = newContents.replace('}', ']');
+    newContents = newContents.replace(': ', '=> ');
+
     save(newContents);
 }
 
 async function saveAll(content) {
-    for await (const entryParent of directoryParent.values()) {
-        for await (const entrySon of directorySon.values()) {
-            fileHandle = await directorySon.getFileHandle(entryParent.name, {create: true});
+    for await (const entry of directory.values()) {
+        fileHandle = await directory.getDirectoryHandle(entry.name);
 
-            const writable = await fileHandle.createWritable();
-
-            await writable.write(content[entryParent.name][entrySon.name]);
-            await writable.close();
+        for await (const file of fileHandle.values()) {
+            if (Alpine.store('langtool').file == file.name) {
+                const newFile = await fileHandle.getFileHandle(file.name, {create: true});
+                const writable = await newFile.createWritable();
+                await writable.write(content[entry.name][file.name]);
+                await writable.close();
+            }
         }
     }
 }
 
 async function save(content) {
-    fileHandle = await directory.getFileHandle(Alpine.store('langtool').file, {create: true});
+    for await (const entry of directory.values()) {
 
-    const writable = await fileHandle.createWritable();
-
-    await writable.write(content);
-    await writable.close();
+        if(entry.name == Alpine.store('langtool').lang) {
+            fileHandle = await entry.getFileHandle(Alpine.store('langtool').file, {create: true});
+            const writable = await fileHandle.createWritable();
+            await writable.write(content);
+            await writable.close();
+        }
+    }
 }
 
 async function removeItem(key) {

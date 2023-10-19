@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'maintenance' => 'The site is currently in maintenance mode',
+    "maintenance" => "The site is currently in maintenance mode",
 ];

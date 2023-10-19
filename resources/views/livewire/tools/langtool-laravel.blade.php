@@ -21,7 +21,7 @@
         :class="isFull ?
             'fixed top-0 z-50 left-0 right-0  h-screen grid items-start' :
             'p-2 rounded-lg items-start'"
-        x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: {}, languages: [], contents: {}, lang: null, file: null }">
+        x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: {}, languages: [], contents: { '': {} }, lang: '', file: null }">
 
         <nav class="grid h-fit bg-primary-light p-2 dark:bg-primary-dark dark:text-primary-light"
             :class="isFull ? '' : 'rounded-lg'">
@@ -97,19 +97,23 @@
             </div>
 
             {{-- Translate --}}
-            <div class="my-2 flex items-center rounded-lg bg-primary-light p-2 dark:bg-primary-dark" dir="ltr"
+            <div class="my-2 grid items-center rounded-lg bg-primary-light p-2 dark:bg-primary-dark" dir="ltr"
                 x-show="Alpine.store('langtool').isDir">
-                <div class="flex w-fit grow justify-center gap-2">
-                    <input type="checkbox" id="key-trans" wire:model='transKey'>
-                    <label for="key-trans">{{ __('tools.keys') }}</label><br>
-                </div>
-                <div class="flex grow justify-center">
-                    <button class="rounded-full bg-accent p-2 font-extrabold text-primary-dark hover:text-primary-light"
-                        x-on:click='transNow()'>{{ __('tools.trans_now') }}</button>
-                </div>
-                <div class="flex w-fit grow justify-center gap-2">
-                    <label for="value-trans">{{ __('tools.values') }}</label><br>
-                    <input type="checkbox" id="value-trans" wire:model='transValue'>
+                <h2 class="pb-2 text-center text-2xl">{{ __('tools.trans_all_files') }}</h2>
+                <div class="flex items-center">
+                    <div class="flex w-fit grow justify-center gap-2">
+                        <input type="checkbox" id="key-trans" wire:model='transKey'>
+                        <label for="key-trans">{{ __('tools.keys') }}</label><br>
+                    </div>
+                    <div class="flex grow justify-center">
+                        <button
+                            class="rounded-full bg-accent p-2 font-extrabold text-primary-dark hover:text-primary-light"
+                            x-on:click='transNow()'>{{ __('tools.trans_now') }}</button>
+                    </div>
+                    <div class="flex w-fit grow justify-center gap-2">
+                        <label for="value-trans">{{ __('tools.values') }}</label><br>
+                        <input type="checkbox" id="value-trans" wire:model='transValue'>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,8 +146,10 @@
                         isDir: false,
                         files: {},
                         languages: [],
-                        contents: {},
-                        lang: null,
+                        contents: {
+                            '': {}
+                        },
+                        lang: '',
                         file: null,
                     });
                 });
