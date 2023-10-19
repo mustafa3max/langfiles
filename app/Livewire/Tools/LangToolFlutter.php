@@ -6,7 +6,7 @@ use Globals;
 use Livewire\Component;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
-class LangTool extends Component
+class LangToolFlutter extends Component
 {
 
     public $transKey;
@@ -68,6 +68,6 @@ class LangTool extends Component
 
     public function render()
     {
-        return view('livewire.tools.lang-tool');
+        return view('livewire.tools.lang-tool-flutter');
     }
 }
