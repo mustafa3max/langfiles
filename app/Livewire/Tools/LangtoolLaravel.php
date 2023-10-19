@@ -11,7 +11,7 @@ class LangtoolLaravel extends Component
     public $transKey;
     public $transValue;
 
-    protected $listeners = ['transNow', 'transOneNow'];
+    protected $listeners = ['transNow', 'transOneNow', 'transSelectFileNow'];
 
     function transNow(array $data)
     {
@@ -64,7 +64,7 @@ class LangtoolLaravel extends Component
         }
     }
 
-    function transOnFileNow(array $data)
+    function transSelectFileNow(array $data, $lang, $file)
     {
         $validated = $this->validate([
             'transKey' => 'boolean|nullable',
@@ -73,26 +73,23 @@ class LangtoolLaravel extends Component
 
         if ($validated['transKey'] || $validated['transValue']) {
             $newData = [];
-            foreach ($data as $lang => $files) {
-                foreach ($files as $file => $dataAll) {
-                    $strKey = new GoogleTranslate('en');
-                    $strValue = new GoogleTranslate($lang);
-                    foreach ($dataAll as $key => $value) {
-                        if ($validated['transKey'] && $validated['transValue']) {
-                            $key = $strKey->translate($key);
-                            $value = $strValue->translate($value);
-                        } else if ($validated['transKey']) {
-                            $key = $strKey->translate($key);
-                        } else if ($validated['transValue']) {
-                            $value = $strValue->translate($value);
-                        }
+            $strKey = new GoogleTranslate('en');
+            $strValue = new GoogleTranslate($lang);
 
-                        $key = Globals::syntaxKey($key);
-                        $newData[$lang][$file][$key] = $value;
-                    }
+            foreach ($data as $key => $value) {
+                if ($validated['transKey'] && $validated['transValue']) {
+                    $key = $strKey->translate($key);
+                    $value = $strValue->translate($value);
+                } else if ($validated['transKey']) {
+                    $key = $strKey->translate($key);
+                } else if ($validated['transValue']) {
+                    $value = $strValue->translate($value);
                 }
+
+                $key = Globals::syntaxKey($key);
+                $newData[$key] = $value;
             }
-            $this->dispatch('done-trans', $newData);
+            $this->dispatch('done-trans-select', ['data' => $newData, 'lang' => $lang, 'file' => $file]);
         } else {
             $this->dispatch('message', __('error.trans'));
         }

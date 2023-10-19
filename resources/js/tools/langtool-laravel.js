@@ -50,8 +50,6 @@ window.select_dir_lang = async function(){
         }
 
     } catch(e) {
-        console.log(e);
-
         if(!navigator.userAgent.includes('Chrome')) {
             alert('تعمل هذه الميزة على متصفح جوجل كروم ومتصفح ايدج فقط');
         }
@@ -69,7 +67,7 @@ window.dartToJson = function (){
             let start = data.indexOf("[");
             let end = data.indexOf("]")+1;
 
-            data = data.replace(/\=>/g, ":");
+            data = data.replace(/\=>/g, "\:");
             data = data.replace(/\;/g, "");
             data = data.trim();
             data = data.slice(start, end);
@@ -113,7 +111,7 @@ function inputKeyValue() {
     });
 }
 
-function inputs() {
+window.inputs = function () {
     var oldKey = "";
     const inputsKey = document.getElementsByClassName('inputKey');
     const inputsValue = document.getElementsByClassName('inputValue');
@@ -207,6 +205,17 @@ window.jsonToDartAll = async function () {
     saveAll(newContents);
 }
 
+window.jsonToDartSelectFileAll = async function(lang, file) {
+    const contents = Alpine.store('langtool').contents[lang][file];
+
+    var newContents = '<?php return '+JSON.stringify(contents, null, 2)+';';
+    newContents = newContents.replace('{', '[');
+    newContents = newContents.replace('}', ']');
+    newContents = newContents.replace(/\": /g, '"=> ');
+
+    saveSelect(newContents, lang, file);
+}
+
 async function jsonToDart() {
     var file = Alpine.store('langtool').file;
     var lang = Alpine.store('langtool').lang;
@@ -217,7 +226,7 @@ async function jsonToDart() {
     newContents = '<?php return '+JSON.stringify(contents, null, 2)+';';
     newContents = newContents.replace('{', '[');
     newContents = newContents.replace('}', ']');
-    newContents = newContents.replace(': ', '=> ');
+    newContents = newContents.replace(/\": /g, '"=> ');
 
     save(newContents);
 }
@@ -235,6 +244,15 @@ async function saveAll(content) {
             }
         }
     }
+}
+
+async function saveSelect(content, lang, file) {
+    fileHandle = await directory.getDirectoryHandle(lang);
+
+    const newFile = await fileHandle.getFileHandle(file, {create: true});
+    const writable = await newFile.createWritable();
+    await writable.write(content);
+    await writable.close();
 }
 
 async function save(content) {

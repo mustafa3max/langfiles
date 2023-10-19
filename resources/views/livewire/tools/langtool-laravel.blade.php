@@ -96,24 +96,28 @@
                 </template>
             </div>
 
-            {{-- Translate --}}
-            <div class="my-2 grid items-center rounded-lg bg-primary-light p-2 dark:bg-primary-dark" dir="ltr"
-                x-show="Alpine.store('langtool').isDir">
-                <h2 class="pb-2 text-center text-2xl">{{ __('tools.trans_all_files') }}</h2>
+            {{-- Translate Select File --}}
+            <div class="my-2 grid items-center gap-2 rounded-lg bg-primary-light p-2 dark:bg-primary-dark"
+                dir="ltr" x-show="Alpine.store('langtool').isDir">
+                <h2 class="text-center text-2xl">{{ __('tools.trans_now') }}</h2>
                 <div class="flex items-center">
                     <div class="flex w-fit grow justify-center gap-2">
                         <input type="checkbox" id="key-trans" wire:model='transKey'>
                         <label for="key-trans">{{ __('tools.keys') }}</label><br>
                     </div>
-                    <div class="flex grow justify-center">
-                        <button
-                            class="rounded-full bg-accent p-2 font-extrabold text-primary-dark hover:text-primary-light"
-                            x-on:click='transNow()'>{{ __('tools.trans_now') }}</button>
-                    </div>
                     <div class="flex w-fit grow justify-center gap-2">
                         <label for="value-trans">{{ __('tools.values') }}</label><br>
                         <input type="checkbox" id="value-trans" wire:model='transValue'>
                     </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button
+                        class="rounded-full border-2 border-accent px-6 py-2 font-extrabold text-accent hover:text-primary-dark dark:hover:text-primary-light"
+                        x-on:click='transNow()'>{{ __('tools.trans_all_files') }}</button>
+                    <button
+                        class="rounded-full bg-accent px-6 py-2 font-extrabold text-primary-dark hover:text-primary-light"
+                        x-on:click='transSelectFileNow()'>{{ __('tools.trans_select_file') }}</button>
                 </div>
             </div>
         </div>
@@ -170,6 +174,19 @@
                         });
                     }
 
+                    window.transSelectFileNow = function() {
+                        Alpine.store('langtool').files[Alpine.store('langtool').lang].forEach(file => {
+                            if (file == Alpine.store('langtool').file) {
+                                @this.dispatch('transSelectFileNow', {
+                                    'data': Alpine.store('langtool').contents[Alpine.store('langtool')
+                                        .lang][Alpine.store('langtool').file],
+                                    'lang': Alpine.store('langtool').lang,
+                                    'file': file,
+                                });
+                            }
+                        });
+                    }
+
                     @this.on('done-trans', (contents) => {
                         Alpine.store('langtool').contents = contents[0];
                         jsonToDartAll();
@@ -183,6 +200,14 @@
                                 editItem(data[0]['oldKey'], data[0]['data'], data[0]['oldKey'], false);
                             }
                         }
+                    });
+
+                    @this.on('done-trans-select', (contents) => {
+                        const data = contents[0]['data'];
+                        const lang = contents[0]['lang'];
+                        const file = contents[0]['file'];
+                        Alpine.store('langtool').contents[lang][file] = data;
+                        jsonToDartSelectFileAll(lang, file);
                     });
                 });
             </script>
