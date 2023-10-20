@@ -54,6 +54,7 @@ Route::scopeBindings()->group(function () {
     Route::get('/sitemap.xml',  [SitemapController::class, 'index']);
     Route::get('/sitemap.xml/types',  [SitemapController::class, 'types']);
     Route::get('/sitemap.xml/blogs',  [SitemapController::class, 'blogs']);
+    Route::get('/sitemap.xml/tools',  [SitemapController::class, 'tools']);
 });
 
 // Email Verify

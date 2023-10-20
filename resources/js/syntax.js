@@ -18,6 +18,14 @@ window.syntaxKey = function(key) {
     return key;
 }
 
+window.syntaxValue = function(key) {
+    key = key.trim();
+    key = key.replace(/\s+/g, ' ');
+    key = key.replace(/"/g, '\'');
+    key = key.replace(/\n/g, ' ');
+    return key;
+}
+
 window.selectSyntax = function (input, syntax) {
 
     syntax = syntax.replaceAll(' ', '-');

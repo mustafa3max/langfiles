@@ -12,8 +12,8 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('seo.title_langtool_flutter') }}" />
-        <p class="text-center text-lg">{{ __('tools.desc_langtool_flutter') }}</p>
+        <x-title value="{{ __('seo.title_langtool_laravel') }}" />
+        <p class="text-center text-lg">{{ __('tools.desc_langtool_laravel') }}</p>
     </x-card>
     <div class="p-1"></div>
 

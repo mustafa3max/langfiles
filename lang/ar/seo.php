@@ -4,6 +4,9 @@ return [
     "title_" => "",
     "description_" => "",
 
+    "title_langtool_laravel" => "توطين او تعريب المواقع المكتوبة باطار Laravel باستخدام langtool",
+    "description_langtool_laravel" => "إن توطين او تعريب المواقع الالكترونية بشكل عام عملية شاقة إذا لم تتوفر عندك الأدوات المناسبة. ولذلك نقدم لكم أداة langtool الرائعة لمطوري laravel.",
+
     "title_langtool_flutter" => "توطين او تعريب تطبيقات flutter باستخدام اداة langtool",
     "description_langtool_flutter" => "تعد توطين او تعريب التطبيقات بشكل عام عملية مرهقة إذا لم تتوفر الأدوات المناسبة. ولذلك نقدم لكم أداة langtool الرائعة لتطبيقات Flutter.",
 

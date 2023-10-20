@@ -116,7 +116,7 @@ function addItem () {
         Alpine.store('langtool').files[lang].forEach(file => {
             if (Alpine.store('langtool').file == file) {
                 const key = window.syntaxKey(keyInput.value);
-                Alpine.store('langtool').contents[lang][file][key] = valueInput.innerText;
+                Alpine.store('langtool').contents[lang][file][key] = window.syntaxValue(valueInput.innerText);
             }
         });
     });
@@ -156,9 +156,9 @@ window.editItemNow = function (key, value, oldKey, isKey, keyParent = null) {
         jsonToDartAllNow();
     }else{
         if(keyParent != null) {
-            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][keyParent][key] = value;
+            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][keyParent][key] = window.syntaxValue(value);
         }else {
-            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][key] = value;
+            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][key] = window.syntaxValue(value);
         }
         jsonToDart();
     }

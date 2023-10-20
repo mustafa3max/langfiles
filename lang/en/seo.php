@@ -4,6 +4,9 @@ return [
     "title_" => "",
     "description_" => "",
 
+    "title_langtool_laravel" => "Localization of websites developed within the Laravel framework using langtool",
+    "description_langtool_laravel" => "Localization or Arabizing websites in general is a tedious process if you do not have the appropriate tools. Therefore, we present to you the wonderful langtool tool for laravel developers.",
+
     "title_langtool_flutter" => "Localization of Flutter applications using the langtool tool",
     "description_langtool_flutter" => "Application localization is generally a cumbersome process if the right tools are not available. Thats why we bring you langtool for Flutter apps.",
 

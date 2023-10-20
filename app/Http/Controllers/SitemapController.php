@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Table;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Request;
 
 class SitemapController extends Controller
 {
@@ -29,6 +28,18 @@ class SitemapController extends Controller
 
         return response()->view('sitemap.blogs', [
             'blogs' => $blogs,
+        ])->header('Content-Type', 'text/xml');
+    }
+
+    public function tools()
+    {
+        $tools = [
+            "langtool-flutter",
+            "langtool-laravel",
+        ];
+
+        return response()->view('sitemap.tools', [
+            'tools' => $tools,
         ])->header('Content-Type', 'text/xml');
     }
 }
