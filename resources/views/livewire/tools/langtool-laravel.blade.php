@@ -21,9 +21,9 @@
         :class="isFull ?
             'fixed top-0 z-50 left-0 right-0  h-screen grid items-start' :
             'p-2 rounded-lg items-start'"
-        x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: {}, languages: [], contents: { '': {} }, lang: '', file: null }">
+        x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: {}, languages: [], contents: { '': {} }, lang: '', file: null, manualSaving: false }">
 
-        <nav class="grid h-fit bg-primary-light p-2 dark:bg-primary-dark dark:text-primary-light"
+        <nav class="grid h-fit gap-2 bg-primary-light p-2 dark:bg-primary-dark dark:text-primary-light"
             :class="isFull ? '' : 'rounded-lg'">
             <div class="flex">
                 <button
@@ -73,24 +73,70 @@
             <div class="grid gap-2">
                 <template
                     x-for="[key, value] in Object.entries(Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file]??{})">
-                    <div class="flex w-full gap-2" dir="ltr">
-                        <div x-on:click="transOneNow(key, Alpine.store('langtool').lang, true, key)"
-                            :title="'{{ __('tools.trans_data') }}: ' + key + ' {{ __('tools.to') }} ' + 'en'"
-                            dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
-                            <x-tools.trans />
+                    <div class="flex w-full gap-2" dir="ltr" :class="typeof value == 'object' ? 'flex-wrap' : ''">
+
+                        {{-- Key --}}
+                        <div class="flex grow gap-2"
+                            :class="typeof value == 'object' ? 'border-t-2 border-primary-light pt-2 dark:border-primary-dark' :
+                                ''">
+                            <div x-on:click="transOneNow(key, Alpine.store('langtool').lang, true, key)"
+                                :title="'{{ __('tools.trans_data') }}: ' + key + ' {{ __('tools.to') }} ' + 'en'"
+                                dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+                                <x-tools.trans />
+                            </div>
+                            <input type="text" :value="key" placeholder="{{ __('me_str.key') }}"
+                                class="inputKey block h-fit w-full grow rounded-lg bg-primary-light p-2 text-code-2-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-2-dark">
                         </div>
-                        <input type="text" :value="key" placeholder="{{ __('me_str.key') }}"
-                            class="inputKey block h-fit w-full grow rounded-lg bg-primary-light p-2 text-code-2-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-2-dark">
-                        <div type="text" x-text="value" contenteditable="true"
-                            data-placeholder="{{ __('me_str.value') }}"
-                            :dir="Alpine.store('langtool').lang == 'ar' ? 'rtl' : 'ltr'"
-                            class="inputValue block w-full grow rounded-lg bg-primary-light p-2 text-code-1-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-1-dark">
+
+                        {{-- Value String --}}
+                        <div class="flex grow gap-2" x-show="typeof value != 'object'; ">
+                            <div type="text" x-text="value" contenteditable="true"
+                                data-placeholder="{{ __('me_str.value') }}"
+                                :dir="Alpine.store('langtool').lang == 'ar' ? 'rtl' : 'ltr'"
+                                class="inputValue block w-full grow rounded-lg bg-primary-light p-2 text-code-1-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-1-dark">
+                            </div>
+                            <div x-on:click="transOneNow(value, Alpine.store('langtool').lang, false, key)"
+                                :title="'{{ __('tools.trans_data') }}: ' +
+                                value + ' {{ __('tools.to') }} ' + Alpine.store('langtool').lang"
+                                dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+                                <x-tools.trans />
+                            </div>
                         </div>
-                        <div x-on:click="transOneNow(value, Alpine.store('langtool').lang, false, key)"
-                            :title="'{{ __('tools.trans_data') }}: ' +
-                            value + ' {{ __('tools.to') }} ' + Alpine.store('langtool').lang"
-                            dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
-                            <x-tools.trans />
+
+                        {{-- Value Object --}}
+                        <div x-data="{ values: {} }" @notify.window="values = value"
+                            class="grid grow gap-2 border-b-2 border-primary-light pb-2 dark:border-primary-dark"
+                            x-show="typeof value == 'object'" x-init="typeof value == 'object' ? values = value : values = {};">
+                            <template x-for="[keyObj, valueObj] in Object.entries(values)">
+                                <div class="flex gap-2">
+                                    {{-- Key --}}
+                                    <div class="flex grow gap-2">
+                                        <div x-on:click="transOneNow(keyObj, Alpine.store('langtool').lang, true, keyObj, key)"
+                                            :title="'{{ __('tools.trans_data') }}: ' + key + ' {{ __('tools.to') }} ' + 'en'"
+                                            dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+                                            <x-tools.trans />
+                                        </div>
+                                        <input type="text" :value="keyObj" :title="key"
+                                            placeholder="{{ __('me_str.key') }}"
+                                            class="inputKey block h-fit w-full grow rounded-lg bg-primary-light p-2 text-code-2-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-2-dark">
+                                    </div>
+
+                                    {{-- Value String --}}
+                                    <div class="flex grow gap-2">
+                                        <div type="text" x-text="valueObj" contenteditable="true"
+                                            data-placeholder="{{ __('me_str.value') }}"
+                                            :dir="Alpine.store('langtool').lang == 'ar' ? 'rtl' : 'ltr'"
+                                            class="inputValue block w-full grow rounded-lg bg-primary-light p-2 text-code-1-light outline-accent focus:outline dark:bg-primary-dark dark:text-code-1-dark">
+                                        </div>
+                                        <div x-on:click="transOneNow(valueObj, Alpine.store('langtool').lang, false, keyObj, key)"
+                                            :title="'{{ __('tools.trans_data') }}: ' +
+                                            valueObj + ' {{ __('tools.to') }} ' + Alpine.store('langtool').lang"
+                                            dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
+                                            <x-tools.trans />
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </template>
@@ -155,6 +201,7 @@
                         },
                         lang: '',
                         file: null,
+                        manualSaving: false
                     });
                 });
 
@@ -165,12 +212,13 @@
                         });
                     }
 
-                    window.transOneNow = function(data, lang, isKey, oldKey) {
+                    window.transOneNow = function(data, lang, isKey, oldKey, key = null) {
                         @this.dispatch('transOneNow', {
                             'data': data,
                             'lang': lang,
                             'isKey': isKey,
                             'oldKey': oldKey,
+                            'key': key,
                         });
                     }
 
@@ -189,15 +237,19 @@
 
                     @this.on('done-trans', (contents) => {
                         Alpine.store('langtool').contents = contents[0];
-                        jsonToDartAll();
+                        jsonToDartAllNow();
                     });
 
                     @this.on('done-trans-one', (data) => {
                         if (data[0]['oldKey'] !== data[0]['data']) {
                             if (data[0]['isKey']) {
-                                editItem(data[0]['data'], data[0]['data'], data[0]['oldKey'], true);
+                                editItemNow(data[0]['data'], data[0]['data'], data[0]['oldKey'], true, data[0][
+                                    'key'
+                                ]);
                             } else {
-                                editItem(data[0]['oldKey'], data[0]['data'], data[0]['oldKey'], false);
+                                editItemNow(data[0]['oldKey'], data[0]['data'], data[0]['oldKey'], false, data[0][
+                                    'key'
+                                ]);
                             }
                         }
                     });
@@ -207,7 +259,7 @@
                         const lang = contents[0]['lang'];
                         const file = contents[0]['file'];
                         Alpine.store('langtool').contents[lang][file] = data;
-                        jsonToDartSelectFileAll(lang, file);
+                        jsonToDartSelectFileAll(Alpine.store('langtool').contents[lang][file]);
                     });
                 });
             </script>

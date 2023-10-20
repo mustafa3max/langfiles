@@ -5,6 +5,9 @@ let directory;
 let fileHandle;
 var contents = {};
 let openedWindow;
+var isRemoveItem = false;
+var isEditItem = false;
+var isAddItem = false;
 
 
 window.is_full = function (full) {
@@ -20,8 +23,7 @@ window.select_dir_lang = async function(){
     try {
         directory = await window.showDirectoryPicker({
             id:"laravel",
-            startIn: 'desktop',
-            writable: true
+            startIn: 'desktop'
         });
 
         Alpine.store('langtool').files = [];
@@ -30,7 +32,7 @@ window.select_dir_lang = async function(){
             Alpine.store('langtool').languages.push(entryParent.name);
             const files = [];
             if (entryParent.kind === "directory") {
-                fileHandle = await directory.getDirectoryHandle(entryParent.name);
+                fileHandle = await directory.getDirectoryHandle(entryParent.name, {create: true});
                 contents[entryParent.name] = {};
                 for await (const file of fileHandle.values()) {
                     files.push(file.name);
@@ -46,7 +48,7 @@ window.select_dir_lang = async function(){
 
         if(Object.keys(contents).length > 0) {
             Alpine.store('langtool').isDir =  true;
-            dartToJson();
+            phpToJson();
         }
 
     } catch(e) {
@@ -56,43 +58,6 @@ window.select_dir_lang = async function(){
     }
 
 }
-
-window.dartToJson = function (){
-    var contentNew = {};
-    for (const lang in contents) {
-        contentNew[lang] = {};
-        for (const file in contents[lang]) {
-            var data = contents[lang][file];
-
-            let start = data.indexOf("[");
-            let end = data.indexOf("]")+1;
-
-            data = data.replace(/\=>/g, "\:");
-            data = data.replace(/\;/g, "");
-            data = data.trim();
-            data = data.slice(start, end);
-            data = data.replace(/\s+/g, " ");
-            data = data.replace("[", "{");
-            data = data.replace("]", "}");
-            data = data.replace(", }", "}");
-
-            data = JSON.parse(data);
-
-            contentNew[lang][file] = data;
-
-            Alpine.store('langtool').file = file;
-        }
-
-        Alpine.store('langtool').lang = lang;
-    }
-
-    Alpine.store('langtool').contents = contentNew;
-
-    setTimeout(function() {
-        inputs();
-    }, 1000);
-}
-
 
 function inputKeyValue() {
     keyInput.addEventListener("keypress", function(event) {
@@ -127,7 +92,7 @@ window.inputs = function () {
         key.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 if (oldKey !== key.value) {
-                    editItem(key.value, value.value, oldKey, true);
+                    editItemNow(key.value, value.value, oldKey, true, key.title==''?null:key.title);
                     oldKey = "";
                     key.blur();
                 }
@@ -137,16 +102,16 @@ window.inputs = function () {
         value.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
-                editItem(key.value, value.innerText, oldKey, false);
+                editItemNow(key.value, value.innerText, oldKey, false);
                 value.blur();
             }
         });
-
     }
 }
 
 function addItem () {
 
+    isAddItem = true;
     Alpine.store('langtool').languages.forEach(lang => {
         Alpine.store('langtool').files[lang].forEach(file => {
             if (Alpine.store('langtool').file == file) {
@@ -160,35 +125,46 @@ function addItem () {
     valueInput.innerText = "";
 
     keyInput.focus();
-    jsonToDartAll();
+    jsonToDartAllNow();
 
-    setTimeout(function() {
-        inputs();
-    }, 200);
+    initInputs();
 }
 
-window.editItem = function (key, value, oldKey, isKey) {
+window.editItemNow = function (key, value, oldKey, isKey, keyParent = null) {
 
     if(key==''){
-        return removeItem(oldKey);
+        return removeItem(oldKey, keyParent);
     }
+    isEditItem = true;
     if(isKey) {
+        key = window.syntaxKey(key);
         Alpine.store('langtool').languages.forEach(lang => {
             Alpine.store('langtool').files[lang].forEach(file => {
                 if (Alpine.store('langtool').file == file) {
-                    delete Object.assign(Alpine.store('langtool').contents[lang][file], {[window.syntaxKey(key)]: Alpine.store('langtool').contents[lang][file][oldKey] })[oldKey];
+                    const content = Alpine.store('langtool').contents[lang][file];
+                    if(keyParent != null) {
+                        content[key] = content[oldKey];
+                        delete content[oldKey];
+                    }else {
+                        content[key] = content[oldKey];
+                        delete content[oldKey];
+                    }
+                    Alpine.store('langtool').contents[lang][file] = content;
                 }
             });
         });
-        jsonToDartAll();
+        jsonToDartAllNow();
     }else{
-        key = window.syntaxKey(key);
-        Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][key] = value;
+        if(keyParent != null) {
+            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][keyParent][key] = value;
+        }else {
+            Alpine.store('langtool').contents[Alpine.store('langtool').lang][Alpine.store('langtool').file][key] = value;
+        }
         jsonToDart();
     }
 }
 
-window.jsonToDartAll = async function () {
+window.jsonToDartAllNow = async function () {
     const newContents = {};
     Alpine.store('langtool').languages.forEach(async function (lang) {
         newContents[lang] = {};
@@ -196,24 +172,22 @@ window.jsonToDartAll = async function () {
             const contents = Alpine.store('langtool').contents[lang][file];
 
             newContents[lang][file] = '<?php return '+JSON.stringify(contents, null, 2)+';';
-            newContents[lang][file] = newContents[lang][file].replace('{', '[');
-            newContents[lang][file] = newContents[lang][file].replace('}', ']');
-            newContents[lang][file] = newContents[lang][file].replace(': ', '=> ');
+            newContents[lang][file] = newContents[lang][file].replace(/\{/g, '[');
+            newContents[lang][file] = newContents[lang][file].replace(/\}/g, ']');
+            newContents[lang][file] = newContents[lang][file].replace(/\: /g, '=> ');
         });
     });
 
     saveAll(newContents);
 }
 
-window.jsonToDartSelectFileAll = async function(lang, file) {
-    const contents = Alpine.store('langtool').contents[lang][file];
-
+window.jsonToDartSelectFileAll = async function(contents) {
     var newContents = '<?php return '+JSON.stringify(contents, null, 2)+';';
-    newContents = newContents.replace('{', '[');
-    newContents = newContents.replace('}', ']');
+    newContents = newContents.replace(/\{/g, '[');
+    newContents = newContents.replace(/\}/g, ']');
     newContents = newContents.replace(/\": /g, '"=> ');
 
-    saveSelect(newContents, lang, file);
+    saveSelect(newContents);
 }
 
 async function jsonToDart() {
@@ -224,8 +198,8 @@ async function jsonToDart() {
     var newContents = "";
 
     newContents = '<?php return '+JSON.stringify(contents, null, 2)+';';
-    newContents = newContents.replace('{', '[');
-    newContents = newContents.replace('}', ']');
+    newContents = newContents.replace(/\{/g, '[');
+    newContents = newContents.replace(/\}/g, ']');
     newContents = newContents.replace(/\": /g, '"=> ');
 
     save(newContents);
@@ -244,15 +218,29 @@ async function saveAll(content) {
             }
         }
     }
+    if(isRemoveItem) {
+        isRemoveItem = false;
+    }else if(isEditItem) {
+        isEditItem = false;
+    }else if(isAddItem) {
+        isAddItem = false;
+    }
+    else{
+        phpToJson();
+    }
 }
 
-async function saveSelect(content, lang, file) {
-    fileHandle = await directory.getDirectoryHandle(lang);
-
-    const newFile = await fileHandle.getFileHandle(file, {create: true});
-    const writable = await newFile.createWritable();
-    await writable.write(content);
-    await writable.close();
+window.saveSelect = async function (content) {
+    try {
+        fileHandle = await directory.getDirectoryHandle(Alpine.store('langtool').lang, {create: true});
+        const newFile = await fileHandle.getFileHandle(Alpine.store('langtool').file, {create: true});
+        const writable = await newFile.createWritable();
+        await writable.write(content);
+        await writable.close();
+        Alpine.store('langtool').manualSaving = false;
+    } catch (error) {
+        alert(error);
+    }
 }
 
 async function save(content) {
@@ -267,28 +255,63 @@ async function save(content) {
     }
 }
 
-async function removeItem(key) {
-    Alpine.store('langtool').files.forEach(async function (file) {
-        delete Alpine.store('langtool').contents[file][key];
-    });
+function removeItem(key, keyParent) {
+    isRemoveItem = true;
+    if(keyParent == null) {
+        Alpine.store('langtool').languages.forEach(async function (lang) {
+            Alpine.store('langtool').files[lang].forEach(async function (file) {
+                delete Alpine.store('langtool').contents[lang][file][key];
+            });
+        });
+    }else {
+        Alpine.store('langtool').languages.forEach(async function (lang) {
+            Alpine.store('langtool').files[lang].forEach(async function (file) {
+                delete Alpine.store('langtool').contents[lang][file][keyParent][key];
+            });
+        });
+    }
 
-    jsonToDartAll();
+    jsonToDartAllNow();
+}
+
+function phpToJson (){
+    var contentNew = {};
+    for (const lang in contents) {
+        contentNew[lang] = {};
+        for (const file in contents[lang]) {
+            var data = contents[lang][file];
+
+            let start = data.indexOf("[");
+            let end = data.indexOf("];")+1;
+
+            data = data.replace(/\=>/g, "\:");
+            data = data.replace(/\;/g, "");
+            data = data.trim();
+            data = data.slice(start, end);
+            data = data.replace(/\s+/g, " ");
+            data = data.replace(/\[/g, "{");
+            data = data.replace(/\]/g, "}");
+            data = data.replace(/\, }/g, "}");
+
+            data = JSON.parse(data);
+
+            contentNew[lang][file] = data;
+
+            Alpine.store('langtool').file = file;
+        }
+
+        Alpine.store('langtool').lang = lang;
+    }
+
+    Alpine.store('langtool').contents = contentNew;
+
+    initInputs();
+}
+
+function initInputs(){
+    setTimeout(function() {
+        inputs();
+    }, 200);
 }
 
 inputKeyValue();
-
-// constructor
-
-//
-// window.setting = function(isFull, route) {
-//     if (isFull) {
-//         openedWindow = window.open(route, '_blank', 'popup=yes,top=0, left=0,width=4000,height=4000,titlebar=no,location=no,status=no,menubar=no,');
-//     }else {
-//         try {
-//              close();
-//             openedWindow.close();
-//         } catch (error) {
-
-//         }
-//     }
-// }

@@ -19,8 +19,7 @@ window.select_dir_lang = async function(){
 
     try {
         directory = await window.showDirectoryPicker({
-            startIn: 'desktop',
-            writable: true
+            startIn: 'desktop'
         });
 
         Alpine.store('langtool').files = [];
