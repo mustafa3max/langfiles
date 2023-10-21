@@ -19,7 +19,7 @@
             <h1 class="font-semibold uppercase">{{ $user->name }}</h1>
             <p>{{ $user->email }}</p>
             <div class="flex">
-                <x-text-link href="user/logout" isNavigate="1">{{ __('me_str.logout') }}</x-text-link>
+                <x-text-link href="{{ route('logout') }}">{{ __('me_str.logout') }}</x-text-link>
                 <div class="grow"></div>
                 <x-text-link href="user/delete-account" isNavigate="1">{{ __('seo.title_delete_account') }}</x-text-link>
             </div>

@@ -10,8 +10,8 @@
     <div class="grid gap-2">
         <div class="grid gap-2">
             <x-card>
-                <x-title value="{{ __('seo.title_contributors') }}" />
-                <p class="text-center">{{ __('seo.description_contributors') }}</p>
+                <x-title>{{ __('seo.title_contributors') }}</x-title>
+                <x-desc>{{ __('seo.description_contributors') }}</x-desc>
             </x-card>
         </div>
         @foreach ($contributors as $contributor)

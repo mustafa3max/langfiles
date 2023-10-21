@@ -9,7 +9,7 @@
 
     <x-types-keys route="{{ $route }}">
         <div class="min-h-full">
-            <x-title value="{{ __('seo.title_types') }}" />
+            <x-title>{{ __('seo.title_types') }}</x-title>
 
             <div class="pb-2">
                 @component('components.search', ['languages' => $languages, 'submitForm' => 'types', 'search' => $this->search])

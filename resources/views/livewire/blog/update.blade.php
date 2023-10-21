@@ -6,18 +6,10 @@
     </style>
     <x-card>
         <div class="grid gap-2 pb-2">
-            <input type="text" wire:model.blur='title'
-                class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                placeholder="{{ __('me_str.title') }}">
-            @error('title')
-                {{ $message }}
-            @enderror
-            <input type="text" wire:model.blur='image'
-                class="w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
-                placeholder="{{ __('me_str.image') }}">
-            @error('image')
-                {{ $message }}
-            @enderror
+            <x-input name="title" placeholder="{{ __('me_str.title') }}"></x-input>
+
+            <x-input name="image" placeholder="{{ __('me_str.image') }}"></x-input>
+
             <textarea rows="5" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 dark:bg-primary-dark"
                 wire:model.blur='desc' placeholder="{{ __('me_str.desc') }}"></textarea>
             @error('desc')
@@ -37,7 +29,6 @@
     </x-card>
     <div class="p-1"></div>
     <div class="flex items-center gap-4">
-        @component('components.raised-button', ['type' => 'submit', 'value' => __('me_str.update_now'), 'icon' => 'pen'])
-        @endcomponent
+        <x-fill-btn type="submit">{{ __('me_str.update_now') }}</x-fill-btn>
     </div>
 </form>

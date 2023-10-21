@@ -12,55 +12,35 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('seo.title_langtool_flutter') }}" />
-        <p class="text-center text-lg">{{ __('tools.desc_langtool_flutter') }}</p>
+        <x-title>{{ __('seo.title_langtool_flutter') }}</x-title>
+        <x-desc>{{ __('tools.desc_langtool_flutter') }}</x-desc>
     </x-card>
-    <div class="p-1"></div>
 
-    <div class="bg-secondary-light dark:bg-secondary-dark"
+    <div class="mt-2 bg-secondary-light dark:bg-secondary-dark"
         :class="isFull ?
             'fixed top-0 z-50 left-0 right-0  h-screen grid items-start' :
             'p-2 rounded-lg items-start'"
-        x-data="{ isFull: localStorage.getItem('is_full') === 'true' ?? false, isDir: false, files: [], contents: {}, lang: null, file: null }">
+        x-data="{
+            isFull: localStorage.getItem('is_full') === 'true' ?? false,
+            isDir: false,
+            files: [],
+            contents: {},
+            lang: null,
+            file: null,
+        }">
 
         <nav class="grid h-fit bg-primary-light p-2 dark:bg-primary-dark dark:text-primary-light"
             :class="isFull ? '' : 'rounded-lg'">
             <div class="flex">
-                <button
-                    class="rounded-lg bg-primary-light p-2 text-secondary-dark dark:bg-secondary-dark dark:text-primary-light"
-                    x-on:click="isFull=!isFull;is_full(isFull)"
-                    :title="isFull ? '{{ __('tools.minimize_screen') }}' : '{{ __('tools.full_screen') }}'">
-                    <div X-show="isFull">
-                        <x-svg.not-full />
-                    </div>
-                    <div X-show="!isFull">
-                        <x-svg.full />
-                    </div>
-                </button>
+                <x-tools.full-page />
 
                 <div class="grow"></div>
 
-                <button class="rounded-lg bg-accent p-2 font-extrabold text-primary-dark"
-                    onclick="select_dir_lang()">{{ __('tools.select_dir_lang') }}
-                </button>
+                <x-tools.select-dir />
             </div>
             <x-tools.tabs-files />
 
-            <ul class="grid gap-2 rounded-lg">
-                <div class="flex w-full" dir="ltr">
-                    <div class="grow text-center">{{ __('me_str.key') }}</div>
-                    <div class="grow text-center">{{ __('me_str.value') }}</div>
-                </div>
-                <div class="flex w-full gap-2" dir="ltr">
-                    <input id="key" type="text" placeholder="{{ __('me_str.key') }}"
-                        class="block h-fit w-full grow rounded-lg bg-secondary-light p-2 outline-accent focus:outline dark:bg-secondary-dark">
-                    <div id="value" type="text" contenteditable="true"
-                        :dir="Alpine.store('langtool').lang == 'ar' ? 'rtl' : 'ltr'"
-                        data-placeholder="{{ __('me_str.value') }}"
-                        class="block w-full grow rounded-lg bg-secondary-light p-2 outline-accent focus:outline dark:bg-secondary-dark">
-                    </div>
-                </div>
-            </ul>
+            <x-tools.add-key-value />
         </nav>
 
         <div :class="isFull ? 'h-full overflow-y-scroll pr-4 ' : ''" x-show="Alpine.store('langtool').isDir">

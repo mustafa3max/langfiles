@@ -12,7 +12,7 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('seo.title_add_texts') }}" />
+        <x-title>{{ __('seo.title_add_texts') }}</x-title>
     </x-card>
 
     <x-card>

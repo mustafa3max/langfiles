@@ -42,12 +42,10 @@
                     {{-- Delete Article --}}
                     <div class="grid gap-2">
                         <label>{{ __('me_str.enter_article_title_before_deletion') }}</label>
-                        <input type="text" wire:model.blur='title'
-                            class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                            placeholder="{{ __('me_str.enter_article_title_before_deletion') }}">
-                        @error('title')
-                            {{ $message }}
-                        @enderror
+
+                        <x-input name="title"
+                            placeholder="{{ __('me_str.enter_article_title_before_deletion') }}"></x-input>
+
                         <button wire:click='delete({{ $article->id }})'
                             class="w-full rounded-lg bg-accent p-2 font-extrabold">{{ __('me_str.delete') }}</button>
                     </div>

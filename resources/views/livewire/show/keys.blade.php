@@ -9,7 +9,7 @@
 
     <x-types-keys route="{{ $route }}">
 
-        <x-title value="{{ __('seo.title_keys') }}" />
+        <x-title>{{ __('seo.title_keys') }}</x-title>
 
         <div class="pb-2">
             @component('components.search', [

@@ -3,18 +3,16 @@
         <div class="flex w-full flex-wrap">
             {{-- Logo --}}
             <div class="grid items-center justify-center text-center md:max-w-[340px] md:justify-start md:text-start">
-                <div class="flex w-fit items-center justify-center gap-4 rounded-full bg-primary-light p-2 dark:bg-primary-dark md:w-full md:justify-start"
+                <div class="flex w-full items-center justify-between gap-4 rounded-full bg-primary-light py-2 pe-4 ps-2 dark:bg-primary-dark"
                     title="{{ config('app.name') }}">
                     <img src="{{ asset('assets/images/logo.svg') }}" class="h-12 w-12" alt="Langfiles Logo" />
 
-                    <span
-                        class="hidden grow text-center text-4xl font-extrabold uppercase md:block">{{ config('app.name') }}</span>
+                    <span class="block text-center text-4xl font-extrabold uppercase">{{ config('app.name') }}</span>
                 </div>
                 <h2 class="py-4 text-xl font-bold">{{ __('seo.title_home') }}</h2>
                 <p>{{ __('seo.description_home') }}</p>
 
                 <div class="m-8 border-t md:hidden"></div>
-
             </div>
 
             <div class="md:grow"></div>

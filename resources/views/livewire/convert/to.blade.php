@@ -9,7 +9,7 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('seo.title_convert') }}" />
+        <x-title>{{ __('seo.title_convert') }}</x-title>
 
         <div class="flex flex-wrap justify-center gap-2">
             <div class="flex flex-wrap gap-2" x-data="{

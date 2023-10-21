@@ -112,7 +112,7 @@ Route::prefix('user')->group(function () {
         Route::get('profile', UserProfile::class);
         Route::get('logout', function () {
             return Globals::logout();
-        });
+        })->name('logout');
     });
     Route::middleware('auth:sanctum', 'verified')->group(function () {
         Route::get('add-text', AddText::class)->name('add-text');

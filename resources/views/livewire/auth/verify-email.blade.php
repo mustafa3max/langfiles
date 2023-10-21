@@ -13,7 +13,7 @@
 
     <x-card>
         <div class="grid grid-cols-1 items-center justify-center gap-10 p-8 text-center">
-            <x-title value="{{ __('seo.title_email_verify') }}" />
+            <x-title>{{ __('seo.title_email_verify') }}</x-title>
             <div class="mb-6 border-b-2"></div>
             <div class="flex justify-center text-center text-accent">
                 <img src="{{ asset('assets/images/email_verify.svg') }}" alt="">

@@ -12,67 +12,35 @@
     @endsection
 
     <x-card>
-        @component('components.title', ['value' => __('me_str.new_account')])
-        @endcomponent
-        <div class="p-2"></div>
 
-        {{-- Register Direct --}}
-        <form wire:submit.prevent="register">
+        <x-title>{{ __('me_str.new_account') }}</x-title>
+
+        <form wire:submit.prevent="register" class="grid gap-4">
             <span>{{ __('me_str.name') }}</span>
-            <div class="p-1"></div>
-            @component('components.input', [
-                'required' => 'required',
-                'type' => 'name',
-                'name' => 'name',
-                'placeholder' => __('me_str.name'),
-                'disabled' => '',
-                'message' => '{{ $message }}',
-            ])
-            @endcomponent
-            <div class="p-2"></div>
+
+            <x-input type="name" name="name" placeholder="{{ __('me_str.name') }}"></x-input>
+
             <span>{{ __('me_str.email') }}</span>
-            <div class="p-1"></div>
-            @component('components.input', [
-                'required' => 'required',
-                'type' => 'email',
-                'name' => 'email',
-                'placeholder' => __('me_str.email'),
-                'disabled' => '',
-                'message' => '{{ $message }}',
-            ])
-            @endcomponent
-            <div class="p-2"></div>
+
+            <x-input type="email" name="email" placeholder="{{ __('me_str.email') }}"></x-input>
+
             <span>{{ __('me_str.password') }}</span>
-            <div class="p-1"></div>
-            @component('components.input', [
-                'required' => 'required',
-                'type' => 'password',
-                'name' => 'password',
-                'placeholder' => __('me_str.password'),
-                'disabled' => '',
-                'message' => '{{ $message }}',
-            ])
-            @endcomponent
-            <div class="p-2"></div>
-            <div class="text-gray-400">
+
+            <x-input type="password" name="password" placeholder="{{ __('me_str.password') }}"></x-input>
+
+            <div>
                 {{ __('me_str.new_account_message') }}
                 <x-text-link href="/en/terms-of-service" isExternal="1">{{ __('me_str.terms_of_use') }}</x-text-link>
                 {{ __('me_str.terms_of_use') }}
                 <x-text-link href="/en/privacy-policy" isExternal="1">{{ __('me_str.privacy_policy') }}</x-text-link>
                 .
             </div>
-            <div class="p-2"></div>
-            @component('components.raised-button', [
-                'value' => __('me_str.register'),
-                'type' => 'submit',
-                'icon' => 'user-plus',
-            ])
-            @endcomponent
 
-            <div class="p-2"></div>
+            <x-fill-btn type="submit">{{ __('me_str.register') }}</x-fill-btn>
+
             <div>
                 <span class="text-gray-400">{{ __('me_str.already_account') }}</span>
-                <x-text-link href="/login" isExternal="1">{{ __('seo.title_login') }}</x-text-link>
+                <x-text-link href="/login" isNavigate="1">{{ __('seo.title_login') }}</x-text-link>
             </div>
         </form>
 
@@ -81,4 +49,6 @@
     <div wire:loading.delay>
         <x-wite />
     </div>
+
+    <x-msg />
 </div>

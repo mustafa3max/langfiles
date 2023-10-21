@@ -2,20 +2,12 @@
     <x-card>
         <div class="grid gap-2 pb-2">
             <label>{{ __('me_str.file_name_en') }}</label>
-            <input type="text" wire:model.blur='fileName'
-                class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                placeholder="{{ __('me_str.file_name_en') }}">
-            @error('title')
-                {{ $message }}
-            @enderror
+
+            <x-input name="fileName" placeholder="{{ __('me_str.file_name_en') }}"></x-input>
 
             <label>{{ __('me_str.title') }}</label>
-            <input type="text" wire:model.blur='title'
-                class="w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                placeholder="{{ __('me_str.title') }}">
-            @error('title')
-                {{ $message }}
-            @enderror
+
+            <x-input name="title" placeholder="{{ __('me_str.title') }}"></x-input>
 
             <label>{{ __('me_str.desc') }}</label>
             <textarea rows="5" class="no-scrollbar w-full rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
@@ -25,16 +17,12 @@
             @enderror
 
         </div>
-        <div class="flex items-center gap-4">
-            @component('components.raised-button', [
-                'type' => 'submit',
-                'value' => __('me_str.publish_now'),
-                'icon' => 'paper-plane',
-            ])
-            @endcomponent
+        <div class="flex items-center justify-between gap-4">
+
+            <x-fill-btn type="submit">{{ __('me_str.publish_now') }}</x-fill-btn>
+
             <div wire:click='save'>
-                @component('components.text-button', ['value' => __('me_str.save')])
-                @endcomponent
+                <x-text-link>{{ __('me_str.save') }}</x-text-link>
             </div>
         </div>
     </x-card>

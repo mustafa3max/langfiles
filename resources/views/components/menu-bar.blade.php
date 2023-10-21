@@ -6,7 +6,7 @@
             <span>{{ __('me_str.profile') }}</span>
         </a>
 
-        <a href="/user/logout" class="flex items-center gap-4" wire:navigate>
+        <a href="{{ route('logout') }}" class="flex items-center gap-4">
             <x-svg.logout />
             <span>{{ __('me_str.logout') }}</span>
         </a>

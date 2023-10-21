@@ -8,7 +8,7 @@
     @endsection
 
     <x-policy route="{{ $route }}">
-        <x-title value="{{ __('me_str.terms_of_use') }}" />
+        <x-title>{{ __('me_str.terms_of_use') }}</x-title>
         <div class="mb-4 border-b-2 border-primary-light dark:border-primary-dark"></div>
 
         <div dir="ltr" class="p-2">

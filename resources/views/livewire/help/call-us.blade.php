@@ -12,17 +12,17 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('me_str.call_us') }}" />
-        <p class="pb-4">{{ __('seo.description_call_us') }}</p>
+        <x-title>{{ __('me_str.call_us') }}</x-title>
+        <x-desc>{{ __('seo.description_call_us') }}</x-desc>
 
-        <form wire:submit="sendMessage">
+        <form wire:submit="sendMessage" class="grid gap-4">
             <div>
                 <label class="block py-2">{{ __('me_str.email') }}</label>
-                <x-input type="text" placeholder="{{ __('me_str.email') }}" required="1" name="email" />
+                <x-input placeholder="{{ __('me_str.email') }}" name="email" />
             </div>
             <div>
                 <label class="block py-2">{{ __('me_str.title') }}</label>
-                <x-input type="text" placeholder="{{ __('me_str.title') }}" required="1" name="title" />
+                <x-input placeholder="{{ __('me_str.title') }}" name="title" />
             </div>
             <div>
                 <label class="block py-2">{{ __('me_str.your_message') }}</label>
@@ -30,8 +30,7 @@
                     placeholder="{{ __('me_str.your_message') }}" required wire:model="message"></textarea>
             </div>
 
-            @component('components.raised-button', ['icon' => '', 'type' => 'submit', 'value' => __('me_str.send_message')])
-            @endcomponent
+            <x-fill-btn type="submit">{{ __('me_str.send_message') }}</x-fill-btn>
         </form>
     </x-card>
 

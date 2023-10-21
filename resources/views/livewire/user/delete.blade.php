@@ -12,36 +12,23 @@
     @endsection
 
     <x-card>
-        <p class="text-center">{{ __('seo.description_delete_account') }}</p>
+        <x-desc>{{ __('seo.description_delete_account') }}</x-desc>
         <form wire:submit="delete">
             <div>
                 <span class="block pb-2">{{ __('me_str.email') }}</span>
-                @component('components.input', [
-                    'required' => 'required',
-                    'type' => 'email',
-                    'name' => 'email',
-                    'placeholder' => __('me_str.email'),
-                ])
-                @endcomponent
+
+                <x-input type="email" name="email" placeholder="{{ __('me_str.email') }}"></x-input>
+
             </div>
             <div class="p-2"></div>
             <div>
                 <span class="block pb-2">{{ __('me_str.password') }}</span>
-                @component('components.input', [
-                    'required' => 'required',
-                    'type' => 'password',
-                    'name' => 'password',
-                    'placeholder' => __('me_str.password'),
-                ])
-                @endcomponent
+
+                <x-input type="password" name="password" placeholder="{{ __('me_str.password') }}"></x-input>
+
             </div>
             <div class="p-2"></div>
-            @component('components.raised-button', [
-                'value' => __('seo.title_delete_account'),
-                'type' => 'submit',
-                'icon' => 'right-to-bracket',
-            ])
-            @endcomponent
+            <x-fill-btn type="submit">{{ __('seo.title_delete_account') }}</x-fill-btn>
         </form>
     </x-card>
 

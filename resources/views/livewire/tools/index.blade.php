@@ -12,8 +12,8 @@
     @endsection
 
     <x-card>
-        <x-title value="{{ __('tools.title_tools') }}" />
-        <p class="text-lg">{{ __('tools.desc_1') }}</p>
+        <x-title>{{ __('tools.title_tools') }}</x-title>
+        <x-desc>{{ __('tools.desc_1') }}</x-desc>
 
         <div class="py-2">
             <img class="rounded-lg border-4 border-primary-light dark:border-primary-dark"

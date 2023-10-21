@@ -10,8 +10,8 @@
     <x-types-keys route="{{ $route }}">
 
         <div class="grid gap-2">
-            <x-title value="{{ __('seo.title_project') }}" />
-            <p class="text-center">{{ __('seo.description_project') }}</p>
+            <x-title>{{ __('seo.title_project') }}</x-title>
+            <x-desc>{{ __('seo.description_project') }}</x-desc>
 
             <form class="flex flex-wrap gap-2" wire:submit>
                 @foreach ($sessions as $session)

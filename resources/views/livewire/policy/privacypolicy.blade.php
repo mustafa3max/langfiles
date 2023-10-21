@@ -8,7 +8,7 @@
     @endsection
 
     <x-policy route="{{ $route }}">
-        <x-title value="{{ __('me_str.privacy_policy') }}" />
+        <x-title>{{ __('me_str.privacy_policy') }}</x-title>
         <div class="mb-4 border-b-2 border-primary-light dark:border-primary-dark"></div>
         <div dir="ltr" class="px-2">
             <h2 class="py-3 text-2xl font-bold">Privacy Policy for langfiles</h2>
