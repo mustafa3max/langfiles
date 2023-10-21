@@ -4,15 +4,15 @@
     @endsection
 
     @section('page-title')
-        {{ __('seo.title_login') }}
+        {{ __('seo.title_sign_in') }}
     @endsection
 
     @section('page-description')
-        {{ __('seo.description_login') }}
+        {{ __('seo.description_sign_in') }}
     @endsection
 
     <x-card>
-        <x-title>{{ __('seo.title_login') }}</x-title>
+        <x-title>{{ __('seo.title_sign_in') }}</x-title>
 
         <form wire:submit="login" class="grid gap-4">
             <span>{{ __('me_str.email') }}</span>
@@ -33,11 +33,11 @@
                 <x-text-link isNavigate="1">{{ __('me_str.forgot_password') }}</x-text-link>
             </div>
 
-            <x-fill-btn type="submit">{{ __('seo.title_login') }}</x-fill-btn>
+            <x-fill-btn type="submit">{{ __('seo.title_sign_in') }}</x-fill-btn>
 
             <div>
                 <span>{{ __('me_str.not_account') }}</span>
-                <x-text-link href="/register" isNavigate="1">{{ __('me_str.new_account') }}</x-text-link>
+                <x-text-link href="/sign-up" isNavigate="1">{{ __('me_str.new_account') }}</x-text-link>
             </div>
 
         </form>

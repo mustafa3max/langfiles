@@ -2,11 +2,10 @@
 
 namespace App\Livewire\Auth;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Login extends Component
+class SignIn extends Component
 {
     public $email;
     public $password;
@@ -20,11 +19,7 @@ class Login extends Component
             'password' => 'required',
         ]);
 
-
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']], $validated['remember'])) {
-            $this->reset(['email']);
-            $this->reset(['password']);
-            $this->reset(['remember']);
             return $this->redirect(session()->pull('path_previous') ?? url()->to('/types'));
         }
 
@@ -40,6 +35,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login');
+        return view('livewire.auth.sign-in');
     }
 }

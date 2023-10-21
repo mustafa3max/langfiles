@@ -10,11 +10,7 @@ class Index extends Component
 
     function contributors()
     {
-
-        $contributor = Contributor::where('enabled', true)
-            ->get();
-
-        return $contributor;
+        return Contributor::where('enabled', true)->get();
     }
 
     public function render()

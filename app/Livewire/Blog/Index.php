@@ -28,7 +28,7 @@ class Index extends Component
         }])
             ->where('title', 'LIKE', "%$this->search%")
             ->orWhere('desc', 'LIKE', "%$this->search%")
-            // ->where('enabled', true)
+            ->where('enabled', true)
             ->orderByDesc('updated_at')
             ->simplePaginate(10);
     }

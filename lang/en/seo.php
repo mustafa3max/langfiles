@@ -47,11 +47,11 @@ return [
     "title_404" => "404 page not found",
     "description_404" => "Page Not Found 404 The page you are looking for may have been removed or the link contains an error. Go to the homepage to find out more",
 
-    "title_login" => "login",
-    "description_login" => "login",
+    "title_sign_in" => "Sign In",
+    "description_sign_in" => "Sign In",
 
-    "title_register" => "create new account",
-    "description_register" => "create new account",
+    "title_sign_up" => "create new account",
+    "description_sign_up" => "create new account",
 
     "title_email_verify" => "Email verification",
     "description_email_verify" => "In order to enjoy all the benefits of the langfiles website, you must complete the verification process of the email you registered with.",

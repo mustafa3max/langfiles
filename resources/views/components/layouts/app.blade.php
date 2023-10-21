@@ -40,7 +40,9 @@
         input:-webkit-autofill {
             -webkit-text-fill-color: #666;
             font-weight: bold;
-            caret-color: #666
+            caret-color: #666;
+            border-radius: 8px;
+            border: 1px solid #666;
         }
 
         div:empty:before {

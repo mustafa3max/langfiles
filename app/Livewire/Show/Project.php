@@ -6,7 +6,6 @@ use App\Models\Table;
 use Convert;
 use DB;
 use Globals;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use LaravelLocalization;
 use Livewire\Component;
 use Route;

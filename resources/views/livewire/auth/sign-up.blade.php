@@ -4,11 +4,11 @@
     @endsection
 
     @section('page-title')
-        {{ __('seo.title_register') }}
+        {{ __('seo.title_sign_up') }}
     @endsection
 
     @section('page-description')
-        {{ __('seo.description_register') }}
+        {{ __('seo.description_sign_up') }}
     @endsection
 
     <x-card>
@@ -31,7 +31,7 @@
             <div>
                 {{ __('me_str.new_account_message') }}
                 <x-text-link href="/en/terms-of-service" isExternal="1">{{ __('me_str.terms_of_use') }}</x-text-link>
-                {{ __('me_str.terms_of_use') }}
+                {{ __('me_str.and') }}
                 <x-text-link href="/en/privacy-policy" isExternal="1">{{ __('me_str.privacy_policy') }}</x-text-link>
                 .
             </div>
@@ -40,7 +40,7 @@
 
             <div>
                 <span class="text-gray-400">{{ __('me_str.already_account') }}</span>
-                <x-text-link href="/login" isNavigate="1">{{ __('seo.title_login') }}</x-text-link>
+                <x-text-link href="/sign-in" isNavigate="1">{{ __('seo.title_sign_in') }}</x-text-link>
             </div>
         </form>
 

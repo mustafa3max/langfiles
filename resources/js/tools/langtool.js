@@ -215,6 +215,12 @@ async function removeItem(key) {
     jsonToDartAll();
 }
 
+function cancellationIsFull() {
+    if(document.referrer != document.URL && document.referrer != '') {
+        localStorage.setItem('is_full', false);
+    }
+}
+cancellationIsFull();
 inputKeyValue();
 
 // constructor

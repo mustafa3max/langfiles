@@ -30,7 +30,7 @@ return [
     "name" => "Name",
     "terms_of_use" => "Terms of Use",
     "privacy_policy" => "Privacy Policy",
-    "new_account_message" => "By registering, you are creating a langfiles account, and agree to",
+    "new_account_message" => "By clicking the register button, you are creating an account at langfiles, and agree to",
     "and" => "and",
     "already_account" => "Already have an account?",
     "dark_appearance" => "Dark appearance",

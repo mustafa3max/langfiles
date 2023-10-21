@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\SitemapController;
 use App\Http\Globals;
-use App\Livewire\Auth\Login;
-use App\Livewire\Auth\Register;
+use App\Livewire\Auth\SignIn;
+use App\Livewire\Auth\SignUp;
 use App\Livewire\Auth\VerifyEmail;
 use App\Livewire\Blog\Artilce;
 use App\Livewire\Blog\Index as BlogIndex;
@@ -97,8 +97,8 @@ Route::scopeBindings()->group(function () {
 
 // Auth
 Route::scopeBindings()->group(function () {
-    Route::get('/login', Login::class)->name('login');
-    Route::get('/register', Register::class);
+    Route::get('sign-in', SignIn::class)->name('sign-in');
+    Route::get('sign-up', SignUp::class);
 });
 
 // Mustafamax

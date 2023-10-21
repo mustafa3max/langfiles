@@ -10,17 +10,18 @@
     {{ __('seo.key_words_404') }}
 @endsection
 
-<div class="text-center grid gap-6 container items-center justify-center">
+<div class="container grid items-center justify-center gap-6 text-center">
     <img src="{{ asset('assets/images/error_404.svg') }}" alt="404 {{ __('error.title_error_404') }}" onerror="error()"
         id="img404">
-    <h1 class="mb-4 tracking-tight font-extrabold text-9xl text-accent dark:text-accent hidden" id="text404">404</h1>
-    <p class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">{{ __('error.title_error_404') }}</p>
-    <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">{{ __('error.desc_error_404') }}</p>
+    <h1 class="mb-4 hidden text-9xl font-extrabold tracking-tight text-accent dark:text-accent" id="text404">404</h1>
+    <p class="text-gray-900 dark:text-white mb-4 text-4xl font-bold tracking-tight">{{ __('error.title_error_404') }}</p>
+    <p class="text-gray-500 dark:text-gray-400 mb-4 text-lg font-light">{{ __('error.desc_error_404') }}</p>
 
-    <a href="/types">
-        @component('components.raised-button', ['value' => __('me_str.home'), 'icon' => 'home'])
-        @endcomponent
-    </a>
+    <div class="flex justify-center">
+        <a href="/types" class="w-fit">
+            <x-fill-btn>{{ __('me_str.home') }}</x-fill-btn>
+        </a>
+    </div>
 
     <script>
         const img404 = document.getElementById('img404');

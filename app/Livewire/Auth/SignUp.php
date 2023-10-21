@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class Register extends Component
+class SignUp extends Component
 {
     public $name;
     public $email;
@@ -46,6 +46,6 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire..auth.register');
+        return view('livewire..auth.sign-up');
     }
 }

@@ -23,7 +23,7 @@ return [
     "name" => "الإ سم",
     "terms_of_use" => "شروط الاستخدام",
     "privacy_policy" => "سياسة الخصوصية",
-    "new_account_message" => "بالتسجيل ، أنت تنشئ حساب langfiles ، وتوافق على",
+    "new_account_message" => "بالضغط على زر التسجيل ، أنت تنشئ حساب في langfiles ، وتوافق على",
     "and" => "و",
     "already_account" => "هل لديك حساب؟",
     "dark_appearance" => "المظهر الداكن",

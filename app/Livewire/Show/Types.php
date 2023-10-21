@@ -92,8 +92,7 @@ class Types extends Component
 
     function countItems($table)
     {
-        return DB::table($table)
-            ->get()->count();
+        return DB::table($table)->get()->count();
     }
 
     function mount()

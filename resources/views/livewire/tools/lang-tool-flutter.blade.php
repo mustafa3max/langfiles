@@ -1,4 +1,4 @@
-<div>
+<div class="grid gap-2">
     @section('page-title')
         {{ __('seo.title_langtool_flutter') }}
     @endsection
@@ -16,9 +16,9 @@
         <x-desc>{{ __('tools.desc_langtool_flutter') }}</x-desc>
     </x-card>
 
-    <div class="mt-2 bg-secondary-light dark:bg-secondary-dark"
+    <div class="bg-secondary-light dark:bg-secondary-dark"
         :class="isFull ?
-            'fixed top-0 z-50 left-0 right-0  h-screen grid items-start' :
+            'fixed top-0 z-50 left-0 right-0 h-screen grid items-start' :
             'p-2 rounded-lg items-start'"
         x-data="{
             isFull: localStorage.getItem('is_full') === 'true' ?? false,
@@ -36,7 +36,7 @@
 
                 <div class="grow"></div>
 
-                <x-tools.select-dir />
+                <x-tools.select-dir-btn />
             </div>
             <x-tools.tabs-files />
 
@@ -93,19 +93,7 @@
             </div>
         </div>
 
-        <div class="grid w-full items-center justify-center p-8 text-center" x-show="!Alpine.store('langtool').isDir">
-            <div class="flex w-full justify-center">
-                <img src="{{ asset('assets/images/empty.svg') }}" alt="{{ __('me_str.no_data') }}"
-                    class="block w-fit pb-4">
-            </div>
-            <h2 class="p-4 text-2xl font-semibold">{{ __('tools.title_not_select_dir') }}</h2>
-            <p class="text-lg">{{ __('tools.desc_not_select_dir') }}</p>
-            <div class="pt-8">
-                <button class="w-fit rounded-lg bg-accent p-2 font-extrabold text-primary-dark"
-                    onclick="select_dir_lang()">{{ __('tools.select_dir_lang') }}
-                </button>
-            </div>
-        </div>
+        <x-tools.select-dir />
 
         <div wire:loading.delay>
             <x-wite />

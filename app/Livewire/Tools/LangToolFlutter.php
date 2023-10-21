@@ -5,6 +5,7 @@ namespace App\Livewire\Tools;
 use Globals;
 use Livewire\Component;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use URL;
 
 class LangToolFlutter extends Component
 {
