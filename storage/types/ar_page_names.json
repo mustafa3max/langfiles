@@ -1,13 +1,7 @@
 {
     "sections_1": ["page names", "website"],
-    "home":"الصفحة الرئيسية",
-    "services":"الخدمات",
-    "about":"من نحن",
-    "contact_us":"اتصل بنا",
     "blog":"المدونة",
     "forum":"المنتدى",
-    "shop":"المتجر",
-    "products":"المنتجات",
     "privacy_policy":"سياسة الخصوصية",
     "terms_of_service":"شروط الخدمة",
     "website":"موقع إلكتروني",
@@ -17,5 +11,11 @@
     "logo_create":"إنشاء الشعار",
     "apps":"التطبيقات",
     "docs":"المستندات",
-    "profile":"الملف الشخصي"
+    "profile":"الملف الشخصي",
+    "home":"الصفحة الرئيسية",
+    "services":"الخدمات",
+    "about":"من نحن",
+    "contact_us":"اتصل بنا",
+    "shop":"المتجر",
+    "products":"المنتجات"
 }

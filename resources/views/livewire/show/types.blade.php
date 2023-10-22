@@ -7,7 +7,7 @@
         {{ __('seo.description_types') }}
     @endsection
 
-    <x-types-keys route="{{ $route }}">
+    <x-card>
         <div class="min-h-full">
             <x-title>{{ __('seo.title_types') }}</x-title>
 
@@ -52,5 +52,5 @@
         @component('components.share-buttons', ['share' => $share])
         @endcomponent
 
-    </x-types-keys>
+    </x-card>
 </div>

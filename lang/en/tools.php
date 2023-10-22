@@ -1,7 +1,7 @@
 <?php return [
     "tools" =>  "langfiles tools",
-    "title_tools" =>  "Langfiles Tools program for localization projects for many operating systems",
-    "desc_1" =>  "Langfiles Tools is a program designed to localization projects for most operating systems. It allows you to modify, add, and translate scripts to your project, whether youre using Laravel, Flutter, or other frameworks.",
+    "title_tools" =>  "langfiles tools for project localization",
+    "desc_1" =>  "The langfiles tools are for localization projects created using laravel or flutter. These tools allow you to add, edit, and translate text.",
     "title_1" =>  "Currently supported operating systems",
     "desc_2" =>  "Langfiles Tools currently only works on Linux. In the near future, Windows and Mac systems will be supported if sufficient support is available for the Langfiles website to localize websites, applications and games.",
     "title_2" =>  "Currently supported frameworks",

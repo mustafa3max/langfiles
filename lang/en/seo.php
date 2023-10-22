@@ -19,9 +19,6 @@ return [
     "title_file" => "Display text type :TYPE for localization websites, applications, and games",
     "description_file" => "Display text type :TYPE to localization websites, applications, and games so you can see the data. You can also remove the value you want and then copy the content. Or you create a custom group that collects data from several types or classifications and then copies the data to your site, application, or game.",
 
-    "title_keys" => "All localization texts for websites, applications and games",
-    "description_keys" => "The scripts for language localization are collected on one page to provide you with a way to create a custom dataset. With search by key or value.",
-
     "title_articles" => "Articles explaining the localization of websites, applications and games",
     "description_articles" => "On the blog, we present to you articles in which we explain the localization of websites, applications, and games of all kinds, such as laravel websites.",
 
@@ -30,10 +27,6 @@ return [
 
     "title_contributors" => "List of amazing contributors to our site",
     "description_contributors" => "These people made amazing sacrifices in creating and developing the langfiles website because they put a lot of time and effort into it, and the least we can do for them is to immortalize their names on this page. Thank them for this wonderful work.",
-
-    "title_project" => "Select what your project contains to get the localization file",
-    "description_project" => "Choose what suits your project, and after completion, localization texts for your project will be provided.",
-
 
     "title_add_texts" => "Add localization texts for websites, applications and games to support us",
     "description_add_texts" => "Support us by adding scripts to localization websites, applications and games. These texts are used by thousands of developers. You just have to choose the language and enter the key and value.",

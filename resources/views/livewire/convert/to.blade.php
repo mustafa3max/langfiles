@@ -32,8 +32,9 @@
         }">
             <label class="block">{{ __('convert.json_input') }}</label>
             <div contenteditable dir="ltr" id="type-1"
-                class="w-full overflow-auto whitespace-pre-wrap rounded-lg bg-primary-light p-4 outline-0 empty:before:content-['write_here'] dark:bg-primary-dark"
-                @if ($dataTransQuery != null) x-text="JSON.stringify({{ $dataTransQuery }})" @else x-text="data" @endif>
+                class="w-full overflow-auto whitespace-pre-wrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                @if ($dataTransQuery != null) x-text="JSON.stringify({{ $dataTransQuery }})" @else x-text="data??null" @endif
+                data-placeholder="{{ __('convert.write_here') }}">
             </div>
             <div x-show="Alpine.store('syntax').error!=null" x-text="Alpine.store('syntax').error" dir="ltr"
                 class="pt-2 font-extrabold text-code-2-dark"></div>

@@ -5,7 +5,6 @@
     <ul class="flex flex-wrap gap-2 rounded-b-lg border-8 border-secondary-light p-2 dark:border-secondary-dark"
         x-data="{
             topics: {
-                '{{ __('tools.langfiles_tools') }}': '/tools/langfiles',
                 'langtool flutter': '/tools/langtool-flutter',
                 'langtool laravel': '/tools/langtool-laravel',
             }
