@@ -53,4 +53,8 @@
         @endcomponent
 
     </x-card>
+
+    <script>
+        return new Blob(Object.values(localStorage)).size;
+    </script>
 </div>

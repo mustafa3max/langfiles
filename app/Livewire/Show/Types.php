@@ -4,6 +4,7 @@ namespace App\Livewire\Show;
 
 use App\Http\Globals;
 use App\Models\Table;
+use Cache;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Livewire\Attributes\Rule;
+use Mail;
 
 class Types extends Component
 {
