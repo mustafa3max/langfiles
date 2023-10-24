@@ -12,8 +12,6 @@
     @endsection
 
     <x-card>
-        <button wire:click='send'>Send Email</button>
-
         <div class="grid grid-cols-1 items-center justify-center gap-10 p-8 text-center">
             <x-title>{{ __('seo.title_email_verify') }}</x-title>
             <div class="mb-6 border-b-2"></div>
