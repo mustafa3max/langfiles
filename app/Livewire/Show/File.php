@@ -5,10 +5,10 @@ namespace App\Livewire\Show;
 use App\Http\Convert;
 use App\Http\Globals;
 use App\Models\Table;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Storage;
 
 class File extends Component
 {
@@ -19,6 +19,7 @@ class File extends Component
     public $lang;
     public $currentLang;
     public $keys = array();
+    public $langNow;
 
     function delete($key)
     {
@@ -32,32 +33,23 @@ class File extends Component
         $this->keys = array_slice($this->keys, 1);
     }
 
-    function data()
+    function json()
     {
+        $allJson = [];
+
         foreach (Globals::languages() as $lang) {
             $table = str_replace('type', $lang, $this->table);
             $table = str_replace('-', '_', $table);
-            $data[] = DB::table($table)
-                ->where('enabled', true)
-                ->whereNotIn('key', $this->keys)
-                ->get(['key', 'value', 'language'])->toArray();
-        }
-        return $data;
-    }
-
-    function toJson()
-    {
-        $result = [];
-
-        foreach ($this->data() as $value) {
-            $resultNew = [];
-            foreach ($value as $v) {
-                $arr = array_values((array) $v);
-                $resultNew += [$arr[0] => $arr[1]];
+            $table = $table . '.json';
+            $json = Storage::disk(Globals::diskTypes())->get($table);
+            $json = json_decode($json, true);
+            foreach ($this->keys as $key) {
+                unset($json[$key]);
             }
-            $result[] = $resultNew;
+            $allJson[$lang] = $json;
         }
-        return $result;
+
+        return $allJson;
     }
 
     function moreLang($type)
@@ -86,15 +78,15 @@ class File extends Component
             ->get();
     }
 
-    function countItems($table)
+    function selectLang($lang)
     {
-        return DB::table($table)->get()->count();
+        $this->langNow = $lang;
     }
 
     public function mount()
     {
         $this->currentLang = LaravelLocalization::getCurrentLocale();
-
+        $this->langNow = $this->currentLang;
         $this->table = request('type');
 
         $this->title = request('type');
@@ -107,18 +99,17 @@ class File extends Component
     public function render()
     {
         return view('livewire.show.file')->with([
-            'json' => Convert::to('json', $this->toJson()),
-            'php' => Convert::to('php', $this->toJson()),
-            'android' => Convert::to('android', $this->toJson()),
-            'ios' => Convert::to('ios', $this->toJson()),
-            'django' => Convert::to('django', $this->toJson()),
-            'xlf' => Convert::to('xlf', $this->toJson()),
-            'csv' => Convert::to('csv', $this->toJson()),
-            'html' => Convert::to('html', $this->toJson()),
-            'dataEdit' => $this->data(),
-            'dataJson' => $this->toJson(),
+            'json' => Convert::to('json', $this->json()),
+            'php' => Convert::to('php', $this->json()),
+            'android' => Convert::to('android', $this->json()),
+            'ios' => Convert::to('ios', $this->json()),
+            'django' => Convert::to('django', $this->json()),
+            'xlf' => Convert::to('xlf', $this->json()),
+            'csv' => Convert::to('csv', $this->json()),
+            'html' => Convert::to('html', $this->json()),
+            'data' => $this->json(),
             'currentLang' => $this->currentLang,
-            'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)]))
+            'share' => Globals::share(__('seo.title_file', ['TYPE' => __('tables.' . $this->title)])),
         ]);
     }
 }

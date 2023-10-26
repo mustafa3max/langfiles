@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name_en', 32);
             $table->string('name_ar', 32);
             $table->string('lang', 2);
+            $table->string('file');
+            $table->integer('number');
             $table->timestamps();
         });
     }

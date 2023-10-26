@@ -14,23 +14,37 @@ class TypeController extends Controller
 
     function createTables()
     {
-        $tables = DB::select('SHOW TABLES');
-        $tables = array_map('current', $tables);
+        $tables = Storage::disk(Globals::diskTypes())->allFiles();
+        $d = [];
+
         foreach ($tables as $table) {
-            $lang = explode('_', $table);
+            $tableNew = str_replace('.json', '', $table);
+            $lang = explode('_', $tableNew);
 
             if (in_array($lang[0], Globals::languages())) {
+                $json = Storage::disk(Globals::diskTypes())->get($table);
+
+                try {
+                    $json = json_decode($json, true);
+                } catch (\Throwable $th) {
+                }
+
+                $number = count($json);
                 $name = array_slice($lang, 1, count($lang));
                 $name_en = implode(' ', $name);
+
                 $name_ar = __('tables.' . implode('_', $name));
+
                 try {
                     Table::updateOrCreate(
-                        ['table' => $table],
+                        ['table' => $tableNew],
                         [
                             'name_en' => $name_en,
                             'name_ar' => $name_ar,
                             'lang' => $lang[0],
-                            'table' => $table,
+                            'table' => $tableNew,
+                            'file' => $table,
+                            'number' => $number
                         ]
                     );
                 } catch (\Throwable $th) {
@@ -45,41 +59,45 @@ class TypeController extends Controller
 
     function createFiles()
     {
-        $files = Storage::disk(Globals::diskTypes())->allFiles();
-        $sections = json_encode(['public']);
+        $files = Table::get();
+        $da = [];
         foreach ($files as $file) {
-            $sections = json_encode(['public']);
 
-            $json = Storage::disk(Globals::diskTypes())->get($file);
-            $allJson = json_decode($json);
-            $table = str_replace('.json', '', $file);
-            $file = explode('_', $table);
-            $lang = $file[0];
-            $file = array_slice($file, 1, count($file));
-            $file = implode(' ', $file);
+            $json = Storage::disk(Globals::diskTypes())->get($file->file);
 
-            foreach ($allJson ?? [] as $key => $value) {
-                if (is_array($value)) {
-                    $sections = json_encode($value);
-                }
 
-                if (!is_array($value)) {
-                    if (strlen($key) > 0 && strlen($value) > 0) {
-                        DB::table($table)->updateOrInsert(
-                            ['key' => $key],
-                            [
-                                'type' => $file,
-                                'language' => $lang,
-                                'key' => $key,
-                                'value' => $value,
-                                'enabled' => true,
-                                'sections' => $sections
-                            ]
-                        );
-                    }
-                }
-            }
+            $json = json_decode($json);
+            $da[] = $file;
+
+            // $table = str_replace('.json', '', $file);
+            // $file = explode('_', $table);
+            // $lang = $file[0];
+            // $file = array_slice($file, 1, count($file));
+            // $file = implode(' ', $file);
+
+            // foreach ($allJson ?? [] as $key => $value) {
+            //     if (is_array($value)) {
+            //         $sections = json_encode($value);
+            //     }
+
+            //     if (!is_array($value)) {
+            //         if (strlen($key) > 0 && strlen($value) > 0) {
+            //             DB::table($table)->updateOrInsert(
+            //                 ['key' => $key],
+            //                 [
+            //                     'type' => $file,
+            //                     'language' => $lang,
+            //                     'key' => $key,
+            //                     'value' => $value,
+            //                     'enabled' => true,
+            //                     'sections' => $sections
+            //                 ]
+            //             );
+            //         }
+            //     }
+            // }
         }
+        return $da;
         return 'OK';
     }
 

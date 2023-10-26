@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\DB;
 
 class Table extends Model
 {
@@ -15,7 +13,9 @@ class Table extends Model
         'name_en',
         'name_ar',
         'lang',
-        'table'
+        'table',
+        'file',
+        'number'
     ];
 
     protected $casts = [

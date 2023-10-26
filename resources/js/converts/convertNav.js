@@ -2,7 +2,9 @@ window.countCode = function() {
     const codeAllOld = localStorage.getItem("arCodeAll") === null ? {} : JSON.parse(localStorage.getItem("arCodeAll"));
     return Object.keys(codeAllOld).length;
 }
+
 window.addCode = function(key, values, languages) {
+    localStorage.setItem("languages", JSON.stringify(languages));
     values = JSON.parse(values);
     for(var index=0;index<languages.length; index++){
         const keyLocal = languages[index]+"CodeAll";
@@ -13,6 +15,7 @@ window.addCode = function(key, values, languages) {
         const codeAllNew = JSON.stringify(codeAllOld);
 
         localStorage.setItem(keyLocal, codeAllNew);
+        Alpine.store('group').meCode = JSON.parse(localStorage.getItem(keyLocal)) ?? {};
     }
 }
 
@@ -25,6 +28,7 @@ window.removeCode = function(key, languages) {
         const codeAllNew = JSON.stringify(codeAllOld);
 
         localStorage.setItem(keyLocal, codeAllNew);
+        Alpine.store('group').meCode = JSON.parse(localStorage.getItem(keyLocal)) ?? {};
     }
 }
 

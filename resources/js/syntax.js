@@ -1,3 +1,8 @@
+import { split } from "postcss/lib/list";
+
+var syntaxesServer = JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]');
+var keysValues = [];
+
 window.syntaxKey = function(key) {
     key = key.split('');
     for (var i = 0; i < key.length; i++) {
@@ -39,28 +44,35 @@ window.selectSyntax = function (input, syntax) {
     return input;
 }
 
-window.filterSyntax = function(input, valueSelect, syntaxesLocal, syntaxesServer) {
+window.filterSyntax = function(input, valueSelect, syntaxesServer) {
     const value = input.trim().replace(/\s{2,}/g, ' ');
 
     syntaxesLocal = [];
+    var keysValues = [];
 
-    for (let index = 0; index < syntaxesServer.length; index++) {
-        const element = syntaxesServer[index];
+    Object.keys(syntaxesServer).forEach(lang => {
+        const allValues = Object.values(syntaxesServer[lang]);
+        const values = allValues.flat();
+        keysValues.push([values].flat());
+    });
 
-        var v = '';
-        var vList = input.split(' ');
-        if(vList.length > 1) {
-            v = vList[vList.length-1];
-        }else {
-            v = value;
-        }
-        v = v.toLowerCase();
-        v = v.replaceAll('إ', 'ا');
-        v = v.replaceAll('أ', 'ا');
-        if(element.includes(v)) {
-            syntaxesLocal.push(element);
-        }
+    keysValues = keysValues.flat();
+
+    var v = '';
+    var vList = input.split(' ');
+    if(vList.length > 1) {
+        v = vList[vList.length-1];
+    }else {
+        v = value;
     }
+    v = v.toLowerCase();
+    v = v.replaceAll('إ', 'ا');
+    v = v.replaceAll('أ', 'ا');
+    keysValues.forEach(key => {
+        if(key.includes(v)) {
+            syntaxesLocal.push(key);
+        }
+    });
 
     if(value == '') {
         syntaxesLocal = [];
@@ -77,3 +89,41 @@ window.filterSyntax = function(input, valueSelect, syntaxesLocal, syntaxesServer
 
     return [syntaxesLocal, input];
 }
+
+window.filterSyntaxAdd = function(input) {
+    const value = input.trim().replace(/\s{2,}/g, ' ');
+
+    const valueSelect = value.split(" ");
+    var lastInput = valueSelect[valueSelect.length-1];
+    lastInput = lastInput.toLowerCase();
+    lastInput = lastInput.replaceAll('إ', 'ا');
+    lastInput = lastInput.replaceAll('أ', 'ا');
+
+    Alpine.store('syntax').syntaxesLocal = [];
+
+    keysValues.forEach(key => {
+        if(key.includes(lastInput)) {
+            Alpine.store('syntax').syntaxesLocal.push(key);
+        }
+    });
+
+    Alpine.store('syntax').syntaxesLocal = Alpine.store('syntax').syntaxesLocal.filter((value, index) => Alpine.store('syntax').syntaxesLocal.indexOf(value) === index);
+
+    if(lastInput == '') {
+        input = input+' ';
+    }
+
+    return input;
+}
+
+function initSyntX() {
+    Object.keys(syntaxesServer).forEach(lang => {
+        const allValues = Object.values(syntaxesServer[lang]);
+        const values = allValues.flat();
+        keysValues.push([values].flat());
+    });
+
+    keysValues = keysValues.flat();
+}
+
+initSyntX();

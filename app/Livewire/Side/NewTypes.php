@@ -22,13 +22,7 @@ class NewTypes extends Component
             ->where('table', '!=', $table)
             ->orderByDesc('updated_at')
             ->limit(5)
-            ->get(['name_' . $this->currentLang, 'table']);
-    }
-
-    function countItems($table)
-    {
-        return DB::table($table)
-            ->get()->count();
+            ->get(['name_' . $this->currentLang, 'table', 'number']);
     }
 
     function mount()

@@ -10,13 +10,13 @@ class Convert
         $csvValues = [];
 
         $index = 0;
-        foreach ($toJson as $values) {
-            $data = '';
+        foreach ($toJson as $lang => $values) {
+            $data = [$lang => ''];
             $csvKeys = [];
             $keys = [];
             foreach ($values as $key => $value) {
-                if ($type == 'json') {
-                    $data .= "<div>" .
+                if ($type === 'json') {
+                    $data[$lang] .= "<div>" .
                         '<span class="text-code-1-light dark:text-code-1-dark">"' .
                         $key . '"</span>: '  .
                         '<span class="text-code-2-light dark:text-code-2-dark">"' .
@@ -24,7 +24,7 @@ class Convert
                         '"</span>,' .
                         "</div>";
                 } elseif ($type === 'php') {
-                    $data .= "<div>" .
+                    $data[$lang] .= "<div>" .
                         '<span class="text-code-1-light dark:text-code-1-dark">"' .
                         $key .
                         '"</span> => '  .
@@ -33,7 +33,7 @@ class Convert
                         '"</span>,' .
                         "</div>";
                 } elseif ($type === 'android') {
-                    $data .= "<div>"
+                    $data[$lang] .= "<div>"
                         .
                         "<span class=\"text-code-2-light dark:text-code-2-dark\">"
                         .
@@ -55,7 +55,7 @@ class Convert
                         .
                         "</div>";
                 } elseif ($type === 'ios') {
-                    $data .= "<div>" .
+                    $data[$lang] .= "<div>" .
                         '<span class="text-code-1-light dark:text-code-1-dark">"' .
                         $key . '"</span> = '  .
                         '<span class="text-code-2-light dark:text-code-2-dark">"' .
@@ -63,7 +63,7 @@ class Convert
                         '"</span>;' .
                         "</div>";
                 } elseif ($type === 'django') {
-                    $data .= "<div><span class=\"text-code-2-light dark:text-code-2-dark\">msgid </span>" .
+                    $data[$lang] .= "<div><span class=\"text-code-2-light dark:text-code-2-dark\">msgid </span>" .
                         "<span class=\"text-code-1-light dark:text-code-1-dark\">\"" . $key . "\"</span>" .
                         "</div>" .
                         "<div><span class=\"text-code-2-light dark:text-code-2-dark\">msgstr </span>" .
@@ -71,7 +71,7 @@ class Convert
                         "</div>" .
                         "<br>";
                 } elseif ($type === 'xlf') {
-                    $data .= "<div class=\"text-code-2-light dark:text-code-2-dark\">" .
+                    $data[$lang] .= "<div class=\"text-code-2-light dark:text-code-2-dark\">" .
                         "&#x3c;trans-unit " .
                         "<span class=\"text-code-1-light dark:text-code-1-dark\">" .
                         "id=\"" . $key . "\"" .
@@ -107,7 +107,7 @@ class Convert
                         "&#x3c;/trans-unit>" .
                         "</div>";
                 } elseif ($type === 'csv') {
-                    $data .= '';
+                    $data[$lang] .= '';
                     $csvKeys[] = "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
                         strtoupper($key) .
                         "</span>" . ', ' . 'ararar' . ' ' . 'enenen';
@@ -120,7 +120,7 @@ class Convert
                         "</span>" .
                         ', ';
                 } elseif ($type === 'html') {
-                    $data .= "<div>" .
+                    $data[$lang] .= "<div>" .
 
                         "<span class=\"text-code-2-light dark:text-code-2-dark\">" .
                         "&#x3c;li" .
@@ -162,13 +162,12 @@ class Convert
                             $key = str_replace('enenen', $csvValues[$keys[$index] . '_' . 'en'], $key);
                         } catch (\Throwable $th) {
                         }
-                        $data .= '<div>' . $key . '</div>';
+                        $data[$lang] .= '<div>' . $key . '</div>';
                     }
-                    $dataAll[] = $data;
-                    // $dataAll[] = '';
+                    $dataAll = array_merge($dataAll, $data);
                 }
             } else {
-                $dataAll[] = $data;
+                $dataAll = array_merge($dataAll, $data);
             }
             $index++;
         }

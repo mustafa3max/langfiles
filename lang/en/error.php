@@ -8,4 +8,5 @@ return [
     "not_en_file_name" => "The language used in the file name is not English",
     "error_message" => "Message was not sent. Something went wrong. Please try later",
     "trans" => "You must choose keys, values, or both",
+    "json_syntax" => "Invalid json syntax",
 ];

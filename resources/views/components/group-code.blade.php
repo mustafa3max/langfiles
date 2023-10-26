@@ -6,8 +6,9 @@
         <div class="grow"></div>
         <x-copy-code i="me-code-0" />
     </div>
+
     <div id="parent-me-code">
-        <div x-data="{ isCode: true, languages: ['{{ Globals::languages()[0] }}', '{{ Globals::languages()[1] }}'] }" id="child-me-code">
+        <div x-data="{ isCode: true, languages: [] }" id="child-me-code">
             <div class="flex items-center justify-center">
                 <div class="grow">
                     <x-convert-to />
@@ -25,15 +26,16 @@
                         <button
                             class="grow rounded-t-lg border-secondary-light bg-primary-light p-2 dark:border-secondary-dark dark:bg-primary-dark"
                             :class="selectTab ? 'border-none font-bold' : 'border-b-2 bg-opacity-50 dark:bg-opacity-50'"
-                            x-text="languages[index]=='ar'?'{{ __('lang.ar') }}':'{{ __('lang.en') }}'"
-                            x-on:click="isTab(isSelectTab); lang=languages[index];meCode = JSON.parse(localStorage.getItem(lang + 'CodeAll')) ?? {}"></button>
+                            x-text="Alpine.store('group').languages[index]=='ar'?'{{ __('lang.ar') }}':'{{ __('lang.en') }}'"
+                            x-on:click="isTab(isSelectTab, Alpine.store('group').languages[index]);"></button>
                     </template>
                 </div>
+
                 <div dir="ltr" class="rounded-b-lg bg-primary-light p-4 dark:bg-primary-dark">
                     <div wire:model='code' class="text-lg font-semibold" id="me-code-0">
                         {{-- JSON --}}
                         <div x-show="convert[0]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="jsonOrPhp(key[0], key.pop(), false)" index="0" />
                             </template>
                         </div>
@@ -46,25 +48,25 @@
                         </div>
                         {{-- PHP --}}
                         <div x-show="convert[2]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="android(key[0], key.pop())" index="2" />
                             </template>
                         </div>
                         {{-- IOS --}}
                         <div x-show="convert[3]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="ios(key[0], key.pop())" index="3" />
                             </template>
                             {{-- DJANGO --}}
                         </div>
                         <div x-show="convert[4]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="django(key[0], key.pop())" index="4" />
                             </template>
                         </div>
                         {{-- XLF --}}
                         <div x-show="convert[5]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="xlf(key[0], key.pop())" index="5" />
                             </template>
                         </div>
@@ -78,7 +80,7 @@
                         </div>
                         {{-- HTML --}}
                         <div x-show="convert[7]" class="grid gap-2">
-                            <template x-for="key in Object.entries(meCode)">
+                            <template x-for="key in Object.entries(Alpine.store('group').meCode)">
                                 <x-item-group-code html="html(key[0], key.pop())" index="7" />
                             </template>
                         </div>
@@ -89,10 +91,26 @@
     </div>
 
     <script>
-        function isTab(isSelectTab) {
+        document.addEventListener('alpine:init', () => {
+            window.Alpine.store('group', {
+                init() {
+                    const data = JSON.parse(localStorage.getItem(
+                        '{{ App::getLocale() }}' +
+                        'CodeAll')) ?? {};
+
+                    Alpine.store('group').meCode = data;
+                    Alpine.store('group').languages = JSON.parse(localStorage.getItem("languages") ?? "[]");
+                },
+                meCode: {},
+                languages: []
+            });
+        });
+
+        function isTab(isSelectTab, lang) {
             for (let index = 0; index < isSelectTab.length; index++) {
                 isSelectTab[index] = !isSelectTab[index];
             }
+            Alpine.store('group').meCode = JSON.parse(localStorage.getItem(lang + 'CodeAll')) ?? {};
             return isSelectTab;
         }
     </script>

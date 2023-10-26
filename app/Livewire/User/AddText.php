@@ -192,7 +192,6 @@ class AddText extends Component
 
     public function mount()
     {
-        dd(Auth::user());
         $this->userId = Auth::id();
 
         $this->currentLang = LaravelLocalization::getCurrentLocale();

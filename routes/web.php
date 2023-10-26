@@ -22,6 +22,7 @@ use App\Livewire\Policy\Privacypolicy;
 use App\Livewire\Policy\Termsofservice;
 use App\Livewire\Show\File;
 use App\Livewire\Show\Types;
+use App\Livewire\Test;
 use App\Livewire\Tools\Index as ToolsIndex;
 use App\Livewire\Tools\LangTool;
 use App\Livewire\Tools\LangToolFlutter;
@@ -109,9 +110,9 @@ Route::prefix('user')->group(function () {
         Route::get('logout', function () {
             return Globals::logout();
         })->name('logout');
+        Route::get('add-text', AddText::class)->name('add-text');
     });
     Route::middleware('auth:sanctum', 'verified')->group(function () {
-        Route::get('add-text', AddText::class)->name('add-text');
         Route::get('delete-account', Delete::class)->name('delete-account');
     });
 });
@@ -146,6 +147,9 @@ Route::prefix('tools')->group(function () {
     Route::get('/langtool-flutter', LangToolFlutter::class)->name('langtool-flutter');
     Route::get('/langtool-laravel', LangtoolLaravel::class)->name('langtool-laravel');
 });
+
+// Route::get('/test', Test::class)->name('test');
+
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::get('/valid-user/{email}', function ($email) {

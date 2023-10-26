@@ -14,7 +14,8 @@
         <div class="flex flex-wrap justify-center gap-2">
             <div class="flex flex-wrap gap-2" x-data="{
                 extensions: {{ json_encode(Globals::supportedExtensions()) }},
-                clicks: [false, false, false, false, false, false, false, false]
+                clicks: [false, false, false, false, false, false, false, false],
+                error: null
             }">
                 <template x-for="(extension, index) in extensions">
                     <button class="rounded-lg border border-primary-light px-2 py-1 uppercase dark:border-primary-dark"
@@ -31,13 +32,13 @@
             data: Alpine.store('syntax').tryCatch(),
         }">
             <label class="block">{{ __('convert.json_input') }}</label>
-            <div contenteditable dir="ltr" id="type-1"
-                class="w-full overflow-auto whitespace-pre-wrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
-                @if ($dataTransQuery != null) x-text="JSON.stringify({{ $dataTransQuery }})" @else x-text="data??null" @endif
-                data-placeholder="{{ __('convert.write_here') }}">
-            </div>
-            <div x-show="Alpine.store('syntax').error!=null" x-text="Alpine.store('syntax').error" dir="ltr"
-                class="pt-2 font-extrabold text-code-2-dark"></div>
+            <textarea oninput="auto_grow(this)" dir="ltr" id="type-1"
+                class="min-h-[200px] w-full resize-none overflow-auto whitespace-pre-wrap rounded-lg bg-primary-light p-4 outline-0 dark:bg-primary-dark"
+                @if ($dataTransQuery != null) x-text="JSON.stringify({{ $dataTransQuery }})" @else x-text="data" @endif
+                placeholder="{{ __('convert.write_here') }}">
+            </textarea>
+            <div x-show="Alpine.store('syntax').error!=null" x-text="Alpine.store('syntax').error"
+                class="pt-2 font-extrabold text-code-2-dark" dir="ltr"></div>
         </div>
 
         <div class="w-full" x-show="!select" x-data="{ syntaxesLocal: [] }">
@@ -76,7 +77,6 @@
 
             <button
                 x-on:click="Livewire.dispatch('transNow', {data:{data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues}})"
-                {{-- x-on:click="Livewire.dispatch('transNow', {data:sessionStorage.getItem('convert_data'), isTransKeys: isTransKeys, isTransValues:isTransValues})" --}}
                 class="rounded-lg border border-transparent bg-accent p-2 font-bold text-primary-light hover:border-accent hover:bg-transparent hover:text-accent">{{ __('me_str.trans_now') }}</button>
         </div>
     </x-card>
@@ -89,6 +89,8 @@
     <x-msg />
 
     @push('scripts')
+        @vite(['resources/js/converts/convert.js'])
+
         <script data-navigate-track>
             var syntaxesLocal = [];
 
@@ -111,12 +113,15 @@
                         }, 250);
                     },
 
-                    tryCatch() {
+                    async tryCatch() {
                         try {
-                            this.error = null;
-                            return JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+                            Alpine.store('syntax').error = null;
+                            return JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null,
+                                4);
                         } catch (e) {
-                            this.error = e;
+                            if (sessionStorage.getItem('convert_data') != "") {
+                                Alpine.store('syntax').error = e.message;
+                            }
                             return sessionStorage.getItem('convert_data');
                         }
 
@@ -138,10 +143,17 @@
                     if (value == null) {
                         sessionStorage.removeItem('syntaxes');
                     } else {
+
                         sessionStorage.setItem('syntaxes', JSON.stringify(value));
+                        Alpine.store('syntax').syntaxesLocal = JSON.parse(sessionStorage.getItem('syntaxes'));
                     }
                 });
             });
+
+            function auto_grow(element) {
+                element.style.height = "5px";
+                element.style.height = (element.scrollHeight) + "px";
+            }
         </script>
 
         @vite(['resources/js/converts/convert.js'])

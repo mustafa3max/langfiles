@@ -10,34 +10,22 @@ var data = {};
 
 try {
     data = JSON.parse(sessionStorage.getItem('convert_data'));
+    setTimeout(() => {
+        formatJson();
+    }, 200);
 } catch (error) {
 }
 
-type1.innerText = JSON.stringify(data);
+type1.value = JSON.stringify(data);
 
 type1.addEventListener('keyup', ()=>{
-
-    sessionStorage.setItem('convert_data', type1.innerText);
-    try {
-        Alpine.store('syntax').error = null;
-        data = JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
-    } catch (e) {
-        Alpine.store('syntax').error = e;
-        data = sessionStorage.getItem('convert_data');
-    }
+    sessionStorage.setItem('convert_data', type1.value);
+    formatJson();
 });
 
 type1.addEventListener('blur', ()=>{
-     try {
-        Alpine.store('syntax').error = null;
-        data = JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
-    } catch (e) {
-        Alpine.store('syntax').error = e;
-        data = sessionStorage.getItem('convert_data');
-    }
-    type1.innerHTML = data;
+     formatJson();
 });
-
 
 keyAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
@@ -52,17 +40,17 @@ keyAdd.addEventListener("keypress", function(event) {
 
 valueAdd.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
-    if(event.target.value != "") {
+    event.preventDefault();
+    if(keyAdd.value != "") {
         add();
-    }
-    else {
-        event.target.setAttribute('placeholder', 'required');
+    }else{
+        keyAdd.setAttribute('placeholder', 'required');
     }
   }
 });
 
 window.convertNow = function(type = "json") {
-    const to = new window.To(type1.innerText);
+    const to = new window.To(type1.value);
 
     type2.innerHTML = to.convert(type);
 }
@@ -81,18 +69,17 @@ window.copyContent = async function(){
 }
 
 window.add = function() {
-    if (data == null) {
+    if (data == null || typeof(data) == "string") {
         data = {};
     }
-    if(keyAdd.value != "" && valueAdd.value != "") {
-
+    if(keyAdd.value != "") {
         valueAdd.value = valueAdd.value.trim();
-
         keyAdd.value = syntaxKey(keyAdd.value);
 
         data[keyAdd.value] = valueAdd.value;
-        type1.innerText = JSON.stringify(data);
-        sessionStorage.setItem('convert_data', type1.innerText);
+        type1.value = JSON.stringify(data);
+
+        sessionStorage.setItem('convert_data', type1.value);
         convertNow();
         keyAdd.value = "";
         valueAdd.value = "";
@@ -102,14 +89,14 @@ window.add = function() {
 
 window.delete = function() {
     sessionStorage.removeItem('convert_data');
-    type1.innerText = "";
+    type1.value = "";
+    type2.innerHTML = "الإخراج النهائي";
+    data = {};
 }
 
 //
 // Syntax
 //
-
-var valueSelect = [];
 
 keyAdd.addEventListener("focus", function() {
     Alpine.store('syntax').syntaxesLocal = [];
@@ -123,9 +110,8 @@ keyAdd.addEventListener("blur", function() {
 });
 
 keyAdd.addEventListener("keyup", function(event) {
-    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
-    Alpine.store('syntax').syntaxesLocal = data[0];
-    event.target.value = data[1];
+    const data = window.filterSyntaxAdd(event.target.value);
+    event.target.value = data;
 });
 
 valueAdd.addEventListener("focus", function() {
@@ -140,9 +126,20 @@ valueAdd.addEventListener("blur", function() {
 });
 
 valueAdd.addEventListener("keyup", function(event) {
-    const data = window.filterSyntax(event.target.value, valueSelect, syntaxesLocal, JSON.parse(sessionStorage.getItem('syntaxes') ?? '[]'));
-    Alpine.store('syntax').syntaxesLocal = data[0];
-    event.target.value = data[1];
+    const data = window.filterSyntaxAdd(event.target.value);
+    event.target.value = data;
 });
 
+function formatJson() {
+    try {
+        Alpine.store('syntax').error = null;
+        data = JSON.stringify(JSON.parse(sessionStorage.getItem('convert_data')), null, 4);
+    } catch (e) {
+        if (sessionStorage.getItem('convert_data') != "") {
+            Alpine.store('syntax').error = e.message;
+        }
+        data = sessionStorage.getItem('convert_data');
+    }
+    type1.value = data;
+}
 //constructor

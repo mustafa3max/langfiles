@@ -3,79 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use Globals;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 class SyntaxController extends Controller
 {
-    public $types;
+    public $types = [];
 
-    function createListSyntaxCache($type)
+    function createListSyntaxCache()
     {
         $tables = DB::select('SHOW TABLES');
         $tables = array_map('current', $tables);
 
-        $tables = Table::get('table');
+        $tables = Table::get('file');
+
         foreach ($tables as $table) {
-            $this->types($table->table, $type);
-        }
+            $lang = explode('_', $table->file)[0];
 
-        if ($type == 'syntaxes') {
-            return $this->data();
+            $this->types($table->file, $lang);
         }
-        if ($type == 'keys-values') {
-            return $this->dataKeyValue();
-        }
-    }
-
-    function types($table, $type)
-    {
-        $types = DB::table($table)->get(['key', 'value', 'language']);
-        foreach ($types as $type) {
-            if ($type == 'syntaxes') {
-                foreach ($type as  $keyValue) {
-                    $value = strtolower($keyValue);
-                    $value = str_replace('إ', 'ا', $value);
-                    $value = str_replace('أ', 'ا', $value);
-                    $value = str_replace('_', ' ', $value);
-                    $this->types[] =  $value;
-                }
-            } else {
-                $this->types[$type->language][$type->key] = $type->value;
+        $types = [];
+        foreach (Globals::languages() as $lang) {
+            $types[$lang] = [];
+            foreach ($this->types[$lang] as $value) {
+                $types[$lang] = array_merge($types[$lang], (array)$value);
             }
         }
+        $this->types = $types;
+
+        return $this->data();
+    }
+
+    function types($table, $lang)
+    {
+        $this->types[$lang][] = json_decode(Storage::disk(Globals::diskTypes())->get($table));
     }
 
     function data()
     {
         Cache::delete('syntaxes');
-        $types = $this->types;
+        Cache::put('syntaxes', $this->types);
 
-        $types =  array_unique($types);
-        $types = array_values($types);
-
-        Cache::put('syntaxes', $types);
-
-        return response()->json(
-            [
-                'count' => count($types),
-                'data' => $types
-            ]
-        );
-    }
-
-    function dataKeyValue()
-    {
-        Cache::delete('data-keys-values');
-        $types = $this->types;
-
-        Cache::put('data-keys-values', $types);
-
-        return response()->json(
-            [
-                'count' => count($types),
-                'data' => $types
-            ]
-        );
+        return response()->json($this->types);
     }
 }

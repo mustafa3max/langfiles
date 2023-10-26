@@ -92,11 +92,6 @@ class Types extends Component
         return $tables;
     }
 
-    function countItems($table)
-    {
-        return DB::table($table)->get()->count();
-    }
-
     function mount()
     {
         session()->put('route', Route::currentRouteName());

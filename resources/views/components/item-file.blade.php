@@ -1,39 +1,24 @@
-@php
-    $keys = [];
-@endphp
-@foreach (array_values($file) as $f)
-    @foreach ($f as $l)
-        @php
-            if ($l->key == $data->key) {
-                $keys[] = $l->value;
-            }
-        @endphp
-    @endforeach
-@endforeach
-<div x-data="{ isDelete: false }"
-    class="no-scrollbar bg-{{ $isType ? 'primary' : 'secondary' }}-light dark:bg-{{ $isType ? 'primary' : 'secondary' }}-dark relative grow cursor-pointer overflow-x-scroll rounded-lg border border-transparent hover:border-accent"
-    :title="Object.keys(meCode).includes('{{ $data->key }}') ? '{{ __('me_str.selected') }}' :
-        '{{ __('me_str.select') }}'"
-    x-on:click="isDelete?false:Object.keys(meCode).includes('{{ $data->key }}')?
-         removeCode('{{ $data->key }}',  ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']):
-         addCode('{{ $data->key }}','{{ json_encode($keys) }}', ['{{ Globals::languages()[0] }}','{{ Globals::languages()[1] }}']);
-         countMeCode = countCode();meCode=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
+<div class="no-scrollbar bg-{{ $isType ? 'primary' : 'secondary' }}-light dark:bg-{{ $isType ? 'primary' : 'secondary' }}-dark relative grow cursor-pointer overflow-x-scroll rounded-lg border border-transparent hover:border-accent"
+    x-data="{ isDelete: false }"
+    x-on:click="isDelete?false:Object.keys(Alpine.store('group').meCode).includes('{{ $data[0] }}')?
+         removeCode('{{ $data[0] }}',  {{ json_encode($languages) }}):
+         addCode('{{ $data[0] }}','{{ json_encode($allData) }}', {{ json_encode($languages) }});
+         countMeCode = countCode();Alpine.store('group').meCode=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
          csvData=JSON.parse(localStorage.getItem('arCodeAll')) ?? {} ;
-         isSelectTab = Object.keys(meCode).length > 0 ? [true, false] : []">
+         isSelectTab = Object.keys(Alpine.store('group').meCode).length > 0 ? [true, false] : []">
 
-    <div wire:key='{{ $data->language . $data->key }}'>
-
+    <div wire:key='{{ $data[0] }}'>
         <div class="flex items-center gap-3 p-3" dir="ltr">
-            <span class="font-semibold text-code-1-light dark:text-code-1-dark">{{ $data->key }}</span>
+            <span class="font-semibold text-code-1-light dark:text-code-1-dark">{{ $data[0] }}</span>
 
             <div class="h-3 border-s"></div>
 
-            <span class="font-semibold text-code-2-light dark:text-code-2-dark">{{ $data->value }}</span>
+            <span class="font-semibold text-code-2-light dark:text-code-2-dark">{{ $data[1] }}</span>
             @if (!$isType)
                 <div class="z-50 flex grow justify-end">
                     <button x-on:click="isDelete=true"
                         class="flex h-12 items-center justify-center rounded-lg p-4 hover:text-accent"
-                        wire:click='delete("{{ $data->key }}")' title="{{ __('me_str.remove_key') }}">
+                        wire:click='delete("{{ $data[0] }}")' title="{{ __('me_str.remove_key') }}">
                         <x-svg.x />
                     </button>
                 </div>
@@ -50,10 +35,9 @@
     </div>
 
     <div class="absolute bottom-0 top-0 flex h-full w-full items-center justify-center rounded-lg border border-accent bg-primary-light bg-opacity-60 dark:bg-primary-dark dark:bg-opacity-60"
-        x-show="Object.keys(meCode).includes('{{ $data->key }}')">
+        x-show="Object.keys(Alpine.store('group').meCode).includes('{{ $data[0] }}')">
         <i class="text-accent">
             <x-svg.check />
         </i>
     </div>
-
 </div>

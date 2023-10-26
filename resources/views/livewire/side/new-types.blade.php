@@ -6,7 +6,7 @@
     <ul class="rounded-b-lg border-8 border-secondary-light px-3 dark:border-secondary-dark">
         @foreach ($newTypes as $type)
             @php
-                $countItems = $this->countItems($type->table);
+                $countItems = $type->number;
                 $route = str_replace(LaravelLocalization::getCurrentLocale() . '_', 'type_', $type->table);
                 $route = str_replace('_', '-', $route);
             @endphp

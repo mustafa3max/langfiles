@@ -32,7 +32,7 @@
                             'lang' => $type->lang,
                             'moreLang' => $this->moreLang($type->table),
                             'route' => '/file/' . $route,
-                            'countItems' => $this->countItems($type->table),
+                            'countItems' => $type->number,
                         ])
                         @endcomponent
                     </div>
