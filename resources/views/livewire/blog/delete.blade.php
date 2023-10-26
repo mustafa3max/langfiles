@@ -31,7 +31,7 @@
                             class="flex flex-wrap items-center gap-2 rounded-b-lg bg-primary-light p-2 dark:bg-primary-dark">
                             <div class="flex items-center gap-2">
                                 <span>{{ __('me_str.author') }}</span>
-                                <x-text-link href="/mustafamax/profile" isNavigate="1">
+                                <x-text-link href="/mustafamax/profile">
                                     @component('components.text-button', ['value' => $article->users->name])
                                     @endcomponent
                                 </x-text-link>

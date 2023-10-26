@@ -30,14 +30,14 @@
                         class="ms-2 text-sm font-medium">{{ __('me_str.remember_me') }}</label>
                 </div>
 
-                <x-text-link isNavigate="1">{{ __('me_str.forgot_password') }}</x-text-link>
+                <x-text-link>{{ __('me_str.forgot_password') }}</x-text-link>
             </div>
 
             <x-fill-btn type="submit">{{ __('seo.title_sign_in') }}</x-fill-btn>
 
             <div>
                 <span>{{ __('me_str.not_account') }}</span>
-                <x-text-link href="/sign-up" isNavigate="1">{{ __('me_str.new_account') }}</x-text-link>
+                <x-text-link href="/sign-up">{{ __('me_str.new_account') }}</x-text-link>
             </div>
 
         </form>

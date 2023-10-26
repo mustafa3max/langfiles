@@ -91,7 +91,7 @@
     @push('scripts')
         @vite(['resources/js/converts/convert.js'])
 
-        <script data-navigate-track>
+        <script>
             var syntaxesLocal = [];
 
             document.addEventListener('alpine:init', () => {

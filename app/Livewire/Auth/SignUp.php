@@ -32,8 +32,8 @@ class SignUp extends Component
         if (Auth::attempt(['name' => $validated['name'], 'email' => $validated['email'], 'password' => $validated['password']], true)) {
             // event(new Registered($user));
 
-            return $this->redirect(url()->to('types'), navigate: true);
-            // return $this->redirect(url()->to('email/verify'), navigate: true);
+            return $this->redirect(url()->to('types'));
+            // return $this->redirect(url()->to('email/verify'));
         }
     }
 
@@ -41,7 +41,7 @@ class SignUp extends Component
     {
 
         if (Auth::check()) {
-            return $this->redirect('/types', navigate: true);
+            return $this->redirect('/types');
         }
     }
 

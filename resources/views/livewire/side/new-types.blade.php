@@ -12,7 +12,7 @@
             @endphp
             <li
                 class="{{ $loop->last ? '' : 'border-b-2' }} flex border-secondary-light py-3 hover:rounded-lg hover:text-accent dark:border-secondary-dark">
-                <a @if ($countItems > 0) href="{{ '/file/' . $route }}" wire:navigate @endif
+                <a @if ($countItems > 0) href="{{ '/file/' . $route }}" @endif
                     class="grow">{{ $type['name_' . $currentLng] }}</a>
                 <span class="">{{ $countItems }}</span>
             </li>

@@ -1,5 +1,5 @@
 <a class="{{ $countItems > 0 ? 'hover:border-accent dark:hover:border-accent' : '' }} grid min-h-[180] grid-rows-1 rounded-lg border border-transparent bg-primary-light text-center shadow-md dark:bg-primary-dark"
-    @if ($countItems > 0) href="{{ $route }}" wire:navigate @endif>
+    @if ($countItems > 0) href="{{ $route }}" @endif>
 
     <div class="grid gap-1 px-1 py-8 text-xl uppercase">
         <span class="font-semibold text-accent">{{ $countItems }}</span>

@@ -57,8 +57,7 @@
                         {{ __('me_str.help') }}
                     </li>
                     <li class="block py-1">
-                        <x-text-link href="/call-us" isNavigate="1"
-                            accent="0">{{ __('me_str.call_us') }}</x-text-link>
+                        <x-text-link href="/call-us" accent="0">{{ __('me_str.call_us') }}</x-text-link>
                     </li>
                     <li class="block py-1">
                         <x-text-link href="mailto:www.langfiles@gamil.com" isExternal="1"
@@ -78,12 +77,12 @@
             dir="ltr">
             <span>
                 &copy; {{ date('Y') }}
-                <x-text-link href="/" isNavigate="1">{{ config('app.name') }}</x-text-link>
+                <x-text-link href="/">{{ config('app.name') }}</x-text-link>
             </span>
             <div class="hidden grow sm:block"></div>
             <span>
                 from
-                <x-text-link href="/mustafamax/profile" isNavigate="1">mustafamax</x-text-link>
+                <x-text-link href="/mustafamax/profile">mustafamax</x-text-link>
             </span>
         </div>
     </div>

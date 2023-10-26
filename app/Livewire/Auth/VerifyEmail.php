@@ -20,7 +20,7 @@ class VerifyEmail extends Component
     public function mount()
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            return $this->redirect('/types', navigate: true);
+            return $this->redirect('/types');
         }
     }
 

@@ -40,7 +40,7 @@
 
             <div>
                 <span class="text-gray-400">{{ __('me_str.already_account') }}</span>
-                <x-text-link href="/sign-in" isNavigate="1">{{ __('seo.title_sign_in') }}</x-text-link>
+                <x-text-link href="/sign-in">{{ __('seo.title_sign_in') }}</x-text-link>
             </div>
         </form>
 

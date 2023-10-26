@@ -29,7 +29,7 @@ class SignIn extends Component
     public function mount()
     {
         if (Auth::check()) {
-            return $this->redirect('/types', navigate: true);
+            return $this->redirect('/types');
         }
     }
 

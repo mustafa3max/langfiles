@@ -29,7 +29,7 @@ class Delete extends Component
                 session()->flush();
                 auth('web')->logout();
                 $this->dispatch('message', __('me_str.done_delete_account'));
-                return $this->redirect('/types', navigate: true);
+                return $this->redirect('/types');
             } else {
                 $this->dispatch('message', __('me_str.error_delete_account'));
             }

@@ -12,8 +12,7 @@
 
             <li
                 class="{{ $loop->last ? '' : 'border-b-2' }} flex border-secondary-light py-3 hover:rounded-lg hover:text-accent dark:border-secondary-dark">
-                <x-text-link href="{{ '/ar/blog/article/' . $route }}" isNavigate="1"
-                    accent="0">{{ $article->title }}</x-text-link>
+                <x-text-link href="{{ '/ar/blog/article/' . $route }}" accent="0">{{ $article->title }}</x-text-link>
             </li>
         @endforeach
     </ul>

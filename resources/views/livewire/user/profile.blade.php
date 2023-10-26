@@ -21,7 +21,7 @@
             <div class="flex">
                 <x-text-link href="{{ route('logout') }}">{{ __('me_str.logout') }}</x-text-link>
                 <div class="grow"></div>
-                <x-text-link href="user/delete-account" isNavigate="1">{{ __('seo.title_delete_account') }}</x-text-link>
+                <x-text-link href="user/delete-account">{{ __('seo.title_delete_account') }}</x-text-link>
             </div>
         </div>
     </x-card>

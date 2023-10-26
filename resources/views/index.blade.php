@@ -78,8 +78,7 @@
                 <br>
                 <br>
                 <a href="{{ route('types') }}"
-                    class="block animate-pulse text-center text-xl font-bold uppercase hover:underline"
-                    wire:navigate>{{ __('me_str.show_files') }}</a>
+                    class="block animate-pulse text-center text-xl font-bold uppercase hover:underline">{{ __('me_str.show_files') }}</a>
             </div>
             <a href="#1" class="absolute bottom-0 animate-bounce p-2 shadow-sm" title="{{ __('me_str.go_info') }}"
                 x-on:click="select[0]=false;select[1]=true;select[2]=false;select[3]=false;"><x-svg.angles-down /></i></a>
@@ -104,8 +103,7 @@
                     <p class="text-xl leading-9">{{ __('index_str.description_1') }}</p>
                     <div class="pt-4">
                         <a href="{{ route('types') }}"
-                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline"
-                            wire:navigate>{{ __('me_str.show_files') }}</a>
+                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>
             </div>
@@ -122,8 +120,7 @@
                     <p class="text-xl leading-9">{{ __('index_str.description_2') }}</p>
                     <div class="pt-4">
                         <a href="{{ route('types') }}"
-                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline"
-                            wire:navigate>{{ __('me_str.show_files') }}</a>
+                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>
             </div>
@@ -154,8 +151,7 @@
                     <p class="text-xl leading-9">{{ __('index_str.description_3') }}</p>
                     <div class="pt-4">
                         <a href="{{ route('types') }}"
-                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline"
-                            wire:navigate>{{ __('me_str.show_files') }}</a>
+                            class="animate-pulse text-lg font-bold uppercase text-accent hover:underline">{{ __('me_str.show_files') }}</a>
                     </div>
                 </div>
             </div>
@@ -164,7 +160,7 @@
 
     {{-- @livewire('help.os') --}}
 
-    <script src="{{ asset('js/home.js') }}" data-navigate-track></script>
+    <script src="{{ asset('js/home.js') }}"></script>
 </body>
 
 </html>

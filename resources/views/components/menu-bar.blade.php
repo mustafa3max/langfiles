@@ -1,7 +1,7 @@
 <div class="z-20 grid gap-4 rounded-lg border border-primary-light bg-secondary-light p-4 shadow-lg dark:border-primary-dark dark:bg-secondary-dark"
     x-show="isMenu" x-on:click.outside="isMenu = false" x-transition.duration.500ms>
     @if (Auth::check())
-        <a href="/user/profile" class="flex items-center gap-4" wire:navigate>
+        <a href="/user/profile" class="flex items-center gap-4">
             <x-svg.user />
             <span>{{ __('me_str.profile') }}</span>
         </a>
@@ -11,11 +11,11 @@
             <span>{{ __('me_str.logout') }}</span>
         </a>
     @else
-        <a href="/sign-up" class="flex items-center gap-4" wire:navigate>
+        <a href="/sign-up" class="flex items-center gap-4">
             <x-svg.register />
             <span>{{ __('seo.title_sign_up') }}</span>
         </a>
-        <a href="/sign-in" class="flex items-center gap-4" wire:navigate>
+        <a href="/sign-in" class="flex items-center gap-4">
             <x-svg.logout />
             <span>{{ __('seo.title_sign_in') }}</span>
         </a>
@@ -43,7 +43,7 @@
     </a>
 
     <div class="border-b border-primary-light dark:border-primary-dark"></div>
-    <a href="/call-us" class="flex items-center gap-4" wire:navigate>
+    <a href="/call-us" class="flex items-center gap-4">
         <x-svg.call />
         <span>{{ __('me_str.call_us') }}</span>
     </a>

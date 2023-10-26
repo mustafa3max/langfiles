@@ -16,10 +16,10 @@
                 <span class="text-center font-extrabold uppercase">mustafamax</span>
 
                 <div class="grid gap-2">
-                    <x-text-link href="https://www.facebook.com/mustafamax13"
-                        isNavigate="1">{{ __('seo.profile_facebook_mustafamax') }}</x-text-link>
-                    <x-text-link href="https://www.facebook.com/Lnagfiles/"
-                        isNavigate="1">{{ __('seo.page_facebook_mustafamax') }}</x-text-link>
+                    <x-text-link
+                        href="https://www.facebook.com/mustafamax13">{{ __('seo.profile_facebook_mustafamax') }}</x-text-link>
+                    <x-text-link
+                        href="https://www.facebook.com/Lnagfiles/">{{ __('seo.page_facebook_mustafamax') }}</x-text-link>
                     <span class="text-center">+96407707309366</span>
                 </div>
             </div>
